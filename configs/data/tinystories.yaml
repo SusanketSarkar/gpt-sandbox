@@ -1,0 +1,9 @@
+# TinyStories subset via HuggingFace (pip install datasets tokenizers). Needs network.
+name: tinystories
+sources:
+  - {name: hf, dataset: roneneldan/TinyStories, split: train, text_field: text, max_docs: 200000}
+filters:
+  - {name: min_chars, n: 100}
+  - {name: strip}
+tokenizer: {name: hf_bpe, vocab_size: 4096}
+val_fraction: 0.01

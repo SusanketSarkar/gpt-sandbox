@@ -1,0 +1,9 @@
+# Tiny Shakespeare (~1MB), character-level. Good first dataset; trains in minutes on CPU.
+name: shakespeare
+sources:
+  - {name: url, url: "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt", doc_split: blank}
+filters:
+  - {name: min_chars, n: 10}
+tokenizer: char          # char | byte | gpt2 | {name: hf_bpe, vocab_size: 2048}
+val_fraction: 0.05
+dedup: true

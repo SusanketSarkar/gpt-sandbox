@@ -1,0 +1,7 @@
+# Synthetic 'recall' task: tiny algorithmic corpus; eval reports exact-match (task_em).
+name: synth_recall
+sources:
+  - {name: synthetic, task: recall, n_docs: 1500, lines_per_doc: 64, seed: 0}
+tokenizer: char
+val_fraction: 0.1
+dedup: false

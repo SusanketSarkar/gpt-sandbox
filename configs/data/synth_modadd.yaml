@@ -1,0 +1,7 @@
+# Synthetic 'modadd' task: tiny algorithmic corpus; eval reports exact-match (task_em).
+name: synth_modadd
+sources:
+  - {name: synthetic, task: modadd, n_docs: 1500, lines_per_doc: 64, seed: 0}
+tokenizer: char
+val_fraction: 0.1
+dedup: false
