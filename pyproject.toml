@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpt-sandbox"
+version = "0.1.0"
+description = "A small, hackable lab for autoregressive GPT experiments: curate data, swap components, train, eval, query."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.1", "numpy", "pyyaml"]
+
+[project.optional-dependencies]
+data = ["datasets", "tokenizers", "tiktoken"]   # hf sources, BPE training, GPT-2 tokenizer
+plot = ["matplotlib"]
+dev = ["pytest"]
+
+[project.scripts]
+gpt = "gpt_sandbox.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

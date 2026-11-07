@@ -1,0 +1,11 @@
+# Copy me. Each variant is a set of dotted config overrides; seeds multiply every variant.
+#   gpt sweep configs/sweeps/template.yaml
+base: ../tiny.yaml
+seeds: [0, 1]
+common: {train.max_steps: 400}
+variants:
+  baseline: {}
+  # wider:       {model.d_model: 192, model.n_head: 6}
+  # no_rope:     {model.posenc: {name: learned}}
+  # swap_attn:   {model.attention: {name: my_attention}}          # after `gpt new attention my_attention`
+  # layer_gate:  {model.inserts: [{site: block_end, name: my_gate}]}

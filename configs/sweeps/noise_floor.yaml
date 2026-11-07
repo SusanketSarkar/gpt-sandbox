@@ -1,0 +1,8 @@
+# Step zero of every ablation study: how big is seed-to-seed noise on your setup?
+# Any effect smaller than the ± in this table is not an effect.
+#   gpt sweep configs/sweeps/noise_floor.yaml
+base: ../tiny.yaml
+seeds: [0, 1, 2]
+common: {train.max_steps: 300}
+variants:
+  baseline: {}

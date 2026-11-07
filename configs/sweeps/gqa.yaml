@@ -1,0 +1,10 @@
+# Copy me. Each variant is a set of dotted config overrides; seeds multiply every variant.
+#   gpt sweep configs/sweeps/template.yaml
+name: gqa
+base: ../tiny.yaml
+seeds: [0, 1, 2]
+common: {train.max_steps: 5000}
+variants:
+  mha:  {model.attention: {name: gqa, n_kv_heads: 4}}
+  gqa2: {model.attention: {name: gqa, n_kv_heads: 2}}
+  mqa:  {model.attention: {name: gqa, n_kv_heads: 1}}

@@ -1,0 +1,17 @@
+# Runs on a laptop CPU in a few minutes. Needs:  gpt data curate -c configs/data/shakespeare.yaml
+name: tiny
+seed: 1337
+data: {name: tinystories}
+model:
+  n_layer: 4
+  d_model: 128
+  n_head: 4
+  seq_len: 128
+  dropout: 0.0
+optim: {lr: 2.0e-3, weight_decay: 0.05}
+train:
+  max_steps: 10000
+  batch_size: 32
+  warmup_steps: 50
+  eval_interval: 100
+  log_interval: 25

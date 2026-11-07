@@ -1,0 +1,6 @@
+# Associative-recall testbed for attention variants. Needs: gpt data curate -c configs/data/synth_recall.yaml
+base: tiny.yaml
+name: recall
+data: {name: synth_recall}
+model: {n_layer: 2, d_model: 64, n_head: 2, seq_len: 64}
+train: {max_steps: 1500, eval_interval: 250}
