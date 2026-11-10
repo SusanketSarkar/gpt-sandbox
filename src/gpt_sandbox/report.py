@@ -4,6 +4,7 @@ from __future__ import annotations
 import math
 import re
 from collections import defaultdict
+from collections.abc import Mapping
 from pathlib import Path
 
 import numpy as np
@@ -14,7 +15,7 @@ from .runs import find_runs, read_metrics
 from .utils import fmt, human, read_json, table
 
 DEFAULT_COLS = ["val_loss", "val_bpb", "val_acc1", "gain_vs_bigram", "ctx_gain", "induction_gap",
-                "task_em", "gen_gap", "params_total", "fwdbwd_tok_per_s"]
+                "task_em", "gen_gap", "params_total", "flops_per_token", "fwdbwd_tok_per_s"]
 
 
 def _load(run: Path) -> dict:
@@ -94,23 +95,42 @@ def plot(paths, keys, out="plot.png", x="step", smooth=0.9):
 
 
 def info(model, cfg) -> str:
-    n = cfg.model.n_layer
+    m = cfg.model
+    n = m.n_layer
+    layout = (m.extra or {}).get("layout") if isinstance(m.block, Mapping) and m.block.get("name") == "layout" else None
     out = []
     rows = []
     for i in range(n):
         row = [str(i)]
-        for kind in ("block", "attention", "mlp", "norm", "residual"):
-            spec = select_spec(cfg.model[kind], i, n, kind)
+        if layout:
+            op = layout[i].upper()
+            row += ["layout", op, "mha" if op == "A" else "swiglu"]
+        else:
+            for kind in ("block", "attention", "mlp"):
+                spec = select_spec(m[kind], i, n, kind)
+                name, kw = registry.parse_spec(spec, kind)
+                row.append(name + (f"{kw}" if kw else ""))
+        for kind in ("norm", "residual"):
+            spec = select_spec(m[kind], i, n, kind)
             name, kw = registry.parse_spec(spec, kind)
             row.append(name + (f"{kw}" if kw else ""))
-        ins = [f"{s}:{type(m).__name__}" for s, ml in model.blocks[i].inserts.items() for m in ml]
+        ins = [f"{s}:{type(mm).__name__}" for s, ml in model.blocks[i].inserts.items() for mm in ml]
         row.append(", ".join(ins) or "-")
         rows.append(row)
-    out.append(table(rows, ["layer", "block", "attention", "mlp", "norm", "residual", "inserts"]))
-    mi = [f"{s}:{type(m).__name__}" for s, ml in model.model_inserts.items() for m in ml]
-    out.append(f"\nposenc: {cfg.model.posenc}   model-level inserts: {mi or '-'}   tied embeddings: {cfg.model.tie_embeddings}")
+    if layout:
+        na, nm = layout.upper().count("A"), layout.upper().count("M")
+        out.append(table(rows, ["layer", "block", "sublayer (A=attn M=mlp)", "component", "norm", "residual", "inserts"]))
+        out.append(f"\nlayout: {layout}   ({na} attention + {nm} MLP sublayers)")
+    else:
+        out.append(table(rows, ["layer", "block", "attention", "mlp", "norm", "residual", "inserts"]))
+    mi = [f"{s}:{type(mm).__name__}" for s, ml in model.model_inserts.items() for mm in ml]
+    out.append(f"\nposenc: {m.posenc}   model-level inserts: {mi or '-'}   tied embeddings: {m.tie_embeddings}")
+    try:
+        meas = human(model.train_flops_per_token())
+    except Exception:
+        meas = "?"
     out.append(f"\nparameters: {model.num_params():,} total | {model.num_params(True):,} non-embedding | "
-               f"~{human(model.flops_per_token())} train FLOPs/token")
+               f"~{human(model.flops_per_token())} analytic train FLOPs/token | ~{meas} measured train FLOPs/token")
     out.append("\n" + table([[k, c, f"{p:,}"] for k, c, p in model.param_breakdown()], ["parameter", "copies", "params (all copies)"]))
     return "\n".join(out)
 
