@@ -1,0 +1,49 @@
+[18:57:32] gpu0 START depth_d_core.yaml
+[18:57:32] gpu1 START depth_m_core.yaml
+[18:57:32] gpu2 START depth_d_profile_b.yaml
+[19:06:45] gpu1 START depth_m_core.yaml
+[19:06:45] gpu0 START depth_d_core.yaml
+[19:06:45] gpu2 START depth_d_profile_b.yaml
+[21:54:04] gpu1 sweep depth_m_core.yaml rc=0
+[21:54:04] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/plain-s1
+[21:54:13] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/plain-s1 rc=0
+[21:54:13] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/plain-s2
+[21:54:21] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/plain-s2 rc=0
+[21:54:21] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/n0_sig10-s0
+[21:54:30] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/n0_sig10-s0 rc=0
+[21:54:30] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/n4_sig10-s0
+[21:54:38] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/n4_sig10-s0 rc=0
+[21:54:38] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/n7_sig10-s0
+[21:54:47] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_m_core/n7_sig10-s0 rc=0
+[21:54:47] gpu1 DONE depth_m_core.yaml
+[21:54:47] gpu1 START depth_d_profile_a.yaml
+[22:16:15] gpu2 sweep depth_d_profile_b.yaml rc=0
+[22:16:15] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/plain-s1
+[22:16:25] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/plain-s1 rc=0
+[22:16:25] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/plain-s2
+[22:16:36] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/plain-s2 rc=0
+[22:16:36] gpu2 DONE depth_d_profile_b.yaml
+[22:16:36] gpu2 START depth_m_profile.yaml
+[23:36:18] gpu2 sweep depth_m_profile.yaml rc=0
+[23:36:18] gpu2 DONE depth_m_profile.yaml
+[23:36:18] gpu2 START depth_m_global.yaml
+[23:52:11] gpu2 sweep depth_m_global.yaml rc=0
+[23:52:11] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_m_global/all_sig10-s0
+[23:52:20] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_m_global/all_sig10-s0 rc=0
+[23:52:20] gpu2 DONE depth_m_global.yaml
+[23:52:20] gpu2 START depth_d_global.yaml
+[00:27:52] gpu2 sweep depth_d_global.yaml rc=0
+[00:27:52] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/n0_sig10-s0
+[00:28:03] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/n0_sig10-s0 rc=0
+[00:28:03] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/n8_sig10-s0
+[00:28:13] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_core/n8_sig10-s0 rc=0
+[00:28:13] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_global/all_sig10-s0
+[00:28:23] gpu2 deep-eval /data/susanket/text/gpt/runs/depth_d_global/all_sig10-s0 rc=0
+[00:28:23] gpu2 DONE depth_d_global.yaml
+[00:49:16] gpu1 sweep depth_d_profile_a.yaml rc=0
+[00:49:16] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_d_core/n15_sig10-s0
+[00:49:27] gpu1 deep-eval /data/susanket/text/gpt/runs/depth_d_core/n15_sig10-s0 rc=0
+[00:49:27] gpu1 DONE depth_d_profile_a.yaml
+[00:54:02] gpu0 sweep depth_d_core.yaml rc=0
+[00:54:02] gpu0 DONE depth_d_core.yaml
+[00:54:02] ALL WORKERS DONE

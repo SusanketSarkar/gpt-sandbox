@@ -1,0 +1,17 @@
+# Recall-budget sweep: how many GLOBAL-attention layers does the model need?
+# Fixed local window (W=64 = seq/8); only the number K of front-loaded full-attention layers varies.
+# K = 0,1,2,3,4,6,8  (8 layers total). K=0 is "all local", K=8 is "all global".
+#   gpt sweep configs/sweeps/recall_budget_v3.yaml
+name: recall_budget_v3
+base: ../edu_medium.yaml
+seeds: [0, 1]
+common:
+  eval.metrics: [params, val, position, calibration, baselines, induction, long_recall, throughput]
+variants:
+  k0_alllocal: {model.attention: {name: local, window: 64}}
+  k1:          {model.attention: [{layers: "0:1", name: mha}, {layers: all, name: local, window: 64}]}
+  k2:          {model.attention: [{layers: "0:2", name: mha}, {layers: all, name: local, window: 64}]}
+  k3:          {model.attention: [{layers: "0:3", name: mha}, {layers: all, name: local, window: 64}]}
+  k4:          {model.attention: [{layers: "0:4", name: mha}, {layers: all, name: local, window: 64}]}
+  k6:          {model.attention: [{layers: "0:6", name: mha}, {layers: all, name: local, window: 64}]}
+  k8_allmha:   {model.attention: {name: mha}}

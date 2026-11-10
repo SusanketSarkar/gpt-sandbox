@@ -1,0 +1,135 @@
+evaluating /data/susanket/text/gpt/runs/depth_d_core/n0_sig10-s0 (step 11500) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 4.2s
+  [metric throughput] 0.7s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.6s
+
+=== eval: n0_sig10-s0 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.7622
+  val_ppl             15.8353
+  val_bpb              1.0273
+  val_acc1             0.4450
+  val_acc5             0.6788
+  val_pred_entropy     2.8515
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3029
+  pos_loss/1        4.3601
+  pos_loss/2-3      3.8474
+  pos_loss/4-7      3.5312
+  pos_loss/8-15     3.2113
+  pos_loss/16-31    3.0143
+  pos_loss/32-63    2.8763
+  pos_loss/64-127   2.7705
+  pos_loss/128-255  2.7237
+  pos_loss/256-511  2.6988
+  ctx_gain          0.5910
+  late_loss         2.7029
+
+[calibration]
+  ece              0.0037
+  mean_confidence  0.4477
+  overconfidence   0.0027
+
+[generalization]
+  train_loss_eval   3.2479
+  gen_gap          -0.4856
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.2549
+
+[induction]
+  induction_loss_random  12.0302
+  induction_loss_repeat   5.2001
+  induction_gap           6.8300
+  induction_acc           0.2547
+
+[generation]
+  gen_distinct1   0.7839
+  gen_distinct2   0.9599
+  gen_distinct3   0.9907
+  gen_unigram_kl  1.1074
+
+[throughput]
+  fwd_tok_per_s     6.381e+05
+  fwdbwd_tok_per_s  3.217e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  42.7523
+  lens_loss/L0      8.0596
+  resid_rms/L0      2.3803
+  lens_loss/L1      7.4573
+  resid_rms/L1      2.7556
+  lens_loss/L2      6.9192
+  resid_rms/L2      3.3543
+  lens_loss/L3      6.4305
+  resid_rms/L3      3.8347
+  lens_loss/L4      6.1031
+  resid_rms/L4      4.4074
+  lens_loss/L5      5.8790
+  resid_rms/L5      4.9688
+  lens_loss/L6      5.7091
+  resid_rms/L6      5.2471
+  lens_loss/L7      5.3614
+  resid_rms/L7      5.6284
+  lens_loss/L8      4.9339
+  resid_rms/L8      6.0425
+  lens_loss/L9      4.4109
+  resid_rms/L9      6.6075
+  lens_loss/L10     4.0015
+  resid_rms/L10     7.2984
+  lens_loss/L11     3.8372
+  resid_rms/L11     8.0596
+  lens_loss/L12     3.2446
+  resid_rms/L12     9.0648
+  lens_loss/L13     2.6914
+  resid_rms/L13    10.1698
+  lens_loss/L14     2.3101
+  resid_rms/L14    11.3397
+  lens_loss/L15     1.8969
+  resid_rms/L15    13.1871
+
+[layer_ablation]
+  ablate_dloss/L0   6.4131
+  ablate_dloss/L1   0.0733
+  ablate_dloss/L2   0.0234
+  ablate_dloss/L3   0.0659
+  ablate_dloss/L4   0.0342
+  ablate_dloss/L5   0.0964
+  ablate_dloss/L6   0.1959
+  ablate_dloss/L7   0.1387
+  ablate_dloss/L8   0.2452
+  ablate_dloss/L9   0.1749
+  ablate_dloss/L10  0.1809
+  ablate_dloss/L11  0.1249
+  ablate_dloss/L12  0.1431
+  ablate_dloss/L13  0.1943
+  ablate_dloss/L14  0.1684
+  ablate_dloss/L15  0.4132
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmingly. Heraclius’ sinful action now also jumped into a halt with her so power that her hearthe-sided in her crown was full of the /nam“. It was so bouncing with her and poisoning her lust, so broken that was the flower and eternal love prevailed, her enthusiasm for 
+
+  |  want to wear, eating the food you want to eat, saying the things you want. But do you have fun? Can you give me one? Can you be your friend?"
+  | 
+  | According to the high school genealogy analysis authors, Aristotle showed that there were around 350,000 children with infants ages 3-4 years. The rate of d
+
+saved /data/susanket/text/gpt/runs/depth_d_core/n0_sig10-s0/eval.json

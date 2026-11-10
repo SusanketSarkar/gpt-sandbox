@@ -1,0 +1,8 @@
+# Depth-fragility, size D (16L): GLOBAL-noise control (see depth_m_global for rationale).
+name: depth_d_global
+base: ../depth/depth_d.yaml
+seeds: [0]
+variants:
+  all_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: all, sigma: 0.1}]}
+  all_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: all, sigma: 0.3}]}
+  all_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: all, sigma: 1.0}]}

@@ -1,0 +1,8 @@
+# Gates study, size M on edu_mix (bigger data: 531M train tokens).
+name: gates_m_edu
+base: ../gates/gate_m_edu.yaml
+seeds: [0, 1, 2]
+variants:
+  plain:   {model.residual: {name: plain}}
+  gated1:  {model.residual: {name: gated}, optim.groups: [{match: "res_", lr_mult: 1, weight_decay: 0}]}
+  gated30: {model.residual: {name: gated}, optim.groups: [{match: "res_", lr_mult: 30, weight_decay: 0}]}

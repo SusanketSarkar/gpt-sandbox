@@ -1,0 +1,16 @@
+# Depth-fragility, size D (16L): core hypothesis test as specified.
+# Noise at first/middle/last x sigma 0.1/0.3/1.0, 3 seeds.
+name: depth_d_core
+base: ../depth/depth_d.yaml
+seeds: [0, 1, 2]
+variants:
+  plain:    {}
+  n0_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 0.1}]}
+  n8_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: 8, sigma: 0.1}]}
+  n15_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: 15, sigma: 0.1}]}
+  n0_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 0.3}]}
+  n8_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 8, sigma: 0.3}]}
+  n15_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 15, sigma: 0.3}]}
+  n0_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 1.0}]}
+  n8_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 8, sigma: 1.0}]}
+  n15_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 15, sigma: 1.0}]}

@@ -1,0 +1,112 @@
+evaluating /data/susanket/text/gpt/runs/depth_m_core/n4_sig10-s0 (step 10000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.2s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 3.6s
+  [metric throughput] 0.6s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.2s
+
+=== eval: n4_sig10-s0 ===
+
+[params]
+  params_total      29,499,904
+  params_nonemb     25,305,600
+  flops_per_token  202,165,248
+
+[val]
+  val_loss             2.9464
+  val_ppl             19.0370
+  val_bpb              1.0958
+  val_acc1             0.4223
+  val_acc5             0.6514
+  val_pred_entropy     2.9796
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3090
+  pos_loss/1        4.4647
+  pos_loss/2-3      3.9655
+  pos_loss/4-7      3.7007
+  pos_loss/8-15     3.3935
+  pos_loss/16-31    3.1980
+  pos_loss/32-63    3.0610
+  pos_loss/64-127   2.9545
+  pos_loss/128-255  2.9071
+  pos_loss/256-511  2.8851
+  ctx_gain          0.5731
+  late_loss         2.8901
+
+[calibration]
+  ece              0.0079
+  mean_confidence  0.4265
+  overconfidence   0.0042
+
+[generalization]
+  train_loss_eval   3.4331
+  gen_gap          -0.4867
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.0708
+
+[induction]
+  induction_loss_random  12.6989
+  induction_loss_repeat   5.5043
+  induction_gap           7.1946
+  induction_acc           0.2785
+
+[generation]
+  gen_distinct1   0.7773
+  gen_distinct2   0.9526
+  gen_distinct3   0.9827
+  gen_unigram_kl  1.1107
+
+[throughput]
+  fwd_tok_per_s     1.537e+06
+  fwdbwd_tok_per_s  6.404e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  41.8067
+  lens_loss/L0      7.4668
+  resid_rms/L0      0.6151
+  lens_loss/L1      6.9767
+  resid_rms/L1      0.9000
+  lens_loss/L2      6.8385
+  resid_rms/L2      1.0073
+  lens_loss/L3      5.9429
+  resid_rms/L3      1.0801
+  lens_loss/L4      5.4412
+  resid_rms/L4      7.2449
+  lens_loss/L5      4.5386
+  resid_rms/L5      8.3791
+  lens_loss/L6      3.5071
+  resid_rms/L6      9.9183
+  lens_loss/L7      2.0844
+  resid_rms/L7     13.8839
+
+[layer_ablation]
+  ablate_dloss/L0  5.7066
+  ablate_dloss/L1  0.2393
+  ablate_dloss/L2  0.3391
+  ablate_dloss/L3  0.1681
+  ablate_dloss/L4  0.5568
+  ablate_dloss/L5  0.5115
+  ablate_dloss/L6  0.5738
+  ablate_dloss/L7  1.4227
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarm in Eccles Paul ( slum-breads) and unwounded. Of course the anticipated relationship was no, not until its destruction of Eccles Paul until the few western time indulgence was the discovery of a preliminary shortlook gained some appeals.
+  | It was discovered that Rache
+
+  |  want to wear, eating the food you want to eat, saying the things you can, and you just eat them for, and so much.â€ 
+  | 
+  | So he got a little bit of jumps into a balance of big movements. He cuddled it locally with his gates, and he wandered around his bed maybe he was near a all those places, like a lo
+
+saved /data/susanket/text/gpt/runs/depth_m_core/n4_sig10-s0/eval.json

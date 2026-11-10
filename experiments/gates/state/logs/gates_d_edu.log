@@ -1,0 +1,1998 @@
+
+[sweep] ===== gates_d_edu/plain-s0 =====
+run /data/susanket/text/gpt/runs/gates_d_edu/plain-s0 | device=cuda:1 bf16 | params 54.80M (50.61M non-emb) | 16.38K tok/step | 196.61M tokens total
+step      1/12000 | loss 9.1291 | lr 2.00e-06 | gnorm 7.53 | 19.70K tok/s
+step     50/12000 | loss 7.4124 | lr 1.00e-04 | gnorm 1.17 | 314.64K tok/s
+step    100/12000 | loss 6.5787 | lr 2.00e-04 | gnorm 1.03 | 315.33K tok/s
+step    150/12000 | loss 5.9524 | lr 3.00e-04 | gnorm 0.89 | 315.24K tok/s
+step    200/12000 | loss 5.8381 | lr 4.00e-04 | gnorm 1.20 | 315.17K tok/s
+step    250/12000 | loss 5.5874 | lr 5.00e-04 | gnorm 0.87 | 315.24K tok/s
+step    300/12000 | loss 5.2076 | lr 6.00e-04 | gnorm 0.75 | 315.25K tok/s
+step    350/12000 | loss 5.1110 | lr 7.00e-04 | gnorm 0.63 | 315.32K tok/s
+step    400/12000 | loss 4.9978 | lr 8.00e-04 | gnorm 0.79 | 315.42K tok/s
+step    450/12000 | loss 4.9967 | lr 9.00e-04 | gnorm 0.60 | 315.49K tok/s
+step    500/12000 | loss 4.9326 | lr 1.00e-03 | gnorm 0.55 | 315.39K tok/s
+step    500 | VAL loss 3.3327  *best*
+step    550/12000 | loss 4.5909 | lr 1.00e-03 | gnorm 0.51 | 279.18K tok/s
+step    600/12000 | loss 4.8392 | lr 1.00e-03 | gnorm 0.49 | 315.36K tok/s
+step    650/12000 | loss 4.6545 | lr 1.00e-03 | gnorm 0.48 | 315.55K tok/s
+step    700/12000 | loss 4.5999 | lr 9.99e-04 | gnorm 0.47 | 315.61K tok/s
+step    750/12000 | loss 4.4947 | lr 9.99e-04 | gnorm 0.51 | 315.44K tok/s
+step    800/12000 | loss 4.4107 | lr 9.98e-04 | gnorm 0.45 | 315.62K tok/s
+step    850/12000 | loss 4.4048 | lr 9.98e-04 | gnorm 0.44 | 315.39K tok/s
+step    900/12000 | loss 4.3627 | lr 9.97e-04 | gnorm 0.46 | 315.55K tok/s
+step    950/12000 | loss 4.3365 | lr 9.97e-04 | gnorm 0.42 | 315.75K tok/s
+step   1000/12000 | loss 4.3247 | lr 9.96e-04 | gnorm 0.55 | 315.79K tok/s
+step   1000 | VAL loss 2.8209  *best*
+step   1050/12000 | loss 4.0294 | lr 9.95e-04 | gnorm 0.41 | 275.74K tok/s
+step   1100/12000 | loss 4.0539 | lr 9.94e-04 | gnorm 0.43 | 315.87K tok/s
+step   1150/12000 | loss 4.1826 | lr 9.93e-04 | gnorm 0.41 | 315.89K tok/s
+step   1200/12000 | loss 4.0081 | lr 9.92e-04 | gnorm 1.94 | 315.83K tok/s
+step   1250/12000 | loss 4.1231 | lr 9.91e-04 | gnorm 0.42 | 315.90K tok/s
+step   1300/12000 | loss 4.0325 | lr 9.89e-04 | gnorm 0.42 | 315.75K tok/s
+step   1350/12000 | loss 3.9973 | lr 9.88e-04 | gnorm 0.41 | 315.77K tok/s
+step   1400/12000 | loss 4.1236 | lr 9.86e-04 | gnorm 0.40 | 315.87K tok/s
+step   1450/12000 | loss 3.9634 | lr 9.85e-04 | gnorm 0.40 | 315.77K tok/s
+step   1500/12000 | loss 4.1020 | lr 9.83e-04 | gnorm 0.37 | 315.59K tok/s
+step   1500 | VAL loss 2.5586  *best*
+step   1550/12000 | loss 3.9034 | lr 9.82e-04 | gnorm 0.38 | 275.55K tok/s
+step   1600/12000 | loss 3.7552 | lr 9.80e-04 | gnorm 0.40 | 315.91K tok/s
+step   1650/12000 | loss 3.9154 | lr 9.78e-04 | gnorm 0.39 | 315.91K tok/s
+step   1700/12000 | loss 3.8675 | lr 9.76e-04 | gnorm 0.41 | 315.94K tok/s
+step   1750/12000 | loss 4.0363 | lr 9.74e-04 | gnorm 0.39 | 315.72K tok/s
+step   1800/12000 | loss 3.7167 | lr 9.72e-04 | gnorm 0.38 | 315.92K tok/s
+step   1850/12000 | loss 3.9104 | lr 9.70e-04 | gnorm 0.40 | 315.92K tok/s
+step   1900/12000 | loss 3.8798 | lr 9.68e-04 | gnorm 0.38 | 315.83K tok/s
+step   1950/12000 | loss 3.8688 | lr 9.65e-04 | gnorm 0.38 | 315.90K tok/s
+step   2000/12000 | loss 3.8932 | lr 9.63e-04 | gnorm 0.38 | 315.78K tok/s
+step   2000 | VAL loss 2.4237  *best*
+step   2050/12000 | loss 3.8354 | lr 9.60e-04 | gnorm 0.37 | 275.45K tok/s
+step   2100/12000 | loss 3.8409 | lr 9.58e-04 | gnorm 0.36 | 315.80K tok/s
+step   2150/12000 | loss 3.8192 | lr 9.55e-04 | gnorm 0.36 | 315.79K tok/s
+step   2200/12000 | loss 3.7567 | lr 9.52e-04 | gnorm 0.36 | 315.99K tok/s
+step   2250/12000 | loss 3.8587 | lr 9.50e-04 | gnorm 0.37 | 315.77K tok/s
+step   2300/12000 | loss 3.7781 | lr 9.47e-04 | gnorm 0.37 | 315.91K tok/s
+step   2350/12000 | loss 3.8969 | lr 9.44e-04 | gnorm 0.36 | 315.99K tok/s
+step   2400/12000 | loss 3.7448 | lr 9.41e-04 | gnorm 0.38 | 315.93K tok/s
+step   2450/12000 | loss 3.7234 | lr 9.38e-04 | gnorm 0.37 | 315.90K tok/s
+step   2500/12000 | loss 3.6782 | lr 9.35e-04 | gnorm 0.39 | 315.91K tok/s
+step   2500 | VAL loss 2.3199  *best*
+step   2550/12000 | loss 3.6836 | lr 9.31e-04 | gnorm 0.37 | 275.74K tok/s
+step   2600/12000 | loss 3.5604 | lr 9.28e-04 | gnorm 0.36 | 315.79K tok/s
+step   2650/12000 | loss 3.8310 | lr 9.25e-04 | gnorm 0.37 | 316.09K tok/s
+step   2700/12000 | loss 3.7463 | lr 9.21e-04 | gnorm 0.36 | 316.10K tok/s
+step   2750/12000 | loss 3.8357 | lr 9.18e-04 | gnorm 0.37 | 316.12K tok/s
+step   2800/12000 | loss 3.5968 | lr 9.14e-04 | gnorm 0.37 | 316.09K tok/s
+step   2850/12000 | loss 3.7371 | lr 9.10e-04 | gnorm 0.36 | 316.10K tok/s
+step   2900/12000 | loss 3.7083 | lr 9.07e-04 | gnorm 0.37 | 316.07K tok/s
+step   2950/12000 | loss 3.6235 | lr 9.03e-04 | gnorm 0.36 | 316.09K tok/s
+step   3000/12000 | loss 3.7486 | lr 8.99e-04 | gnorm 0.35 | 315.93K tok/s
+step   3000 | VAL loss 2.2547  *best*
+step   3050/12000 | loss 3.8045 | lr 8.95e-04 | gnorm 0.36 | 276.43K tok/s
+step   3100/12000 | loss 3.6164 | lr 8.91e-04 | gnorm 0.36 | 315.93K tok/s
+step   3150/12000 | loss 3.6193 | lr 8.87e-04 | gnorm 0.46 | 316.00K tok/s
+step   3200/12000 | loss 3.5339 | lr 8.83e-04 | gnorm 0.37 | 315.93K tok/s
+step   3250/12000 | loss 3.5150 | lr 8.79e-04 | gnorm 0.36 | 316.02K tok/s
+step   3300/12000 | loss 3.5605 | lr 8.75e-04 | gnorm 0.37 | 316.00K tok/s
+step   3350/12000 | loss 3.7571 | lr 8.70e-04 | gnorm 0.36 | 315.95K tok/s
+step   3400/12000 | loss 3.7001 | lr 8.66e-04 | gnorm 0.37 | 315.75K tok/s
+step   3450/12000 | loss 3.4215 | lr 8.62e-04 | gnorm 0.35 | 315.91K tok/s
+step   3500/12000 | loss 3.5800 | lr 8.57e-04 | gnorm 0.37 | 315.96K tok/s
+step   3500 | VAL loss 2.2006  *best*
+step   3550/12000 | loss 3.5692 | lr 8.53e-04 | gnorm 0.36 | 276.09K tok/s
+step   3600/12000 | loss 3.5970 | lr 8.48e-04 | gnorm 0.37 | 315.98K tok/s
+step   3650/12000 | loss 3.6333 | lr 8.44e-04 | gnorm 0.36 | 316.02K tok/s
+step   3700/12000 | loss 3.7026 | lr 8.39e-04 | gnorm 0.36 | 316.00K tok/s
+step   3750/12000 | loss 3.5348 | lr 8.34e-04 | gnorm 0.36 | 315.94K tok/s
+step   3800/12000 | loss 3.6059 | lr 8.29e-04 | gnorm 0.36 | 316.06K tok/s
+step   3850/12000 | loss 3.4958 | lr 8.24e-04 | gnorm 0.35 | 315.89K tok/s
+step   3900/12000 | loss 3.5055 | lr 8.20e-04 | gnorm 0.36 | 316.01K tok/s
+step   3950/12000 | loss 3.4199 | lr 8.15e-04 | gnorm 0.36 | 316.01K tok/s
+step   4000/12000 | loss 3.5049 | lr 8.10e-04 | gnorm 0.37 | 316.09K tok/s
+step   4000 | VAL loss 2.1392  *best*
+step   4050/12000 | loss 3.5299 | lr 8.05e-04 | gnorm 0.37 | 275.86K tok/s
+step   4100/12000 | loss 3.4380 | lr 7.99e-04 | gnorm 0.36 | 315.99K tok/s
+step   4150/12000 | loss 3.4882 | lr 7.94e-04 | gnorm 0.36 | 316.02K tok/s
+step   4200/12000 | loss 3.4807 | lr 7.89e-04 | gnorm 0.38 | 315.95K tok/s
+step   4250/12000 | loss 3.5167 | lr 7.84e-04 | gnorm 0.36 | 315.93K tok/s
+step   4300/12000 | loss 3.5040 | lr 7.79e-04 | gnorm 0.35 | 315.98K tok/s
+step   4350/12000 | loss 3.5672 | lr 7.73e-04 | gnorm 0.37 | 315.98K tok/s
+step   4400/12000 | loss 3.4392 | lr 7.68e-04 | gnorm 0.36 | 315.88K tok/s
+step   4450/12000 | loss 3.3614 | lr 7.63e-04 | gnorm 0.36 | 316.00K tok/s
+step   4500/12000 | loss 3.4905 | lr 7.57e-04 | gnorm 0.36 | 315.97K tok/s
+step   4500 | VAL loss 2.1037  *best*
+step   4550/12000 | loss 3.4951 | lr 7.52e-04 | gnorm 0.37 | 276.31K tok/s
+step   4600/12000 | loss 3.5366 | lr 7.46e-04 | gnorm 0.36 | 316.13K tok/s
+step   4650/12000 | loss 3.4629 | lr 7.41e-04 | gnorm 0.36 | 316.11K tok/s
+step   4700/12000 | loss 3.3673 | lr 7.35e-04 | gnorm 0.36 | 315.99K tok/s
+step   4750/12000 | loss 3.5015 | lr 7.29e-04 | gnorm 0.38 | 316.14K tok/s
+step   4800/12000 | loss 3.5259 | lr 7.24e-04 | gnorm 0.36 | 316.12K tok/s
+step   4850/12000 | loss 3.3410 | lr 7.18e-04 | gnorm 0.36 | 316.15K tok/s
+step   4900/12000 | loss 3.5065 | lr 7.12e-04 | gnorm 0.37 | 315.92K tok/s
+step   4950/12000 | loss 3.5010 | lr 7.07e-04 | gnorm 0.37 | 315.76K tok/s
+step   5000/12000 | loss 3.5039 | lr 7.01e-04 | gnorm 0.37 | 315.78K tok/s
+step   5000 | VAL loss 2.0666  *best*
+step   5050/12000 | loss 3.4345 | lr 6.95e-04 | gnorm 0.37 | 240.13K tok/s
+step   5100/12000 | loss 3.5132 | lr 6.89e-04 | gnorm 0.37 | 315.52K tok/s
+step   5150/12000 | loss 3.3385 | lr 6.83e-04 | gnorm 0.36 | 315.27K tok/s
+step   5200/12000 | loss 3.5323 | lr 6.77e-04 | gnorm 0.38 | 315.56K tok/s
+step   5250/12000 | loss 3.3311 | lr 6.72e-04 | gnorm 0.36 | 315.82K tok/s
+step   5300/12000 | loss 3.4360 | lr 6.66e-04 | gnorm 0.38 | 315.69K tok/s
+step   5350/12000 | loss 3.4461 | lr 6.60e-04 | gnorm 0.37 | 315.72K tok/s
+step   5400/12000 | loss 3.3443 | lr 6.54e-04 | gnorm 0.37 | 315.73K tok/s
+step   5450/12000 | loss 3.5424 | lr 6.48e-04 | gnorm 0.38 | 315.76K tok/s
+step   5500/12000 | loss 3.3672 | lr 6.42e-04 | gnorm 0.38 | 315.33K tok/s
+step   5500 | VAL loss 2.0481  *best*
+step   5550/12000 | loss 3.4760 | lr 6.36e-04 | gnorm 0.38 | 275.68K tok/s
+step   5600/12000 | loss 3.3721 | lr 6.30e-04 | gnorm 0.38 | 315.73K tok/s
+step   5650/12000 | loss 3.0468 | lr 6.24e-04 | gnorm 0.37 | 315.69K tok/s
+step   5700/12000 | loss 3.4862 | lr 6.17e-04 | gnorm 0.38 | 315.70K tok/s
+step   5750/12000 | loss 3.1111 | lr 6.11e-04 | gnorm 0.36 | 315.75K tok/s
+step   5800/12000 | loss 3.4759 | lr 6.05e-04 | gnorm 0.37 | 315.62K tok/s
+step   5850/12000 | loss 3.4384 | lr 5.99e-04 | gnorm 0.38 | 315.33K tok/s
+step   5900/12000 | loss 3.3394 | lr 5.93e-04 | gnorm 0.38 | 315.34K tok/s
+step   5950/12000 | loss 3.3665 | lr 5.87e-04 | gnorm 0.39 | 315.20K tok/s
+step   6000/12000 | loss 3.4796 | lr 5.81e-04 | gnorm 0.38 | 315.41K tok/s
+step   6000 | VAL loss 2.0000  *best*
+step   6050/12000 | loss 3.3831 | lr 5.75e-04 | gnorm 0.38 | 274.62K tok/s
+step   6100/12000 | loss 3.4313 | lr 5.69e-04 | gnorm 0.38 | 315.81K tok/s
+step   6150/12000 | loss 3.4486 | lr 5.62e-04 | gnorm 0.38 | 315.63K tok/s
+step   6200/12000 | loss 3.4087 | lr 5.56e-04 | gnorm 0.39 | 315.48K tok/s
+step   6250/12000 | loss 3.5052 | lr 5.50e-04 | gnorm 0.38 | 315.67K tok/s
+step   6300/12000 | loss 3.3371 | lr 5.44e-04 | gnorm 0.37 | 315.53K tok/s
+step   6350/12000 | loss 3.4194 | lr 5.38e-04 | gnorm 0.39 | 315.34K tok/s
+step   6400/12000 | loss 3.4724 | lr 5.32e-04 | gnorm 0.40 | 315.51K tok/s
+step   6450/12000 | loss 3.4065 | lr 5.26e-04 | gnorm 0.39 | 315.45K tok/s
+step   6500/12000 | loss 3.2339 | lr 5.19e-04 | gnorm 0.39 | 315.62K tok/s
+step   6500 | VAL loss 1.9787  *best*
+step   6550/12000 | loss 3.2787 | lr 5.13e-04 | gnorm 0.41 | 274.90K tok/s
+step   6600/12000 | loss 3.2877 | lr 5.07e-04 | gnorm 0.38 | 315.69K tok/s
+step   6650/12000 | loss 3.2705 | lr 5.01e-04 | gnorm 0.38 | 315.58K tok/s
+step   6700/12000 | loss 3.3033 | lr 4.95e-04 | gnorm 0.38 | 315.77K tok/s
+step   6750/12000 | loss 3.1043 | lr 4.89e-04 | gnorm 0.37 | 315.41K tok/s
+step   6800/12000 | loss 3.3392 | lr 4.83e-04 | gnorm 0.37 | 315.23K tok/s
+step   6850/12000 | loss 3.1672 | lr 4.77e-04 | gnorm 0.39 | 315.48K tok/s
+step   6900/12000 | loss 3.3070 | lr 4.71e-04 | gnorm 0.39 | 315.63K tok/s
+step   6950/12000 | loss 3.4759 | lr 4.65e-04 | gnorm 0.39 | 315.79K tok/s
+step   7000/12000 | loss 3.3180 | lr 4.59e-04 | gnorm 0.39 | 315.45K tok/s
+step   7000 | VAL loss 1.9453  *best*
+step   7050/12000 | loss 3.4213 | lr 4.53e-04 | gnorm 0.39 | 274.97K tok/s
+step   7100/12000 | loss 3.4206 | lr 4.47e-04 | gnorm 0.40 | 315.66K tok/s
+step   7150/12000 | loss 3.1322 | lr 4.41e-04 | gnorm 0.39 | 315.62K tok/s
+step   7200/12000 | loss 3.4136 | lr 4.35e-04 | gnorm 0.41 | 315.42K tok/s
+step   7250/12000 | loss 3.2175 | lr 4.29e-04 | gnorm 0.40 | 315.78K tok/s
+step   7300/12000 | loss 2.9294 | lr 4.23e-04 | gnorm 0.41 | 315.44K tok/s
+step   7350/12000 | loss 3.3803 | lr 4.17e-04 | gnorm 0.40 | 315.55K tok/s
+step   7400/12000 | loss 3.2404 | lr 4.11e-04 | gnorm 0.39 | 315.40K tok/s
+step   7450/12000 | loss 3.3297 | lr 4.05e-04 | gnorm 0.40 | 315.64K tok/s
+step   7500/12000 | loss 3.3454 | lr 3.99e-04 | gnorm 0.40 | 315.67K tok/s
+step   7500 | VAL loss 1.9249  *best*
+step   7550/12000 | loss 3.2233 | lr 3.94e-04 | gnorm 0.41 | 275.75K tok/s
+step   7600/12000 | loss 3.2956 | lr 3.88e-04 | gnorm 0.39 | 315.47K tok/s
+step   7650/12000 | loss 3.2856 | lr 3.82e-04 | gnorm 0.41 | 315.14K tok/s
+step   7700/12000 | loss 3.2685 | lr 3.76e-04 | gnorm 0.39 | 315.36K tok/s
+step   7750/12000 | loss 3.2721 | lr 3.71e-04 | gnorm 0.41 | 315.11K tok/s
+step   7800/12000 | loss 3.3096 | lr 3.65e-04 | gnorm 0.43 | 315.43K tok/s
+step   7850/12000 | loss 3.2797 | lr 3.60e-04 | gnorm 0.41 | 315.56K tok/s
+step   7900/12000 | loss 3.2432 | lr 3.54e-04 | gnorm 0.40 | 315.29K tok/s
+step   7950/12000 | loss 3.3225 | lr 3.49e-04 | gnorm 0.40 | 315.21K tok/s
+step   8000/12000 | loss 3.2917 | lr 3.43e-04 | gnorm 0.41 | 315.27K tok/s
+step   8000 | VAL loss 1.8971  *best*
+step   8050/12000 | loss 3.3351 | lr 3.38e-04 | gnorm 0.40 | 274.73K tok/s
+step   8100/12000 | loss 3.2238 | lr 3.32e-04 | gnorm 0.41 | 315.39K tok/s
+step   8150/12000 | loss 3.2843 | lr 3.27e-04 | gnorm 0.41 | 315.43K tok/s
+step   8200/12000 | loss 3.2644 | lr 3.22e-04 | gnorm 0.41 | 315.21K tok/s
+step   8250/12000 | loss 3.1716 | lr 3.16e-04 | gnorm 0.42 | 315.53K tok/s
+step   8300/12000 | loss 3.3183 | lr 3.11e-04 | gnorm 0.41 | 315.15K tok/s
+step   8350/12000 | loss 3.2588 | lr 3.06e-04 | gnorm 0.41 | 315.53K tok/s
+step   8400/12000 | loss 3.3648 | lr 3.01e-04 | gnorm 0.41 | 315.39K tok/s
+step   8450/12000 | loss 3.3000 | lr 2.96e-04 | gnorm 0.42 | 315.12K tok/s
+step   8500/12000 | loss 3.3039 | lr 2.91e-04 | gnorm 0.40 | 315.12K tok/s
+step   8500 | VAL loss 1.8748  *best*
+step   8550/12000 | loss 3.2658 | lr 2.86e-04 | gnorm 0.41 | 274.24K tok/s
+step   8600/12000 | loss 3.1829 | lr 2.81e-04 | gnorm 0.40 | 315.30K tok/s
+step   8650/12000 | loss 2.9937 | lr 2.76e-04 | gnorm 0.40 | 315.81K tok/s
+step   8700/12000 | loss 3.1756 | lr 2.71e-04 | gnorm 0.41 | 315.70K tok/s
+step   8750/12000 | loss 2.9478 | lr 2.66e-04 | gnorm 0.41 | 315.69K tok/s
+step   8800/12000 | loss 3.1916 | lr 2.61e-04 | gnorm 0.42 | 315.75K tok/s
+step   8850/12000 | loss 3.3014 | lr 2.57e-04 | gnorm 0.41 | 315.74K tok/s
+step   8900/12000 | loss 3.0756 | lr 2.52e-04 | gnorm 0.41 | 315.87K tok/s
+step   8950/12000 | loss 3.0212 | lr 2.47e-04 | gnorm 0.41 | 315.47K tok/s
+step   9000/12000 | loss 3.2661 | lr 2.43e-04 | gnorm 0.41 | 315.68K tok/s
+step   9000 | VAL loss 1.8531  *best*
+step   9050/12000 | loss 3.0735 | lr 2.38e-04 | gnorm 0.42 | 275.82K tok/s
+step   9100/12000 | loss 3.1857 | lr 2.34e-04 | gnorm 0.41 | 315.91K tok/s
+step   9150/12000 | loss 3.0576 | lr 2.30e-04 | gnorm 0.41 | 315.97K tok/s
+step   9200/12000 | loss 3.2457 | lr 2.25e-04 | gnorm 0.42 | 315.66K tok/s
+step   9250/12000 | loss 3.1139 | lr 2.21e-04 | gnorm 0.41 | 315.53K tok/s
+step   9300/12000 | loss 3.2308 | lr 2.17e-04 | gnorm 0.42 | 315.44K tok/s
+step   9350/12000 | loss 3.1730 | lr 2.13e-04 | gnorm 0.42 | 315.16K tok/s
+step   9400/12000 | loss 3.1275 | lr 2.09e-04 | gnorm 0.41 | 315.44K tok/s
+step   9450/12000 | loss 3.3282 | lr 2.05e-04 | gnorm 0.42 | 315.43K tok/s
+step   9500/12000 | loss 3.1133 | lr 2.01e-04 | gnorm 0.42 | 315.61K tok/s
+step   9500 | VAL loss 1.8344  *best*
+step   9550/12000 | loss 3.1275 | lr 1.97e-04 | gnorm 0.42 | 275.51K tok/s
+step   9600/12000 | loss 3.2249 | lr 1.93e-04 | gnorm 0.43 | 315.49K tok/s
+step   9650/12000 | loss 3.2479 | lr 1.90e-04 | gnorm 0.42 | 315.60K tok/s
+step   9700/12000 | loss 3.0325 | lr 1.86e-04 | gnorm 0.41 | 315.55K tok/s
+step   9750/12000 | loss 3.1593 | lr 1.82e-04 | gnorm 0.42 | 315.58K tok/s
+step   9800/12000 | loss 3.1143 | lr 1.79e-04 | gnorm 0.42 | 315.51K tok/s
+step   9850/12000 | loss 3.1544 | lr 1.75e-04 | gnorm 0.44 | 315.59K tok/s
+step   9900/12000 | loss 3.1049 | lr 1.72e-04 | gnorm 0.44 | 315.48K tok/s
+step   9950/12000 | loss 3.2401 | lr 1.69e-04 | gnorm 0.43 | 315.50K tok/s
+step  10000/12000 | loss 3.2133 | lr 1.66e-04 | gnorm 0.45 | 315.46K tok/s
+step  10000 | VAL loss 1.8151  *best*
+step  10050/12000 | loss 3.0532 | lr 1.62e-04 | gnorm 0.42 | 224.97K tok/s
+step  10100/12000 | loss 3.1247 | lr 1.59e-04 | gnorm 0.43 | 316.00K tok/s
+step  10150/12000 | loss 2.9258 | lr 1.56e-04 | gnorm 0.41 | 316.01K tok/s
+step  10200/12000 | loss 3.1638 | lr 1.53e-04 | gnorm 0.42 | 315.88K tok/s
+step  10250/12000 | loss 3.2064 | lr 1.51e-04 | gnorm 0.44 | 315.99K tok/s
+step  10300/12000 | loss 3.2755 | lr 1.48e-04 | gnorm 0.43 | 316.01K tok/s
+step  10350/12000 | loss 3.0522 | lr 1.45e-04 | gnorm 0.43 | 316.00K tok/s
+step  10400/12000 | loss 3.1832 | lr 1.42e-04 | gnorm 0.44 | 315.90K tok/s
+step  10450/12000 | loss 3.0765 | lr 1.40e-04 | gnorm 0.43 | 315.69K tok/s
+step  10500/12000 | loss 3.1120 | lr 1.37e-04 | gnorm 0.44 | 315.71K tok/s
+step  10500 | VAL loss 1.8029  *best*
+step  10550/12000 | loss 3.1869 | lr 1.35e-04 | gnorm 0.44 | 274.55K tok/s
+step  10600/12000 | loss 3.0194 | lr 1.33e-04 | gnorm 0.44 | 315.61K tok/s
+step  10650/12000 | loss 3.0983 | lr 1.30e-04 | gnorm 0.43 | 315.77K tok/s
+step  10700/12000 | loss 3.1571 | lr 1.28e-04 | gnorm 0.44 | 315.71K tok/s
+step  10750/12000 | loss 3.1483 | lr 1.26e-04 | gnorm 0.43 | 315.71K tok/s
+step  10800/12000 | loss 3.1058 | lr 1.24e-04 | gnorm 0.44 | 315.75K tok/s
+step  10850/12000 | loss 3.0656 | lr 1.22e-04 | gnorm 0.43 | 315.70K tok/s
+step  10900/12000 | loss 3.0855 | lr 1.20e-04 | gnorm 0.43 | 315.65K tok/s
+step  10950/12000 | loss 3.1451 | lr 1.18e-04 | gnorm 0.44 | 315.70K tok/s
+step  11000/12000 | loss 3.1647 | lr 1.17e-04 | gnorm 0.44 | 315.72K tok/s
+step  11000 | VAL loss 1.7911  *best*
+step  11050/12000 | loss 3.0644 | lr 1.15e-04 | gnorm 0.43 | 272.73K tok/s
+step  11100/12000 | loss 2.9800 | lr 1.14e-04 | gnorm 0.44 | 316.06K tok/s
+step  11150/12000 | loss 3.0779 | lr 1.12e-04 | gnorm 0.44 | 316.06K tok/s
+step  11200/12000 | loss 3.1713 | lr 1.11e-04 | gnorm 0.43 | 316.05K tok/s
+step  11250/12000 | loss 3.2653 | lr 1.09e-04 | gnorm 0.45 | 316.08K tok/s
+step  11300/12000 | loss 3.3229 | lr 1.08e-04 | gnorm 0.46 | 316.05K tok/s
+step  11350/12000 | loss 3.2425 | lr 1.07e-04 | gnorm 0.43 | 316.03K tok/s
+step  11400/12000 | loss 3.2418 | lr 1.06e-04 | gnorm 0.45 | 316.03K tok/s
+step  11450/12000 | loss 2.9006 | lr 1.05e-04 | gnorm 0.44 | 315.96K tok/s
+step  11500/12000 | loss 3.1530 | lr 1.04e-04 | gnorm 0.43 | 316.01K tok/s
+step  11500 | VAL loss 1.7823  *best*
+step  11550/12000 | loss 3.1366 | lr 1.03e-04 | gnorm 0.45 | 275.83K tok/s
+step  11600/12000 | loss 3.0294 | lr 1.03e-04 | gnorm 0.43 | 316.04K tok/s
+step  11650/12000 | loss 3.1380 | lr 1.02e-04 | gnorm 0.44 | 315.94K tok/s
+step  11700/12000 | loss 3.2412 | lr 1.02e-04 | gnorm 0.45 | 316.02K tok/s
+step  11750/12000 | loss 3.0329 | lr 1.01e-04 | gnorm 0.45 | 315.98K tok/s
+step  11800/12000 | loss 2.9798 | lr 1.01e-04 | gnorm 0.44 | 316.03K tok/s
+step  11850/12000 | loss 3.1195 | lr 1.00e-04 | gnorm 0.44 | 315.91K tok/s
+step  11900/12000 | loss 3.0484 | lr 1.00e-04 | gnorm 0.43 | 316.01K tok/s
+step  11950/12000 | loss 3.2288 | lr 1.00e-04 | gnorm 0.44 | 315.89K tok/s
+step  12000/12000 | loss 3.2809 | lr 1.00e-04 | gnorm 0.45 | 315.98K tok/s
+step  12000 | VAL loss 1.7760  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: plain-s0 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.6579
+  val_ppl             14.2667
+  val_bpb              0.9885
+  val_acc1             0.4632
+  val_acc5             0.6930
+  val_pred_entropy     2.7364
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3013
+  pos_loss/1        4.3623
+  pos_loss/2-3      3.8175
+  pos_loss/4-7      3.5125
+  pos_loss/8-15     3.1573
+  pos_loss/16-31    2.9447
+  pos_loss/32-63    2.7855
+  pos_loss/64-127   2.6704
+  pos_loss/128-255  2.6177
+  pos_loss/256-511  2.5860
+  ctx_gain          0.6524
+  late_loss         2.5889
+
+[calibration]
+  ece              0.0063
+  mean_confidence  0.4669
+  overconfidence   0.0037
+
+[generalization]
+  train_loss_eval   3.1487
+  gen_gap          -0.4907
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3592
+
+[induction]
+  induction_loss_random  11.9190
+  induction_loss_repeat   4.3371
+  induction_gap           7.5819
+  induction_acc           0.3681
+
+[generation]
+  gen_distinct1   0.7865
+  gen_distinct2   0.9599
+  gen_distinct3   0.9880
+  gen_unigram_kl  1.1441
+
+[throughput]
+  fwd_tok_per_s     8.296e+05
+  fwdbwd_tok_per_s  3.102e+05
+  peak_mem_mb               0
+
+
+[sweep] ===== gates_d_edu/plain-s1 =====
+run /data/susanket/text/gpt/runs/gates_d_edu/plain-s1 | device=cuda:1 bf16 | params 54.80M (50.61M non-emb) | 16.38K tok/step | 196.61M tokens total
+step      1/12000 | loss 9.1062 | lr 2.00e-06 | gnorm 8.18 | 291.45K tok/s
+step     50/12000 | loss 7.3706 | lr 1.00e-04 | gnorm 1.34 | 313.50K tok/s
+step    100/12000 | loss 6.6073 | lr 2.00e-04 | gnorm 0.90 | 313.70K tok/s
+step    150/12000 | loss 6.1297 | lr 3.00e-04 | gnorm 0.96 | 313.54K tok/s
+step    200/12000 | loss 5.6160 | lr 4.00e-04 | gnorm 0.77 | 313.74K tok/s
+step    250/12000 | loss 5.5613 | lr 5.00e-04 | gnorm 0.88 | 313.73K tok/s
+step    300/12000 | loss 5.3290 | lr 6.00e-04 | gnorm 0.75 | 313.83K tok/s
+step    350/12000 | loss 5.1512 | lr 7.00e-04 | gnorm 0.65 | 313.80K tok/s
+step    400/12000 | loss 5.0354 | lr 8.00e-04 | gnorm 0.64 | 313.72K tok/s
+step    450/12000 | loss 4.7976 | lr 9.00e-04 | gnorm 0.55 | 313.88K tok/s
+step    500/12000 | loss 4.9216 | lr 1.00e-03 | gnorm 0.51 | 313.89K tok/s
+step    500 | VAL loss 3.3625  *best*
+step    550/12000 | loss 4.7903 | lr 1.00e-03 | gnorm 0.54 | 281.53K tok/s
+step    600/12000 | loss 4.8033 | lr 1.00e-03 | gnorm 0.48 | 313.90K tok/s
+step    650/12000 | loss 4.5891 | lr 1.00e-03 | gnorm 0.48 | 314.04K tok/s
+step    700/12000 | loss 4.5131 | lr 9.99e-04 | gnorm 0.46 | 313.98K tok/s
+step    750/12000 | loss 4.4363 | lr 9.99e-04 | gnorm 0.45 | 313.97K tok/s
+step    800/12000 | loss 4.4364 | lr 9.98e-04 | gnorm 0.44 | 314.09K tok/s
+step    850/12000 | loss 4.4795 | lr 9.98e-04 | gnorm 0.42 | 314.03K tok/s
+step    900/12000 | loss 4.3355 | lr 9.97e-04 | gnorm 0.43 | 314.12K tok/s
+step    950/12000 | loss 4.1461 | lr 9.97e-04 | gnorm 0.44 | 314.12K tok/s
+step   1000/12000 | loss 4.1551 | lr 9.96e-04 | gnorm 0.43 | 314.00K tok/s
+step   1000 | VAL loss 2.7836  *best*
+step   1050/12000 | loss 4.1264 | lr 9.95e-04 | gnorm 0.44 | 274.34K tok/s
+step   1100/12000 | loss 4.0988 | lr 9.94e-04 | gnorm 0.42 | 314.15K tok/s
+step   1150/12000 | loss 4.1632 | lr 9.93e-04 | gnorm 0.40 | 314.16K tok/s
+step   1200/12000 | loss 4.0503 | lr 9.92e-04 | gnorm 0.40 | 314.18K tok/s
+step   1250/12000 | loss 4.0995 | lr 9.91e-04 | gnorm 0.41 | 314.18K tok/s
+step   1300/12000 | loss 4.1318 | lr 9.89e-04 | gnorm 0.40 | 314.24K tok/s
+step   1350/12000 | loss 4.0834 | lr 9.88e-04 | gnorm 0.40 | 314.19K tok/s
+step   1400/12000 | loss 3.9619 | lr 9.86e-04 | gnorm 0.38 | 314.16K tok/s
+step   1450/12000 | loss 3.8874 | lr 9.85e-04 | gnorm 0.39 | 314.22K tok/s
+step   1500/12000 | loss 3.9953 | lr 9.83e-04 | gnorm 0.39 | 314.22K tok/s
+step   1500 | VAL loss 2.5405  *best*
+step   1550/12000 | loss 3.9618 | lr 9.82e-04 | gnorm 0.40 | 274.80K tok/s
+step   1600/12000 | loss 3.8829 | lr 9.80e-04 | gnorm 0.40 | 314.27K tok/s
+step   1650/12000 | loss 4.0097 | lr 9.78e-04 | gnorm 0.40 | 314.24K tok/s
+step   1700/12000 | loss 3.8628 | lr 9.76e-04 | gnorm 0.37 | 314.31K tok/s
+step   1750/12000 | loss 3.7963 | lr 9.74e-04 | gnorm 0.39 | 314.27K tok/s
+step   1800/12000 | loss 3.8926 | lr 9.72e-04 | gnorm 0.37 | 314.30K tok/s
+step   1850/12000 | loss 3.9073 | lr 9.70e-04 | gnorm 0.40 | 314.19K tok/s
+step   1900/12000 | loss 3.9459 | lr 9.68e-04 | gnorm 0.37 | 314.32K tok/s
+step   1950/12000 | loss 3.8385 | lr 9.65e-04 | gnorm 0.37 | 314.30K tok/s
+step   2000/12000 | loss 3.8075 | lr 9.63e-04 | gnorm 0.36 | 314.28K tok/s
+step   2000 | VAL loss 2.4086  *best*
+step   2050/12000 | loss 3.9059 | lr 9.60e-04 | gnorm 0.38 | 274.95K tok/s
+step   2100/12000 | loss 3.8803 | lr 9.58e-04 | gnorm 0.38 | 314.39K tok/s
+step   2150/12000 | loss 3.7088 | lr 9.55e-04 | gnorm 0.38 | 314.48K tok/s
+step   2200/12000 | loss 3.9090 | lr 9.52e-04 | gnorm 0.38 | 314.46K tok/s
+step   2250/12000 | loss 3.8089 | lr 9.50e-04 | gnorm 0.38 | 314.21K tok/s
+step   2300/12000 | loss 3.6911 | lr 9.47e-04 | gnorm 0.37 | 314.40K tok/s
+step   2350/12000 | loss 3.4544 | lr 9.44e-04 | gnorm 0.38 | 314.40K tok/s
+step   2400/12000 | loss 3.8500 | lr 9.41e-04 | gnorm 0.37 | 314.43K tok/s
+step   2450/12000 | loss 3.7834 | lr 9.38e-04 | gnorm 0.38 | 314.48K tok/s
+step   2500/12000 | loss 3.6860 | lr 9.35e-04 | gnorm 0.36 | 314.42K tok/s
+step   2500 | VAL loss 2.3126  *best*
+step   2550/12000 | loss 3.7477 | lr 9.31e-04 | gnorm 0.36 | 274.83K tok/s
+step   2600/12000 | loss 3.6364 | lr 9.28e-04 | gnorm 0.38 | 314.42K tok/s
+step   2650/12000 | loss 3.7611 | lr 9.25e-04 | gnorm 0.36 | 314.14K tok/s
+step   2700/12000 | loss 3.7317 | lr 9.21e-04 | gnorm 0.38 | 314.42K tok/s
+step   2750/12000 | loss 3.6837 | lr 9.18e-04 | gnorm 0.37 | 314.43K tok/s
+step   2800/12000 | loss 3.7596 | lr 9.14e-04 | gnorm 0.35 | 314.49K tok/s
+step   2850/12000 | loss 3.7019 | lr 9.10e-04 | gnorm 0.37 | 314.36K tok/s
+step   2900/12000 | loss 3.7058 | lr 9.07e-04 | gnorm 0.37 | 314.28K tok/s
+step   2950/12000 | loss 3.7742 | lr 9.03e-04 | gnorm 0.36 | 314.31K tok/s
+step   3000/12000 | loss 3.5938 | lr 8.99e-04 | gnorm 0.36 | 314.24K tok/s
+step   3000 | VAL loss 2.2467  *best*
+step   3050/12000 | loss 3.7298 | lr 8.95e-04 | gnorm 0.37 | 274.47K tok/s
+step   3100/12000 | loss 3.6682 | lr 8.91e-04 | gnorm 0.36 | 314.40K tok/s
+step   3150/12000 | loss 3.6402 | lr 8.87e-04 | gnorm 0.37 | 314.43K tok/s
+step   3200/12000 | loss 3.5985 | lr 8.83e-04 | gnorm 0.36 | 314.29K tok/s
+step   3250/12000 | loss 3.5856 | lr 8.79e-04 | gnorm 0.36 | 314.34K tok/s
+step   3300/12000 | loss 3.6972 | lr 8.75e-04 | gnorm 0.37 | 314.28K tok/s
+step   3350/12000 | loss 3.7098 | lr 8.70e-04 | gnorm 0.36 | 314.28K tok/s
+step   3400/12000 | loss 3.4872 | lr 8.66e-04 | gnorm 0.36 | 314.26K tok/s
+step   3450/12000 | loss 3.6656 | lr 8.62e-04 | gnorm 0.37 | 314.24K tok/s
+step   3500/12000 | loss 3.5511 | lr 8.57e-04 | gnorm 0.37 | 314.14K tok/s
+step   3500 | VAL loss 2.1935  *best*
+step   3550/12000 | loss 3.6229 | lr 8.53e-04 | gnorm 0.35 | 274.49K tok/s
+step   3600/12000 | loss 3.6090 | lr 8.48e-04 | gnorm 0.36 | 314.27K tok/s
+step   3650/12000 | loss 3.5954 | lr 8.44e-04 | gnorm 0.36 | 314.30K tok/s
+step   3700/12000 | loss 3.4460 | lr 8.39e-04 | gnorm 0.36 | 314.27K tok/s
+step   3750/12000 | loss 3.4304 | lr 8.34e-04 | gnorm 0.38 | 314.33K tok/s
+step   3800/12000 | loss 3.6277 | lr 8.29e-04 | gnorm 0.36 | 314.38K tok/s
+step   3850/12000 | loss 3.3735 | lr 8.24e-04 | gnorm 0.35 | 314.36K tok/s
+step   3900/12000 | loss 3.3949 | lr 8.20e-04 | gnorm 0.36 | 314.28K tok/s
+step   3950/12000 | loss 3.5228 | lr 8.15e-04 | gnorm 0.36 | 314.38K tok/s
+step   4000/12000 | loss 3.6234 | lr 8.10e-04 | gnorm 0.35 | 314.35K tok/s
+step   4000 | VAL loss 2.1392  *best*
+step   4050/12000 | loss 3.6113 | lr 8.05e-04 | gnorm 0.37 | 274.95K tok/s
+step   4100/12000 | loss 3.4692 | lr 7.99e-04 | gnorm 0.36 | 314.28K tok/s
+step   4150/12000 | loss 3.4290 | lr 7.94e-04 | gnorm 0.38 | 314.40K tok/s
+step   4200/12000 | loss 3.6132 | lr 7.89e-04 | gnorm 0.38 | 314.39K tok/s
+step   4250/12000 | loss 3.4204 | lr 7.84e-04 | gnorm 0.37 | 314.41K tok/s
+step   4300/12000 | loss 3.5414 | lr 7.79e-04 | gnorm 0.36 | 314.41K tok/s
+step   4350/12000 | loss 3.4914 | lr 7.73e-04 | gnorm 0.38 | 314.16K tok/s
+step   4400/12000 | loss 3.3010 | lr 7.68e-04 | gnorm 0.38 | 314.28K tok/s
+step   4450/12000 | loss 3.2707 | lr 7.63e-04 | gnorm 0.40 | 314.29K tok/s
+step   4500/12000 | loss 3.3277 | lr 7.57e-04 | gnorm 0.37 | 314.28K tok/s
+step   4500 | VAL loss 2.1027  *best*
+step   4550/12000 | loss 3.4750 | lr 7.52e-04 | gnorm 0.38 | 274.84K tok/s
+step   4600/12000 | loss 3.3347 | lr 7.46e-04 | gnorm 0.38 | 314.28K tok/s
+step   4650/12000 | loss 3.5186 | lr 7.41e-04 | gnorm 0.38 | 314.25K tok/s
+step   4700/12000 | loss 3.3552 | lr 7.35e-04 | gnorm 0.38 | 314.26K tok/s
+step   4750/12000 | loss 3.6083 | lr 7.29e-04 | gnorm 0.37 | 313.74K tok/s
+step   4800/12000 | loss 3.6117 | lr 7.24e-04 | gnorm 0.37 | 314.20K tok/s
+step   4850/12000 | loss 3.4543 | lr 7.18e-04 | gnorm 0.38 | 314.29K tok/s
+step   4900/12000 | loss 3.4487 | lr 7.12e-04 | gnorm 0.37 | 314.17K tok/s
+step   4950/12000 | loss 3.2942 | lr 7.07e-04 | gnorm 0.36 | 314.26K tok/s
+step   5000/12000 | loss 3.4762 | lr 7.01e-04 | gnorm 0.38 | 314.31K tok/s
+step   5000 | VAL loss 2.0673  *best*
+step   5050/12000 | loss 3.5279 | lr 6.95e-04 | gnorm 0.38 | 241.34K tok/s
+step   5100/12000 | loss 3.4236 | lr 6.89e-04 | gnorm 0.40 | 314.32K tok/s
+step   5150/12000 | loss 3.4306 | lr 6.83e-04 | gnorm 0.37 | 314.25K tok/s
+step   5200/12000 | loss 3.3594 | lr 6.77e-04 | gnorm 0.40 | 314.33K tok/s
+step   5250/12000 | loss 3.3769 | lr 6.72e-04 | gnorm 0.37 | 314.30K tok/s
+step   5300/12000 | loss 3.3434 | lr 6.66e-04 | gnorm 0.37 | 314.34K tok/s
+step   5350/12000 | loss 3.3488 | lr 6.60e-04 | gnorm 0.37 | 314.32K tok/s
+step   5400/12000 | loss 3.4610 | lr 6.54e-04 | gnorm 0.37 | 314.30K tok/s
+step   5450/12000 | loss 3.3263 | lr 6.48e-04 | gnorm 0.36 | 314.17K tok/s
+step   5500/12000 | loss 3.2803 | lr 6.42e-04 | gnorm 0.38 | 314.19K tok/s
+step   5500 | VAL loss 2.0338  *best*
+step   5550/12000 | loss 3.3677 | lr 6.36e-04 | gnorm 0.37 | 274.27K tok/s
+step   5600/12000 | loss 3.3392 | lr 6.30e-04 | gnorm 0.37 | 314.09K tok/s
+step   5650/12000 | loss 3.3459 | lr 6.24e-04 | gnorm 0.38 | 314.21K tok/s
+step   5700/12000 | loss 3.3451 | lr 6.17e-04 | gnorm 0.38 | 314.15K tok/s
+step   5750/12000 | loss 3.1778 | lr 6.11e-04 | gnorm 0.38 | 314.31K tok/s
+step   5800/12000 | loss 3.4510 | lr 6.05e-04 | gnorm 0.39 | 314.31K tok/s
+step   5850/12000 | loss 3.4369 | lr 5.99e-04 | gnorm 0.39 | 314.30K tok/s
+step   5900/12000 | loss 3.4178 | lr 5.93e-04 | gnorm 0.39 | 314.33K tok/s
+step   5950/12000 | loss 3.4507 | lr 5.87e-04 | gnorm 0.39 | 314.34K tok/s
+step   6000/12000 | loss 3.4813 | lr 5.81e-04 | gnorm 0.41 | 314.10K tok/s
+step   6000 | VAL loss 2.0149  *best*
+step   6050/12000 | loss 3.4232 | lr 5.75e-04 | gnorm 0.39 | 274.66K tok/s
+step   6100/12000 | loss 3.2941 | lr 5.69e-04 | gnorm 0.38 | 314.29K tok/s
+step   6150/12000 | loss 3.4045 | lr 5.62e-04 | gnorm 0.40 | 314.37K tok/s
+step   6200/12000 | loss 3.4189 | lr 5.56e-04 | gnorm 0.40 | 314.32K tok/s
+step   6250/12000 | loss 3.2611 | lr 5.50e-04 | gnorm 0.38 | 314.34K tok/s
+step   6300/12000 | loss 3.3277 | lr 5.44e-04 | gnorm 0.38 | 314.31K tok/s
+step   6350/12000 | loss 3.4364 | lr 5.38e-04 | gnorm 0.41 | 314.31K tok/s
+step   6400/12000 | loss 3.4816 | lr 5.32e-04 | gnorm 0.40 | 314.32K tok/s
+step   6450/12000 | loss 3.3165 | lr 5.26e-04 | gnorm 0.39 | 313.73K tok/s
+step   6500/12000 | loss 3.3784 | lr 5.19e-04 | gnorm 0.40 | 313.39K tok/s
+step   6500 | VAL loss 1.9774  *best*
+step   6550/12000 | loss 3.3037 | lr 5.13e-04 | gnorm 0.40 | 273.94K tok/s
+step   6600/12000 | loss 3.2913 | lr 5.07e-04 | gnorm 0.39 | 314.13K tok/s
+step   6650/12000 | loss 3.2833 | lr 5.01e-04 | gnorm 0.38 | 313.73K tok/s
+step   6700/12000 | loss 3.3992 | lr 4.95e-04 | gnorm 0.41 | 313.73K tok/s
+step   6750/12000 | loss 3.3037 | lr 4.89e-04 | gnorm 0.40 | 314.07K tok/s
+step   6800/12000 | loss 3.4017 | lr 4.83e-04 | gnorm 0.39 | 313.77K tok/s
+step   6850/12000 | loss 3.2391 | lr 4.77e-04 | gnorm 0.40 | 315.86K tok/s
+step   6900/12000 | loss 3.3066 | lr 4.71e-04 | gnorm 0.41 | 314.58K tok/s
+step   6950/12000 | loss 3.3511 | lr 4.65e-04 | gnorm 0.40 | 314.15K tok/s
+step   7000/12000 | loss 3.3982 | lr 4.59e-04 | gnorm 0.41 | 313.23K tok/s
+step   7000 | VAL loss 1.9499  *best*
+step   7050/12000 | loss 3.4587 | lr 4.53e-04 | gnorm 0.40 | 273.73K tok/s
+step   7100/12000 | loss 3.1681 | lr 4.47e-04 | gnorm 0.39 | 313.99K tok/s
+step   7150/12000 | loss 3.2139 | lr 4.41e-04 | gnorm 0.41 | 313.57K tok/s
+step   7200/12000 | loss 3.3873 | lr 4.35e-04 | gnorm 0.41 | 314.20K tok/s
+step   7250/12000 | loss 3.3493 | lr 4.29e-04 | gnorm 0.39 | 314.30K tok/s
+step   7300/12000 | loss 3.3941 | lr 4.23e-04 | gnorm 0.43 | 314.13K tok/s
+step   7350/12000 | loss 3.1914 | lr 4.17e-04 | gnorm 0.40 | 313.48K tok/s
+step   7400/12000 | loss 3.2077 | lr 4.11e-04 | gnorm 0.42 | 314.09K tok/s
+step   7450/12000 | loss 3.2660 | lr 4.05e-04 | gnorm 0.41 | 313.78K tok/s
+step   7500/12000 | loss 3.1744 | lr 3.99e-04 | gnorm 0.40 | 314.26K tok/s
+step   7500 | VAL loss 1.9264  *best*
+step   7550/12000 | loss 3.4679 | lr 3.94e-04 | gnorm 0.41 | 274.39K tok/s
+step   7600/12000 | loss 3.3769 | lr 3.88e-04 | gnorm 0.43 | 314.26K tok/s
+step   7650/12000 | loss 3.4668 | lr 3.82e-04 | gnorm 0.41 | 314.29K tok/s
+step   7700/12000 | loss 3.2400 | lr 3.76e-04 | gnorm 0.41 | 314.28K tok/s
+step   7750/12000 | loss 3.2813 | lr 3.71e-04 | gnorm 0.41 | 314.29K tok/s
+step   7800/12000 | loss 3.3840 | lr 3.65e-04 | gnorm 0.41 | 314.27K tok/s
+step   7850/12000 | loss 3.3516 | lr 3.60e-04 | gnorm 0.43 | 314.31K tok/s
+step   7900/12000 | loss 3.2791 | lr 3.54e-04 | gnorm 0.41 | 314.28K tok/s
+step   7950/12000 | loss 3.3065 | lr 3.49e-04 | gnorm 0.41 | 314.23K tok/s
+step   8000/12000 | loss 3.3039 | lr 3.43e-04 | gnorm 0.44 | 314.22K tok/s
+step   8000 | VAL loss 1.9024  *best*
+step   8050/12000 | loss 3.2707 | lr 3.38e-04 | gnorm 0.41 | 274.02K tok/s
+step   8100/12000 | loss 3.1577 | lr 3.32e-04 | gnorm 0.44 | 314.31K tok/s
+step   8150/12000 | loss 3.0998 | lr 3.27e-04 | gnorm 0.40 | 314.30K tok/s
+step   8200/12000 | loss 3.2379 | lr 3.22e-04 | gnorm 0.41 | 314.25K tok/s
+step   8250/12000 | loss 3.2129 | lr 3.16e-04 | gnorm 0.42 | 314.28K tok/s
+step   8300/12000 | loss 3.0703 | lr 3.11e-04 | gnorm 0.40 | 314.27K tok/s
+step   8350/12000 | loss 3.2903 | lr 3.06e-04 | gnorm 0.44 | 314.19K tok/s
+step   8400/12000 | loss 2.9990 | lr 3.01e-04 | gnorm 0.42 | 314.28K tok/s
+step   8450/12000 | loss 3.3795 | lr 2.96e-04 | gnorm 0.42 | 314.25K tok/s
+step   8500/12000 | loss 3.3051 | lr 2.91e-04 | gnorm 0.43 | 314.25K tok/s
+step   8500 | VAL loss 1.8743  *best*
+step   8550/12000 | loss 3.1030 | lr 2.86e-04 | gnorm 0.42 | 275.14K tok/s
+step   8600/12000 | loss 3.4148 | lr 2.81e-04 | gnorm 0.43 | 314.32K tok/s
+step   8650/12000 | loss 3.1176 | lr 2.76e-04 | gnorm 0.43 | 314.34K tok/s
+step   8700/12000 | loss 3.2323 | lr 2.71e-04 | gnorm 0.43 | 314.34K tok/s
+step   8750/12000 | loss 3.1465 | lr 2.66e-04 | gnorm 0.42 | 314.40K tok/s
+step   8800/12000 | loss 3.1816 | lr 2.61e-04 | gnorm 0.42 | 314.40K tok/s
+step   8850/12000 | loss 3.2307 | lr 2.57e-04 | gnorm 0.42 | 314.35K tok/s
+step   8900/12000 | loss 3.2308 | lr 2.52e-04 | gnorm 0.42 | 314.34K tok/s
+step   8950/12000 | loss 3.1176 | lr 2.47e-04 | gnorm 0.43 | 314.29K tok/s
+step   9000/12000 | loss 3.1501 | lr 2.43e-04 | gnorm 0.43 | 314.35K tok/s
+step   9000 | VAL loss 1.8592  *best*
+step   9050/12000 | loss 3.1925 | lr 2.38e-04 | gnorm 0.42 | 274.97K tok/s
+step   9100/12000 | loss 3.4312 | lr 2.34e-04 | gnorm 0.42 | 314.32K tok/s
+step   9150/12000 | loss 3.1301 | lr 2.30e-04 | gnorm 0.42 | 314.29K tok/s
+step   9200/12000 | loss 3.3353 | lr 2.25e-04 | gnorm 0.44 | 314.31K tok/s
+step   9250/12000 | loss 3.2198 | lr 2.21e-04 | gnorm 0.42 | 314.35K tok/s
+step   9300/12000 | loss 3.3962 | lr 2.17e-04 | gnorm 0.43 | 314.26K tok/s
+step   9350/12000 | loss 3.3340 | lr 2.13e-04 | gnorm 0.43 | 314.30K tok/s
+step   9400/12000 | loss 3.0969 | lr 2.09e-04 | gnorm 0.42 | 314.28K tok/s
+step   9450/12000 | loss 2.9285 | lr 2.05e-04 | gnorm 0.42 | 314.32K tok/s
+step   9500/12000 | loss 3.1550 | lr 2.01e-04 | gnorm 0.43 | 314.25K tok/s
+step   9500 | VAL loss 1.8359  *best*
+step   9550/12000 | loss 3.0851 | lr 1.97e-04 | gnorm 0.41 | 275.07K tok/s
+step   9600/12000 | loss 3.3740 | lr 1.93e-04 | gnorm 0.43 | 314.38K tok/s
+step   9650/12000 | loss 3.1697 | lr 1.90e-04 | gnorm 0.43 | 314.34K tok/s
+step   9700/12000 | loss 3.1116 | lr 1.86e-04 | gnorm 0.41 | 314.31K tok/s
+step   9750/12000 | loss 3.3204 | lr 1.82e-04 | gnorm 0.43 | 314.31K tok/s
+step   9800/12000 | loss 3.2889 | lr 1.79e-04 | gnorm 0.44 | 314.29K tok/s
+step   9850/12000 | loss 3.1500 | lr 1.75e-04 | gnorm 0.43 | 314.28K tok/s
+step   9900/12000 | loss 3.0851 | lr 1.72e-04 | gnorm 0.43 | 314.31K tok/s
+step   9950/12000 | loss 3.1070 | lr 1.69e-04 | gnorm 0.43 | 314.29K tok/s
+step  10000/12000 | loss 3.1431 | lr 1.66e-04 | gnorm 0.42 | 314.28K tok/s
+step  10000 | VAL loss 1.8239  *best*
+step  10050/12000 | loss 3.2386 | lr 1.62e-04 | gnorm 0.44 | 223.81K tok/s
+step  10100/12000 | loss 3.2184 | lr 1.59e-04 | gnorm 0.45 | 314.40K tok/s
+step  10150/12000 | loss 3.2914 | lr 1.56e-04 | gnorm 0.45 | 314.40K tok/s
+step  10200/12000 | loss 3.1195 | lr 1.53e-04 | gnorm 0.43 | 314.38K tok/s
+step  10250/12000 | loss 3.1342 | lr 1.51e-04 | gnorm 0.46 | 314.38K tok/s
+step  10300/12000 | loss 3.0494 | lr 1.48e-04 | gnorm 0.43 | 314.41K tok/s
+step  10350/12000 | loss 3.1933 | lr 1.45e-04 | gnorm 0.43 | 314.36K tok/s
+step  10400/12000 | loss 3.1605 | lr 1.42e-04 | gnorm 0.42 | 314.42K tok/s
+step  10450/12000 | loss 3.2085 | lr 1.40e-04 | gnorm 0.45 | 314.38K tok/s
+step  10500/12000 | loss 3.3356 | lr 1.37e-04 | gnorm 0.45 | 314.36K tok/s
+step  10500 | VAL loss 1.8083  *best*
+step  10550/12000 | loss 3.2313 | lr 1.35e-04 | gnorm 0.44 | 274.26K tok/s
+step  10600/12000 | loss 3.1455 | lr 1.33e-04 | gnorm 0.44 | 314.36K tok/s
+step  10650/12000 | loss 3.1992 | lr 1.30e-04 | gnorm 0.43 | 314.38K tok/s
+step  10700/12000 | loss 2.9916 | lr 1.28e-04 | gnorm 0.43 | 314.38K tok/s
+step  10750/12000 | loss 3.1010 | lr 1.26e-04 | gnorm 0.43 | 314.34K tok/s
+step  10800/12000 | loss 3.3105 | lr 1.24e-04 | gnorm 0.44 | 314.39K tok/s
+step  10850/12000 | loss 3.1063 | lr 1.22e-04 | gnorm 0.44 | 314.36K tok/s
+step  10900/12000 | loss 3.2137 | lr 1.20e-04 | gnorm 0.44 | 314.33K tok/s
+step  10950/12000 | loss 3.1359 | lr 1.18e-04 | gnorm 0.45 | 314.32K tok/s
+step  11000/12000 | loss 3.0844 | lr 1.17e-04 | gnorm 0.43 | 314.34K tok/s
+step  11000 | VAL loss 1.7976  *best*
+step  11050/12000 | loss 3.0396 | lr 1.15e-04 | gnorm 0.44 | 274.20K tok/s
+step  11100/12000 | loss 3.1781 | lr 1.14e-04 | gnorm 0.44 | 314.35K tok/s
+step  11150/12000 | loss 3.1648 | lr 1.12e-04 | gnorm 0.45 | 314.39K tok/s
+step  11200/12000 | loss 3.2368 | lr 1.11e-04 | gnorm 0.46 | 314.34K tok/s
+step  11250/12000 | loss 3.0128 | lr 1.09e-04 | gnorm 0.44 | 314.37K tok/s
+step  11300/12000 | loss 3.2474 | lr 1.08e-04 | gnorm 0.45 | 314.38K tok/s
+step  11350/12000 | loss 3.1110 | lr 1.07e-04 | gnorm 0.45 | 314.36K tok/s
+step  11400/12000 | loss 3.0560 | lr 1.06e-04 | gnorm 0.44 | 314.38K tok/s
+step  11450/12000 | loss 3.0819 | lr 1.05e-04 | gnorm 0.44 | 314.40K tok/s
+step  11500/12000 | loss 3.3338 | lr 1.04e-04 | gnorm 0.46 | 314.41K tok/s
+step  11500 | VAL loss 1.7902  *best*
+step  11550/12000 | loss 2.6990 | lr 1.03e-04 | gnorm 0.42 | 274.94K tok/s
+step  11600/12000 | loss 3.3346 | lr 1.03e-04 | gnorm 0.46 | 314.34K tok/s
+step  11650/12000 | loss 3.0990 | lr 1.02e-04 | gnorm 0.45 | 314.42K tok/s
+step  11700/12000 | loss 3.2547 | lr 1.02e-04 | gnorm 0.46 | 314.38K tok/s
+step  11750/12000 | loss 3.1236 | lr 1.01e-04 | gnorm 0.43 | 314.37K tok/s
+step  11800/12000 | loss 3.1001 | lr 1.01e-04 | gnorm 0.44 | 314.27K tok/s
+step  11850/12000 | loss 3.1426 | lr 1.00e-04 | gnorm 0.45 | 314.31K tok/s
+step  11900/12000 | loss 3.1881 | lr 1.00e-04 | gnorm 0.45 | 314.26K tok/s
+step  11950/12000 | loss 3.1298 | lr 1.00e-04 | gnorm 0.44 | 313.54K tok/s
+step  12000/12000 | loss 3.1874 | lr 1.00e-04 | gnorm 0.46 | 313.32K tok/s
+step  12000 | VAL loss 1.7847  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: plain-s1 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.6613
+  val_ppl             14.3155
+  val_bpb              0.9898
+  val_acc1             0.4620
+  val_acc5             0.6924
+  val_pred_entropy     2.7333
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3217
+  pos_loss/1        4.3602
+  pos_loss/2-3      3.8252
+  pos_loss/4-7      3.5178
+  pos_loss/8-15     3.1590
+  pos_loss/16-31    2.9426
+  pos_loss/32-63    2.7894
+  pos_loss/64-127   2.6749
+  pos_loss/128-255  2.6206
+  pos_loss/256-511  2.5897
+  ctx_gain          0.6484
+  late_loss         2.5940
+
+[calibration]
+  ece              0.0076
+  mean_confidence  0.4668
+  overconfidence   0.0048
+
+[generalization]
+  train_loss_eval   3.1494
+  gen_gap          -0.4880
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3558
+
+[induction]
+  induction_loss_random  11.8887
+  induction_loss_repeat   3.7815
+  induction_gap           8.1073
+  induction_acc           0.4683
+
+[generation]
+  gen_distinct1   0.7682
+  gen_distinct2   0.9592
+  gen_distinct3   0.9847
+  gen_unigram_kl  1.1347
+
+[throughput]
+  fwd_tok_per_s     8.084e+05
+  fwdbwd_tok_per_s  2.817e+05
+  peak_mem_mb               0
+
+
+[sweep] ===== gates_d_edu/plain-s2 =====
+run /data/susanket/text/gpt/runs/gates_d_edu/plain-s2 | device=cuda:1 bf16 | params 54.80M (50.61M non-emb) | 16.38K tok/step | 196.61M tokens total
+step      1/12000 | loss 9.1182 | lr 2.00e-06 | gnorm 7.14 | 289.16K tok/s
+step     50/12000 | loss 7.4411 | lr 1.00e-04 | gnorm 1.14 | 310.39K tok/s
+step    100/12000 | loss 6.5845 | lr 2.00e-04 | gnorm 0.99 | 313.51K tok/s
+step    150/12000 | loss 6.0162 | lr 3.00e-04 | gnorm 0.93 | 313.56K tok/s
+step    200/12000 | loss 5.8434 | lr 4.00e-04 | gnorm 0.80 | 313.43K tok/s
+step    250/12000 | loss 5.5556 | lr 5.00e-04 | gnorm 3.81 | 313.66K tok/s
+step    300/12000 | loss 5.2644 | lr 6.00e-04 | gnorm 0.78 | 313.73K tok/s
+step    350/12000 | loss 5.1199 | lr 7.00e-04 | gnorm 0.66 | 313.54K tok/s
+step    400/12000 | loss 5.0976 | lr 8.00e-04 | gnorm 1.36 | 313.62K tok/s
+step    450/12000 | loss 5.0429 | lr 9.00e-04 | gnorm 0.61 | 248.94K tok/s
+step    500/12000 | loss 4.8484 | lr 1.00e-03 | gnorm 0.54 | 180.70K tok/s
+step    500 | VAL loss 3.4031  *best*
+step    550/12000 | loss 4.7644 | lr 1.00e-03 | gnorm 0.52 | 171.49K tok/s
+step    600/12000 | loss 4.7067 | lr 1.00e-03 | gnorm 0.50 | 186.08K tok/s
+step    650/12000 | loss 4.6375 | lr 1.00e-03 | gnorm 0.45 | 189.70K tok/s
+step    700/12000 | loss 4.7175 | lr 9.99e-04 | gnorm 0.44 | 229.93K tok/s
+step    750/12000 | loss 4.5894 | lr 9.99e-04 | gnorm 0.45 | 268.90K tok/s
+step    800/12000 | loss 4.4621 | lr 9.98e-04 | gnorm 0.46 | 312.26K tok/s
+step    850/12000 | loss 4.3330 | lr 9.98e-04 | gnorm 0.43 | 254.04K tok/s
+step    900/12000 | loss 4.3045 | lr 9.97e-04 | gnorm 0.41 | 245.59K tok/s
+step    950/12000 | loss 4.2312 | lr 9.97e-04 | gnorm 0.46 | 291.93K tok/s
+step   1000/12000 | loss 4.2535 | lr 9.96e-04 | gnorm 0.40 | 312.80K tok/s
+step   1000 | VAL loss 2.8017  *best*
+step   1050/12000 | loss 4.1750 | lr 9.95e-04 | gnorm 0.42 | 272.56K tok/s
+step   1100/12000 | loss 4.1967 | lr 9.94e-04 | gnorm 0.43 | 313.89K tok/s
+step   1150/12000 | loss 3.9898 | lr 9.93e-04 | gnorm 0.40 | 313.42K tok/s
+step   1200/12000 | loss 3.9931 | lr 9.92e-04 | gnorm 0.42 | 312.46K tok/s
+step   1250/12000 | loss 3.9904 | lr 9.91e-04 | gnorm 0.40 | 311.98K tok/s
+step   1300/12000 | loss 3.9727 | lr 9.89e-04 | gnorm 0.39 | 261.46K tok/s
+step   1350/12000 | loss 4.0087 | lr 9.88e-04 | gnorm 0.49 | 246.35K tok/s
+step   1400/12000 | loss 3.9595 | lr 9.86e-04 | gnorm 0.40 | 246.37K tok/s
+step   1450/12000 | loss 4.1719 | lr 9.85e-04 | gnorm 0.38 | 270.09K tok/s
+step   1500/12000 | loss 4.0135 | lr 9.83e-04 | gnorm 0.38 | 312.49K tok/s
+step   1500 | VAL loss 2.5349  *best*
+step   1550/12000 | loss 3.9514 | lr 9.82e-04 | gnorm 0.39 | 224.16K tok/s
+step   1600/12000 | loss 3.8513 | lr 9.80e-04 | gnorm 0.39 | 246.29K tok/s
+step   1650/12000 | loss 4.0182 | lr 9.78e-04 | gnorm 0.42 | 246.40K tok/s
+step   1700/12000 | loss 3.8235 | lr 9.76e-04 | gnorm 0.38 | 246.51K tok/s
+step   1750/12000 | loss 3.9074 | lr 9.74e-04 | gnorm 0.40 | 246.30K tok/s
+step   1800/12000 | loss 3.7017 | lr 9.72e-04 | gnorm 0.37 | 246.29K tok/s
+step   1850/12000 | loss 3.8996 | lr 9.70e-04 | gnorm 0.38 | 245.74K tok/s
+step   1900/12000 | loss 3.8471 | lr 9.68e-04 | gnorm 0.37 | 246.14K tok/s
+step   1950/12000 | loss 3.7011 | lr 9.65e-04 | gnorm 0.37 | 245.58K tok/s
+step   2000/12000 | loss 3.9523 | lr 9.63e-04 | gnorm 0.37 | 248.13K tok/s
+step   2000 | VAL loss 2.4070  *best*
+step   2050/12000 | loss 3.7092 | lr 9.60e-04 | gnorm 0.37 | 272.05K tok/s
+step   2100/12000 | loss 3.7404 | lr 9.58e-04 | gnorm 0.35 | 223.14K tok/s
+step   2150/12000 | loss 3.7020 | lr 9.55e-04 | gnorm 0.39 | 190.27K tok/s
+step   2200/12000 | loss 3.6394 | lr 9.52e-04 | gnorm 0.36 | 180.83K tok/s
+step   2250/12000 | loss 3.6715 | lr 9.50e-04 | gnorm 0.36 | 184.48K tok/s
+step   2300/12000 | loss 3.8151 | lr 9.47e-04 | gnorm 0.38 | 187.45K tok/s
+step   2350/12000 | loss 3.9056 | lr 9.44e-04 | gnorm 0.37 | 192.87K tok/s
+step   2400/12000 | loss 3.6632 | lr 9.41e-04 | gnorm 0.36 | 216.06K tok/s
+step   2450/12000 | loss 3.6919 | lr 9.38e-04 | gnorm 0.36 | 246.30K tok/s
+step   2500/12000 | loss 3.6661 | lr 9.35e-04 | gnorm 0.36 | 258.09K tok/s
+step   2500 | VAL loss 2.3185  *best*
+step   2550/12000 | loss 3.7853 | lr 9.31e-04 | gnorm 0.35 | 271.07K tok/s
+step   2600/12000 | loss 3.6769 | lr 9.28e-04 | gnorm 0.38 | 273.38K tok/s
+step   2650/12000 | loss 3.8152 | lr 9.25e-04 | gnorm 0.36 | 267.94K tok/s
+step   2700/12000 | loss 3.6084 | lr 9.21e-04 | gnorm 0.35 | 312.04K tok/s
+step   2750/12000 | loss 3.4874 | lr 9.18e-04 | gnorm 0.35 | 269.19K tok/s
+step   2800/12000 | loss 3.8341 | lr 9.14e-04 | gnorm 0.36 | 287.47K tok/s
+step   2850/12000 | loss 3.7199 | lr 9.10e-04 | gnorm 0.36 | 310.75K tok/s
+step   2900/12000 | loss 3.5562 | lr 9.07e-04 | gnorm 0.36 | 310.84K tok/s
+step   2950/12000 | loss 3.6233 | lr 9.03e-04 | gnorm 0.36 | 314.18K tok/s
+step   3000/12000 | loss 3.8198 | lr 8.99e-04 | gnorm 0.38 | 313.64K tok/s
+step   3000 | VAL loss 2.2524  *best*
+step   3050/12000 | loss 3.6866 | lr 8.95e-04 | gnorm 0.35 | 271.77K tok/s
+step   3100/12000 | loss 3.6341 | lr 8.91e-04 | gnorm 0.37 | 312.65K tok/s
+step   3150/12000 | loss 3.7817 | lr 8.87e-04 | gnorm 0.37 | 218.67K tok/s
+step   3200/12000 | loss 3.5423 | lr 8.83e-04 | gnorm 0.37 | 185.03K tok/s
+step   3250/12000 | loss 3.6109 | lr 8.79e-04 | gnorm 0.35 | 185.45K tok/s
+step   3300/12000 | loss 3.5396 | lr 8.75e-04 | gnorm 0.37 | 186.99K tok/s
+step   3350/12000 | loss 3.6542 | lr 8.70e-04 | gnorm 0.36 | 183.83K tok/s
+step   3400/12000 | loss 3.5961 | lr 8.66e-04 | gnorm 0.36 | 192.44K tok/s
+step   3450/12000 | loss 3.5810 | lr 8.62e-04 | gnorm 0.36 | 248.87K tok/s
+step   3500/12000 | loss 3.5797 | lr 8.57e-04 | gnorm 0.39 | 246.31K tok/s
+step   3500 | VAL loss 2.1977  *best*
+step   3550/12000 | loss 3.6581 | lr 8.53e-04 | gnorm 0.35 | 270.02K tok/s
+step   3600/12000 | loss 3.3771 | lr 8.48e-04 | gnorm 0.36 | 313.57K tok/s
+step   3650/12000 | loss 3.4982 | lr 8.44e-04 | gnorm 0.36 | 313.89K tok/s
+step   3700/12000 | loss 3.4585 | lr 8.39e-04 | gnorm 0.37 | 313.85K tok/s
+step   3750/12000 | loss 3.5903 | lr 8.34e-04 | gnorm 0.36 | 313.55K tok/s
+step   3800/12000 | loss 3.5731 | lr 8.29e-04 | gnorm 0.37 | 313.88K tok/s
+step   3850/12000 | loss 3.4127 | lr 8.24e-04 | gnorm 0.37 | 313.82K tok/s
+step   3900/12000 | loss 3.3790 | lr 8.20e-04 | gnorm 0.36 | 314.02K tok/s
+step   3950/12000 | loss 3.5101 | lr 8.15e-04 | gnorm 0.35 | 314.16K tok/s
+step   4000/12000 | loss 3.5173 | lr 8.10e-04 | gnorm 0.35 | 313.93K tok/s
+step   4000 | VAL loss 2.1560  *best*
+step   4050/12000 | loss 3.6008 | lr 8.05e-04 | gnorm 0.36 | 272.62K tok/s
+step   4100/12000 | loss 3.4751 | lr 7.99e-04 | gnorm 0.36 | 313.91K tok/s
+step   4150/12000 | loss 3.6872 | lr 7.94e-04 | gnorm 0.37 | 313.59K tok/s
+step   4200/12000 | loss 3.4572 | lr 7.89e-04 | gnorm 0.36 | 313.73K tok/s
+step   4250/12000 | loss 3.5273 | lr 7.84e-04 | gnorm 0.35 | 313.76K tok/s
+step   4300/12000 | loss 3.5594 | lr 7.79e-04 | gnorm 0.36 | 313.62K tok/s
+step   4350/12000 | loss 3.5445 | lr 7.73e-04 | gnorm 0.36 | 313.72K tok/s
+step   4400/12000 | loss 3.3711 | lr 7.68e-04 | gnorm 0.37 | 313.69K tok/s
+step   4450/12000 | loss 3.4298 | lr 7.63e-04 | gnorm 0.34 | 313.89K tok/s
+step   4500/12000 | loss 3.6595 | lr 7.57e-04 | gnorm 0.37 | 313.89K tok/s
+step   4500 | VAL loss 2.1360  *best*
+step   4550/12000 | loss 3.3078 | lr 7.52e-04 | gnorm 0.36 | 272.17K tok/s
+step   4600/12000 | loss 3.6239 | lr 7.46e-04 | gnorm 0.37 | 313.56K tok/s
+step   4650/12000 | loss 3.5893 | lr 7.41e-04 | gnorm 0.36 | 314.33K tok/s
+step   4700/12000 | loss 3.5547 | lr 7.35e-04 | gnorm 0.38 | 314.41K tok/s
+step   4750/12000 | loss 3.5047 | lr 7.29e-04 | gnorm 0.36 | 314.35K tok/s
+step   4800/12000 | loss 3.2713 | lr 7.24e-04 | gnorm 0.35 | 314.32K tok/s
+step   4850/12000 | loss 3.3887 | lr 7.18e-04 | gnorm 0.35 | 314.26K tok/s
+step   4900/12000 | loss 3.5383 | lr 7.12e-04 | gnorm 0.39 | 314.32K tok/s
+step   4950/12000 | loss 3.3714 | lr 7.07e-04 | gnorm 0.38 | 314.29K tok/s
+step   5000/12000 | loss 3.5108 | lr 7.01e-04 | gnorm 0.37 | 314.28K tok/s
+step   5000 | VAL loss 2.0846  *best*
+step   5050/12000 | loss 3.3264 | lr 6.95e-04 | gnorm 0.38 | 238.25K tok/s
+step   5100/12000 | loss 3.3790 | lr 6.89e-04 | gnorm 0.37 | 314.41K tok/s
+step   5150/12000 | loss 3.3711 | lr 6.83e-04 | gnorm 0.38 | 314.44K tok/s
+step   5200/12000 | loss 3.5087 | lr 6.77e-04 | gnorm 0.37 | 314.39K tok/s
+step   5250/12000 | loss 3.5623 | lr 6.72e-04 | gnorm 0.37 | 314.42K tok/s
+step   5300/12000 | loss 3.4376 | lr 6.66e-04 | gnorm 0.39 | 314.34K tok/s
+step   5350/12000 | loss 3.4988 | lr 6.60e-04 | gnorm 0.36 | 314.34K tok/s
+step   5400/12000 | loss 3.2848 | lr 6.54e-04 | gnorm 0.36 | 314.26K tok/s
+step   5450/12000 | loss 3.4986 | lr 6.48e-04 | gnorm 0.37 | 314.20K tok/s
+step   5500/12000 | loss 3.1447 | lr 6.42e-04 | gnorm 0.36 | 314.13K tok/s
+step   5500 | VAL loss 2.0564  *best*
+step   5550/12000 | loss 3.4640 | lr 6.36e-04 | gnorm 0.36 | 273.34K tok/s
+step   5600/12000 | loss 3.4547 | lr 6.30e-04 | gnorm 0.37 | 314.22K tok/s
+step   5650/12000 | loss 3.4827 | lr 6.24e-04 | gnorm 0.37 | 314.12K tok/s
+step   5700/12000 | loss 3.2942 | lr 6.17e-04 | gnorm 0.37 | 314.19K tok/s
+step   5750/12000 | loss 3.4585 | lr 6.11e-04 | gnorm 0.37 | 314.19K tok/s
+step   5800/12000 | loss 3.3829 | lr 6.05e-04 | gnorm 0.38 | 314.10K tok/s
+step   5850/12000 | loss 3.2509 | lr 5.99e-04 | gnorm 0.38 | 314.06K tok/s
+step   5900/12000 | loss 3.3650 | lr 5.93e-04 | gnorm 0.36 | 314.03K tok/s
+step   5950/12000 | loss 3.4827 | lr 5.87e-04 | gnorm 0.38 | 314.26K tok/s
+step   6000/12000 | loss 3.1830 | lr 5.81e-04 | gnorm 0.37 | 314.23K tok/s
+step   6000 | VAL loss 2.0060  *best*
+step   6050/12000 | loss 3.4211 | lr 5.75e-04 | gnorm 0.37 | 273.24K tok/s
+step   6100/12000 | loss 3.5467 | lr 5.69e-04 | gnorm 0.38 | 314.22K tok/s
+step   6150/12000 | loss 3.5208 | lr 5.62e-04 | gnorm 0.41 | 314.06K tok/s
+step   6200/12000 | loss 3.1553 | lr 5.56e-04 | gnorm 0.38 | 314.10K tok/s
+step   6250/12000 | loss 3.3988 | lr 5.50e-04 | gnorm 0.38 | 314.16K tok/s
+step   6300/12000 | loss 3.4390 | lr 5.44e-04 | gnorm 0.40 | 314.19K tok/s
+step   6350/12000 | loss 3.4675 | lr 5.38e-04 | gnorm 0.41 | 314.15K tok/s
+step   6400/12000 | loss 3.4074 | lr 5.32e-04 | gnorm 0.44 | 314.23K tok/s
+step   6450/12000 | loss 3.2909 | lr 5.26e-04 | gnorm 0.38 | 314.12K tok/s
+step   6500/12000 | loss 3.3064 | lr 5.19e-04 | gnorm 0.38 | 314.20K tok/s
+step   6500 | VAL loss 1.9828  *best*
+step   6550/12000 | loss 3.1856 | lr 5.13e-04 | gnorm 0.39 | 274.33K tok/s
+step   6600/12000 | loss 3.2951 | lr 5.07e-04 | gnorm 0.37 | 314.29K tok/s
+step   6650/12000 | loss 3.4072 | lr 5.01e-04 | gnorm 0.39 | 314.28K tok/s
+step   6700/12000 | loss 3.4532 | lr 4.95e-04 | gnorm 0.38 | 314.30K tok/s
+step   6750/12000 | loss 3.2976 | lr 4.89e-04 | gnorm 0.39 | 314.27K tok/s
+step   6800/12000 | loss 3.3246 | lr 4.83e-04 | gnorm 0.39 | 314.20K tok/s
+step   6850/12000 | loss 3.1702 | lr 4.77e-04 | gnorm 0.40 | 313.85K tok/s
+step   6900/12000 | loss 3.2480 | lr 4.71e-04 | gnorm 0.38 | 313.98K tok/s
+step   6950/12000 | loss 3.3828 | lr 4.65e-04 | gnorm 0.40 | 313.81K tok/s
+step   7000/12000 | loss 3.1495 | lr 4.59e-04 | gnorm 0.38 | 313.71K tok/s
+step   7000 | VAL loss 1.9515  *best*
+step   7050/12000 | loss 3.3995 | lr 4.53e-04 | gnorm 0.41 | 273.97K tok/s
+step   7100/12000 | loss 3.3041 | lr 4.47e-04 | gnorm 0.39 | 313.90K tok/s
+step   7150/12000 | loss 3.2447 | lr 4.41e-04 | gnorm 0.40 | 313.88K tok/s
+step   7200/12000 | loss 3.2861 | lr 4.35e-04 | gnorm 0.38 | 313.80K tok/s
+step   7250/12000 | loss 3.2496 | lr 4.29e-04 | gnorm 0.41 | 313.94K tok/s
+step   7300/12000 | loss 3.2756 | lr 4.23e-04 | gnorm 0.39 | 313.81K tok/s
+step   7350/12000 | loss 3.1631 | lr 4.17e-04 | gnorm 0.39 | 313.77K tok/s
+step   7400/12000 | loss 3.3213 | lr 4.11e-04 | gnorm 0.40 | 313.85K tok/s
+step   7450/12000 | loss 3.3030 | lr 4.05e-04 | gnorm 0.40 | 313.82K tok/s
+step   7500/12000 | loss 3.3639 | lr 3.99e-04 | gnorm 0.39 | 314.10K tok/s
+step   7500 | VAL loss 1.9265  *best*
+step   7550/12000 | loss 3.2478 | lr 3.94e-04 | gnorm 0.40 | 274.02K tok/s
+step   7600/12000 | loss 3.2572 | lr 3.88e-04 | gnorm 0.40 | 313.96K tok/s
+step   7650/12000 | loss 3.3438 | lr 3.82e-04 | gnorm 0.41 | 313.81K tok/s
+step   7700/12000 | loss 3.3884 | lr 3.76e-04 | gnorm 0.41 | 313.87K tok/s
+step   7750/12000 | loss 3.4754 | lr 3.71e-04 | gnorm 0.42 | 313.79K tok/s
+step   7800/12000 | loss 3.2569 | lr 3.65e-04 | gnorm 0.40 | 314.26K tok/s
+step   7850/12000 | loss 3.1679 | lr 3.60e-04 | gnorm 0.41 | 314.14K tok/s
+step   7900/12000 | loss 3.3781 | lr 3.54e-04 | gnorm 0.41 | 314.22K tok/s
+step   7950/12000 | loss 3.2887 | lr 3.49e-04 | gnorm 0.41 | 314.16K tok/s
+step   8000/12000 | loss 3.2714 | lr 3.43e-04 | gnorm 0.41 | 314.16K tok/s
+step   8000 | VAL loss 1.9048  *best*
+step   8050/12000 | loss 3.3117 | lr 3.38e-04 | gnorm 0.40 | 274.22K tok/s
+step   8100/12000 | loss 3.4735 | lr 3.32e-04 | gnorm 0.41 | 314.17K tok/s
+step   8150/12000 | loss 3.3677 | lr 3.27e-04 | gnorm 0.41 | 314.06K tok/s
+step   8200/12000 | loss 3.2810 | lr 3.22e-04 | gnorm 0.40 | 314.16K tok/s
+step   8250/12000 | loss 3.3114 | lr 3.16e-04 | gnorm 0.41 | 314.06K tok/s
+step   8300/12000 | loss 3.3074 | lr 3.11e-04 | gnorm 0.41 | 314.02K tok/s
+step   8350/12000 | loss 3.2496 | lr 3.06e-04 | gnorm 0.40 | 314.10K tok/s
+step   8400/12000 | loss 3.2468 | lr 3.01e-04 | gnorm 0.42 | 313.94K tok/s
+step   8450/12000 | loss 3.3295 | lr 2.96e-04 | gnorm 0.41 | 314.07K tok/s
+step   8500/12000 | loss 3.3635 | lr 2.91e-04 | gnorm 0.45 | 313.96K tok/s
+step   8500 | VAL loss 1.8824  *best*
+step   8550/12000 | loss 3.4061 | lr 2.86e-04 | gnorm 0.40 | 274.42K tok/s
+step   8600/12000 | loss 3.2086 | lr 2.81e-04 | gnorm 0.41 | 313.76K tok/s
+step   8650/12000 | loss 3.2880 | lr 2.76e-04 | gnorm 0.42 | 313.86K tok/s
+step   8700/12000 | loss 3.3051 | lr 2.71e-04 | gnorm 0.42 | 313.79K tok/s
+step   8750/12000 | loss 3.3431 | lr 2.66e-04 | gnorm 0.43 | 314.26K tok/s
+step   8800/12000 | loss 3.3448 | lr 2.61e-04 | gnorm 0.41 | 314.24K tok/s
+step   8850/12000 | loss 3.1297 | lr 2.57e-04 | gnorm 0.40 | 314.25K tok/s
+step   8900/12000 | loss 3.1224 | lr 2.52e-04 | gnorm 0.40 | 314.20K tok/s
+step   8950/12000 | loss 3.2703 | lr 2.47e-04 | gnorm 0.43 | 314.23K tok/s
+step   9000/12000 | loss 3.2016 | lr 2.43e-04 | gnorm 0.41 | 314.26K tok/s
+step   9000 | VAL loss 1.8624  *best*
+step   9050/12000 | loss 3.3966 | lr 2.38e-04 | gnorm 0.42 | 274.22K tok/s
+step   9100/12000 | loss 3.3102 | lr 2.34e-04 | gnorm 0.43 | 314.10K tok/s
+step   9150/12000 | loss 3.3565 | lr 2.30e-04 | gnorm 0.42 | 314.05K tok/s
+step   9200/12000 | loss 3.3334 | lr 2.25e-04 | gnorm 0.41 | 314.13K tok/s
+step   9250/12000 | loss 3.1518 | lr 2.21e-04 | gnorm 0.41 | 314.09K tok/s
+step   9300/12000 | loss 3.2120 | lr 2.17e-04 | gnorm 0.42 | 314.05K tok/s
+step   9350/12000 | loss 3.2441 | lr 2.13e-04 | gnorm 0.42 | 314.11K tok/s
+step   9400/12000 | loss 3.0853 | lr 2.09e-04 | gnorm 0.42 | 314.04K tok/s
+step   9450/12000 | loss 3.0927 | lr 2.05e-04 | gnorm 0.44 | 313.99K tok/s
+step   9500/12000 | loss 3.2727 | lr 2.01e-04 | gnorm 0.45 | 314.07K tok/s
+step   9500 | VAL loss 1.8452  *best*
+step   9550/12000 | loss 3.1305 | lr 1.97e-04 | gnorm 0.42 | 274.78K tok/s
+step   9600/12000 | loss 3.1455 | lr 1.93e-04 | gnorm 0.42 | 314.04K tok/s
+step   9650/12000 | loss 3.2872 | lr 1.90e-04 | gnorm 0.42 | 314.21K tok/s
+step   9700/12000 | loss 3.2507 | lr 1.86e-04 | gnorm 0.43 | 314.23K tok/s
+step   9750/12000 | loss 3.1082 | lr 1.82e-04 | gnorm 0.41 | 314.14K tok/s
+step   9800/12000 | loss 3.1706 | lr 1.79e-04 | gnorm 0.42 | 314.08K tok/s
+step   9850/12000 | loss 3.2312 | lr 1.75e-04 | gnorm 0.43 | 314.14K tok/s
+step   9900/12000 | loss 3.1763 | lr 1.72e-04 | gnorm 0.43 | 314.09K tok/s
+step   9950/12000 | loss 3.0911 | lr 1.69e-04 | gnorm 0.41 | 313.99K tok/s
+step  10000/12000 | loss 3.2424 | lr 1.66e-04 | gnorm 0.42 | 314.01K tok/s
+step  10000 | VAL loss 1.8269  *best*
+step  10050/12000 | loss 3.0096 | lr 1.62e-04 | gnorm 0.42 | 223.46K tok/s
+step  10100/12000 | loss 3.1841 | lr 1.59e-04 | gnorm 0.43 | 314.06K tok/s
+step  10150/12000 | loss 3.2031 | lr 1.56e-04 | gnorm 0.44 | 313.68K tok/s
+step  10200/12000 | loss 3.1089 | lr 1.53e-04 | gnorm 0.44 | 314.16K tok/s
+step  10250/12000 | loss 3.0140 | lr 1.51e-04 | gnorm 0.42 | 314.38K tok/s
+step  10300/12000 | loss 3.1625 | lr 1.48e-04 | gnorm 0.42 | 314.31K tok/s
+step  10350/12000 | loss 3.1652 | lr 1.45e-04 | gnorm 0.44 | 314.36K tok/s
+step  10400/12000 | loss 2.9927 | lr 1.42e-04 | gnorm 0.42 | 314.36K tok/s
+step  10450/12000 | loss 3.2328 | lr 1.40e-04 | gnorm 0.42 | 314.34K tok/s
+step  10500/12000 | loss 3.2275 | lr 1.37e-04 | gnorm 0.43 | 314.07K tok/s
+step  10500 | VAL loss 1.8165  *best*
+step  10550/12000 | loss 3.1957 | lr 1.35e-04 | gnorm 0.43 | 274.05K tok/s
+step  10600/12000 | loss 3.1163 | lr 1.33e-04 | gnorm 0.42 | 314.34K tok/s
+step  10650/12000 | loss 3.2232 | lr 1.30e-04 | gnorm 0.44 | 314.43K tok/s
+step  10700/12000 | loss 3.2070 | lr 1.28e-04 | gnorm 0.44 | 314.31K tok/s
+step  10750/12000 | loss 3.1865 | lr 1.26e-04 | gnorm 0.43 | 314.19K tok/s
+step  10800/12000 | loss 3.2673 | lr 1.24e-04 | gnorm 0.44 | 314.28K tok/s
+step  10850/12000 | loss 3.2106 | lr 1.22e-04 | gnorm 0.43 | 314.28K tok/s
+step  10900/12000 | loss 3.0782 | lr 1.20e-04 | gnorm 0.43 | 314.30K tok/s
+step  10950/12000 | loss 3.0995 | lr 1.18e-04 | gnorm 0.43 | 314.10K tok/s
+step  11000/12000 | loss 3.1454 | lr 1.17e-04 | gnorm 0.44 | 314.19K tok/s
+step  11000 | VAL loss 1.8019  *best*
+step  11050/12000 | loss 3.1420 | lr 1.15e-04 | gnorm 0.44 | 274.11K tok/s
+step  11100/12000 | loss 3.2177 | lr 1.14e-04 | gnorm 0.43 | 314.45K tok/s
+step  11150/12000 | loss 3.2408 | lr 1.12e-04 | gnorm 0.44 | 314.32K tok/s
+step  11200/12000 | loss 2.9967 | lr 1.11e-04 | gnorm 0.43 | 314.48K tok/s
+step  11250/12000 | loss 2.8842 | lr 1.09e-04 | gnorm 0.42 | 314.28K tok/s
+step  11300/12000 | loss 3.0612 | lr 1.08e-04 | gnorm 0.44 | 314.33K tok/s
+step  11350/12000 | loss 3.1305 | lr 1.07e-04 | gnorm 0.45 | 314.34K tok/s
+step  11400/12000 | loss 3.1297 | lr 1.06e-04 | gnorm 0.43 | 314.20K tok/s
+step  11450/12000 | loss 3.1262 | lr 1.05e-04 | gnorm 0.44 | 314.21K tok/s
+step  11500/12000 | loss 3.0532 | lr 1.04e-04 | gnorm 0.44 | 314.23K tok/s
+step  11500 | VAL loss 1.7945  *best*
+step  11550/12000 | loss 3.0912 | lr 1.03e-04 | gnorm 0.44 | 273.88K tok/s
+step  11600/12000 | loss 3.0928 | lr 1.03e-04 | gnorm 0.44 | 314.15K tok/s
+step  11650/12000 | loss 3.1032 | lr 1.02e-04 | gnorm 0.43 | 314.24K tok/s
+step  11700/12000 | loss 3.1333 | lr 1.02e-04 | gnorm 0.45 | 314.28K tok/s
+step  11750/12000 | loss 3.2467 | lr 1.01e-04 | gnorm 0.44 | 314.16K tok/s
+step  11800/12000 | loss 3.1456 | lr 1.01e-04 | gnorm 0.46 | 314.10K tok/s
+step  11850/12000 | loss 3.1789 | lr 1.00e-04 | gnorm 0.45 | 314.38K tok/s
+step  11900/12000 | loss 3.3197 | lr 1.00e-04 | gnorm 0.44 | 314.37K tok/s
+step  11950/12000 | loss 3.0646 | lr 1.00e-04 | gnorm 0.43 | 314.42K tok/s
+step  12000/12000 | loss 2.9104 | lr 1.00e-04 | gnorm 0.43 | 314.38K tok/s
+step  12000 | VAL loss 1.7865  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: plain-s2 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.6668
+  val_ppl             14.3945
+  val_bpb              0.9918
+  val_acc1             0.4619
+  val_acc5             0.6917
+  val_pred_entropy     2.7281
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3149
+  pos_loss/1        4.3736
+  pos_loss/2-3      3.8390
+  pos_loss/4-7      3.5187
+  pos_loss/8-15     3.1621
+  pos_loss/16-31    2.9473
+  pos_loss/32-63    2.7946
+  pos_loss/64-127   2.6817
+  pos_loss/128-255  2.6267
+  pos_loss/256-511  2.5948
+  ctx_gain          0.6475
+  late_loss         2.5992
+
+[calibration]
+  ece              0.0079
+  mean_confidence  0.4675
+  overconfidence   0.0056
+
+[generalization]
+  train_loss_eval   3.1663
+  gen_gap          -0.4994
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3503
+
+[induction]
+  induction_loss_random  11.8505
+  induction_loss_repeat   4.4126
+  induction_gap           7.4379
+  induction_acc           0.3710
+
+[generation]
+  gen_distinct1   0.7650
+  gen_distinct2   0.9586
+  gen_distinct3   0.9854
+  gen_unigram_kl  1.1403
+
+[throughput]
+  fwd_tok_per_s     8.078e+05
+  fwdbwd_tok_per_s  2.938e+05
+  peak_mem_mb               0
+
+
+[sweep] ===== gates_d_edu/gated30-s0 =====
+run /data/susanket/text/gpt/runs/gates_d_edu/gated30-s0 | device=cuda:1 bf16 | params 54.81M (50.61M non-emb) | 16.38K tok/step | 196.61M tokens total
+step      1/12000 | loss 9.1291 | lr 2.00e-06 | gnorm 7.53 | 267.12K tok/s
+step     50/12000 | loss 7.4065 | lr 1.00e-04 | gnorm 1.12 | 294.81K tok/s
+step    100/12000 | loss 6.5255 | lr 2.00e-04 | gnorm 0.89 | 294.96K tok/s
+step    150/12000 | loss 5.8370 | lr 3.00e-04 | gnorm 0.99 | 295.01K tok/s
+step    200/12000 | loss 5.7155 | lr 4.00e-04 | gnorm 0.88 | 295.00K tok/s
+step    250/12000 | loss 5.5001 | lr 5.00e-04 | gnorm 0.71 | 295.08K tok/s
+step    300/12000 | loss 5.1287 | lr 6.00e-04 | gnorm 0.65 | 294.77K tok/s
+step    350/12000 | loss 5.0534 | lr 7.00e-04 | gnorm 0.65 | 294.42K tok/s
+step    400/12000 | loss 4.9206 | lr 8.00e-04 | gnorm 0.65 | 294.95K tok/s
+step    450/12000 | loss 4.9159 | lr 9.00e-04 | gnorm 0.58 | 294.66K tok/s
+step    500/12000 | loss 4.8589 | lr 1.00e-03 | gnorm 0.56 | 292.39K tok/s
+step    500 | VAL loss 3.2828  *best*
+step    550/12000 | loss 4.5245 | lr 1.00e-03 | gnorm 0.53 | 233.89K tok/s
+step    600/12000 | loss 4.7918 | lr 1.00e-03 | gnorm 0.53 | 226.10K tok/s
+step    650/12000 | loss 4.6015 | lr 1.00e-03 | gnorm 0.73 | 290.06K tok/s
+step    700/12000 | loss 4.5578 | lr 9.99e-04 | gnorm 0.65 | 250.13K tok/s
+step    750/12000 | loss 4.4460 | lr 9.99e-04 | gnorm 0.76 | 226.20K tok/s
+step    800/12000 | loss 4.3845 | lr 9.98e-04 | gnorm 1.33 | 242.42K tok/s
+step    850/12000 | loss 4.4071 | lr 9.98e-04 | gnorm 0.66 | 295.60K tok/s
+step    900/12000 | loss 4.3530 | lr 9.97e-04 | gnorm 1.72 | 295.22K tok/s
+step    950/12000 | loss 4.3084 | lr 9.97e-04 | gnorm 1.22 | 295.59K tok/s
+step   1000/12000 | loss 4.3670 | lr 9.96e-04 | gnorm 3.42 | 295.55K tok/s
+step   1000 | VAL loss 2.7931  *best*
+step   1050/12000 | loss 4.0004 | lr 9.95e-04 | gnorm 0.82 | 258.41K tok/s
+step   1100/12000 | loss 4.0277 | lr 9.94e-04 | gnorm 1.09 | 295.60K tok/s
+step   1150/12000 | loss 4.1676 | lr 9.93e-04 | gnorm 1.06 | 295.63K tok/s
+step   1200/12000 | loss 3.9319 | lr 9.92e-04 | gnorm 2.02 | 295.52K tok/s
+step   1250/12000 | loss 4.1407 | lr 9.91e-04 | gnorm 1.68 | 295.49K tok/s
+step   1300/12000 | loss 4.0303 | lr 9.89e-04 | gnorm 2.80 | 295.11K tok/s
+step   1350/12000 | loss 3.9841 | lr 9.88e-04 | gnorm 1.60 | 295.39K tok/s
+step   1400/12000 | loss 4.1213 | lr 9.86e-04 | gnorm 3.00 | 295.75K tok/s
+step   1450/12000 | loss 3.9588 | lr 9.85e-04 | gnorm 0.79 | 295.76K tok/s
+step   1500/12000 | loss 4.0897 | lr 9.83e-04 | gnorm 0.68 | 295.46K tok/s
+step   1500 | VAL loss 2.5510  *best*
+step   1550/12000 | loss 3.9055 | lr 9.82e-04 | gnorm 0.96 | 259.02K tok/s
+step   1600/12000 | loss 3.7371 | lr 9.80e-04 | gnorm 1.07 | 295.48K tok/s
+step   1650/12000 | loss 3.9275 | lr 9.78e-04 | gnorm 0.84 | 295.76K tok/s
+step   1700/12000 | loss 3.8711 | lr 9.76e-04 | gnorm 2.05 | 295.69K tok/s
+step   1750/12000 | loss 4.0218 | lr 9.74e-04 | gnorm 1.09 | 295.68K tok/s
+step   1800/12000 | loss 3.7250 | lr 9.72e-04 | gnorm 0.86 | 295.36K tok/s
+step   1850/12000 | loss 3.9173 | lr 9.70e-04 | gnorm 0.77 | 295.79K tok/s
+step   1900/12000 | loss 3.8858 | lr 9.68e-04 | gnorm 1.14 | 295.43K tok/s
+step   1950/12000 | loss 3.8674 | lr 9.65e-04 | gnorm 1.11 | 295.34K tok/s
+step   2000/12000 | loss 3.8878 | lr 9.63e-04 | gnorm 0.88 | 295.72K tok/s
+step   2000 | VAL loss 2.4172  *best*
+step   2050/12000 | loss 3.8247 | lr 9.60e-04 | gnorm 0.64 | 259.17K tok/s
+step   2100/12000 | loss 3.8476 | lr 9.58e-04 | gnorm 0.53 | 295.62K tok/s
+step   2150/12000 | loss 3.8263 | lr 9.55e-04 | gnorm 0.59 | 295.47K tok/s
+step   2200/12000 | loss 3.7655 | lr 9.52e-04 | gnorm 0.71 | 295.80K tok/s
+step   2250/12000 | loss 3.8534 | lr 9.50e-04 | gnorm 0.59 | 295.84K tok/s
+step   2300/12000 | loss 3.7807 | lr 9.47e-04 | gnorm 0.71 | 295.60K tok/s
+step   2350/12000 | loss 3.8969 | lr 9.44e-04 | gnorm 0.84 | 295.83K tok/s
+step   2400/12000 | loss 3.7443 | lr 9.41e-04 | gnorm 0.48 | 295.82K tok/s
+step   2450/12000 | loss 3.7323 | lr 9.38e-04 | gnorm 0.51 | 295.63K tok/s
+step   2500/12000 | loss 3.6784 | lr 9.35e-04 | gnorm 0.63 | 295.82K tok/s
+step   2500 | VAL loss 2.3315  *best*
+step   2550/12000 | loss 3.6853 | lr 9.31e-04 | gnorm 0.54 | 258.77K tok/s
+step   2600/12000 | loss 3.5573 | lr 9.28e-04 | gnorm 0.65 | 295.76K tok/s
+step   2650/12000 | loss 3.8338 | lr 9.25e-04 | gnorm 0.95 | 295.74K tok/s
+step   2700/12000 | loss 3.7642 | lr 9.21e-04 | gnorm 0.44 | 294.88K tok/s
+step   2750/12000 | loss 3.8391 | lr 9.18e-04 | gnorm 0.42 | 295.70K tok/s
+step   2800/12000 | loss 3.6028 | lr 9.14e-04 | gnorm 0.67 | 295.83K tok/s
+step   2850/12000 | loss 3.7349 | lr 9.10e-04 | gnorm 0.50 | 295.93K tok/s
+step   2900/12000 | loss 3.7124 | lr 9.07e-04 | gnorm 0.58 | 295.88K tok/s
+step   2950/12000 | loss 3.6342 | lr 9.03e-04 | gnorm 1.09 | 295.87K tok/s
+step   3000/12000 | loss 3.7739 | lr 8.99e-04 | gnorm 0.50 | 295.10K tok/s
+step   3000 | VAL loss 2.2700  *best*
+step   3050/12000 | loss 3.8223 | lr 8.95e-04 | gnorm 0.43 | 259.26K tok/s
+step   3100/12000 | loss 3.6173 | lr 8.91e-04 | gnorm 0.48 | 295.33K tok/s
+step   3150/12000 | loss 3.6265 | lr 8.87e-04 | gnorm 0.43 | 295.90K tok/s
+step   3200/12000 | loss 3.5378 | lr 8.83e-04 | gnorm 0.39 | 295.91K tok/s
+step   3250/12000 | loss 3.5267 | lr 8.79e-04 | gnorm 0.38 | 295.88K tok/s
+step   3300/12000 | loss 3.5644 | lr 8.75e-04 | gnorm 0.38 | 295.93K tok/s
+step   3350/12000 | loss 3.7856 | lr 8.70e-04 | gnorm 0.39 | 295.76K tok/s
+step   3400/12000 | loss 3.7080 | lr 8.66e-04 | gnorm 0.38 | 295.79K tok/s
+step   3450/12000 | loss 3.4313 | lr 8.62e-04 | gnorm 0.64 | 295.31K tok/s
+step   3500/12000 | loss 3.5885 | lr 8.57e-04 | gnorm 0.45 | 295.72K tok/s
+step   3500 | VAL loss 2.2110  *best*
+step   3550/12000 | loss 3.5757 | lr 8.53e-04 | gnorm 0.92 | 259.78K tok/s
+step   3600/12000 | loss 3.6106 | lr 8.48e-04 | gnorm 0.71 | 295.97K tok/s
+step   3650/12000 | loss 3.6483 | lr 8.44e-04 | gnorm 0.55 | 295.90K tok/s
+step   3700/12000 | loss 3.7356 | lr 8.39e-04 | gnorm 1.06 | 295.93K tok/s
+step   3750/12000 | loss 3.5398 | lr 8.34e-04 | gnorm 0.57 | 295.92K tok/s
+step   3800/12000 | loss 3.6235 | lr 8.29e-04 | gnorm 0.40 | 295.59K tok/s
+step   3850/12000 | loss 3.5044 | lr 8.24e-04 | gnorm 0.37 | 295.38K tok/s
+step   3900/12000 | loss 3.5067 | lr 8.20e-04 | gnorm 0.54 | 295.35K tok/s
+step   3950/12000 | loss 3.4295 | lr 8.15e-04 | gnorm 1.04 | 295.32K tok/s
+step   4000/12000 | loss 3.5161 | lr 8.10e-04 | gnorm 0.50 | 295.90K tok/s
+step   4000 | VAL loss 2.1619  *best*
+step   4050/12000 | loss 3.5428 | lr 8.05e-04 | gnorm 0.91 | 258.95K tok/s
+step   4100/12000 | loss 3.4417 | lr 7.99e-04 | gnorm 0.39 | 295.85K tok/s
+step   4150/12000 | loss 3.4998 | lr 7.94e-04 | gnorm 1.12 | 295.77K tok/s
+step   4200/12000 | loss 3.4972 | lr 7.89e-04 | gnorm 0.39 | 295.73K tok/s
+step   4250/12000 | loss 3.5201 | lr 7.84e-04 | gnorm 0.36 | 295.80K tok/s
+step   4300/12000 | loss 3.5206 | lr 7.79e-04 | gnorm 0.48 | 295.77K tok/s
+step   4350/12000 | loss 3.5759 | lr 7.73e-04 | gnorm 0.40 | 295.93K tok/s
+step   4400/12000 | loss 3.4548 | lr 7.68e-04 | gnorm 0.40 | 295.95K tok/s
+step   4450/12000 | loss 3.3858 | lr 7.63e-04 | gnorm 0.54 | 296.00K tok/s
+step   4500/12000 | loss 3.5082 | lr 7.57e-04 | gnorm 0.72 | 295.96K tok/s
+step   4500 | VAL loss 2.1176  *best*
+step   4550/12000 | loss 3.5017 | lr 7.52e-04 | gnorm 0.75 | 259.75K tok/s
+step   4600/12000 | loss 3.5614 | lr 7.46e-04 | gnorm 0.62 | 295.93K tok/s
+step   4650/12000 | loss 3.4765 | lr 7.41e-04 | gnorm 0.42 | 295.94K tok/s
+step   4700/12000 | loss 3.3866 | lr 7.35e-04 | gnorm 0.48 | 295.51K tok/s
+step   4750/12000 | loss 3.5244 | lr 7.29e-04 | gnorm 0.48 | 295.92K tok/s
+step   4800/12000 | loss 3.5491 | lr 7.24e-04 | gnorm 0.46 | 295.88K tok/s
+step   4850/12000 | loss 3.3495 | lr 7.18e-04 | gnorm 0.38 | 295.84K tok/s
+step   4900/12000 | loss 3.5247 | lr 7.12e-04 | gnorm 0.55 | 295.83K tok/s
+step   4950/12000 | loss 3.5117 | lr 7.07e-04 | gnorm 0.56 | 295.73K tok/s
+step   5000/12000 | loss 3.5180 | lr 7.01e-04 | gnorm 0.42 | 295.84K tok/s
+step   5000 | VAL loss 2.0849  *best*
+step   5050/12000 | loss 3.4367 | lr 6.95e-04 | gnorm 0.44 | 227.11K tok/s
+step   5100/12000 | loss 3.5346 | lr 6.89e-04 | gnorm 1.04 | 295.84K tok/s
+step   5150/12000 | loss 3.3462 | lr 6.83e-04 | gnorm 0.36 | 295.79K tok/s
+step   5200/12000 | loss 3.5414 | lr 6.77e-04 | gnorm 0.47 | 295.97K tok/s
+step   5250/12000 | loss 3.3345 | lr 6.72e-04 | gnorm 0.45 | 295.93K tok/s
+step   5300/12000 | loss 3.4478 | lr 6.66e-04 | gnorm 0.65 | 295.70K tok/s
+step   5350/12000 | loss 3.4575 | lr 6.60e-04 | gnorm 0.47 | 295.96K tok/s
+step   5400/12000 | loss 3.3682 | lr 6.54e-04 | gnorm 0.64 | 295.64K tok/s
+step   5450/12000 | loss 3.5640 | lr 6.48e-04 | gnorm 0.38 | 295.87K tok/s
+step   5500/12000 | loss 3.3721 | lr 6.42e-04 | gnorm 0.44 | 295.91K tok/s
+step   5500 | VAL loss 2.0643  *best*
+step   5550/12000 | loss 3.4852 | lr 6.36e-04 | gnorm 0.38 | 258.76K tok/s
+step   5600/12000 | loss 3.3953 | lr 6.30e-04 | gnorm 0.43 | 295.66K tok/s
+step   5650/12000 | loss 3.0664 | lr 6.24e-04 | gnorm 0.47 | 295.77K tok/s
+step   5700/12000 | loss 3.5063 | lr 6.17e-04 | gnorm 0.56 | 295.66K tok/s
+step   5750/12000 | loss 3.1476 | lr 6.11e-04 | gnorm 0.65 | 295.62K tok/s
+step   5800/12000 | loss 3.4949 | lr 6.05e-04 | gnorm 0.39 | 295.72K tok/s
+step   5850/12000 | loss 3.4521 | lr 5.99e-04 | gnorm 0.64 | 296.02K tok/s
+step   5900/12000 | loss 3.3620 | lr 5.93e-04 | gnorm 0.53 | 296.07K tok/s
+step   5950/12000 | loss 3.3759 | lr 5.87e-04 | gnorm 0.50 | 295.90K tok/s
+step   6000/12000 | loss 3.4917 | lr 5.81e-04 | gnorm 0.39 | 295.99K tok/s
+step   6000 | VAL loss 2.0190  *best*
+step   6050/12000 | loss 3.3930 | lr 5.75e-04 | gnorm 0.46 | 259.05K tok/s
+step   6100/12000 | loss 3.4577 | lr 5.69e-04 | gnorm 0.44 | 296.06K tok/s
+step   6150/12000 | loss 3.4575 | lr 5.62e-04 | gnorm 0.42 | 296.01K tok/s
+step   6200/12000 | loss 3.4276 | lr 5.56e-04 | gnorm 0.46 | 295.73K tok/s
+step   6250/12000 | loss 3.5362 | lr 5.50e-04 | gnorm 0.43 | 295.53K tok/s
+step   6300/12000 | loss 3.3601 | lr 5.44e-04 | gnorm 0.60 | 295.97K tok/s
+step   6350/12000 | loss 3.4433 | lr 5.38e-04 | gnorm 0.44 | 295.78K tok/s
+step   6400/12000 | loss 3.4787 | lr 5.32e-04 | gnorm 0.47 | 295.89K tok/s
+step   6450/12000 | loss 3.4186 | lr 5.26e-04 | gnorm 0.39 | 295.80K tok/s
+step   6500/12000 | loss 3.2549 | lr 5.19e-04 | gnorm 0.66 | 295.72K tok/s
+step   6500 | VAL loss 1.9975  *best*
+step   6550/12000 | loss 3.2954 | lr 5.13e-04 | gnorm 0.84 | 259.14K tok/s
+step   6600/12000 | loss 3.3018 | lr 5.07e-04 | gnorm 0.70 | 295.80K tok/s
+step   6650/12000 | loss 3.2960 | lr 5.01e-04 | gnorm 0.39 | 295.76K tok/s
+step   6700/12000 | loss 3.3183 | lr 4.95e-04 | gnorm 0.40 | 295.41K tok/s
+step   6750/12000 | loss 3.1248 | lr 4.89e-04 | gnorm 0.37 | 295.59K tok/s
+step   6800/12000 | loss 3.3604 | lr 4.83e-04 | gnorm 0.42 | 295.57K tok/s
+step   6850/12000 | loss 3.1853 | lr 4.77e-04 | gnorm 0.84 | 295.84K tok/s
+step   6900/12000 | loss 3.3269 | lr 4.71e-04 | gnorm 0.46 | 295.94K tok/s
+step   6950/12000 | loss 3.4993 | lr 4.65e-04 | gnorm 0.39 | 295.94K tok/s
+step   7000/12000 | loss 3.3283 | lr 4.59e-04 | gnorm 0.41 | 295.44K tok/s
+step   7000 | VAL loss 1.9606  *best*
+step   7050/12000 | loss 3.4396 | lr 4.53e-04 | gnorm 0.50 | 259.23K tok/s
+step   7100/12000 | loss 3.4335 | lr 4.47e-04 | gnorm 0.46 | 295.95K tok/s
+step   7150/12000 | loss 3.1414 | lr 4.41e-04 | gnorm 0.41 | 295.86K tok/s
+step   7200/12000 | loss 3.4273 | lr 4.35e-04 | gnorm 0.42 | 295.87K tok/s
+step   7250/12000 | loss 3.2271 | lr 4.29e-04 | gnorm 0.40 | 295.79K tok/s
+step   7300/12000 | loss 2.9466 | lr 4.23e-04 | gnorm 0.41 | 295.83K tok/s
+step   7350/12000 | loss 3.3938 | lr 4.17e-04 | gnorm 0.54 | 295.82K tok/s
+step   7400/12000 | loss 3.2446 | lr 4.11e-04 | gnorm 0.52 | 295.65K tok/s
+step   7450/12000 | loss 3.3470 | lr 4.05e-04 | gnorm 0.43 | 295.86K tok/s
+step   7500/12000 | loss 3.3819 | lr 3.99e-04 | gnorm 0.40 | 295.80K tok/s
+step   7500 | VAL loss 1.9419  *best*
+step   7550/12000 | loss 3.2432 | lr 3.94e-04 | gnorm 0.44 | 259.15K tok/s
+step   7600/12000 | loss 3.3098 | lr 3.88e-04 | gnorm 0.48 | 295.93K tok/s
+step   7650/12000 | loss 3.3029 | lr 3.82e-04 | gnorm 0.42 | 295.74K tok/s
+step   7700/12000 | loss 3.2925 | lr 3.76e-04 | gnorm 0.39 | 295.74K tok/s
+step   7750/12000 | loss 3.2801 | lr 3.71e-04 | gnorm 0.41 | 295.43K tok/s
+step   7800/12000 | loss 3.3287 | lr 3.65e-04 | gnorm 0.59 | 295.78K tok/s
+step   7850/12000 | loss 3.2972 | lr 3.60e-04 | gnorm 0.42 | 295.74K tok/s
+step   7900/12000 | loss 3.2778 | lr 3.54e-04 | gnorm 0.42 | 295.71K tok/s
+step   7950/12000 | loss 3.3372 | lr 3.49e-04 | gnorm 0.40 | 295.32K tok/s
+step   8000/12000 | loss 3.3171 | lr 3.43e-04 | gnorm 0.46 | 295.78K tok/s
+step   8000 | VAL loss 1.9187  *best*
+step   8050/12000 | loss 3.3436 | lr 3.38e-04 | gnorm 0.40 | 257.92K tok/s
+step   8100/12000 | loss 3.2454 | lr 3.32e-04 | gnorm 0.57 | 295.56K tok/s
+step   8150/12000 | loss 3.3092 | lr 3.27e-04 | gnorm 0.49 | 294.68K tok/s
+step   8200/12000 | loss 3.2798 | lr 3.22e-04 | gnorm 0.50 | 294.59K tok/s
+step   8250/12000 | loss 3.1908 | lr 3.16e-04 | gnorm 0.41 | 295.09K tok/s
+step   8300/12000 | loss 3.3304 | lr 3.11e-04 | gnorm 0.73 | 295.49K tok/s
+step   8350/12000 | loss 3.2705 | lr 3.06e-04 | gnorm 0.41 | 295.63K tok/s
+step   8400/12000 | loss 3.3921 | lr 3.01e-04 | gnorm 0.41 | 295.86K tok/s
+step   8450/12000 | loss 3.3222 | lr 2.96e-04 | gnorm 0.42 | 295.66K tok/s
+step   8500/12000 | loss 3.3202 | lr 2.91e-04 | gnorm 0.49 | 295.62K tok/s
+step   8500 | VAL loss 1.8939  *best*
+step   8550/12000 | loss 3.2803 | lr 2.86e-04 | gnorm 0.42 | 258.61K tok/s
+step   8600/12000 | loss 3.2004 | lr 2.81e-04 | gnorm 0.42 | 295.80K tok/s
+step   8650/12000 | loss 3.0095 | lr 2.76e-04 | gnorm 0.55 | 294.94K tok/s
+step   8700/12000 | loss 3.2002 | lr 2.71e-04 | gnorm 0.41 | 295.75K tok/s
+step   8750/12000 | loss 2.9740 | lr 2.66e-04 | gnorm 0.41 | 295.20K tok/s
+step   8800/12000 | loss 3.2041 | lr 2.61e-04 | gnorm 0.41 | 295.31K tok/s
+step   8850/12000 | loss 3.3296 | lr 2.57e-04 | gnorm 0.45 | 294.79K tok/s
+step   8900/12000 | loss 3.0918 | lr 2.52e-04 | gnorm 0.58 | 294.57K tok/s
+step   8950/12000 | loss 3.0324 | lr 2.47e-04 | gnorm 0.44 | 294.70K tok/s
+step   9000/12000 | loss 3.2903 | lr 2.43e-04 | gnorm 0.51 | 295.62K tok/s
+step   9000 | VAL loss 1.8727  *best*
+step   9050/12000 | loss 3.0935 | lr 2.38e-04 | gnorm 0.43 | 258.46K tok/s
+step   9100/12000 | loss 3.2052 | lr 2.34e-04 | gnorm 0.43 | 295.21K tok/s
+step   9150/12000 | loss 3.0756 | lr 2.30e-04 | gnorm 0.43 | 294.96K tok/s
+step   9200/12000 | loss 3.2589 | lr 2.25e-04 | gnorm 0.49 | 295.97K tok/s
+step   9250/12000 | loss 3.1444 | lr 2.21e-04 | gnorm 0.42 | 295.94K tok/s
+step   9300/12000 | loss 3.2518 | lr 2.17e-04 | gnorm 0.49 | 295.89K tok/s
+step   9350/12000 | loss 3.1903 | lr 2.13e-04 | gnorm 0.42 | 295.94K tok/s
+step   9400/12000 | loss 3.1516 | lr 2.09e-04 | gnorm 0.43 | 295.92K tok/s
+step   9450/12000 | loss 3.3449 | lr 2.05e-04 | gnorm 0.43 | 295.93K tok/s
+step   9500/12000 | loss 3.1312 | lr 2.01e-04 | gnorm 0.45 | 295.99K tok/s
+step   9500 | VAL loss 1.8579  *best*
+step   9550/12000 | loss 3.1505 | lr 1.97e-04 | gnorm 0.43 | 258.57K tok/s
+step   9600/12000 | loss 3.2522 | lr 1.93e-04 | gnorm 0.43 | 295.84K tok/s
+step   9650/12000 | loss 3.2819 | lr 1.90e-04 | gnorm 0.45 | 295.77K tok/s
+step   9700/12000 | loss 3.0417 | lr 1.86e-04 | gnorm 0.52 | 295.68K tok/s
+step   9750/12000 | loss 3.1849 | lr 1.82e-04 | gnorm 0.42 | 295.77K tok/s
+step   9800/12000 | loss 3.1260 | lr 1.79e-04 | gnorm 0.45 | 295.81K tok/s
+step   9850/12000 | loss 3.1764 | lr 1.75e-04 | gnorm 0.44 | 295.71K tok/s
+step   9900/12000 | loss 3.1069 | lr 1.72e-04 | gnorm 0.43 | 295.63K tok/s
+step   9950/12000 | loss 3.2556 | lr 1.69e-04 | gnorm 0.43 | 295.63K tok/s
+step  10000/12000 | loss 3.2199 | lr 1.66e-04 | gnorm 0.44 | 295.74K tok/s
+step  10000 | VAL loss 1.8392  *best*
+step  10050/12000 | loss 3.0692 | lr 1.62e-04 | gnorm 0.43 | 212.78K tok/s
+step  10100/12000 | loss 3.1444 | lr 1.59e-04 | gnorm 0.58 | 296.02K tok/s
+step  10150/12000 | loss 2.9492 | lr 1.56e-04 | gnorm 0.61 | 295.99K tok/s
+step  10200/12000 | loss 3.1766 | lr 1.53e-04 | gnorm 0.42 | 295.69K tok/s
+step  10250/12000 | loss 3.2188 | lr 1.51e-04 | gnorm 0.44 | 295.74K tok/s
+step  10300/12000 | loss 3.2806 | lr 1.48e-04 | gnorm 0.43 | 295.85K tok/s
+step  10350/12000 | loss 3.0758 | lr 1.45e-04 | gnorm 0.53 | 295.95K tok/s
+step  10400/12000 | loss 3.1890 | lr 1.42e-04 | gnorm 0.45 | 295.14K tok/s
+step  10450/12000 | loss 3.0862 | lr 1.40e-04 | gnorm 0.44 | 293.29K tok/s
+step  10500/12000 | loss 3.1288 | lr 1.37e-04 | gnorm 0.44 | 243.77K tok/s
+step  10500 | VAL loss 1.8256  *best*
+step  10550/12000 | loss 3.2073 | lr 1.35e-04 | gnorm 0.53 | 258.44K tok/s
+step  10600/12000 | loss 3.0379 | lr 1.33e-04 | gnorm 0.44 | 295.57K tok/s
+step  10650/12000 | loss 3.1113 | lr 1.30e-04 | gnorm 0.43 | 295.55K tok/s
+step  10700/12000 | loss 3.1783 | lr 1.28e-04 | gnorm 0.44 | 295.34K tok/s
+step  10750/12000 | loss 3.1621 | lr 1.26e-04 | gnorm 0.49 | 295.59K tok/s
+step  10800/12000 | loss 3.1176 | lr 1.24e-04 | gnorm 0.45 | 295.08K tok/s
+step  10850/12000 | loss 3.0777 | lr 1.22e-04 | gnorm 0.44 | 295.41K tok/s
+step  10900/12000 | loss 3.1098 | lr 1.20e-04 | gnorm 0.49 | 295.46K tok/s
+step  10950/12000 | loss 3.1677 | lr 1.18e-04 | gnorm 0.45 | 295.53K tok/s
+step  11000/12000 | loss 3.1872 | lr 1.17e-04 | gnorm 0.44 | 295.45K tok/s
+step  11000 | VAL loss 1.8136  *best*
+step  11050/12000 | loss 3.0841 | lr 1.15e-04 | gnorm 0.52 | 258.42K tok/s
+step  11100/12000 | loss 3.0069 | lr 1.14e-04 | gnorm 0.45 | 295.00K tok/s
+step  11150/12000 | loss 3.0883 | lr 1.12e-04 | gnorm 0.44 | 295.09K tok/s
+step  11200/12000 | loss 3.1887 | lr 1.11e-04 | gnorm 0.44 | 295.47K tok/s
+step  11250/12000 | loss 3.2858 | lr 1.09e-04 | gnorm 0.46 | 295.66K tok/s
+step  11300/12000 | loss 3.3339 | lr 1.08e-04 | gnorm 0.45 | 295.66K tok/s
+step  11350/12000 | loss 3.2581 | lr 1.07e-04 | gnorm 0.43 | 295.60K tok/s
+step  11400/12000 | loss 3.2541 | lr 1.06e-04 | gnorm 0.46 | 295.48K tok/s
+step  11450/12000 | loss 2.9200 | lr 1.05e-04 | gnorm 0.43 | 295.70K tok/s
+step  11500/12000 | loss 3.1758 | lr 1.04e-04 | gnorm 0.44 | 295.84K tok/s
+step  11500 | VAL loss 1.8048  *best*
+step  11550/12000 | loss 3.1538 | lr 1.03e-04 | gnorm 0.46 | 258.92K tok/s
+step  11600/12000 | loss 3.0410 | lr 1.03e-04 | gnorm 0.50 | 295.88K tok/s
+step  11650/12000 | loss 3.1561 | lr 1.02e-04 | gnorm 0.51 | 295.74K tok/s
+step  11700/12000 | loss 3.2537 | lr 1.02e-04 | gnorm 0.46 | 295.98K tok/s
+step  11750/12000 | loss 3.0442 | lr 1.01e-04 | gnorm 0.49 | 295.86K tok/s
+step  11800/12000 | loss 3.0029 | lr 1.01e-04 | gnorm 0.44 | 295.87K tok/s
+step  11850/12000 | loss 3.1383 | lr 1.00e-04 | gnorm 0.44 | 295.83K tok/s
+step  11900/12000 | loss 3.0674 | lr 1.00e-04 | gnorm 0.51 | 295.86K tok/s
+step  11950/12000 | loss 3.2399 | lr 1.00e-04 | gnorm 0.50 | 295.83K tok/s
+step  12000/12000 | loss 3.2992 | lr 1.00e-04 | gnorm 0.45 | 295.77K tok/s
+step  12000 | VAL loss 1.7984  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: gated30-s0 ===
+
+[params]
+  params_total      54,805,024
+  params_nonemb     50,610,720
+  flops_per_token  379,161,792
+
+[val]
+  val_loss             2.6765
+  val_ppl             14.5337
+  val_bpb              0.9954
+  val_acc1             0.4599
+  val_acc5             0.6903
+  val_pred_entropy     2.7437
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3585
+  pos_loss/1        4.3885
+  pos_loss/2-3      3.8444
+  pos_loss/4-7      3.5193
+  pos_loss/8-15     3.1719
+  pos_loss/16-31    2.9645
+  pos_loss/32-63    2.8043
+  pos_loss/64-127   2.6893
+  pos_loss/128-255  2.6375
+  pos_loss/256-511  2.6038
+  ctx_gain          0.6520
+  late_loss         2.6080
+
+[calibration]
+  ece              0.0067
+  mean_confidence  0.4652
+  overconfidence   0.0053
+
+[generalization]
+  train_loss_eval   3.1644
+  gen_gap          -0.4879
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3407
+
+[induction]
+  induction_loss_random  11.8832
+  induction_loss_repeat   4.0523
+  induction_gap           7.8308
+  induction_acc           0.4315
+
+[generation]
+  gen_distinct1   0.7767
+  gen_distinct2   0.9612
+  gen_distinct3   0.9860
+  gen_unigram_kl  1.1992
+
+[throughput]
+  fwd_tok_per_s     7.842e+05
+  fwdbwd_tok_per_s  2.777e+05
+  peak_mem_mb               0
+
+
+[sweep] ===== gates_d_edu/gated30-s1 =====
+run /data/susanket/text/gpt/runs/gates_d_edu/gated30-s1 | device=cuda:1 bf16 | params 54.81M (50.61M non-emb) | 16.38K tok/step | 196.61M tokens total
+step      1/12000 | loss 9.1062 | lr 2.00e-06 | gnorm 8.18 | 269.14K tok/s
+step     50/12000 | loss 7.3614 | lr 1.00e-04 | gnorm 1.33 | 293.90K tok/s
+step    100/12000 | loss 6.5646 | lr 2.00e-04 | gnorm 0.90 | 294.21K tok/s
+step    150/12000 | loss 6.0069 | lr 3.00e-04 | gnorm 0.93 | 294.00K tok/s
+step    200/12000 | loss 5.5364 | lr 4.00e-04 | gnorm 0.76 | 293.93K tok/s
+step    250/12000 | loss 5.4756 | lr 5.00e-04 | gnorm 0.81 | 293.93K tok/s
+step    300/12000 | loss 5.2671 | lr 6.00e-04 | gnorm 0.67 | 293.88K tok/s
+step    350/12000 | loss 5.0968 | lr 7.00e-04 | gnorm 0.56 | 294.00K tok/s
+step    400/12000 | loss 4.9648 | lr 8.00e-04 | gnorm 0.57 | 293.99K tok/s
+step    450/12000 | loss 4.7392 | lr 9.00e-04 | gnorm 0.58 | 294.03K tok/s
+step    500/12000 | loss 4.8555 | lr 1.00e-03 | gnorm 0.53 | 294.23K tok/s
+step    500 | VAL loss 3.2746  *best*
+step    550/12000 | loss 4.7232 | lr 1.00e-03 | gnorm 0.55 | 264.10K tok/s
+step    600/12000 | loss 4.7382 | lr 1.00e-03 | gnorm 0.58 | 294.02K tok/s
+step    650/12000 | loss 4.5412 | lr 1.00e-03 | gnorm 0.87 | 294.01K tok/s
+step    700/12000 | loss 4.4635 | lr 9.99e-04 | gnorm 0.79 | 294.05K tok/s
+step    750/12000 | loss 4.3532 | lr 9.99e-04 | gnorm 0.60 | 294.25K tok/s
+step    800/12000 | loss 4.3719 | lr 9.98e-04 | gnorm 0.85 | 294.02K tok/s
+step    850/12000 | loss 4.4044 | lr 9.98e-04 | gnorm 0.84 | 294.59K tok/s
+step    900/12000 | loss 4.2969 | lr 9.97e-04 | gnorm 2.14 | 294.61K tok/s
+step    950/12000 | loss 4.0874 | lr 9.97e-04 | gnorm 0.72 | 294.57K tok/s
+step   1000/12000 | loss 4.0965 | lr 9.96e-04 | gnorm 1.22 | 294.54K tok/s
+step   1000 | VAL loss 2.7252  *best*
+step   1050/12000 | loss 4.0701 | lr 9.95e-04 | gnorm 0.88 | 257.94K tok/s
+step   1100/12000 | loss 4.0291 | lr 9.94e-04 | gnorm 0.71 | 294.59K tok/s
+step   1150/12000 | loss 4.1137 | lr 9.93e-04 | gnorm 0.77 | 294.66K tok/s
+step   1200/12000 | loss 4.0054 | lr 9.92e-04 | gnorm 1.18 | 294.67K tok/s
+step   1250/12000 | loss 4.0562 | lr 9.91e-04 | gnorm 1.14 | 294.71K tok/s
+step   1300/12000 | loss 4.0953 | lr 9.89e-04 | gnorm 1.31 | 294.47K tok/s
+step   1350/12000 | loss 4.0385 | lr 9.88e-04 | gnorm 1.73 | 294.63K tok/s
+step   1400/12000 | loss 3.9511 | lr 9.86e-04 | gnorm 2.17 | 294.61K tok/s
+step   1450/12000 | loss 3.8669 | lr 9.85e-04 | gnorm 2.20 | 294.60K tok/s
+step   1500/12000 | loss 3.9782 | lr 9.83e-04 | gnorm 1.86 | 294.56K tok/s
+step   1500 | VAL loss 2.5356  *best*
+step   1550/12000 | loss 3.9367 | lr 9.82e-04 | gnorm 1.38 | 257.69K tok/s
+step   1600/12000 | loss 3.8663 | lr 9.80e-04 | gnorm 1.01 | 294.66K tok/s
+step   1650/12000 | loss 3.9728 | lr 9.78e-04 | gnorm 1.36 | 294.75K tok/s
+step   1700/12000 | loss 3.8478 | lr 9.76e-04 | gnorm 1.30 | 294.60K tok/s
+step   1750/12000 | loss 3.7821 | lr 9.74e-04 | gnorm 1.23 | 294.64K tok/s
+step   1800/12000 | loss 3.8971 | lr 9.72e-04 | gnorm 1.97 | 294.66K tok/s
+step   1850/12000 | loss 3.8876 | lr 9.70e-04 | gnorm 1.07 | 294.69K tok/s
+step   1900/12000 | loss 3.9366 | lr 9.68e-04 | gnorm 1.04 | 294.64K tok/s
+step   1950/12000 | loss 3.8208 | lr 9.65e-04 | gnorm 1.90 | 294.72K tok/s
+step   2000/12000 | loss 3.7998 | lr 9.63e-04 | gnorm 1.81 | 294.61K tok/s
+step   2000 | VAL loss 2.4166  *best*
+step   2050/12000 | loss 3.8985 | lr 9.60e-04 | gnorm 0.82 | 258.33K tok/s
+step   2100/12000 | loss 3.8654 | lr 9.58e-04 | gnorm 1.21 | 294.71K tok/s
+step   2150/12000 | loss 3.6988 | lr 9.55e-04 | gnorm 1.15 | 294.55K tok/s
+step   2200/12000 | loss 3.9040 | lr 9.52e-04 | gnorm 0.93 | 294.78K tok/s
+step   2250/12000 | loss 3.8026 | lr 9.50e-04 | gnorm 1.03 | 294.78K tok/s
+step   2300/12000 | loss 3.6828 | lr 9.47e-04 | gnorm 1.17 | 294.80K tok/s
+step   2350/12000 | loss 3.4449 | lr 9.44e-04 | gnorm 2.35 | 294.78K tok/s
+step   2400/12000 | loss 3.8595 | lr 9.41e-04 | gnorm 0.99 | 294.81K tok/s
+step   2450/12000 | loss 3.7723 | lr 9.38e-04 | gnorm 0.81 | 294.75K tok/s
+step   2500/12000 | loss 3.6787 | lr 9.35e-04 | gnorm 0.89 | 294.67K tok/s
+step   2500 | VAL loss 2.3051  *best*
+step   2550/12000 | loss 3.7370 | lr 9.31e-04 | gnorm 0.92 | 249.91K tok/s
+step   2600/12000 | loss 3.6202 | lr 9.28e-04 | gnorm 0.92 | 294.68K tok/s
+step   2650/12000 | loss 3.7635 | lr 9.25e-04 | gnorm 0.94 | 294.75K tok/s
+step   2700/12000 | loss 3.7291 | lr 9.21e-04 | gnorm 0.72 | 294.73K tok/s
+step   2750/12000 | loss 3.6770 | lr 9.18e-04 | gnorm 0.64 | 294.73K tok/s
+step   2800/12000 | loss 3.7635 | lr 9.14e-04 | gnorm 1.10 | 294.58K tok/s
+step   2850/12000 | loss 3.6822 | lr 9.10e-04 | gnorm 0.59 | 294.51K tok/s
+step   2900/12000 | loss 3.7081 | lr 9.07e-04 | gnorm 0.62 | 294.58K tok/s
+step   2950/12000 | loss 3.7881 | lr 9.03e-04 | gnorm 1.35 | 294.54K tok/s
+step   3000/12000 | loss 3.5885 | lr 8.99e-04 | gnorm 0.74 | 294.48K tok/s
+step   3000 | VAL loss 2.2446  *best*
+step   3050/12000 | loss 3.7156 | lr 8.95e-04 | gnorm 0.85 | 258.03K tok/s
+step   3100/12000 | loss 3.6781 | lr 8.91e-04 | gnorm 0.84 | 294.50K tok/s
+step   3150/12000 | loss 3.6387 | lr 8.87e-04 | gnorm 0.70 | 294.41K tok/s
+step   3200/12000 | loss 3.5951 | lr 8.83e-04 | gnorm 0.73 | 294.69K tok/s
+step   3250/12000 | loss 3.5836 | lr 8.79e-04 | gnorm 0.87 | 294.86K tok/s
+step   3300/12000 | loss 3.7027 | lr 8.75e-04 | gnorm 1.09 | 294.82K tok/s
+step   3350/12000 | loss 3.7005 | lr 8.70e-04 | gnorm 0.77 | 294.85K tok/s
+step   3400/12000 | loss 3.4766 | lr 8.66e-04 | gnorm 0.68 | 294.82K tok/s
+step   3450/12000 | loss 3.6519 | lr 8.62e-04 | gnorm 0.50 | 294.75K tok/s
+step   3500/12000 | loss 3.5548 | lr 8.57e-04 | gnorm 0.46 | 294.71K tok/s
+step   3500 | VAL loss 2.1954  *best*
+step   3550/12000 | loss 3.6281 | lr 8.53e-04 | gnorm 0.59 | 258.16K tok/s
+step   3600/12000 | loss 3.6102 | lr 8.48e-04 | gnorm 0.67 | 294.69K tok/s
+step   3650/12000 | loss 3.5929 | lr 8.44e-04 | gnorm 0.50 | 294.71K tok/s
+step   3700/12000 | loss 3.4602 | lr 8.39e-04 | gnorm 0.64 | 294.73K tok/s
+step   3750/12000 | loss 3.4394 | lr 8.34e-04 | gnorm 0.81 | 294.61K tok/s
+step   3800/12000 | loss 3.6098 | lr 8.29e-04 | gnorm 0.58 | 294.69K tok/s
+step   3850/12000 | loss 3.3672 | lr 8.24e-04 | gnorm 0.41 | 294.72K tok/s
+step   3900/12000 | loss 3.3922 | lr 8.20e-04 | gnorm 0.53 | 294.83K tok/s
+step   3950/12000 | loss 3.5173 | lr 8.15e-04 | gnorm 0.92 | 294.76K tok/s
+step   4000/12000 | loss 3.6207 | lr 8.10e-04 | gnorm 0.47 | 294.76K tok/s
+step   4000 | VAL loss 2.1442  *best*
+step   4050/12000 | loss 3.6041 | lr 8.05e-04 | gnorm 0.45 | 259.31K tok/s
+step   4100/12000 | loss 3.4658 | lr 7.99e-04 | gnorm 0.75 | 294.63K tok/s
+step   4150/12000 | loss 3.4175 | lr 7.94e-04 | gnorm 0.48 | 294.65K tok/s
+step   4200/12000 | loss 3.6096 | lr 7.89e-04 | gnorm 0.56 | 294.61K tok/s
+step   4250/12000 | loss 3.4162 | lr 7.84e-04 | gnorm 0.67 | 294.52K tok/s
+step   4300/12000 | loss 3.5363 | lr 7.79e-04 | gnorm 0.45 | 294.57K tok/s
+step   4350/12000 | loss 3.4897 | lr 7.73e-04 | gnorm 0.62 | 294.56K tok/s
+step   4400/12000 | loss 3.2967 | lr 7.68e-04 | gnorm 0.81 | 294.54K tok/s
+step   4450/12000 | loss 3.2750 | lr 7.63e-04 | gnorm 0.45 | 294.49K tok/s
+step   4500/12000 | loss 3.3261 | lr 7.57e-04 | gnorm 0.57 | 294.47K tok/s
+step   4500 | VAL loss 2.1034  *best*
+step   4550/12000 | loss 3.4717 | lr 7.52e-04 | gnorm 0.47 | 257.29K tok/s
+step   4600/12000 | loss 3.3415 | lr 7.46e-04 | gnorm 0.48 | 294.41K tok/s
+step   4650/12000 | loss 3.5001 | lr 7.41e-04 | gnorm 0.66 | 294.36K tok/s
+step   4700/12000 | loss 3.3488 | lr 7.35e-04 | gnorm 0.47 | 294.75K tok/s
+step   4750/12000 | loss 3.6137 | lr 7.29e-04 | gnorm 0.51 | 294.67K tok/s
+step   4800/12000 | loss 3.6091 | lr 7.24e-04 | gnorm 0.61 | 294.70K tok/s
+step   4850/12000 | loss 3.4614 | lr 7.18e-04 | gnorm 0.43 | 294.72K tok/s
+step   4900/12000 | loss 3.4392 | lr 7.12e-04 | gnorm 0.39 | 294.66K tok/s
+step   4950/12000 | loss 3.2898 | lr 7.07e-04 | gnorm 0.84 | 294.71K tok/s
+step   5000/12000 | loss 3.4671 | lr 7.01e-04 | gnorm 0.43 | 294.60K tok/s
+step   5000 | VAL loss 2.0724  *best*
+step   5050/12000 | loss 3.5259 | lr 6.95e-04 | gnorm 0.43 | 228.81K tok/s
+step   5100/12000 | loss 3.4092 | lr 6.89e-04 | gnorm 0.81 | 294.60K tok/s
+step   5150/12000 | loss 3.4295 | lr 6.83e-04 | gnorm 0.56 | 294.60K tok/s
+step   5200/12000 | loss 3.3600 | lr 6.77e-04 | gnorm 0.43 | 294.55K tok/s
+step   5250/12000 | loss 3.3744 | lr 6.72e-04 | gnorm 0.60 | 294.53K tok/s
+step   5300/12000 | loss 3.3464 | lr 6.66e-04 | gnorm 0.43 | 294.45K tok/s
+step   5350/12000 | loss 3.3464 | lr 6.60e-04 | gnorm 0.47 | 294.31K tok/s
+step   5400/12000 | loss 3.4478 | lr 6.54e-04 | gnorm 0.60 | 294.35K tok/s
+step   5450/12000 | loss 3.3190 | lr 6.48e-04 | gnorm 0.41 | 294.57K tok/s
+step   5500/12000 | loss 3.2734 | lr 6.42e-04 | gnorm 0.39 | 294.62K tok/s
+step   5500 | VAL loss 2.0338  *best*
+step   5550/12000 | loss 3.3688 | lr 6.36e-04 | gnorm 0.41 | 257.95K tok/s
+step   5600/12000 | loss 3.3380 | lr 6.30e-04 | gnorm 0.42 | 294.72K tok/s
+step   5650/12000 | loss 3.3382 | lr 6.24e-04 | gnorm 0.42 | 294.75K tok/s
+step   5700/12000 | loss 3.3502 | lr 6.17e-04 | gnorm 0.45 | 294.65K tok/s
+step   5750/12000 | loss 3.1679 | lr 6.11e-04 | gnorm 0.84 | 294.80K tok/s
+step   5800/12000 | loss 3.4571 | lr 6.05e-04 | gnorm 0.46 | 294.64K tok/s
+step   5850/12000 | loss 3.4306 | lr 5.99e-04 | gnorm 0.51 | 294.65K tok/s
+step   5900/12000 | loss 3.4044 | lr 5.93e-04 | gnorm 0.43 | 294.64K tok/s
+step   5950/12000 | loss 3.4410 | lr 5.87e-04 | gnorm 0.41 | 294.60K tok/s
+step   6000/12000 | loss 3.4706 | lr 5.81e-04 | gnorm 0.43 | 294.65K tok/s
+step   6000 | VAL loss 2.0157  *best*
+step   6050/12000 | loss 3.4242 | lr 5.75e-04 | gnorm 0.55 | 261.35K tok/s
+step   6100/12000 | loss 3.2979 | lr 5.69e-04 | gnorm 0.41 | 294.63K tok/s
+step   6150/12000 | loss 3.4046 | lr 5.62e-04 | gnorm 0.47 | 294.49K tok/s
+step   6200/12000 | loss 3.4186 | lr 5.56e-04 | gnorm 0.43 | 294.74K tok/s
+step   6250/12000 | loss 3.2520 | lr 5.50e-04 | gnorm 0.62 | 294.73K tok/s
+step   6300/12000 | loss 3.3159 | lr 5.44e-04 | gnorm 0.41 | 294.72K tok/s
+step   6350/12000 | loss 3.4259 | lr 5.38e-04 | gnorm 0.44 | 294.73K tok/s
+step   6400/12000 | loss 3.4843 | lr 5.32e-04 | gnorm 0.48 | 294.75K tok/s
+step   6450/12000 | loss 3.3169 | lr 5.26e-04 | gnorm 0.41 | 294.71K tok/s
+step   6500/12000 | loss 3.3703 | lr 5.19e-04 | gnorm 0.42 | 294.68K tok/s
+step   6500 | VAL loss 1.9835  *best*
+step   6550/12000 | loss 3.2995 | lr 5.13e-04 | gnorm 0.70 | 258.37K tok/s
+step   6600/12000 | loss 3.2925 | lr 5.07e-04 | gnorm 0.44 | 294.69K tok/s
+step   6650/12000 | loss 3.2787 | lr 5.01e-04 | gnorm 0.57 | 294.67K tok/s
+step   6700/12000 | loss 3.4086 | lr 4.95e-04 | gnorm 0.43 | 294.68K tok/s
+step   6750/12000 | loss 3.3135 | lr 4.89e-04 | gnorm 0.53 | 294.60K tok/s
+step   6800/12000 | loss 3.4083 | lr 4.83e-04 | gnorm 0.43 | 294.73K tok/s
+step   6850/12000 | loss 3.2362 | lr 4.77e-04 | gnorm 0.43 | 294.70K tok/s
+step   6900/12000 | loss 3.3082 | lr 4.71e-04 | gnorm 0.43 | 294.72K tok/s
+step   6950/12000 | loss 3.3507 | lr 4.65e-04 | gnorm 0.42 | 294.69K tok/s
+step   7000/12000 | loss 3.3864 | lr 4.59e-04 | gnorm 0.44 | 294.70K tok/s
+step   7000 | VAL loss 1.9539  *best*
+step   7050/12000 | loss 3.4801 | lr 4.53e-04 | gnorm 0.65 | 260.53K tok/s
+step   7100/12000 | loss 3.1612 | lr 4.47e-04 | gnorm 0.40 | 294.71K tok/s
+step   7150/12000 | loss 3.2104 | lr 4.41e-04 | gnorm 0.70 | 294.68K tok/s
+step   7200/12000 | loss 3.3771 | lr 4.35e-04 | gnorm 0.60 | 294.68K tok/s
+step   7250/12000 | loss 3.3455 | lr 4.29e-04 | gnorm 0.41 | 294.74K tok/s
+step   7300/12000 | loss 3.4056 | lr 4.23e-04 | gnorm 0.50 | 294.69K tok/s
+step   7350/12000 | loss 3.2065 | lr 4.17e-04 | gnorm 0.70 | 294.66K tok/s
+step   7400/12000 | loss 3.2099 | lr 4.11e-04 | gnorm 0.51 | 294.56K tok/s
+step   7450/12000 | loss 3.2670 | lr 4.05e-04 | gnorm 0.53 | 294.69K tok/s
+step   7500/12000 | loss 3.1832 | lr 3.99e-04 | gnorm 0.46 | 294.60K tok/s
+step   7500 | VAL loss 1.9268  *best*
+step   7550/12000 | loss 3.4642 | lr 3.94e-04 | gnorm 0.69 | 258.09K tok/s
+step   7600/12000 | loss 3.3800 | lr 3.88e-04 | gnorm 0.46 | 294.57K tok/s
+step   7650/12000 | loss 3.4651 | lr 3.82e-04 | gnorm 0.48 | 294.38K tok/s
+step   7700/12000 | loss 3.2484 | lr 3.76e-04 | gnorm 0.50 | 294.81K tok/s
+step   7750/12000 | loss 3.2875 | lr 3.71e-04 | gnorm 0.42 | 294.73K tok/s
+step   7800/12000 | loss 3.3847 | lr 3.65e-04 | gnorm 0.43 | 294.74K tok/s
+step   7850/12000 | loss 3.3527 | lr 3.60e-04 | gnorm 0.49 | 294.76K tok/s
+step   7900/12000 | loss 3.2749 | lr 3.54e-04 | gnorm 0.46 | 294.78K tok/s
+step   7950/12000 | loss 3.3077 | lr 3.49e-04 | gnorm 0.43 | 294.74K tok/s
+step   8000/12000 | loss 3.3012 | lr 3.43e-04 | gnorm 0.49 | 294.68K tok/s
+step   8000 | VAL loss 1.9054  *best*
+step   8050/12000 | loss 3.2840 | lr 3.38e-04 | gnorm 0.59 | 256.38K tok/s
+step   8100/12000 | loss 3.1643 | lr 3.32e-04 | gnorm 0.50 | 262.82K tok/s
+step   8150/12000 | loss 3.1023 | lr 3.27e-04 | gnorm 0.44 | 257.98K tok/s
+step   8200/12000 | loss 3.2510 | lr 3.22e-04 | gnorm 0.44 | 294.61K tok/s
+step   8250/12000 | loss 3.2147 | lr 3.16e-04 | gnorm 0.42 | 294.62K tok/s
+step   8300/12000 | loss 3.0650 | lr 3.11e-04 | gnorm 0.50 | 294.61K tok/s
+step   8350/12000 | loss 3.2988 | lr 3.06e-04 | gnorm 0.48 | 294.69K tok/s
+step   8400/12000 | loss 2.9931 | lr 3.01e-04 | gnorm 0.51 | 294.80K tok/s
+step   8450/12000 | loss 3.3826 | lr 2.96e-04 | gnorm 0.44 | 294.76K tok/s
+step   8500/12000 | loss 3.2999 | lr 2.91e-04 | gnorm 0.44 | 294.66K tok/s
+step   8500 | VAL loss 1.8764  *best*
+step   8550/12000 | loss 3.0920 | lr 2.86e-04 | gnorm 0.44 | 258.14K tok/s
+step   8600/12000 | loss 3.4220 | lr 2.81e-04 | gnorm 0.59 | 294.74K tok/s
+step   8650/12000 | loss 3.1121 | lr 2.76e-04 | gnorm 0.46 | 294.79K tok/s
+step   8700/12000 | loss 3.2375 | lr 2.71e-04 | gnorm 0.45 | 294.69K tok/s
+step   8750/12000 | loss 3.1406 | lr 2.66e-04 | gnorm 0.45 | 294.67K tok/s
+step   8800/12000 | loss 3.1758 | lr 2.61e-04 | gnorm 0.53 | 294.66K tok/s
+step   8850/12000 | loss 3.2309 | lr 2.57e-04 | gnorm 0.49 | 294.64K tok/s
+step   8900/12000 | loss 3.2385 | lr 2.52e-04 | gnorm 0.47 | 294.61K tok/s
+step   8950/12000 | loss 3.1176 | lr 2.47e-04 | gnorm 0.44 | 294.56K tok/s
+step   9000/12000 | loss 3.1529 | lr 2.43e-04 | gnorm 0.49 | 294.52K tok/s
+step   9000 | VAL loss 1.8629  *best*
+step   9050/12000 | loss 3.1942 | lr 2.38e-04 | gnorm 0.51 | 258.53K tok/s
+step   9100/12000 | loss 3.4394 | lr 2.34e-04 | gnorm 0.51 | 294.42K tok/s
+step   9150/12000 | loss 3.1381 | lr 2.30e-04 | gnorm 0.47 | 294.60K tok/s
+step   9200/12000 | loss 3.3306 | lr 2.25e-04 | gnorm 0.46 | 294.55K tok/s
+step   9250/12000 | loss 3.2184 | lr 2.21e-04 | gnorm 0.53 | 294.44K tok/s
+step   9300/12000 | loss 3.4090 | lr 2.17e-04 | gnorm 0.44 | 294.38K tok/s
+step   9350/12000 | loss 3.3311 | lr 2.13e-04 | gnorm 0.46 | 294.29K tok/s
+step   9400/12000 | loss 3.1022 | lr 2.09e-04 | gnorm 0.62 | 294.72K tok/s
+step   9450/12000 | loss 2.9230 | lr 2.05e-04 | gnorm 0.51 | 294.88K tok/s
+step   9500/12000 | loss 3.1454 | lr 2.01e-04 | gnorm 0.52 | 294.90K tok/s
+step   9500 | VAL loss 1.8384  *best*
+step   9550/12000 | loss 3.0867 | lr 1.97e-04 | gnorm 0.49 | 258.84K tok/s
+step   9600/12000 | loss 3.3739 | lr 1.93e-04 | gnorm 0.46 | 294.87K tok/s
+step   9650/12000 | loss 3.1693 | lr 1.90e-04 | gnorm 0.45 | 294.94K tok/s
+step   9700/12000 | loss 3.1062 | lr 1.86e-04 | gnorm 0.47 | 294.73K tok/s
+step   9750/12000 | loss 3.3213 | lr 1.82e-04 | gnorm 0.53 | 294.79K tok/s
+step   9800/12000 | loss 3.2922 | lr 1.79e-04 | gnorm 0.46 | 294.68K tok/s
+step   9850/12000 | loss 3.1420 | lr 1.75e-04 | gnorm 0.44 | 294.73K tok/s
+step   9900/12000 | loss 3.0822 | lr 1.72e-04 | gnorm 0.49 | 294.73K tok/s
+step   9950/12000 | loss 3.1056 | lr 1.69e-04 | gnorm 0.44 | 294.66K tok/s
+step  10000/12000 | loss 3.1449 | lr 1.66e-04 | gnorm 0.46 | 294.71K tok/s
+step  10000 | VAL loss 1.8258  *best*
+step  10050/12000 | loss 3.2459 | lr 1.62e-04 | gnorm 0.45 | 212.43K tok/s
+step  10100/12000 | loss 3.2291 | lr 1.59e-04 | gnorm 0.52 | 294.42K tok/s
+step  10150/12000 | loss 3.2876 | lr 1.56e-04 | gnorm 0.48 | 294.28K tok/s
+step  10200/12000 | loss 3.1215 | lr 1.53e-04 | gnorm 0.45 | 294.37K tok/s
+step  10250/12000 | loss 3.1354 | lr 1.51e-04 | gnorm 0.51 | 294.34K tok/s
+step  10300/12000 | loss 3.0576 | lr 1.48e-04 | gnorm 0.45 | 294.31K tok/s
+step  10350/12000 | loss 3.1901 | lr 1.45e-04 | gnorm 0.46 | 294.50K tok/s
+step  10400/12000 | loss 3.1630 | lr 1.42e-04 | gnorm 0.46 | 294.48K tok/s
+step  10450/12000 | loss 3.2083 | lr 1.40e-04 | gnorm 0.45 | 294.42K tok/s
+step  10500/12000 | loss 3.3377 | lr 1.37e-04 | gnorm 0.46 | 294.50K tok/s
+step  10500 | VAL loss 1.8096  *best*
+step  10550/12000 | loss 3.2338 | lr 1.35e-04 | gnorm 0.48 | 257.25K tok/s
+step  10600/12000 | loss 3.1543 | lr 1.33e-04 | gnorm 0.48 | 294.47K tok/s
+step  10650/12000 | loss 3.1991 | lr 1.30e-04 | gnorm 0.47 | 294.45K tok/s
+step  10700/12000 | loss 3.0041 | lr 1.28e-04 | gnorm 0.46 | 294.43K tok/s
+step  10750/12000 | loss 3.0950 | lr 1.26e-04 | gnorm 0.45 | 294.41K tok/s
+step  10800/12000 | loss 3.3201 | lr 1.24e-04 | gnorm 0.46 | 294.44K tok/s
+step  10850/12000 | loss 3.1092 | lr 1.22e-04 | gnorm 0.50 | 294.37K tok/s
+step  10900/12000 | loss 3.2125 | lr 1.20e-04 | gnorm 0.47 | 294.36K tok/s
+step  10950/12000 | loss 3.1356 | lr 1.18e-04 | gnorm 0.47 | 294.41K tok/s
+step  11000/12000 | loss 3.0919 | lr 1.17e-04 | gnorm 0.45 | 294.41K tok/s
+step  11000 | VAL loss 1.8000  *best*
+step  11050/12000 | loss 3.0449 | lr 1.15e-04 | gnorm 0.50 | 257.45K tok/s
+step  11100/12000 | loss 3.1807 | lr 1.14e-04 | gnorm 0.48 | 294.45K tok/s
+step  11150/12000 | loss 3.1633 | lr 1.12e-04 | gnorm 0.47 | 294.51K tok/s
+step  11200/12000 | loss 3.2415 | lr 1.11e-04 | gnorm 0.46 | 294.51K tok/s
+step  11250/12000 | loss 3.0102 | lr 1.09e-04 | gnorm 0.51 | 294.48K tok/s
+step  11300/12000 | loss 3.2284 | lr 1.08e-04 | gnorm 0.58 | 294.52K tok/s
+step  11350/12000 | loss 3.1141 | lr 1.07e-04 | gnorm 0.49 | 294.46K tok/s
+step  11400/12000 | loss 3.0688 | lr 1.06e-04 | gnorm 0.49 | 294.48K tok/s
+step  11450/12000 | loss 3.0793 | lr 1.05e-04 | gnorm 0.45 | 294.44K tok/s
+step  11500/12000 | loss 3.3333 | lr 1.04e-04 | gnorm 0.55 | 294.48K tok/s
+step  11500 | VAL loss 1.7907  *best*
+step  11550/12000 | loss 2.7019 | lr 1.03e-04 | gnorm 0.44 | 257.57K tok/s
+step  11600/12000 | loss 3.3424 | lr 1.03e-04 | gnorm 0.51 | 294.44K tok/s
+step  11650/12000 | loss 3.0980 | lr 1.02e-04 | gnorm 0.46 | 294.39K tok/s
+step  11700/12000 | loss 3.2637 | lr 1.02e-04 | gnorm 0.47 | 294.30K tok/s
+step  11750/12000 | loss 3.1248 | lr 1.01e-04 | gnorm 0.51 | 294.59K tok/s
+step  11800/12000 | loss 3.1034 | lr 1.01e-04 | gnorm 0.47 | 294.51K tok/s
+step  11850/12000 | loss 3.1384 | lr 1.00e-04 | gnorm 0.46 | 294.51K tok/s
+step  11900/12000 | loss 3.1914 | lr 1.00e-04 | gnorm 0.49 | 294.50K tok/s
+step  11950/12000 | loss 3.1403 | lr 1.00e-04 | gnorm 0.46 | 294.48K tok/s
+step  12000/12000 | loss 3.1861 | lr 1.00e-04 | gnorm 0.48 | 294.46K tok/s
+step  12000 | VAL loss 1.7856  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: gated30-s1 ===
+
+[params]
+  params_total      54,805,024
+  params_nonemb     50,610,720
+  flops_per_token  379,161,792
+
+[val]
+  val_loss             2.6619
+  val_ppl             14.3232
+  val_bpb              0.9900
+  val_acc1             0.4622
+  val_acc5             0.6921
+  val_pred_entropy     2.7446
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3685
+  pos_loss/1        4.3954
+  pos_loss/2-3      3.8210
+  pos_loss/4-7      3.5133
+  pos_loss/8-15     3.1529
+  pos_loss/16-31    2.9424
+  pos_loss/32-63    2.7901
+  pos_loss/64-127   2.6763
+  pos_loss/128-255  2.6225
+  pos_loss/256-511  2.5893
+  ctx_gain          0.6497
+  late_loss         2.5928
+
+[calibration]
+  ece              0.0075
+  mean_confidence  0.4654
+  overconfidence   0.0032
+
+[generalization]
+  train_loss_eval   3.1532
+  gen_gap          -0.4913
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3553
+
+[induction]
+  induction_loss_random  11.7265
+  induction_loss_repeat   3.6738
+  induction_gap           8.0527
+  induction_acc           0.4970
+
+[generation]
+  gen_distinct1   0.7904
+  gen_distinct2   0.9730
+  gen_distinct3   0.9940
+  gen_unigram_kl  1.1385
+
+[throughput]
+  fwd_tok_per_s     7.792e+05
+  fwdbwd_tok_per_s  2.775e+05
+  peak_mem_mb               0
+
+
+[sweep] ===== gates_d_edu/gated30-s2 =====
+run /data/susanket/text/gpt/runs/gates_d_edu/gated30-s2 | device=cuda:1 bf16 | params 54.81M (50.61M non-emb) | 16.38K tok/step | 196.61M tokens total
+step      1/12000 | loss 9.1182 | lr 2.00e-06 | gnorm 7.14 | 262.66K tok/s
+step     50/12000 | loss 7.4279 | lr 1.00e-04 | gnorm 1.23 | 291.73K tok/s
+step    100/12000 | loss 6.5312 | lr 2.00e-04 | gnorm 0.89 | 293.91K tok/s
+step    150/12000 | loss 5.8789 | lr 3.00e-04 | gnorm 0.90 | 293.77K tok/s
+step    200/12000 | loss 5.7394 | lr 4.00e-04 | gnorm 0.80 | 294.06K tok/s
+step    250/12000 | loss 5.4134 | lr 5.00e-04 | gnorm 1.02 | 294.06K tok/s
+step    300/12000 | loss 5.1743 | lr 6.00e-04 | gnorm 0.63 | 293.40K tok/s
+step    350/12000 | loss 5.0414 | lr 7.00e-04 | gnorm 0.66 | 293.73K tok/s
+step    400/12000 | loss 4.9821 | lr 8.00e-04 | gnorm 0.57 | 293.89K tok/s
+step    450/12000 | loss 4.9891 | lr 9.00e-04 | gnorm 0.60 | 293.84K tok/s
+step    500/12000 | loss 4.7868 | lr 1.00e-03 | gnorm 0.61 | 293.90K tok/s
+step    500 | VAL loss 3.3500  *best*
+step    550/12000 | loss 4.6892 | lr 1.00e-03 | gnorm 0.58 | 263.50K tok/s
+step    600/12000 | loss 4.6520 | lr 1.00e-03 | gnorm 0.69 | 294.25K tok/s
+step    650/12000 | loss 4.5845 | lr 1.00e-03 | gnorm 0.57 | 294.27K tok/s
+step    700/12000 | loss 4.6592 | lr 9.99e-04 | gnorm 0.58 | 294.29K tok/s
+step    750/12000 | loss 4.5269 | lr 9.99e-04 | gnorm 0.69 | 294.11K tok/s
+step    800/12000 | loss 4.4354 | lr 9.98e-04 | gnorm 1.74 | 294.23K tok/s
+step    850/12000 | loss 4.2427 | lr 9.98e-04 | gnorm 0.90 | 294.29K tok/s
+step    900/12000 | loss 4.2208 | lr 9.97e-04 | gnorm 0.72 | 294.21K tok/s
+step    950/12000 | loss 4.1408 | lr 9.97e-04 | gnorm 0.84 | 294.20K tok/s
+step   1000/12000 | loss 4.2112 | lr 9.96e-04 | gnorm 0.89 | 294.46K tok/s
+step   1000 | VAL loss 2.7890  *best*
+step   1050/12000 | loss 4.0997 | lr 9.95e-04 | gnorm 0.76 | 257.38K tok/s
+step   1100/12000 | loss 4.1339 | lr 9.94e-04 | gnorm 0.87 | 294.52K tok/s
+step   1150/12000 | loss 3.9271 | lr 9.93e-04 | gnorm 1.10 | 294.40K tok/s
+step   1200/12000 | loss 3.9515 | lr 9.92e-04 | gnorm 1.23 | 294.27K tok/s
+step   1250/12000 | loss 3.9549 | lr 9.91e-04 | gnorm 0.73 | 294.26K tok/s
+step   1300/12000 | loss 3.9441 | lr 9.89e-04 | gnorm 1.33 | 294.38K tok/s
+step   1350/12000 | loss 3.9554 | lr 9.88e-04 | gnorm 0.92 | 294.36K tok/s
+step   1400/12000 | loss 3.9287 | lr 9.86e-04 | gnorm 2.51 | 294.23K tok/s
+step   1450/12000 | loss 4.1650 | lr 9.85e-04 | gnorm 0.80 | 294.44K tok/s
+step   1500/12000 | loss 3.9943 | lr 9.83e-04 | gnorm 0.61 | 294.30K tok/s
+step   1500 | VAL loss 2.5204  *best*
+step   1550/12000 | loss 3.9431 | lr 9.82e-04 | gnorm 1.99 | 257.56K tok/s
+step   1600/12000 | loss 3.8332 | lr 9.80e-04 | gnorm 1.02 | 294.26K tok/s
+step   1650/12000 | loss 4.0085 | lr 9.78e-04 | gnorm 0.71 | 294.10K tok/s
+step   1700/12000 | loss 3.8112 | lr 9.76e-04 | gnorm 1.09 | 294.15K tok/s
+step   1750/12000 | loss 3.8954 | lr 9.74e-04 | gnorm 1.14 | 294.24K tok/s
+step   1800/12000 | loss 3.7074 | lr 9.72e-04 | gnorm 1.15 | 294.07K tok/s
+step   1850/12000 | loss 3.8747 | lr 9.70e-04 | gnorm 1.17 | 294.10K tok/s
+step   1900/12000 | loss 3.8546 | lr 9.68e-04 | gnorm 0.88 | 294.34K tok/s
+step   1950/12000 | loss 3.7156 | lr 9.65e-04 | gnorm 0.78 | 294.20K tok/s
+step   2000/12000 | loss 3.9500 | lr 9.63e-04 | gnorm 2.10 | 294.42K tok/s
+step   2000 | VAL loss 2.4038  *best*
+step   2050/12000 | loss 3.7210 | lr 9.60e-04 | gnorm 1.02 | 256.58K tok/s
+step   2100/12000 | loss 3.7271 | lr 9.58e-04 | gnorm 0.55 | 294.31K tok/s
+step   2150/12000 | loss 3.7049 | lr 9.55e-04 | gnorm 0.86 | 294.49K tok/s
+step   2200/12000 | loss 3.6375 | lr 9.52e-04 | gnorm 0.62 | 294.33K tok/s
+step   2250/12000 | loss 3.6799 | lr 9.50e-04 | gnorm 0.73 | 294.38K tok/s
+step   2300/12000 | loss 3.8109 | lr 9.47e-04 | gnorm 0.76 | 294.43K tok/s
+step   2350/12000 | loss 3.9083 | lr 9.44e-04 | gnorm 1.26 | 294.53K tok/s
+step   2400/12000 | loss 3.6505 | lr 9.41e-04 | gnorm 0.48 | 294.42K tok/s
+step   2450/12000 | loss 3.6936 | lr 9.38e-04 | gnorm 0.48 | 294.36K tok/s
+step   2500/12000 | loss 3.6654 | lr 9.35e-04 | gnorm 0.63 | 294.24K tok/s
+step   2500 | VAL loss 2.3156  *best*
+step   2550/12000 | loss 3.7860 | lr 9.31e-04 | gnorm 0.75 | 257.56K tok/s
+step   2600/12000 | loss 3.6860 | lr 9.28e-04 | gnorm 0.62 | 294.55K tok/s
+step   2650/12000 | loss 3.8243 | lr 9.25e-04 | gnorm 0.98 | 294.34K tok/s
+step   2700/12000 | loss 3.6191 | lr 9.21e-04 | gnorm 0.73 | 294.48K tok/s
+step   2750/12000 | loss 3.4931 | lr 9.18e-04 | gnorm 0.96 | 294.46K tok/s
+step   2800/12000 | loss 3.8460 | lr 9.14e-04 | gnorm 0.84 | 294.43K tok/s
+step   2850/12000 | loss 3.7230 | lr 9.10e-04 | gnorm 0.46 | 294.28K tok/s
+step   2900/12000 | loss 3.5415 | lr 9.07e-04 | gnorm 0.73 | 294.38K tok/s
+step   2950/12000 | loss 3.6229 | lr 9.03e-04 | gnorm 1.14 | 294.37K tok/s
+step   3000/12000 | loss 3.8215 | lr 8.99e-04 | gnorm 0.42 | 294.27K tok/s
+step   3000 | VAL loss 2.2553  *best*
+step   3050/12000 | loss 3.6926 | lr 8.95e-04 | gnorm 0.72 | 257.09K tok/s
+step   3100/12000 | loss 3.6524 | lr 8.91e-04 | gnorm 0.48 | 294.55K tok/s
+step   3150/12000 | loss 3.7969 | lr 8.87e-04 | gnorm 0.47 | 294.59K tok/s
+step   3200/12000 | loss 3.5366 | lr 8.83e-04 | gnorm 0.41 | 294.30K tok/s
+step   3250/12000 | loss 3.6237 | lr 8.79e-04 | gnorm 0.57 | 294.46K tok/s
+step   3300/12000 | loss 3.5528 | lr 8.75e-04 | gnorm 0.75 | 294.57K tok/s
+step   3350/12000 | loss 3.6746 | lr 8.70e-04 | gnorm 0.40 | 294.54K tok/s
+step   3400/12000 | loss 3.6005 | lr 8.66e-04 | gnorm 0.41 | 294.46K tok/s
+step   3450/12000 | loss 3.5882 | lr 8.62e-04 | gnorm 0.64 | 294.48K tok/s
+step   3500/12000 | loss 3.6028 | lr 8.57e-04 | gnorm 0.44 | 294.54K tok/s
+step   3500 | VAL loss 2.2084  *best*
+step   3550/12000 | loss 3.6601 | lr 8.53e-04 | gnorm 0.75 | 257.54K tok/s
+step   3600/12000 | loss 3.3820 | lr 8.48e-04 | gnorm 0.75 | 294.47K tok/s
+step   3650/12000 | loss 3.4913 | lr 8.44e-04 | gnorm 0.43 | 293.94K tok/s
+step   3700/12000 | loss 3.4576 | lr 8.39e-04 | gnorm 0.39 | 294.18K tok/s
+step   3750/12000 | loss 3.6035 | lr 8.34e-04 | gnorm 0.39 | 294.48K tok/s
+step   3800/12000 | loss 3.5808 | lr 8.29e-04 | gnorm 0.40 | 293.88K tok/s
+step   3850/12000 | loss 3.4311 | lr 8.24e-04 | gnorm 0.45 | 294.40K tok/s
+step   3900/12000 | loss 3.3928 | lr 8.20e-04 | gnorm 0.42 | 294.24K tok/s
+step   3950/12000 | loss 3.5182 | lr 8.15e-04 | gnorm 0.78 | 294.27K tok/s
+step   4000/12000 | loss 3.5305 | lr 8.10e-04 | gnorm 0.52 | 294.22K tok/s
+step   4000 | VAL loss 2.1571  *best*
+step   4050/12000 | loss 3.6125 | lr 8.05e-04 | gnorm 0.58 | 256.99K tok/s
+step   4100/12000 | loss 3.4702 | lr 7.99e-04 | gnorm 0.49 | 294.61K tok/s
+step   4150/12000 | loss 3.7110 | lr 7.94e-04 | gnorm 1.11 | 294.61K tok/s
+step   4200/12000 | loss 3.4576 | lr 7.89e-04 | gnorm 0.74 | 294.59K tok/s
+step   4250/12000 | loss 3.5437 | lr 7.84e-04 | gnorm 0.44 | 294.53K tok/s
+step   4300/12000 | loss 3.5772 | lr 7.79e-04 | gnorm 0.41 | 294.25K tok/s
+step   4350/12000 | loss 3.5518 | lr 7.73e-04 | gnorm 0.39 | 294.42K tok/s
+step   4400/12000 | loss 3.3934 | lr 7.68e-04 | gnorm 0.86 | 294.38K tok/s
+step   4450/12000 | loss 3.4470 | lr 7.63e-04 | gnorm 0.37 | 294.44K tok/s
+step   4500/12000 | loss 3.6619 | lr 7.57e-04 | gnorm 0.42 | 294.05K tok/s
+step   4500 | VAL loss 2.1356  *best*
+step   4550/12000 | loss 3.3161 | lr 7.52e-04 | gnorm 0.46 | 257.63K tok/s
+step   4600/12000 | loss 3.6379 | lr 7.46e-04 | gnorm 0.48 | 294.08K tok/s
+step   4650/12000 | loss 3.5958 | lr 7.41e-04 | gnorm 0.50 | 294.29K tok/s
+step   4700/12000 | loss 3.5539 | lr 7.35e-04 | gnorm 0.43 | 294.31K tok/s
+step   4750/12000 | loss 3.5325 | lr 7.29e-04 | gnorm 0.40 | 294.46K tok/s
+step   4800/12000 | loss 3.2798 | lr 7.24e-04 | gnorm 1.17 | 294.47K tok/s
+step   4850/12000 | loss 3.3952 | lr 7.18e-04 | gnorm 0.42 | 294.50K tok/s
+step   4900/12000 | loss 3.5500 | lr 7.12e-04 | gnorm 0.46 | 294.44K tok/s
+step   4950/12000 | loss 3.3696 | lr 7.07e-04 | gnorm 0.47 | 294.35K tok/s
+step   5000/12000 | loss 3.5240 | lr 7.01e-04 | gnorm 0.41 | 294.39K tok/s
+step   5000 | VAL loss 2.0894  *best*
+step   5050/12000 | loss 3.3375 | lr 6.95e-04 | gnorm 0.41 | 225.77K tok/s
+step   5100/12000 | loss 3.3916 | lr 6.89e-04 | gnorm 0.41 | 294.44K tok/s
+step   5150/12000 | loss 3.3708 | lr 6.83e-04 | gnorm 0.75 | 294.40K tok/s
+step   5200/12000 | loss 3.5143 | lr 6.77e-04 | gnorm 0.38 | 294.40K tok/s
+step   5250/12000 | loss 3.5801 | lr 6.72e-04 | gnorm 0.39 | 294.29K tok/s
+step   5300/12000 | loss 3.4423 | lr 6.66e-04 | gnorm 0.46 | 294.26K tok/s
+step   5350/12000 | loss 3.5160 | lr 6.60e-04 | gnorm 0.38 | 294.21K tok/s
+step   5400/12000 | loss 3.3020 | lr 6.54e-04 | gnorm 0.55 | 294.35K tok/s
+step   5450/12000 | loss 3.5149 | lr 6.48e-04 | gnorm 0.44 | 294.46K tok/s
+step   5500/12000 | loss 3.1417 | lr 6.42e-04 | gnorm 0.48 | 294.46K tok/s
+step   5500 | VAL loss 2.0568  *best*
+step   5550/12000 | loss 3.4697 | lr 6.36e-04 | gnorm 0.42 | 257.29K tok/s
+step   5600/12000 | loss 3.4519 | lr 6.30e-04 | gnorm 0.91 | 294.52K tok/s
+step   5650/12000 | loss 3.4868 | lr 6.24e-04 | gnorm 0.42 | 294.46K tok/s
+step   5700/12000 | loss 3.2955 | lr 6.17e-04 | gnorm 0.50 | 294.49K tok/s
+step   5750/12000 | loss 3.4735 | lr 6.11e-04 | gnorm 0.73 | 294.42K tok/s
+step   5800/12000 | loss 3.3960 | lr 6.05e-04 | gnorm 0.39 | 294.43K tok/s
+step   5850/12000 | loss 3.2611 | lr 5.99e-04 | gnorm 0.81 | 294.40K tok/s
+step   5900/12000 | loss 3.3658 | lr 5.93e-04 | gnorm 0.62 | 294.41K tok/s
+step   5950/12000 | loss 3.4979 | lr 5.87e-04 | gnorm 0.52 | 294.46K tok/s
+step   6000/12000 | loss 3.1970 | lr 5.81e-04 | gnorm 0.52 | 294.39K tok/s
+step   6000 | VAL loss 2.0117  *best*
+step   6050/12000 | loss 3.4136 | lr 5.75e-04 | gnorm 0.42 | 257.70K tok/s
+step   6100/12000 | loss 3.5423 | lr 5.69e-04 | gnorm 0.47 | 294.33K tok/s
+step   6150/12000 | loss 3.5249 | lr 5.62e-04 | gnorm 0.42 | 294.29K tok/s
+step   6200/12000 | loss 3.1594 | lr 5.56e-04 | gnorm 0.48 | 294.29K tok/s
+step   6250/12000 | loss 3.4081 | lr 5.50e-04 | gnorm 0.41 | 294.42K tok/s
+step   6300/12000 | loss 3.4392 | lr 5.44e-04 | gnorm 0.64 | 294.48K tok/s
+step   6350/12000 | loss 3.4755 | lr 5.38e-04 | gnorm 0.48 | 294.50K tok/s
+step   6400/12000 | loss 3.4181 | lr 5.32e-04 | gnorm 0.45 | 294.50K tok/s
+step   6450/12000 | loss 3.2983 | lr 5.26e-04 | gnorm 0.41 | 294.34K tok/s
+step   6500/12000 | loss 3.3053 | lr 5.19e-04 | gnorm 0.43 | 294.03K tok/s
+step   6500 | VAL loss 1.9878  *best*
+step   6550/12000 | loss 3.2027 | lr 5.13e-04 | gnorm 0.41 | 256.16K tok/s
+step   6600/12000 | loss 3.3069 | lr 5.07e-04 | gnorm 0.39 | 259.22K tok/s
+step   6650/12000 | loss 3.4162 | lr 5.01e-04 | gnorm 0.43 | 269.15K tok/s
+step   6700/12000 | loss 3.4604 | lr 4.95e-04 | gnorm 0.64 | 294.40K tok/s
+step   6750/12000 | loss 3.3014 | lr 4.89e-04 | gnorm 0.41 | 294.42K tok/s
+step   6800/12000 | loss 3.3304 | lr 4.83e-04 | gnorm 0.45 | 294.35K tok/s
+step   6850/12000 | loss 3.1812 | lr 4.77e-04 | gnorm 0.66 | 294.35K tok/s
+step   6900/12000 | loss 3.2613 | lr 4.71e-04 | gnorm 0.46 | 294.28K tok/s
+step   6950/12000 | loss 3.3925 | lr 4.65e-04 | gnorm 0.41 | 294.31K tok/s
+step   7000/12000 | loss 3.1539 | lr 4.59e-04 | gnorm 0.41 | 294.57K tok/s
+step   7000 | VAL loss 1.9577  *best*
+step   7050/12000 | loss 3.4034 | lr 4.53e-04 | gnorm 0.73 | 257.75K tok/s
+step   7100/12000 | loss 3.3062 | lr 4.47e-04 | gnorm 0.48 | 294.58K tok/s
+step   7150/12000 | loss 3.2492 | lr 4.41e-04 | gnorm 0.46 | 294.49K tok/s
+step   7200/12000 | loss 3.2904 | lr 4.35e-04 | gnorm 0.41 | 294.53K tok/s
+step   7250/12000 | loss 3.2510 | lr 4.29e-04 | gnorm 0.82 | 294.43K tok/s
+step   7300/12000 | loss 3.2826 | lr 4.23e-04 | gnorm 0.41 | 294.48K tok/s
+step   7350/12000 | loss 3.1725 | lr 4.17e-04 | gnorm 0.50 | 294.21K tok/s
+step   7400/12000 | loss 3.3237 | lr 4.11e-04 | gnorm 0.41 | 294.42K tok/s
+step   7450/12000 | loss 3.3008 | lr 4.05e-04 | gnorm 0.62 | 294.46K tok/s
+step   7500/12000 | loss 3.3602 | lr 3.99e-04 | gnorm 0.68 | 294.30K tok/s
+step   7500 | VAL loss 1.9368  *best*
+step   7550/12000 | loss 3.2611 | lr 3.94e-04 | gnorm 0.41 | 257.56K tok/s
+step   7600/12000 | loss 3.2599 | lr 3.88e-04 | gnorm 0.45 | 294.44K tok/s
+step   7650/12000 | loss 3.3468 | lr 3.82e-04 | gnorm 0.45 | 294.29K tok/s
+step   7700/12000 | loss 3.3876 | lr 3.76e-04 | gnorm 0.60 | 294.30K tok/s
+step   7750/12000 | loss 3.4765 | lr 3.71e-04 | gnorm 0.53 | 294.34K tok/s
+step   7800/12000 | loss 3.2738 | lr 3.65e-04 | gnorm 0.57 | 294.56K tok/s
+step   7850/12000 | loss 3.1773 | lr 3.60e-04 | gnorm 0.48 | 294.57K tok/s
+step   7900/12000 | loss 3.3835 | lr 3.54e-04 | gnorm 0.80 | 294.50K tok/s
+step   7950/12000 | loss 3.2942 | lr 3.49e-04 | gnorm 0.44 | 294.52K tok/s
+step   8000/12000 | loss 3.2841 | lr 3.43e-04 | gnorm 0.46 | 294.59K tok/s
+step   8000 | VAL loss 1.9138  *best*
+step   8050/12000 | loss 3.3264 | lr 3.38e-04 | gnorm 0.42 | 257.83K tok/s
+step   8100/12000 | loss 3.4830 | lr 3.32e-04 | gnorm 0.54 | 294.59K tok/s
+step   8150/12000 | loss 3.3641 | lr 3.27e-04 | gnorm 0.45 | 294.49K tok/s
+step   8200/12000 | loss 3.2888 | lr 3.22e-04 | gnorm 0.61 | 294.55K tok/s
+step   8250/12000 | loss 3.3135 | lr 3.16e-04 | gnorm 0.46 | 294.50K tok/s
+step   8300/12000 | loss 3.3108 | lr 3.11e-04 | gnorm 0.55 | 294.43K tok/s
+step   8350/12000 | loss 3.2479 | lr 3.06e-04 | gnorm 0.43 | 294.47K tok/s
+step   8400/12000 | loss 3.2561 | lr 3.01e-04 | gnorm 0.48 | 294.35K tok/s
+step   8450/12000 | loss 3.3382 | lr 2.96e-04 | gnorm 0.47 | 294.38K tok/s
+step   8500/12000 | loss 3.3665 | lr 2.91e-04 | gnorm 0.46 | 294.23K tok/s
+step   8500 | VAL loss 1.8919  *best*
+step   8550/12000 | loss 3.4254 | lr 2.86e-04 | gnorm 0.43 | 257.45K tok/s
+step   8600/12000 | loss 3.2103 | lr 2.81e-04 | gnorm 0.43 | 294.05K tok/s
+step   8650/12000 | loss 3.2947 | lr 2.76e-04 | gnorm 0.44 | 294.38K tok/s
+step   8700/12000 | loss 3.3062 | lr 2.71e-04 | gnorm 0.56 | 294.46K tok/s
+step   8750/12000 | loss 3.3468 | lr 2.66e-04 | gnorm 0.44 | 294.32K tok/s
+step   8800/12000 | loss 3.3507 | lr 2.61e-04 | gnorm 0.73 | 294.42K tok/s
+step   8850/12000 | loss 3.1345 | lr 2.57e-04 | gnorm 0.44 | 294.39K tok/s
+step   8900/12000 | loss 3.1316 | lr 2.52e-04 | gnorm 0.42 | 294.40K tok/s
+step   8950/12000 | loss 3.2731 | lr 2.47e-04 | gnorm 0.45 | 294.39K tok/s
+step   9000/12000 | loss 3.2130 | lr 2.43e-04 | gnorm 0.59 | 294.38K tok/s
+step   9000 | VAL loss 1.8709  *best*
+step   9050/12000 | loss 3.3926 | lr 2.38e-04 | gnorm 0.42 | 257.63K tok/s
+step   9100/12000 | loss 3.3278 | lr 2.34e-04 | gnorm 0.53 | 294.29K tok/s
+step   9150/12000 | loss 3.3624 | lr 2.30e-04 | gnorm 0.45 | 294.45K tok/s
+step   9200/12000 | loss 3.3325 | lr 2.25e-04 | gnorm 0.46 | 294.35K tok/s
+step   9250/12000 | loss 3.1575 | lr 2.21e-04 | gnorm 0.43 | 294.40K tok/s
+step   9300/12000 | loss 3.2184 | lr 2.17e-04 | gnorm 0.50 | 294.39K tok/s
+step   9350/12000 | loss 3.2417 | lr 2.13e-04 | gnorm 0.46 | 294.45K tok/s
+step   9400/12000 | loss 3.0921 | lr 2.09e-04 | gnorm 0.46 | 294.37K tok/s
+step   9450/12000 | loss 3.1036 | lr 2.05e-04 | gnorm 0.49 | 294.33K tok/s
+step   9500/12000 | loss 3.2818 | lr 2.01e-04 | gnorm 0.50 | 294.33K tok/s
+step   9500 | VAL loss 1.8544  *best*
+step   9550/12000 | loss 3.1375 | lr 1.97e-04 | gnorm 0.43 | 256.78K tok/s
+step   9600/12000 | loss 3.1530 | lr 1.93e-04 | gnorm 0.48 | 294.45K tok/s
+step   9650/12000 | loss 3.2970 | lr 1.90e-04 | gnorm 0.45 | 294.59K tok/s
+step   9700/12000 | loss 3.2589 | lr 1.86e-04 | gnorm 0.66 | 294.56K tok/s
+step   9750/12000 | loss 3.1179 | lr 1.82e-04 | gnorm 0.43 | 294.57K tok/s
+step   9800/12000 | loss 3.1773 | lr 1.79e-04 | gnorm 0.44 | 294.57K tok/s
+step   9850/12000 | loss 3.2315 | lr 1.75e-04 | gnorm 0.45 | 294.55K tok/s
+step   9900/12000 | loss 3.1861 | lr 1.72e-04 | gnorm 0.45 | 294.51K tok/s
+step   9950/12000 | loss 3.0950 | lr 1.69e-04 | gnorm 0.43 | 294.49K tok/s
+step  10000/12000 | loss 3.2567 | lr 1.66e-04 | gnorm 0.45 | 294.41K tok/s
+step  10000 | VAL loss 1.8371  *best*
+step  10050/12000 | loss 3.0198 | lr 1.62e-04 | gnorm 0.44 | 211.35K tok/s
+step  10100/12000 | loss 3.1962 | lr 1.59e-04 | gnorm 0.46 | 293.83K tok/s
+step  10150/12000 | loss 3.2067 | lr 1.56e-04 | gnorm 0.47 | 294.15K tok/s
+step  10200/12000 | loss 3.1111 | lr 1.53e-04 | gnorm 0.46 | 294.22K tok/s
+step  10250/12000 | loss 3.0258 | lr 1.51e-04 | gnorm 0.44 | 294.46K tok/s
+step  10300/12000 | loss 3.1783 | lr 1.48e-04 | gnorm 0.45 | 294.45K tok/s
+step  10350/12000 | loss 3.1651 | lr 1.45e-04 | gnorm 0.54 | 294.48K tok/s
+step  10400/12000 | loss 2.9943 | lr 1.42e-04 | gnorm 0.47 | 294.42K tok/s
+step  10450/12000 | loss 3.2449 | lr 1.40e-04 | gnorm 0.55 | 294.38K tok/s
+step  10500/12000 | loss 3.2326 | lr 1.37e-04 | gnorm 0.51 | 294.39K tok/s
+step  10500 | VAL loss 1.8263  *best*
+step  10550/12000 | loss 3.2076 | lr 1.35e-04 | gnorm 0.47 | 257.10K tok/s
+step  10600/12000 | loss 3.1209 | lr 1.33e-04 | gnorm 0.46 | 294.54K tok/s
+step  10650/12000 | loss 3.2229 | lr 1.30e-04 | gnorm 0.47 | 294.61K tok/s
+step  10700/12000 | loss 3.2152 | lr 1.28e-04 | gnorm 0.45 | 294.57K tok/s
+step  10750/12000 | loss 3.1896 | lr 1.26e-04 | gnorm 0.58 | 294.55K tok/s
+step  10800/12000 | loss 3.2718 | lr 1.24e-04 | gnorm 0.47 | 294.45K tok/s
+step  10850/12000 | loss 3.2079 | lr 1.22e-04 | gnorm 0.44 | 294.53K tok/s
+step  10900/12000 | loss 3.0920 | lr 1.20e-04 | gnorm 0.47 | 294.42K tok/s
+step  10950/12000 | loss 3.1153 | lr 1.18e-04 | gnorm 0.45 | 294.53K tok/s
+step  11000/12000 | loss 3.1545 | lr 1.17e-04 | gnorm 0.46 | 294.59K tok/s
+step  11000 | VAL loss 1.8128  *best*
+step  11050/12000 | loss 3.1398 | lr 1.15e-04 | gnorm 0.46 | 257.74K tok/s
+step  11100/12000 | loss 3.2164 | lr 1.14e-04 | gnorm 0.46 | 294.01K tok/s
+step  11150/12000 | loss 3.2409 | lr 1.12e-04 | gnorm 0.51 | 294.60K tok/s
+step  11200/12000 | loss 3.0047 | lr 1.11e-04 | gnorm 0.46 | 294.74K tok/s
+step  11250/12000 | loss 2.8937 | lr 1.09e-04 | gnorm 0.48 | 294.65K tok/s
+step  11300/12000 | loss 3.0601 | lr 1.08e-04 | gnorm 0.45 | 294.67K tok/s
+step  11350/12000 | loss 3.1422 | lr 1.07e-04 | gnorm 0.47 | 294.70K tok/s
+step  11400/12000 | loss 3.1378 | lr 1.06e-04 | gnorm 0.46 | 294.69K tok/s
+step  11450/12000 | loss 3.1290 | lr 1.05e-04 | gnorm 0.48 | 294.63K tok/s
+step  11500/12000 | loss 3.0552 | lr 1.04e-04 | gnorm 0.46 | 294.74K tok/s
+step  11500 | VAL loss 1.8050  *best*
+step  11550/12000 | loss 3.0955 | lr 1.03e-04 | gnorm 0.72 | 257.56K tok/s
+step  11600/12000 | loss 3.1003 | lr 1.03e-04 | gnorm 0.45 | 294.52K tok/s
+step  11650/12000 | loss 3.1060 | lr 1.02e-04 | gnorm 0.45 | 294.56K tok/s
+step  11700/12000 | loss 3.1307 | lr 1.02e-04 | gnorm 0.46 | 294.56K tok/s
+step  11750/12000 | loss 3.2607 | lr 1.01e-04 | gnorm 0.47 | 294.33K tok/s
+step  11800/12000 | loss 3.1533 | lr 1.01e-04 | gnorm 0.47 | 294.62K tok/s
+step  11850/12000 | loss 3.1824 | lr 1.00e-04 | gnorm 0.46 | 294.44K tok/s
+step  11900/12000 | loss 3.3189 | lr 1.00e-04 | gnorm 0.46 | 294.55K tok/s
+step  11950/12000 | loss 3.0727 | lr 1.00e-04 | gnorm 0.47 | 294.54K tok/s
+step  12000/12000 | loss 2.9141 | lr 1.00e-04 | gnorm 0.51 | 294.63K tok/s
+step  12000 | VAL loss 1.7978  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: gated30-s2 ===
+
+[params]
+  params_total      54,805,024
+  params_nonemb     50,610,720
+  flops_per_token  379,161,792
+
+[val]
+  val_loss             2.6711
+  val_ppl             14.4557
+  val_bpb              0.9934
+  val_acc1             0.4608
+  val_acc5             0.6909
+  val_pred_entropy     2.7407
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3604
+  pos_loss/1        4.3982
+  pos_loss/2-3      3.8416
+  pos_loss/4-7      3.5178
+  pos_loss/8-15     3.1606
+  pos_loss/16-31    2.9520
+  pos_loss/32-63    2.8002
+  pos_loss/64-127   2.6849
+  pos_loss/128-255  2.6317
+  pos_loss/256-511  2.5987
+  ctx_gain          0.6482
+  late_loss         2.6027
+
+[calibration]
+  ece              0.0075
+  mean_confidence  0.4658
+  overconfidence   0.0051
+
+[generalization]
+  train_loss_eval   3.1674
+  gen_gap          -0.4964
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3460
+
+[induction]
+  induction_loss_random  11.8957
+  induction_loss_repeat   3.8324
+  induction_gap           8.0633
+  induction_acc           0.4539
+
+[generation]
+  gen_distinct1   0.7578
+  gen_distinct2   0.9566
+  gen_distinct3   0.9867
+  gen_unigram_kl  1.0924
+
+[throughput]
+  fwd_tok_per_s     7.785e+05
+  fwdbwd_tok_per_s  2.723e+05
+  peak_mem_mb               0
+
+
+[sweep] gates_d_edu: 6 finished, 0 failed 
+run                  n        val_loss         val_bpb        val_acc1        ctx_gain   induction_gap          gen_gap  params_total  fwdbwd_tok_per_s  Δval_bpb vs first
+-------------------  -  --------------  --------------  --------------  --------------  --------------  ---------------  ------------  ----------------  -----------------
+gates_d_edu/gated30  3  2.6698 ±0.0060  0.9929 ±0.0022  0.4610 ±0.0010  0.6500 ±0.0016  7.9823 ±0.1072  -0.4918 ±0.0035        54.81M           275.84K            +0.0000
+gates_d_edu/plain    3  2.6620 ±0.0037  0.9901 ±0.0014  0.4624 ±0.0006  0.6495 ±0.0021  7.7090 ±0.2877  -0.4927 ±0.0049        54.80M           295.23K            -0.0029

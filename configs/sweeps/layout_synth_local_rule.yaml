@@ -1,0 +1,12 @@
+# Synthetic task local_rule (data: synth_local_rule): 16 sublayers d=128, 6 layouts x 3 seeds.
+name: layout_synth_local_rule
+base: ../layouts/synth_base.yaml
+common: {'data.name': 'synth_local_rule', 'train.max_steps': 15000}
+seeds: [0, 1, 2]
+variants:
+  baseline: {model.extra.layout: "AMAMAMAMAMAMAMAM"}
+  A: {model.extra.layout: "MMAAMAAMAAMAAMMM"}
+  B: {model.extra.layout: "AAAMMAMMAMMAMMAA"}
+  C: {model.extra.layout: "MMMMAAAAAAAAMMMM"}
+  D: {model.extra.layout: "AAAAMMMMMMMMAAAA"}
+  sandwich: {model.extra.layout: "AAAAMAMAMAMAMMMM"}

@@ -1,0 +1,25 @@
+# Small long-context run on edu_mix (~1.9M params, seq 256). Reference scale for the local-attention study.
+name: edu_small
+seed: 1337
+data: {name: edu_mix}
+model:
+  n_layer: 4
+  d_model: 128
+  n_head: 4
+  seq_len: 256
+  dropout: 0.0
+  attention: {name: mha}
+optim: {lr: 5.0e-4, weight_decay: 0.1, betas: [0.9, 0.95]}
+train:
+  max_steps: 16000
+  batch_size: 32
+  grad_clip: 1.0
+  warmup_steps: 250
+  eval_interval: 500
+  eval_batches: 32
+  log_interval: 50
+  save_interval: 3000
+eval:
+  batch_size: 16
+  max_batches: 256            # ~1.05M val tokens for the final eval (capped, not the full 5.2M)
+  metrics: [params, val, position, calibration, baselines, induction, long_recall, throughput]

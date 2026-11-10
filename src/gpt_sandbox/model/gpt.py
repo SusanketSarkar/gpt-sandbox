@@ -155,12 +155,69 @@ class GPT(nn.Module):
         return [(k, v[0], v[1]) for k, v in groups.items()]
 
     def flops_per_token(self, seq_len: int | None = None) -> float:
-        """Rough training FLOPs/token: 6 * non-embedding params + attention score/value terms."""
+        """Analytic training FLOPs/token: 6 * non-embedding params + attention score/value terms.
+
+        NOTE: assumes every layer contains an attention sublayer. For layout blocks (mixed
+        A/M stacks) this over- or under-counts the attention term - use `measured_flops_per_token`
+        for a count that matches the actual stack."""
         T = seq_len or self.cfg.seq_len
         n_ne = self.num_params(non_embedding=True)
         attn = 12 * self.cfg.n_layer * self.cfg.d_model * T  # fwd+bwd of QK^T and AV (dense causal upper bound)
         head = 6 * self.cfg.vocab_size * self.cfg.d_model
         return 6 * n_ne + attn + head
+
+    def n_attn_blocks(self) -> int:
+        """How many sublayers in this stack are attention (layout blocks expose .op; classic blocks have .attn)."""
+        n = 0
+        for blk in self.blocks:
+            if getattr(blk, "op", None) is not None:
+                n += blk.op == "A"
+            elif hasattr(blk, "attn"):
+                n += 1
+        return n
+
+    def flop_breakdown(self, batch: int = 1, seq_len: int | None = None, device: str = "cpu"):
+        """(linear_fwd_flops_per_token, attention_score_fwd_flops_per_token, n_attn_blocks).
+
+        linear_fwd: every Linear of this exact stack, measured by running one CPU forward under
+        FlopCounterMode (so it matches the actual A/M mix and d_ff of each sublayer).
+        attention_score_fwd: the QK^T / AV score matmuls (4*d*T per attention block), added
+        analytically because SDPA runs them inside a fused kernel the counter cannot see
+        (verified: FlopCounterMode reports 0 for F.scaled_dot_product_attention).
+        Training FLOPs/token = 3*linear_fwd + 12*d*T*n_attn_blocks (bwd ~= 2x fwd for both parts)."""
+        from torch.utils.flop_counter import FlopCounterMode
+
+        T = seq_len or self.cfg.seq_len
+        d = self.cfg.d_model
+        dev = torch.device(device)
+        was = next(self.parameters()).device
+        moved = was != dev
+        if moved:
+            self.to(dev)
+        try:
+            x = torch.randint(0, max(2, self.cfg.vocab_size), (batch, T), device=dev)
+            was_train = self.training
+            self.eval()
+            with torch.no_grad(), FlopCounterMode(display=False) as fc:
+                self(x)
+            self.train(was_train)
+            linear = fc.get_total_flops() / (batch * T)
+        finally:
+            if moved:
+                self.to(was)
+        nA = self.n_attn_blocks()
+        return linear, 4.0 * nA * d * T, nA
+
+    def measured_flops_per_token(self, batch: int = 1, seq_len: int | None = None, device: str = "cpu") -> float:
+        """Forward-pass FLOPs/token for this exact stack (measured Linear ops + attention score term)."""
+        lin, score, _ = self.flop_breakdown(batch, seq_len, device)
+        return lin + score
+
+    def train_flops_per_token(self, batch: int = 1, seq_len: int | None = None, device: str = "cpu") -> float:
+        """Training FLOPs/token for this exact stack: 3x measured Linear ops + 12*d*T per attention block."""
+        lin, score, nA = self.flop_breakdown(batch, seq_len, device)
+        T = seq_len or self.cfg.seq_len
+        return 3.0 * lin + 12.0 * nA * self.cfg.d_model * T
 
 
 def build_model(model_cfg) -> GPT:

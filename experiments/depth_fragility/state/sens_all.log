@@ -1,0 +1,79 @@
+== plain-s0 (n_layer=8) ==
+plain: val_loss=2.7762 val_bpb=1.0325
+  L0: sig10=+0.0004  sig100=+0.1903  sig30=+0.0053
+  L1: sig10=+0.0009  sig100=+0.3526  sig30=+0.0100
+  L2: sig10=+0.0014  sig100=+0.3811  sig30=+0.0153
+  L3: sig10=+0.0016  sig100=+0.3541  sig30=+0.0161
+  L4: sig10=+0.0017  sig100=+0.3580  sig30=+0.0179
+  L5: sig10=+0.0021  sig100=+0.3734  sig30=+0.0212
+  L6: sig10=+0.0023  sig100=+0.3636  sig30=+0.0231
+  L7: sig10=+0.0024  sig100=+0.3004  sig30=+0.0226
+wrote /home/susanket/gpt-sandbox/experiments/depth_fragility/sensitivity.json
+== plain-s1 (n_layer=8) ==
+plain: val_loss=2.8022 val_bpb=1.0422
+  L0: sig10=+0.0005  sig100=+0.1775  sig30=+0.0052
+  L1: sig10=+0.0009  sig100=+0.3369  sig30=+0.0097
+  L2: sig10=+0.0013  sig100=+0.3344  sig30=+0.0133
+  L3: sig10=+0.0015  sig100=+0.3311  sig30=+0.0154
+  L4: sig10=+0.0018  sig100=+0.3457  sig30=+0.0176
+  L5: sig10=+0.0021  sig100=+0.3801  sig30=+0.0206
+  L6: sig10=+0.0026  sig100=+0.4035  sig30=+0.0254
+  L7: sig10=+0.0026  sig100=+0.3208  sig30=+0.0245
+wrote /home/susanket/gpt-sandbox/experiments/depth_fragility/sensitivity.json
+== plain-s0 (n_layer=16) ==
+plain: val_loss=2.6550 val_bpb=0.9875
+  L0: sig10=+0.0003  sig100=+0.1312  sig30=+0.0034
+  L1: sig10=+0.0005  sig100=+0.3906  sig30=+0.0065
+  L2: sig10=+0.0007  sig100=+0.3315  sig30=+0.0078
+  L3: sig10=+0.0010  sig100=+0.3851  sig30=+0.0103
+  L4: sig10=+0.0012  sig100=+0.4572  sig30=+0.0131
+  L5: sig10=+0.0014  sig100=+0.4254  sig30=+0.0147
+  L6: sig10=+0.0015  sig100=+0.4062  sig30=+0.0159
+  L7: sig10=+0.0015  sig100=+0.3624  sig30=+0.0154
+  L8: sig10=+0.0015  sig100=+0.3496  sig30=+0.0156
+  L9: sig10=+0.0016  sig100=+0.3494  sig30=+0.0165
+  L10: sig10=+0.0018  sig100=+0.3507  sig30=+0.0175
+  L11: sig10=+0.0020  sig100=+0.3591  sig30=+0.0197
+  L12: sig10=+0.0021  sig100=+0.3486  sig30=+0.0204
+  L13: sig10=+0.0021  sig100=+0.3234  sig30=+0.0207
+  L14: sig10=+0.0022  sig100=+0.2952  sig30=+0.0204
+  L15: sig10=+0.0023  sig100=+0.2836  sig30=+0.0218
+wrote /home/susanket/gpt-sandbox/experiments/depth_fragility/sensitivity.json
+== plain-s1 (n_layer=16) ==
+plain: val_loss=2.6563 val_bpb=0.9879
+  L0: sig10=+0.0003  sig100=+0.1332  sig30=+0.0032
+  L1: sig10=+0.0005  sig100=+0.4612  sig30=+0.0059
+  L2: sig10=+0.0006  sig100=+0.3001  sig30=+0.0066
+  L3: sig10=+0.0008  sig100=+0.3300  sig30=+0.0082
+  L4: sig10=+0.0009  sig100=+0.3435  sig30=+0.0094
+  L5: sig10=+0.0011  sig100=+0.3613  sig30=+0.0112
+  L6: sig10=+0.0013  sig100=+0.3847  sig30=+0.0134
+  L7: sig10=+0.0016  sig100=+0.4259  sig30=+0.0169
+  L8: sig10=+0.0019  sig100=+0.4079  sig30=+0.0194
+  L9: sig10=+0.0019  sig100=+0.3683  sig30=+0.0193
+  L10: sig10=+0.0021  sig100=+0.3742  sig30=+0.0205
+  L11: sig10=+0.0021  sig100=+0.3436  sig30=+0.0201
+  L12: sig10=+0.0022  sig100=+0.3341  sig30=+0.0206
+  L13: sig10=+0.0021  sig100=+0.3037  sig30=+0.0199
+  L14: sig10=+0.0022  sig100=+0.2830  sig30=+0.0200
+  L15: sig10=+0.0023  sig100=+0.2730  sig30=+0.0211
+wrote /home/susanket/gpt-sandbox/experiments/depth_fragility/sensitivity.json
+== plain-s2 (n_layer=16) ==
+plain: val_loss=2.6634 val_bpb=0.9905
+  L0: sig10=+0.0003  sig100=+0.1242  sig30=+0.0033
+  L1: sig10=+0.0004  sig100=+0.3852  sig30=+0.0054
+  L2: sig10=+0.0006  sig100=+0.3156  sig30=+0.0068
+  L3: sig10=+0.0008  sig100=+0.3602  sig30=+0.0085
+  L4: sig10=+0.0009  sig100=+0.3774  sig30=+0.0099
+  L5: sig10=+0.0011  sig100=+0.3808  sig30=+0.0112
+  L6: sig10=+0.0011  sig100=+0.3695  sig30=+0.0124
+  L7: sig10=+0.0014  sig100=+0.3639  sig30=+0.0136
+  L8: sig10=+0.0014  sig100=+0.3646  sig30=+0.0153
+  L9: sig10=+0.0017  sig100=+0.3807  sig30=+0.0183
+  L10: sig10=+0.0018  sig100=+0.3593  sig30=+0.0180
+  L11: sig10=+0.0021  sig100=+0.3633  sig30=+0.0199
+  L12: sig10=+0.0022  sig100=+0.3476  sig30=+0.0206
+  L13: sig10=+0.0021  sig100=+0.3100  sig30=+0.0196
+  L14: sig10=+0.0021  sig100=+0.2829  sig30=+0.0198
+  L15: sig10=+0.0024  sig100=+0.2843  sig30=+0.0220
+wrote /home/susanket/gpt-sandbox/experiments/depth_fragility/sensitivity.json

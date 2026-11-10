@@ -1,0 +1,103 @@
+[15:19:26] gpu0 START gates_s.yaml
+[15:19:26] gpu1 START gates_m.yaml
+[15:19:26] gpu2 START gates_m_edu.yaml
+[15:21:44] gpu0 START gates_s.yaml
+[15:21:44] gpu2 START gates_m_edu.yaml
+[15:21:44] gpu1 START gates_m.yaml
+[15:44:28] gpu0 sweep gates_s.yaml rc=0
+[15:44:28] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated1-s0/
+[15:44:35] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated1-s0/ rc=0
+[15:44:35] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated1-s1/
+[15:44:42] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated1-s1/ rc=0
+[15:44:42] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated1-s2/
+[15:44:49] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated1-s2/ rc=0
+[15:44:49] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated30-s0/
+[15:44:56] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated30-s0/ rc=0
+[15:44:56] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated30-s1/
+[15:45:03] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated30-s1/ rc=0
+[15:45:03] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated30-s2/
+[15:45:11] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/gated30-s2/ rc=0
+[15:45:11] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/plain-s0/
+[15:45:18] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/plain-s0/ rc=0
+[15:45:18] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/plain-s1/
+[15:45:25] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/plain-s1/ rc=0
+[15:45:25] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/plain-s2/
+[15:45:32] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_s/plain-s2/ rc=0
+[15:45:32] gpu0 DONE gates_s.yaml
+[15:45:32] gpu0 START gates_l_edu.yaml
+[16:07:14] gpu2 sweep gates_m_edu.yaml rc=0
+[16:07:14] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated1-s0/
+[16:07:23] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated1-s0/ rc=0
+[16:07:23] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated1-s1/
+[16:07:31] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated1-s1/ rc=0
+[16:07:31] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated1-s2/
+[16:07:40] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated1-s2/ rc=0
+[16:07:40] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated30-s0/
+[16:07:48] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated30-s0/ rc=0
+[16:07:48] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated30-s1/
+[16:07:57] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated30-s1/ rc=0
+[16:07:57] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated30-s2/
+[16:08:05] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/gated30-s2/ rc=0
+[16:08:05] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/plain-s0/
+[16:08:14] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/plain-s0/ rc=0
+[16:08:14] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/plain-s1/
+[16:08:22] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/plain-s1/ rc=0
+[16:08:22] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/plain-s2/
+[16:08:31] gpu2 deep-eval /data/susanket/text/gpt/runs/gates_m_edu/plain-s2/ rc=0
+[16:08:31] gpu2 DONE gates_m_edu.yaml
+[16:19:53] gpu1 sweep gates_m.yaml rc=0
+[16:19:53] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated100-s0/
+[16:20:00] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated100-s0/ rc=0
+[16:20:00] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated100-s1/
+[16:20:08] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated100-s1/ rc=0
+[16:20:08] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated100-s2/
+[16:20:16] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated100-s2/ rc=0
+[16:20:16] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated1-s0/
+[16:20:23] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated1-s0/ rc=0
+[16:20:23] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated1-s1/
+[16:20:31] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated1-s1/ rc=0
+[16:20:31] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated1-s2/
+[16:20:39] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated1-s2/ rc=0
+[16:20:39] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated30-s0/
+[16:20:47] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated30-s0/ rc=0
+[16:20:47] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated30-s1/
+[16:20:54] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated30-s1/ rc=0
+[16:20:54] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated30-s2/
+[16:21:02] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/gated30-s2/ rc=0
+[16:21:02] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/plain-s0/
+[16:21:10] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/plain-s0/ rc=0
+[16:21:10] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/plain-s1/
+[16:21:18] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/plain-s1/ rc=0
+[16:21:18] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/plain-s2/
+[16:21:25] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_m/plain-s2/ rc=0
+[16:21:25] gpu1 DONE gates_m.yaml
+[16:21:25] gpu1 START gates_d_edu.yaml
+[16:37:51] gpu0 sweep gates_l_edu.yaml rc=0
+[16:37:51] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/gated30-s0/
+[16:38:00] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/gated30-s0/ rc=0
+[16:38:00] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/gated30-s1/
+[16:38:08] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/gated30-s1/ rc=0
+[16:38:08] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/gated30-s2/
+[16:38:17] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/gated30-s2/ rc=0
+[16:38:17] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/plain-s0/
+[16:38:26] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/plain-s0/ rc=0
+[16:38:26] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/plain-s1/
+[16:38:34] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/plain-s1/ rc=0
+[16:38:34] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/plain-s2/
+[16:38:43] gpu0 deep-eval /data/susanket/text/gpt/runs/gates_l_edu/plain-s2/ rc=0
+[16:38:43] gpu0 DONE gates_l_edu.yaml
+[17:28:24] gpu1 sweep gates_d_edu.yaml rc=0
+[17:28:24] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/gated30-s0/
+[17:28:34] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/gated30-s0/ rc=0
+[17:28:34] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/gated30-s1/
+[17:28:45] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/gated30-s1/ rc=0
+[17:28:45] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/gated30-s2/
+[17:28:55] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/gated30-s2/ rc=0
+[17:28:55] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/plain-s0/
+[17:29:05] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/plain-s0/ rc=0
+[17:29:05] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/plain-s1/
+[17:29:15] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/plain-s1/ rc=0
+[17:29:15] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/plain-s2/
+[17:29:24] gpu1 deep-eval /data/susanket/text/gpt/runs/gates_d_edu/plain-s2/ rc=0
+[17:29:24] gpu1 DONE gates_d_edu.yaml
+[17:29:24] ALL WORKERS DONE

@@ -1,0 +1,8 @@
+# Associative recall with LONG retrieval distances (8-26 key/value pairs).
+# Most queries sit beyond a window-16 local reach, so only global layers can answer them.
+name: synth_recall_long
+sources:
+  - {name: synthetic, task: recall, n_docs: 3000, lines_per_doc: 64, seed: 0, min_pairs: 8, max_pairs: 26}
+tokenizer: char
+val_fraction: 0.1
+dedup: false

@@ -1,0 +1,10 @@
+# Depth-fragility, size M (8L): GLOBAL-noise control. Same total dose spread over all layers:
+# if fragility is a generic regulariser effect, all-layer noise should look like single-layer noise;
+# if it is depth-specific, location should still matter for a given per-layer sigma.
+name: depth_m_global
+base: ../depth/depth_m.yaml
+seeds: [0]
+variants:
+  all_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: all, sigma: 0.1}]}
+  all_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: all, sigma: 0.3}]}
+  all_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: all, sigma: 1.0}]}

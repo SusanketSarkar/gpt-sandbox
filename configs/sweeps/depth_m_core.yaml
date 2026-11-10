@@ -1,0 +1,16 @@
+# Depth-fragility, size M (8L): core hypothesis test as specified.
+# Noise (after_attn, training-only, RMS-scaled Gaussian) at first/middle/last x sigma 0.1/0.3/1.0, 3 seeds.
+name: depth_m_core
+base: ../depth/depth_m.yaml
+seeds: [0, 1, 2]
+variants:
+  plain:    {}
+  n0_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 0.1}]}
+  n4_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: 4, sigma: 0.1}]}
+  n7_sig01: {model.inserts: [{site: after_attn, name: rms_noise, layers: 7, sigma: 0.1}]}
+  n0_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 0.3}]}
+  n4_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 4, sigma: 0.3}]}
+  n7_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 7, sigma: 0.3}]}
+  n0_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 1.0}]}
+  n4_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 4, sigma: 1.0}]}
+  n7_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 7, sigma: 1.0}]}

@@ -1,0 +1,9 @@
+# Gates study, size M on edu_mix (bigger data, 531M train tokens, BPE-8192).
+base: gate_m.yaml
+name: gates_m_edu
+data: {name: edu_mix}
+train:
+  eval_batches: 16
+  save_interval: 5000
+eval:
+  max_batches: 128   # ~1.05M val tokens (capped; full split is 5.2M)

@@ -1,0 +1,32 @@
+# Depth ablation, small: 8 transformer layers = 16 sublayers (8 A + 8 M), d=256, edu_mix.
+name: layout_depth_small
+seed: 1337
+data: {name: edu_mix}
+model:
+  n_layer: 16
+  d_model: 256
+  n_head: 8
+  seq_len: 256
+  dropout: 0.0
+  block: {name: layout}
+  attention: {name: mha}
+  mlp: {name: swiglu}
+  extra:
+    layout: "AMAMAMAMAMAMAMAM"
+optim: {lr: 6.0e-4, betas: [0.9, 0.95], weight_decay: 0.1}
+train:
+  max_steps: 16000
+  batch_size: 128
+  grad_clip: 1.0
+  warmup_steps: 400
+  schedule: {name: cosine, min_lr_ratio: 0.1}
+  eval_interval: 500
+  eval_batches: 16
+  log_interval: 100
+  save_interval: 4000
+  final_eval: true
+eval:
+  batch_size: 16
+  max_batches: 256
+  metrics: [params, val, position, calibration, baselines, induction, generalization, generation, throughput]
+  deep_metrics: [logit_lens, layer_ablation, ctx_sensitivity]

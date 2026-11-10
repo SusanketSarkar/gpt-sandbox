@@ -1,0 +1,34 @@
+# Gates study, size M (canonical): 8 layers, d=512, seq 512, tinystories (~27.6M params).
+name: gates_m
+seed: 1337
+data: {name: tinystories}
+model:
+  n_layer: 8
+  d_model: 512
+  n_head: 8
+  seq_len: 512
+  dropout: 0.0
+optim:
+  name: adamw
+  lr: 1.0e-3
+  betas: [0.9, 0.95]
+  weight_decay: 0.1
+  groups: []
+train:
+  max_steps: 10000
+  batch_size: 32
+  grad_clip: 1.0
+  warmup_steps: 400
+  schedule: {name: cosine, min_lr_ratio: 0.1}
+  eval_interval: 500
+  eval_batches: 16
+  log_interval: 50
+  save_interval: 5000
+  precision: auto
+  compile: false
+  final_eval: true
+eval:
+  metrics: [params, val, position, calibration, generalization, baselines, induction, generation, task, throughput]
+  deep_metrics: [logit_lens, layer_ablation]
+  batch_size: 16
+  max_batches: null

@@ -1,0 +1,48 @@
+# Sanity check: 2 global layers (front 2) + local window-16, with the long_recall probe.
+name: sanity_hybrid
+base: null
+seed: 0
+runs_dir: /data/susanket/text/gpt/runs
+data:
+  name: synth_recall
+  dir: /data/susanket/text/gpt/data
+model:
+  n_layer: 8
+  d_model: 128
+  n_head: 4
+  seq_len: 256
+  vocab_size: 41
+  dropout: 0.0
+  bias: false
+  tie_embeddings: true
+  norm: {name: rmsnorm}
+  posenc: {name: rope}
+  attention:
+    - {layers: "0:2", name: mha}
+    - {layers: all, name: local, window: 8}
+  mlp: {name: swiglu}
+  block: {name: prenorm}
+optim:
+  name: adamw
+  lr: 0.002
+  betas: [0.9, 0.95]
+  eps: 1.0e-08
+  weight_decay: 0.05
+train:
+  max_steps: 2000
+  batch_size: 32
+  warmup_steps: 100
+  schedule: {name: cosine, min_lr_ratio: 0.1}
+  eval_interval: 1000
+  eval_batches: 20
+  log_interval: 500
+  save_interval: 1000
+  precision: auto
+  compile: false
+  device: auto
+  final_eval: true
+eval:
+  metrics: [params, val, baselines, induction, task, long_recall, throughput]
+  batch_size: 16
+  max_batches: 64
+  task_samples: 100

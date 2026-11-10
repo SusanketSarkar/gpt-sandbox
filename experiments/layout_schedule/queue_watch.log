@@ -1,0 +1,1178 @@
+=== 2026-11-09 11:30:35 ===
+  layout_synth_local_rule    16 runs done
+  layout_synth_hop2          10 runs done
+  A: step  14200/15000 | loss 0.1599 | lr 1.07e-04 | gnorm 0.07 | 729.10K tok/s
+  B: step   4200/25000 | loss 1.0208 | lr 9.50e-04 | gnorm 0.11 | 851.92K tok/s
+  gpu 0, 98 %, 14567 MiB
+  gpu 1, 11 %, 8945 MiB
+  gpu 2, 11 %, 9027 MiB
+  gpu 3, 2 %, 63573 MiB
+=== 2026-11-09 11:35:36 ===
+  layout_synth_local_rule    17 runs done
+  layout_synth_hop2          11 runs done
+  A: step  14200/15000 | loss 0.1599 | lr 1.07e-04 | gnorm 0.07 | 729.10K tok/s
+  B: step  24600/25000 | loss 0.8595 | lr 1.01e-04 | gnorm 0.41 | 866.64K tok/s
+  gpu 0, 96 %, 14567 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 11:40:36 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        0 runs done
+  layout_synth_hop2          11 runs done
+  A: ==== [2026-11-09 11:35:59] START: gpt sweep configs/sweeps/layout_synth_recall.yaml ====
+  B: step  17000/25000 | loss 0.9175 | lr 3.17e-04 | gnorm 0.30 | 864.31K tok/s
+  gpu 0, 96 %, 14485 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 11:45:36 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        1 runs done
+  layout_synth_hop2          12 runs done
+  A: step  19600/20000 | loss 1.6529 | lr 1.01e-04 | gnorm 0.77 | 1.05M tok/s
+  B: step   9200/25000 | loss 1.0171 | lr 7.48e-04 | gnorm 0.14 | 834.03K tok/s
+  gpu 0, 96 %, 14559 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 11:50:36 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        2 runs done
+  layout_synth_hop2          13 runs done
+  A: step  17000/20000 | loss 1.7362 | lr 1.52e-04 | gnorm 0.65 | 861.60K tok/s
+  B: step   9200/25000 | loss 1.0171 | lr 7.48e-04 | gnorm 0.14 | 834.03K tok/s
+  gpu 0, 95 %, 14559 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 11:55:36 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        3 runs done
+  layout_synth_hop2          13 runs done
+  A: step  14200/20000 | loss 1.7513 | lr 2.83e-04 | gnorm 0.70 | 847.02K tok/s
+  B: step   1600/25000 | loss 1.0834 | lr 9.96e-04 | gnorm 0.27 | 860.73K tok/s
+  gpu 0, 96 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:00:36 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        3 runs done
+  layout_synth_hop2          14 runs done
+  A: step  11600/20000 | loss 2.1379 | lr 4.53e-04 | gnorm 0.20 | 856.67K tok/s
+  B: step  21800/25000 | loss 0.8492 | lr 1.37e-04 | gnorm 0.58 | 862.47K tok/s
+  gpu 0, 96 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:05:36 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        4 runs done
+  layout_synth_hop2          14 runs done
+  A: step   9000/20000 | loss 2.2177 | lr 6.40e-04 | gnorm 0.12 | 876.79K tok/s
+  B: step  14000 | VAL loss 1.0786
+  gpu 0, 95 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:10:37 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        5 runs done
+  layout_synth_hop2          15 runs done
+  A: step   6200/20000 | loss 2.1964 | lr 8.23e-04 | gnorm 0.18 | 840.04K tok/s
+  B: step   6400/25000 | loss 0.9905 | lr 8.77e-04 | gnorm 0.14 | 854.11K tok/s
+  gpu 0, 96 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:15:37 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        6 runs done
+  layout_synth_hop2          16 runs done
+  A: step   6200/20000 | loss 2.1964 | lr 8.23e-04 | gnorm 0.18 | 840.04K tok/s
+  B:   overconfidence   0.0013
+  gpu 0, 96 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:20:37 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        6 runs done
+  layout_synth_hop2          16 runs done
+  A: step   3600/20000 | loss 2.0517 | lr 9.45e-04 | gnorm 0.16 | 864.33K tok/s
+  B:   overconfidence   0.0013
+  gpu 0, 95 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:25:37 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        7 runs done
+  layout_synth_hop2          17 runs done
+  A: step   1000/20000 | loss 2.3619 | lr 9.99e-04 | gnorm 0.16 | 866.16K tok/s
+  B: step  19000 | VAL loss 1.5233
+  gpu 0, 96 %, 14571 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:30:37 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        8 runs done
+  layout_synth_hop2          17 runs done
+  A:   val_tokens        262,144
+  B: step  11400/25000 | loss 0.9216 | lr 6.28e-04 | gnorm 0.29 | 860.93K tok/s
+  gpu 0, 96 %, 14571 MiB
+  gpu 1, 94 %, 14635 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:35:37 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        9 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            0 runs done
+  A: step  18800/20000 | loss 1.6828 | lr 1.08e-04 | gnorm 0.73 | 733.20K tok/s
+  B: ==== [2026-11-09 12:31:10] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only sandwich,rand0,rand1,rand2,rand3 ====
+  gpu 0, 100 %, 41895 MiB
+  gpu 1, 96 %, 14833 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:40:38 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        9 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            0 runs done
+  A: step  18800/20000 | loss 1.6828 | lr 1.08e-04 | gnorm 0.73 | 733.20K tok/s
+  B: ==== [2026-11-09 12:31:10] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only sandwich,rand0,rand1,rand2,rand3 ====
+  gpu 0, 100 %, 41895 MiB
+  gpu 1, 0 %, 42453 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:45:38 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        10 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            0 runs done
+  A: step  16200/20000 | loss 1.8659 | lr 1.82e-04 | gnorm 0.44 | 704.66K tok/s
+  B: ==== [2026-11-09 12:31:10] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only sandwich,rand0,rand1,rand2,rand3 ====
+  gpu 0, 100 %, 41895 MiB
+  gpu 1, 76 %, 57935 MiB
+  gpu 2, 11 %, 9027 MiB
+  gpu 3, 4 %, 63573 MiB
+=== 2026-11-09 12:50:38 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        10 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            0 runs done
+  A: step  13600/20000 | loss 2.1859 | lr 3.19e-04 | gnorm 0.16 | 648.62K tok/s
+  B: ==== [2026-11-09 12:31:10] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only sandwich,rand0,rand1,rand2,rand3 ====
+  gpu 0, 100 %, 41895 MiB
+  gpu 1, 0 %, 70851 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 12:55:38 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        11 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            0 runs done
+  A: step  13600/20000 | loss 2.1859 | lr 3.19e-04 | gnorm 0.16 | 648.62K tok/s
+  B: ==== [2026-11-09 12:31:10] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only sandwich,rand0,rand1,rand2,rand3 ====
+  gpu 0, 100 %, 41895 MiB
+  gpu 1, 72 %, 70851 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:00:38 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        12 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            1 runs done
+  A: step  11000/20000 | loss 2.1851 | lr 4.96e-04 | gnorm 0.15 | 733.43K tok/s
+  B: ==== [2026-11-09 12:31:10] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only sandwich,rand0,rand1,rand2,rand3 ====
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 97 %, 70851 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:05:38 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        12 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            1 runs done
+  A: step   8200/20000 | loss 1.8930 | lr 6.96e-04 | gnorm 0.40 | 707.79K tok/s
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 71 %, 70851 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:10:39 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        13 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            1 runs done
+  A: step   5600/20000 | loss 2.0571 | lr 8.57e-04 | gnorm 0.16 | 732.28K tok/s
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 71 %, 43847 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:15:39 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        14 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            1 runs done
+  A: step   3000/20000 | loss 2.0723 | lr 9.64e-04 | gnorm 0.13 | 736.84K tok/s
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 95 %, 43847 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:20:39 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        14 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            1 runs done
+  A: step   3000/20000 | loss 2.0723 | lr 9.64e-04 | gnorm 0.13 | 736.84K tok/s
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:25:39 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        15 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            2 runs done
+  A: step    400/20000 | loss 2.3632 | lr 8.00e-04 | gnorm 0.18 | 735.24K tok/s
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:30:39 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        16 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            2 runs done
+  A:   flops_per_token           11,238,144
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 97 %, 14963 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:35:39 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        16 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            2 runs done
+  A:   flops_per_token           11,238,144
+  B: step   1600/6000 | loss 3.6900 | lr 5.41e-04 | gnorm 0.46 | 126.72K tok/s
+  gpu 0, 100 %, 41907 MiB
+  gpu 1, 11 %, 13605 MiB
+  gpu 2, 14 %, 9027 MiB
+  gpu 3, 9 %, 63573 MiB
+=== 2026-11-09 13:40:40 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        17 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            2 runs done
+  A: step  18200/20000 | loss 1.6635 | lr 1.19e-04 | gnorm 0.76 | 516.84K tok/s
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 57 %, 41907 MiB
+  gpu 1, 1 %, 41227 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:45:40 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            2 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 71 %, 56707 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:50:40 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            3 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 98 %, 69623 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 13:55:40 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            3 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 0 %, 69623 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:00:40 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            3 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 97 %, 69623 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:05:40 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            3 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 73 %, 69623 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:10:41 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            3 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 73 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:15:41 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            3 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   3500/6000 | loss 3.3250 | lr 2.85e-04 | gnorm 0.44 | 111.83K tok/s
+  gpu 0, 100 %, 69253 MiB
+  gpu 1, 95 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:20:41 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            4 runs done
+  A: ==== [2026-11-09 13:45:12] START: gpt sweep configs/sweeps/layout_f1_jumbo.yaml --only baseline,A,B,C,D ====
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 97 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:25:41 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            5 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 73 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:30:41 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            5 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 77 %, 44617 MiB
+  gpu 2, 8 %, 9027 MiB
+  gpu 3, 9 %, 63573 MiB
+=== 2026-11-09 14:35:41 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            5 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 100 %, 44617 MiB
+  gpu 2, 1 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:40:42 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            5 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 63 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:45:42 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            5 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:50:42 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            6 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B: step   5400/6000 | loss 3.1381 | lr 7.52e-05 | gnorm 0.35 | 106.93K tok/s
+  gpu 0, 97 %, 69265 MiB
+  gpu 1, 97 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 14:55:42 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            7 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:00:42 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            7 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 63 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:05:43 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            7 runs done
+  A: step   1600/6000 | loss 3.5927 | lr 5.41e-04 | gnorm 0.35 | 104.47K tok/s
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:10:43 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            7 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 93 %, 44617 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:15:43 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            7 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:20:43 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            8 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:25:43 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            9 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B:   gain_vs_unigram  5.3052
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:30:43 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            9 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:35:44 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            9 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:40:44 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            9 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:45:44 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            9 runs done
+  A: step   3500 | VAL loss 1.9738  *best*
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:50:44 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            10 runs done
+  A: step   5500/6000 | loss 3.2292 | lr 7.06e-05 | gnorm 0.36 | 108.69K tok/s
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 15:55:44 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            11 runs done
+  A: step   5500/6000 | loss 3.2292 | lr 7.06e-05 | gnorm 0.36 | 108.69K tok/s
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:00:44 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            11 runs done
+  A: step   5500/6000 | loss 3.2292 | lr 7.06e-05 | gnorm 0.36 | 108.69K tok/s
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:05:45 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            11 runs done
+  A: step   5500/6000 | loss 3.2292 | lr 7.06e-05 | gnorm 0.36 | 108.69K tok/s
+  B: step   1000 | VAL loss 2.4744  *best*
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:10:45 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            11 runs done
+  A: step   5500/6000 | loss 3.2292 | lr 7.06e-05 | gnorm 0.36 | 108.69K tok/s
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:15:45 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            11 runs done
+  A: step   5500/6000 | loss 3.2292 | lr 7.06e-05 | gnorm 0.36 | 108.69K tok/s
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:20:45 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            12 runs done
+  A:   induction_acc           0.2083
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:25:45 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            13 runs done
+  A:   induction_acc           0.2083
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:30:45 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            13 runs done
+  A:   induction_acc           0.2083
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:35:46 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            13 runs done
+  A:   induction_acc           0.2083
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:40:46 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            13 runs done
+  A:   induction_acc           0.2083
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:45:46 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            13 runs done
+  A:   induction_acc           0.2083
+  B: step   3000/6000 | loss 3.3518 | lr 3.60e-04 | gnorm 0.34 | 107.04K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:50:46 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            13 runs done
+  A:   induction_acc           0.2083
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 16:55:46 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            14 runs done
+  A:   induction_acc           0.2083
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:00:46 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            15 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:05:47 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            15 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:10:47 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            15 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:15:47 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            15 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:20:47 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            15 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:25:47 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            16 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B: step   4900/6000 | loss 3.2704 | lr 1.10e-04 | gnorm 0.37 | 107.08K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:30:47 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            17 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:35:48 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            17 runs done
+  A: step   1300/6000 | loss 3.7744 | lr 5.66e-04 | gnorm 0.44 | 106.96K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:40:48 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            17 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:45:48 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            17 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:50:48 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            17 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 17:55:48 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            18 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:00:48 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            19 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B:   late_loss         2.5918
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:05:49 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            19 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:10:49 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            19 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:15:49 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            19 runs done
+  A: step   3200/6000 | loss 3.4487 | lr 3.30e-04 | gnorm 0.36 | 106.95K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:20:49 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            19 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:25:49 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            20 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:30:49 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            21 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:35:50 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            21 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:40:50 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            21 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step    800/6000 | loss 4.0879 | lr 5.93e-04 | gnorm 0.38 | 106.99K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:45:50 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            21 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:50:50 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            21 runs done
+  A: step   5100/6000 | loss 3.2131 | lr 9.38e-05 | gnorm 0.38 | 104.58K tok/s
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 18:55:50 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            22 runs done
+  A:   late_loss         2.6517
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:00:51 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            23 runs done
+  A:   late_loss         2.6517
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:05:51 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            23 runs done
+  A:   late_loss         2.6517
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:10:51 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            23 runs done
+  A:   late_loss         2.6517
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:15:51 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            23 runs done
+  A:   late_loss         2.6517
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:20:51 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            23 runs done
+  A:   late_loss         2.6517
+  B: step   2700/6000 | loss 3.4953 | lr 4.05e-04 | gnorm 0.34 | 106.95K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 19 %, 8945 MiB
+  gpu 2, 77 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:25:51 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            23 runs done
+  A:   late_loss         2.6517
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:30:52 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            25 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:35:52 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            25 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:40:52 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            25 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:45:52 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            25 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:50:52 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            25 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 19:55:53 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            25 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 20:00:53 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            26 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: step   4600/6000 | loss 3.1346 | lr 1.39e-04 | gnorm 0.35 | 106.20K tok/s
+  gpu 0, 100 %, 69265 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 20:05:53 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            27 runs done
+  layout_f2_jumbo            0 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: ==== [2026-11-09 20:01:28] START: gpt sweep configs/sweeps/layout_f2_jumbo.yaml ====
+  gpu 0, 100 %, 69207 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 20:10:53 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            27 runs done
+  layout_f2_jumbo            0 runs done
+  A: step    900/6000 | loss 3.9623 | lr 5.89e-04 | gnorm 0.35 | 130.27K tok/s
+  B: ==== [2026-11-09 20:01:28] START: gpt sweep configs/sweeps/layout_f2_jumbo.yaml ====
+  gpu 0, 100 %, 69207 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 20:15:53 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            27 runs done
+  layout_f2_jumbo            0 runs done
+  A: step   2800/6000 | loss 3.4889 | lr 3.90e-04 | gnorm 0.35 | 106.51K tok/s
+  B: ==== [2026-11-09 20:01:28] START: gpt sweep configs/sweeps/layout_f2_jumbo.yaml ====
+  gpu 0, 100 %, 69207 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 20:20:53 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            27 runs done
+  layout_f2_jumbo            0 runs done
+  A: step   2800/6000 | loss 3.4889 | lr 3.90e-04 | gnorm 0.35 | 106.51K tok/s
+  B: ==== [2026-11-09 20:01:28] START: gpt sweep configs/sweeps/layout_f2_jumbo.yaml ====
+  gpu 0, 100 %, 69207 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB
+=== 2026-11-09 20:25:54 ===
+  layout_synth_local_rule    18 runs done
+  layout_synth_recall        18 runs done
+  layout_synth_hop2          18 runs done
+  layout_f1_jumbo            27 runs done
+  layout_f2_jumbo            0 runs done
+  A: step   2800/6000 | loss 3.4889 | lr 3.90e-04 | gnorm 0.35 | 106.51K tok/s
+  B: ==== [2026-11-09 20:01:28] START: gpt sweep configs/sweeps/layout_f2_jumbo.yaml ====
+  gpu 0, 100 %, 69207 MiB
+  gpu 1, 0 %, 8945 MiB
+  gpu 2, 0 %, 9027 MiB
+  gpu 3, 0 %, 63573 MiB

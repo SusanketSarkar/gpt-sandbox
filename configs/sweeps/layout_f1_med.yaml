@@ -1,0 +1,15 @@
+name: layout_f1_med
+base: ../layouts/depth_med_base.yaml
+common: {train.max_steps: 8000}
+seeds: [0, 1]
+variants:
+  baseline: {model.extra.layout: "AMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAM"}
+  A: {model.extra.layout: "MMMMMMAAAAAAAAAAAAAAMMMMAAMMMMMM"}
+  B: {model.extra.layout: "AAAAAAMMAAAAMMMMMMMMMMMMAAAAAAMM"}
+  C: {model.extra.layout: "MMMMMMMMAAAAAAAAAAAAAAAAMMMMMMMM"}
+  D: {model.extra.layout: "AAAAAAAAMMMMMMMMMMMMMMMMAAAAAAAA"}
+  sandwich: {model.extra.layout: "AAAAAAAAAMAMAMAMAMAMAMAMMMMMMMMM"}
+  rand0: {model.extra.layout: "MAMMMMMAAAMMMAAAMAMAAAMAMMAAAMMA"}
+  rand1: {model.extra.layout: "MAAAMAAMMAMAMAAMAMMMAMAAMMAMAAMM"}
+  rand2: {model.extra.layout: "MAMAAMAAMMMAMMAAMMAAAAMMAMMMAMAA"}
+  rand3: {model.extra.layout: "AAAAAMMAMMAMMMAMAMMMAAAMMAMAMAMA"}

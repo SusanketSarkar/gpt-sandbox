@@ -1,0 +1,13 @@
+# Local vs global attention, medium scale (seq 512, ~29M params, 8 layers). Windows are seq/8, seq/4, seq/2.
+# Hybrid ratios (global:local) over 8 layers: 11 = alternating {0,2,4,6}/{1,3,5,7}; 13 = {0,1} global / {2..7} local.
+#   gpt sweep configs/sweeps/local_medium.yaml
+name: local_medium
+base: ../edu_medium.yaml
+seeds: [0, 1, 2]
+variants:
+  mha:        {model.attention: {name: mha}}
+  local_w64:  {model.attention: {name: local, window: 64}}
+  local_w128: {model.attention: {name: local, window: 128}}
+  local_w256: {model.attention: {name: local, window: 256}}
+  hybrid_11:  {model.attention: [{layers: "0::2", name: mha}, {layers: all, name: local, window: 128}]}
+  hybrid_13:  {model.attention: [{layers: "0:2", name: mha}, {layers: all, name: local, window: 128}]}

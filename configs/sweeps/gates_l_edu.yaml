@@ -1,0 +1,7 @@
+# Gates study, size L (8L d768, edu_mix, ~62M params).
+name: gates_l_edu
+base: ../gates/gate_l_edu.yaml
+seeds: [0, 1, 2]
+variants:
+  plain:   {model.residual: {name: plain}}
+  gated30: {model.residual: {name: gated}, optim.groups: [{match: "res_", lr_mult: 30, weight_decay: 0}]}

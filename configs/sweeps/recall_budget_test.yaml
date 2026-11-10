@@ -1,0 +1,14 @@
+# Endpoints only (all-global vs all-local), 1 seed, 10k steps.
+# Confirms the task separates and both endpoints are well-trained before the full sweep.
+name: recall_budget_test
+base: ../recall_budget.yaml
+seeds: [0]
+common:
+  train.max_steps: 10000
+  train.warmup_steps: 200
+  train.eval_interval: 1000
+  train.log_interval: 500
+  eval.max_batches: 64
+variants:
+  ratio_1.00: {model.attention: {name: mha}}
+  ratio_0.00: {model.attention: {name: local, window: 4}}

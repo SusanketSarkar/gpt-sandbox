@@ -1,0 +1,135 @@
+evaluating /data/susanket/text/gpt/runs/depth_d_core/plain-s0 (step 12000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 4.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.4s
+  [metric baselines] 0.0s
+  [metric induction] 0.1s
+  [metric generation] 4.2s
+  [metric throughput] 0.7s
+  [metric logit_lens] 0.4s
+  [metric layer_ablation] 1.3s
+
+=== eval: plain-s0 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.6550
+  val_ppl             14.2256
+  val_bpb              0.9875
+  val_acc1             0.4636
+  val_acc5             0.6933
+  val_pred_entropy     2.7372
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3008
+  pos_loss/1        4.3728
+  pos_loss/2-3      3.8451
+  pos_loss/4-7      3.5180
+  pos_loss/8-15     3.1527
+  pos_loss/16-31    2.9415
+  pos_loss/32-63    2.7875
+  pos_loss/64-127   2.6677
+  pos_loss/128-255  2.6148
+  pos_loss/256-511  2.5822
+  ctx_gain          0.6564
+  late_loss         2.5849
+
+[calibration]
+  ece              0.0057
+  mean_confidence  0.4663
+  overconfidence   0.0027
+
+[generalization]
+  train_loss_eval   3.1439
+  gen_gap          -0.4888
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3621
+
+[induction]
+  induction_loss_random  11.8678
+  induction_loss_repeat   4.1990
+  induction_gap           7.6688
+  induction_acc           0.4015
+
+[generation]
+  gen_distinct1   0.7585
+  gen_distinct2   0.9382
+  gen_distinct3   0.9741
+  gen_unigram_kl  1.2306
+
+[throughput]
+  fwd_tok_per_s     4.100e+05
+  fwdbwd_tok_per_s  1.426e+05
+  peak_mem_mb       5027.6787
+
+[logit_lens]
+  lens_loss/embed  43.1108
+  lens_loss/L0      7.3903
+  resid_rms/L0      1.5148
+  lens_loss/L1      6.6672
+  resid_rms/L1      1.8235
+  lens_loss/L2      6.2554
+  resid_rms/L2      2.1494
+  lens_loss/L3      5.9950
+  resid_rms/L3      2.4476
+  lens_loss/L4      5.8082
+  resid_rms/L4      2.7661
+  lens_loss/L5      5.5179
+  resid_rms/L5      3.0807
+  lens_loss/L6      5.1602
+  resid_rms/L6      3.3732
+  lens_loss/L7      4.8102
+  resid_rms/L7      3.7055
+  lens_loss/L8      4.5159
+  resid_rms/L8      4.0621
+  lens_loss/L9      4.4034
+  resid_rms/L9      4.4523
+  lens_loss/L10     4.2129
+  resid_rms/L10     5.0538
+  lens_loss/L11     3.8365
+  resid_rms/L11     5.6444
+  lens_loss/L12     3.3703
+  resid_rms/L12     6.7900
+  lens_loss/L13     2.6054
+  resid_rms/L13     7.6523
+  lens_loss/L14     2.1443
+  resid_rms/L14     8.6248
+  lens_loss/L15     1.7723
+  resid_rms/L15    10.3421
+
+[layer_ablation]
+  ablate_dloss/L0   6.2205
+  ablate_dloss/L1   0.0467
+  ablate_dloss/L2   0.0184
+  ablate_dloss/L3   0.0259
+  ablate_dloss/L4   0.0270
+  ablate_dloss/L5   0.1486
+  ablate_dloss/L6   0.0990
+  ablate_dloss/L7   0.0925
+  ablate_dloss/L8   0.0618
+  ablate_dloss/L9   0.0663
+  ablate_dloss/L10  0.1018
+  ablate_dloss/L11  0.1418
+  ablate_dloss/L12  0.1657
+  ablate_dloss/L13  0.2118
+  ablate_dloss/L14  0.1707
+  ablate_dloss/L15  0.3720
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmistically towards her parents. Although Helen blessed her husband by her brothers through its proliferation, generatism, and social tightening led to rejection of irony. When Hyuber (1611–1719) meticulously juniorated after the war with Emperor André, Queenrogwick a
+
+  |  want to wear, eating the food you want to eat, saying the things you want them to taste and read.
+  | 
+  | That was fun. She gave Tom a friend Anna, daddy, a cookie and a cake. Tom fed Anna, daddy, and Anna, and Irish. They played with Anna and Ben, too. They gave Anna more cake and a piercantic. It was ve
+
+saved /data/susanket/text/gpt/runs/depth_d_core/plain-s0/eval.json

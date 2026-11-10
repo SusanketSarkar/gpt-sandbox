@@ -1,0 +1,118 @@
+evaluating /data/susanket/text/gpt/runs/gates_m/gated1-s1 (step 10000) on 'tinystories'
+  [metric params] 0.0s
+  [metric val] 0.7s
+  [metric position] 0.0s
+  [metric calibration] 0.0s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 3.7s
+  [metric task] 0.0s
+  [metric throughput] 0.6s
+  [metric logit_lens] 0.0s
+  [metric layer_ablation] 0.2s
+
+=== eval: gated1-s1 ===
+
+[params]
+  params_total      27,402,768
+  params_nonemb     25,305,616
+  flops_per_token  189,582,432
+
+[val]
+  val_loss           1.4810
+  val_ppl            4.3974
+  val_bpb            0.5449
+  val_acc1           0.6209
+  val_acc5           0.8701
+  val_pred_entropy   1.3888
+  val_tokens        431,104
+
+[position]
+  pos_loss/0        3.8140
+  pos_loss/1        2.9440
+  pos_loss/2-3      2.6048
+  pos_loss/4-7      2.3492
+  pos_loss/8-15     2.0025
+  pos_loss/16-31    1.7407
+  pos_loss/32-63    1.5600
+  pos_loss/64-127   1.4785
+  pos_loss/128-255  1.4444
+  pos_loss/256-511  1.4204
+  ctx_gain          0.6253
+  late_loss         1.4134
+
+[calibration]
+  ece              0.0283
+  mean_confidence  0.6491
+  overconfidence   0.0282
+
+[generalization]
+  train_loss_eval  1.2700
+  gen_gap          0.2110
+
+[baselines]
+  base_uniform     8.3178
+  base_unigram     5.9972
+  gain_vs_unigram  4.5161
+  base_bigram      3.6500
+  gain_vs_bigram   2.1690
+
+[induction]
+  induction_loss_random  12.6277
+  induction_loss_repeat  11.7454
+  induction_gap           0.8823
+  induction_acc           0.0012
+
+[generation]
+  gen_distinct1   0.6465
+  gen_distinct2   0.9105
+  gen_distinct3   0.9721
+  gen_unigram_kl  0.6636
+
+[throughput]
+  fwd_tok_per_s     1.479e+06
+  fwdbwd_tok_per_s  6.056e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  38.7985
+  lens_loss/L0      5.5923
+  resid_rms/L0      1.1185
+  lens_loss/L1      4.9720
+  resid_rms/L1      1.5134
+  lens_loss/L2      4.6552
+  resid_rms/L2      2.1814
+  lens_loss/L3      3.8665
+  resid_rms/L3      2.8331
+  lens_loss/L4      3.1088
+  resid_rms/L4      3.5794
+  lens_loss/L5      2.4769
+  resid_rms/L5      4.3666
+  lens_loss/L6      1.9038
+  resid_rms/L6      5.3423
+  lens_loss/L7      1.4747
+  resid_rms/L7      7.1625
+
+[layer_ablation]
+  ablate_dloss/L0  6.6636
+  ablate_dloss/L1  0.1558
+  ablate_dloss/L2  0.1884
+  ablate_dloss/L3  0.5350
+  ablate_dloss/L4  0.2879
+  ablate_dloss/L5  0.2314
+  ablate_dloss/L6  0.2747
+  ablate_dloss/L7  0.4291
+
+sample generations:
+  |  made rules, told stories, and sang songs. They were very happy and had a lot of fun exploring the meadow outside. 
+  | 
+  | Sure enough, John and his mom went back to the meadow to explore, and John found a breakfast waiting for them when they left. 
+  | 
+  | John was so excited to eat the cereal that night, every
+
+  |  had chosen the perfect present and she was happy to see her son so happy.<|eos|>Once there was a boy named Tom. Tom loved to learn and play. One day, Tom saw a big window. He urged his mum, "Mum, is a fan!" His mum smiled and said, "Yes, of course you can. You can play with it."
+  | 
+  | Tom was so excited
+
+saved /data/susanket/text/gpt/runs/gates_m/gated1-s1/eval.json

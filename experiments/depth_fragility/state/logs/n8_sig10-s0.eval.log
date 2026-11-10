@@ -1,0 +1,134 @@
+evaluating /data/susanket/text/gpt/runs/depth_d_core/n8_sig10-s0 (step 12000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.7s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 4.0s
+  [metric throughput] 0.7s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.6s
+
+=== eval: n8_sig10-s0 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.7558
+  val_ppl             15.7331
+  val_bpb              1.0249
+  val_acc1             0.4477
+  val_acc5             0.6782
+  val_pred_entropy     2.8105
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.2902
+  pos_loss/1        4.3821
+  pos_loss/2-3      3.8683
+  pos_loss/4-7      3.5550
+  pos_loss/8-15     3.2177
+  pos_loss/16-31    3.0227
+  pos_loss/32-63    2.8751
+  pos_loss/64-127   2.7658
+  pos_loss/128-255  2.7163
+  pos_loss/256-511  2.6895
+  ctx_gain          0.6110
+  late_loss         2.6931
+
+[calibration]
+  ece              0.0054
+  mean_confidence  0.4517
+  overconfidence   0.0040
+
+[generalization]
+  train_loss_eval   3.2377
+  gen_gap          -0.4819
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.2614
+
+[induction]
+  induction_loss_random  12.2354
+  induction_loss_repeat   6.1920
+  induction_gap           6.0434
+  induction_acc           0.1823
+
+[generation]
+  gen_distinct1   0.7884
+  gen_distinct2   0.9717
+  gen_distinct3   0.9914
+  gen_unigram_kl  1.1726
+
+[throughput]
+  fwd_tok_per_s     8.009e+05
+  fwdbwd_tok_per_s  3.353e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  44.8397
+  lens_loss/L0      7.7870
+  resid_rms/L0      0.7264
+  lens_loss/L1      7.4618
+  resid_rms/L1      0.8793
+  lens_loss/L2      7.2655
+  resid_rms/L2      1.1721
+  lens_loss/L3      7.1132
+  resid_rms/L3      1.2843
+  lens_loss/L4      6.9914
+  resid_rms/L4      1.3555
+  lens_loss/L5      6.7346
+  resid_rms/L5      1.3940
+  lens_loss/L6      6.6835
+  resid_rms/L6      1.3485
+  lens_loss/L7      6.3513
+  resid_rms/L7      1.2073
+  lens_loss/L8      5.6675
+  resid_rms/L8      5.1587
+  lens_loss/L9      5.2088
+  resid_rms/L9      6.2692
+  lens_loss/L10     4.7404
+  resid_rms/L10     7.2801
+  lens_loss/L11     4.4392
+  resid_rms/L11     8.4363
+  lens_loss/L12     3.9407
+  resid_rms/L12     9.7389
+  lens_loss/L13     3.3068
+  resid_rms/L13    11.2410
+  lens_loss/L14     2.6096
+  resid_rms/L14    13.2083
+  lens_loss/L15     1.8935
+  resid_rms/L15    17.0146
+
+[layer_ablation]
+  ablate_dloss/L0    5.9308
+  ablate_dloss/L1   -0.0045
+  ablate_dloss/L2    0.0162
+  ablate_dloss/L3    0.0884
+  ablate_dloss/L4    0.0510
+  ablate_dloss/L5    0.0415
+  ablate_dloss/L6    0.0381
+  ablate_dloss/L7    0.0419
+  ablate_dloss/L8    0.0474
+  ablate_dloss/L9    0.1083
+  ablate_dloss/L10   0.1177
+  ablate_dloss/L11   0.1367
+  ablate_dloss/L12   0.1907
+  ablate_dloss/L13   0.2598
+  ablate_dloss/L14   0.3125
+  ablate_dloss/L15   0.7160
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmingImage: Sutherland Scul. ,Sutherland text: This painting is primarily through phintax text. This apply in a light-light light-light pairing to the ultimate composition in the eyes. Active shooting – Experience Criticism … it not only serializes topographic details
+
+  |  want to wear, eating the food you want to eat, saying the things you love, and other things you stay healthy.
+  | Avoid the flaves and supplements that you get that most of Us just come in which you will take chances and use the ingredients you eat in your diet. At your optimal level, your daily diet i
+
+saved /data/susanket/text/gpt/runs/depth_d_core/n8_sig10-s0/eval.json

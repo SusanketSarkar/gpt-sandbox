@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I taught a GPT to gate its own layers. The gates told me nothing.</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #151b24; --panel2: #10161f; --line: #232d3d;
+    --ink: #e9eef6; --mut: #93a1b5; --faint: #5c6b80;
+    --acc: #5cc8ff; --acc2: #ffb454; --violet: #b48cff; --good: #3ddc97; --bad: #ff6b6b;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background:
+      radial-gradient(1000px 420px at 75% -10%, rgba(92,200,255,.14), transparent 60%),
+      radial-gradient(700px 380px at 15% 0%, rgba(180,140,255,.10), transparent 60%);
+    border-bottom: 1px solid var(--line);
+    padding: 64px 20px 40px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  .prose { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .kicker { font: 600 12px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--acc); margin-bottom: 18px; }
+  h1 { font-size: clamp(1.9rem, 4.6vw, 3.1rem); line-height: 1.12; letter-spacing: -0.022em; margin: 0 0 18px; font-weight: 800; }
+  .deck { font-size: 1.13rem; color: var(--mut); max-width: 780px; margin: 0 0 26px; }
+  .strip { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font: 500 12.5px/1 var(--mono); color: var(--mut); background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
+  .pill b { color: var(--ink); font-weight: 600; }
+  main { padding: 44px 0 80px; }
+  section { margin-bottom: 64px; }
+  h2 { font-size: 1.55rem; letter-spacing: -0.015em; margin: 0 0 6px; font-weight: 750; }
+  h2 .no { color: var(--acc); font-family: var(--mono); font-size: .85em; margin-right: 10px; }
+  h3 { font-size: 1.08rem; margin: 34px 0 10px; font-weight: 650; }
+  p { margin: 14px 0; }
+  a { color: var(--acc); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font: 500 13.5px/1.6 var(--mono); background: rgba(92,200,255,.08); border: 1px solid rgba(92,200,255,.15); border-radius: 6px; padding: 1.5px 6px; color: #cfe9ff; }
+  .code { background: #0a0e14; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; overflow-x: auto; margin: 18px 0; font: 12.5px/1.7 var(--mono); color: #c9d6e8; }
+  .code .c { color: #5f7189; } .code .k { color: #7ee0a3; } .code .s { color: #ffcf87; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin: 20px 0; }
+  .card.tight { padding: 14px 16px; }
+  .verdict { border-left: 4px solid var(--bad); }
+  .hypo { border-left: 4px solid var(--acc); }
+  .neg { border-left: 4px solid var(--acc2); }
+  .ok { border-left: 4px solid var(--good); }
+  .tag { display: inline-block; font: 700 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; border-radius: 6px; padding: 4px 8px; margin-bottom: 10px; }
+  .tag.red { background: rgba(255,107,107,.14); color: var(--bad); }
+  .tag.blue { background: rgba(92,200,255,.14); color: var(--acc); }
+  .tag.amber { background: rgba(255,180,84,.14); color: var(--acc2); }
+  .tag.green { background: rgba(61,220,151,.14); color: var(--good); }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  th { font: 600 11.5px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 8px 10px; border-bottom: 1px solid rgba(35,45,61,.55); font-variant-numeric: tabular-nums; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--mut); }
+  th.sorted { color: var(--acc); }
+  .num { font-variant-numeric: tabular-nums; }
+  .muted { color: var(--mut); } .small { font-size: 13.5px; }
+  .badges span, .badge { display: inline-block; font: 600 11px/1 var(--mono); border-radius: 999px; padding: 4px 9px; margin-right: 6px; }
+  .b-teal { background: rgba(92,200,255,.15); color: var(--acc); }
+  .b-amber { background: rgba(255,180,84,.15); color: var(--acc2); }
+  .b-red { background: rgba(255,107,107,.16); color: var(--bad); }
+  .statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 22px 0; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .stat .v { font: 700 1.45rem/1.2 var(--mono); letter-spacing: -0.02em; }
+  .stat .l { font-size: 12.5px; color: var(--mut); margin-top: 4px; }
+  .v.blue { color: var(--acc); } .v.amber { color: var(--acc2); } .v.red { color: var(--bad); } .v.green { color: var(--good); } .v.violet { color: var(--violet); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 10px; }
+  .tab, .chip { font: 600 13px/1 var(--mono); color: var(--mut); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: all .15s; }
+  .tab:hover, .chip:hover { color: var(--ink); border-color: var(--faint); }
+  .tab.on { background: var(--acc); border-color: var(--acc); color: #06121c; }
+  .chip.on { background: rgba(92,200,255,.16); border-color: var(--acc); color: var(--acc); }
+  .chartcard { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .chartgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media (max-width: 900px) { .chartgrid { grid-template-columns: 1fr; } }
+  .chartcard h4 { margin: 0 0 4px; font-size: 14px; font-weight: 650; }
+  .chartcard .sub { font-size: 12px; color: var(--faint); margin: 0 0 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--mut); margin: 6px 0 2px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1.5px; }
+  .animrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 10px 0 4px; }
+  .btn { font: 700 13px/1 var(--mono); color: #06121c; background: var(--acc); border: none; border-radius: 999px; padding: 9px 18px; cursor: pointer; }
+  .btn:hover { filter: brightness(1.1); }
+  input[type=range] { flex: 1; min-width: 160px; accent-color: var(--acc); }
+  .stlbl { font: 500 12.5px/1 var(--mono); color: var(--mut); min-width: 170px; }
+  figure { margin: 20px 0; }
+  figure img { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #0a0e14; }
+  figcaption { font-size: 12.5px; color: var(--faint); margin-top: 8px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; margin: 14px 0 0; }
+  .toc a { color: var(--mut); } .toc a:hover { color: var(--acc); }
+  .tip { position: fixed; display: none; z-index: 99; background: #0b1017ee; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font: 12px/1.7 var(--mono); color: var(--ink); pointer-events: none; max-width: 300px; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  .tip .tl { color: var(--mut); display: inline-block; min-width: 64px; }
+  .tip .tv { color: var(--acc); }
+  .row-gate td { background: rgba(92,200,255,.06); }
+  .row-abl td { background: rgba(255,180,84,.07); }
+  .row-l0 td:first-child { border-left: 3px solid var(--bad); }
+  .foot { border-top: 1px solid var(--line); padding: 26px 20px 60px; color: var(--faint); font-size: 13px; }
+  ul { padding-left: 22px; } li { margin: 7px 0; }
+  .svg text { user-select: none; }
+  .grid { stroke: #1c2534; stroke-width: 1; }
+  .zero { stroke: #33415a; stroke-width: 1; stroke-dasharray: 5 4; }
+  .tick { fill: #5c6b80; font: 10.5px var(--mono); }
+  .axl { fill: #7d8ca2; font: 11px var(--mono); letter-spacing: .04em; }
+  .ident { stroke: #3a4a66; stroke-width: 1.4; stroke-dasharray: 6 5; }
+  .pt { fill: var(--acc); stroke: #06121c; stroke-width: 1.5; cursor: pointer; }
+  .pt:hover { fill: #8fd8ff; }
+  .ptl { fill: #aebdd2; font: 10.5px var(--mono); }
+  .barG { fill: #2f7ea6; } .barD { fill: #b97f35; }
+  .guide { stroke: #5cc8ff; stroke-width: 1; stroke-dasharray: 3 3; }
+  .rampG { stroke: var(--acc); } .rampS { stroke: var(--violet); } .rampA { stroke: var(--acc2); }
+  .rampdot { fill: var(--ink); }
+  .toggle { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--mut); margin: 8px 0; }
+  .toggle label { display: flex; gap: 7px; align-items: center; cursor: pointer; }
+  .toggle input { accent-color: var(--acc); }
+</style>
+</head>
+<body>
+
+<div class="tip" id="tip"></div>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">experiment log · gpt-sandbox · nov 2026</div>
+    <h1>I taught a GPT to gate its own layers.<br>The gates told me nothing.</h1>
+    <p class="deck">A 42-run study of learned layer gates vs. layer ablation: is gate size a cheap,
+    free-at-training-time signal of which layers matter? <b style="color:var(--ink)">No.</b>
+    Here's the whole thing — the rig, the hiccups, the plots, and the useful negative.</p>
+    <div class="strip">
+      <span class="pill"><b>42</b> runs</span>
+      <span class="pill"><b>27</b> gated models analyzed</span>
+      <span class="pill"><b>6.5B</b> tokens</span>
+      <span class="pill"><b>3</b>× H100</span>
+      <span class="pill"><b>~2h</b> wall</span>
+      <span class="pill">8–16 layers</span>
+      <span class="pill">2 corpora</span>
+      <span class="pill">3 seeds each</span>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="prose">
+
+  <div class="card verdict">
+    <span class="tag red">TL;DR — hypothesis rejected</span>
+    <p style="margin:6px 0 0">In all 27 gated models, the learned gate is a <b>redundant scale knob</b>: it rank-correlates
+    with the sublayer output-weight norm at <b>+0.62 … +1.00</b> in every single run, and once you regress that scale
+    out, the gate's correlation with ablation importance is <b>≈ 0 everywhere (−0.12 … +0.17)</b>.
+    Picking the "most skippable layer" from gate size lands at <b>chance level (3/27)</b>.
+    And the failure is not spread out — it is <b>concentrated on a single layer</b>: strip layer 0 out of the
+    comparison and the gate agrees with ablation almost everywhere (<b>ρ 0.54 … 1.00 in all 27 runs</b>),
+    yet it inverts <b>layer 0 — the single most important layer in 24 of 27 models</b>, giving it one of the
+    smallest gates (the smallest in 17 of 27, below-median in all 27). A scale knob is blind to leverage.
+    Practical takeaway: <b>don't read importance off scale parameters</b> — learned gates or raw output norms.
+    The 10–30-second ablation (<code>gpt eval --deep</code>) remains the cheap, correct oracle.</p>
+  </div>
+
+  <nav class="toc">
+    <a href="#question">1 · The question</a>
+    <a href="#rig">2 · The rig</a>
+    <a href="#move">3 · Do the gates move?</a>
+    <a href="#result">4 · Result: a ramp, not a ranking</a>
+    <a href="#redundancy">5 · The redundancy, in one number</a>
+    <a href="#layer0">6 · The layer-0 story</a>
+    <a href="#why">7 · Why this happens</a>
+    <a href="#negative">8 · The useful negative</a>
+    <a href="#next">9 · What I'd do next</a>
+    <a href="#caveats">10 · Caveats</a>
+    <a href="#repro">11 · Reproduce</a>
+  </nav>
+
+  <section id="question">
+    <h2><span class="no">01</span>The question</h2>
+    <p>Every Transformer block hands its residual stream a small contribution:
+    <code>x → x + sublayer(x)</code>. A lot of the block's work is redundant with the other blocks —
+    some layers are load-bearing, some are decoration. If I could <em>see</em> that during training,
+    I could prune, skip, or re-weight layers with zero extra evals.</p>
+    <p>So I added a learned scalar gate at every residual join:</p>
+    <div class="code">x  →  x + g · sublayer(x)      g ∈ ℝ,  init 1.0,  one g per (layer, site)</div>
+    <p>One gate per attention join, one per MLP join, all starting at 1.0. The idea is seductive:
+    if a layer matters, the optimizer keeps its gate open; if it's dead weight, the gate closes.
+    And to make the gate actually learnable, it gets its own optimizer group at <b>30× the base learning rate</b>
+    with no weight decay:</p>
+    <div class="code">optim:
+  groups:
+    - {match: <span class="s">"res_"</span>, lr_mult: <span class="k">30</span>, weight_decay: <span class="k">0</span>}</div>
+    <div class="card hypo">
+      <span class="tag blue">hypothesis</span>
+      <p style="margin:6px 0 0"><b>After training with per-layer gates, layers with small gates are the layers that
+      layer ablation says are unimportant.</b> Question: is gate size a cheap, free-at-training-time measure of
+      layer importance?</p>
+    </div>
+    <p>Here's the part I'm not going to hide: <b>I suspected it would fail</b>, and I had a theory for how.
+    The model only ever sees the <em>product</em> <code>g · W_out · x</code> — scale is one degree of freedom
+    with two coordinates, and the gate is the one that moves 30× faster. I expected it to settle into a
+    <em>scale</em>, not an <em>importance</em>. But a suspicion isn't a result, and I wanted to know
+    (a) whether the gates move at all, (b) how strongly they track scale, and (c) whether scale itself
+    carries any importance signal at all. That's the grid in the next section.</p>
+    <p>One precondition I refused to skip: in an earlier run the gates <em>had</em> "barely moved" at the
+    base learning rate. A frozen knob tells you nothing, so before reading anything into the final values
+    I explicitly tested three regimes — <code>lr_mult 1</code> (base), <code>30</code> (as intended),
+    and <code>100</code> (to see what happens when you push) — and measured the movement directly. Section 3.</p>
+  </section>
+
+  <section id="rig">
+    <h2><span class="no">02</span>The rig</h2>
+    <p>The gate is a 34-line plugin into the sandbox's residual API — register a new residual type,
+    add one scalar parameter, log it every log-step:</p>
+    <div class="code">
+<span class="c"># plugins/gated_residual.py</span>
+<span class="k">@register</span>(<span class="s">"residual"</span>, <span class="s">"gated"</span>)
+<span class="k">class</span> GatedResidual(nn.Module):
+    <span class="k">def</span> __init__(self, cfg, layer_idx, site, init=<span class="k">1.0</span>):
+        super().__init__()
+        self.layer_idx, self.site = layer_idx, site
+        self.res_g = nn.Parameter(torch.tensor(float(init)))   <span class="c"># ← the gate</span>
+
+    <span class="k">def</span> forward(self, x, delta, ctx):
+        <span class="k">if</span> ctx is not None and ctx.training:
+            ctx.log(<span class="s">f"gate/L{self.layer_idx}/{self.site}"</span>, self.res_g)
+        <span class="k">return</span> x + self.res_g * delta
+    </div>
+    <p>Two details I'm a little proud of. First, the parameter is named <code>res_g</code> on purpose:
+    the optimizer-group regex <code>"res_"</code> then matches <b>exactly the 16 gate tensors and nothing else</b>.
+    I printed the matched names before letting the group touch the optimizer —
+    <code>blocks.{0…7}.res_attn.res_g</code>, <code>blocks.{0…7}.res_mlp.res_g</code> — 16 tensors, no leaks
+    into the norms or projections. Second, the ground truth didn't need inventing: this repo already ships
+    <code>gpt eval --deep</code>, which reports <code>ablate_dloss/L&lt;i&gt;</code> — the validation-loss delta
+    when block <code>i</code> is skipped. That's my definition of "matters", and it costs 10–30 seconds per run.</p>
+    <p>I also defined the null I was actually testing against: the <b>sublayer output scale</b>,
+    <code>S_i = hypot(‖attn.proj_i‖, ‖mlp.down_i‖)</code> — the quantity I expected the gate to secretly report.</p>
+    <h3>The grid</h3>
+    <table>
+      <thead><tr><th>cell</th><th>depth</th><th>d_model</th><th>corpus</th><th>steps</th><th>params</th><th>variants × seeds</th></tr></thead>
+      <tbody>
+        <tr><td>gates_s</td><td>8</td><td>256</td><td>tinystories</td><td>10k</td><td>7.3M</td><td>plain, g1, g30 × s0,s1,s2</td></tr>
+        <tr><td>gates_m</td><td>8</td><td>512</td><td>tinystories</td><td>10k</td><td>27.4M</td><td>plain, g1, g30, <b>g100</b> × s0,s1,s2</td></tr>
+        <tr><td>gates_m_edu</td><td>8</td><td>512</td><td>edu_mix</td><td>10k</td><td>29.5M</td><td>plain, g1, g30 × s0,s1,s2</td></tr>
+        <tr><td>gates_l_edu</td><td>8</td><td>768</td><td>edu_mix</td><td>12k</td><td>62.9M</td><td>plain, g30 × s0,s1,s2</td></tr>
+        <tr><td>gates_d_edu</td><td><b>16</b></td><td>512</td><td>edu_mix</td><td>12k</td><td>54.8M</td><td>plain, g30 × s0,s1,s2</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">That's <b>42 runs, 6.5B tokens, ~2h07m on 3 H100s</b> (one orchestrator worker per cell,
+    each worker trains a run then immediately runs <code>gpt eval --deep</code> on it). The 16-layer cell is the
+    depth probe: more layers, more redundancy available, the best chance for a gate to find something to hide in.
+    Per-run metrics: Spearman ρ(gate, ablation) with 2000-shuffle permutation p, the <b>partial</b>
+    ρ(gate | scale) — the redundancy test — top-1/top-2 agreement on the most-skippable layer, plus a
+    depth-trend decomposition. Details in §11.</p>
+    <h3>What broke (it's honest to list)</h3>
+    <ul class="small">
+      <li><b>The first launch died with my shell.</b> I started the orchestrator from an interactive session;
+      when the session ended, the process group went with it. Relaunched under <code>setsid</code>, lost ~2 min,
+      no data.</li>
+      <li><b>The analyzer crashed on numpy → JSON</b> (numpy floats aren't JSON-serializable). Added a default
+      encoder; 10-minute detour.</li>
+      <li><b>Per-run plot filenames collided across cells</b> — <code>gated30-s0.png</code> exists in four cells.
+      Namespaced them by cell. (Yes, this blog's charts are the fixed ones.)</li>
+      <li><b><code>gated100</code> blew up.</b> At 100× the LR the gates ran away to ~12 and the weights
+      compensated. Degenerate — but I kept it in the analysis, because it's informative about the regime.</li>
+    </ul>
+  </section>
+
+  <section id="move">
+    <h2><span class="no">03</span>First things first: do the gates move?</h2>
+    <p>This is the check I refused to skip. If the gates are frozen at 1.0, everything downstream is
+    reading noise as signal. I measured |g_final − 1.0| per layer, from the checkpoint:</p>
+    <table>
+      <thead><tr><th>variant</th><th>gate LR (base)</th><th>max |Δg|</th><th>mean |Δg|</th><th>final range</th><th>verdict</th></tr></thead>
+      <tbody>
+        <tr><td>gated1</td><td>1e-3 / 2e-3</td><td class="num">0.95 – 1.42</td><td class="num">0.55 – 0.69</td><td class="num">+0.02 … +2.4</td><td><span class="badge b-teal">moved</span></td></tr>
+        <tr><td>gated30</td><td>3e-2 / 6e-2</td><td class="num">0.97 – 5.36</td><td class="num">0.55 – 1.36</td><td class="num">−0.01 … +6.4</td><td><span class="badge b-teal">moved a lot</span></td></tr>
+        <tr><td>gated100</td><td>1e-1 / 2e-1</td><td class="num">9.97 – 11.40</td><td class="num">2.79 – 3.27</td><td class="num">+0.05 … +12.4</td><td><span class="badge b-red">exploded</span></td></tr>
+      </tbody>
+    </table>
+    <div class="card ok">
+      <span class="tag green">check passed</span>
+      <p style="margin:6px 0 0">The gates move at <b>every</b> learning rate I tested, including the base one.
+      My earlier "barely moved at the normal LR" did not reproduce at this run length — Adam moves scalar
+      parameters a lot even at 1e-3 over 10k steps. So reading the final values is legitimate.
+      The <code>gated100</code> regime is a warning, not a data point: the product <code>g·W</code> can trade
+      off freely, and at high LR the fast coordinate just runs away.</p>
+    </div>
+    <h3>Watch them learn</h3>
+    <p class="small muted">All 16 gates of one run over training (attn solid, mlp dashed). Press
+    <b>animate</b>, or scrub. Hover for values. Left: the two learning rates side by side, same cell.
+    Right: the 16-layer model.</p>
+    <div class="chartcard" style="margin-bottom:14px">
+      <h4>8-layer model — base LR (dashed) vs 30× LR (solid)</h4>
+      <p class="sub">gates_s · gated1-s0 (dashed) and gated30-s0 (solid) · both start at 1.0</p>
+      <div id="traj_s"></div>
+      <div class="animrow">
+        <button class="btn" id="pl_traj_s">animate</button>
+        <input type="range" id="sl_traj_s" min="0" max="1" value="1">
+        <span class="stlbl" id="st_traj_s"></span>
+      </div>
+    </div>
+    <div class="chartcard">
+      <h4>16-layer model — every gate, one run</h4>
+      <p class="sub">gates_d_edu · gated30-s0 · note the early layers collapsing toward 0 and the late ones opening</p>
+      <div id="traj_d"></div>
+      <div class="animrow">
+        <button class="btn" id="pl_traj_d">animate</button>
+        <input type="range" id="sl_traj_d" min="0" max="1" value="1">
+        <span class="stlbl" id="st_traj_d"></span>
+      </div>
+    </div>
+    <figure>
+      <img src="plots/gates_s_trajectories.png" alt="gate trajectories across 6 runs in the S cell">
+      <figcaption>Static overview, all six gated runs in the 8L tinystories cell (g1 vs g30, three seeds each).
+      Same story in every run: a smooth ramp, early layers closing, late layers opening.</figcaption>
+    </figure>
+    <p>And here's the first red flag, from a 600-step smoke run I did before the grid: the gate–scale rank
+    correlation was <b>already 1.00</b> at step 600. I wrote it down, made a note to check it properly,
+    and let the full grid decide. It did not decide in the gate's favor.</p>
+  </section>
+
+  <section id="result">
+    <h2><span class="no">04</span>The result: a ramp, not a ranking</h2>
+    <p>The headline numbers, across all 27 gated runs:</p>
+    <div class="statgrid">
+      <div class="stat"><div class="v blue">+0.02 … +0.78</div><div class="l">Spearman ρ(gate, ablation) per run<br>pooled mean |ρ| = 0.36, permutation p = 0.071</div></div>
+      <div class="stat"><div class="v violet">+0.62 … +1.00</div><div class="l">Spearman ρ(gate, output-weight scale)<br><b>all 27 runs, no exceptions</b></div></div>
+      <div class="stat"><div class="v amber">−0.12 … +0.17</div><div class="l">partial ρ(gate | scale) — the gate's signal <b>after</b> removing scale<br><b>≈ 0 in every single run</b></div></div>
+      <div class="stat"><div class="v red">3 / 27</div><div class="l">top-1 "most skippable layer" matches<br>chance = 1/8 (8L) and 1/16 (16L)</div></div>
+    </div>
+    <p>Read those two middle numbers together and the story writes itself: <b>the gate and the scale are the
+    same thing</b>, and that thing only weakly tracks importance. The positive gate↔ablation correlations
+    are not the gate's — they're the scale's, borrowed.</p>
+    <h3>Pick a run, look at the geometry</h3>
+    <p class="small muted">Left chart: each dot is a layer; x = its gate rank, y = its scale rank.
+    The dashed line is "perfect agreement" — the gate is a perfect ranker of scale.
+    Right chart: the same layout, but y = the ablation rank. That's the actual test. The dots scatter.
+    Bottom left: the two quantities in native layer order (each normalized to its own max — they don't even
+    have the same shape). Bottom right: all three as depth trends, normalized.</p>
+    <div id="explorer" class="card">
+      <div class="tabs" id="x_cells"></div>
+      <div class="tabs" id="x_runs"></div>
+      <div class="statgrid" style="margin:14px 0">
+        <div class="stat"><div class="v blue" id="x_rho">–</div><div class="l">ρ(gate, ablation)</div></div>
+        <div class="stat"><div class="v" id="x_p" style="color:var(--mut)">–</div><div class="l">permutation p</div></div>
+        <div class="stat"><div class="v violet" id="x_gs">–</div><div class="l">ρ(gate, scale)</div></div>
+        <div class="stat"><div class="v amber" id="x_part">–</div><div class="l">partial ρ(gate | scale)</div></div>
+        <div class="stat"><div class="v" id="x_top" style="color:var(--mut)">–</div><div class="l">top-1 skippable match</div></div>
+      </div>
+      <div class="chartgrid">
+        <div class="chartcard"><h4>gate rank vs scale rank</h4><p class="sub">redundancy view — hovers the identity line</p><div id="x_rank_scale"></div></div>
+        <div class="chartcard"><h4>gate rank vs ablation rank</h4><p class="sub">the actual test — scatters off it</p><div id="x_rank_abl"></div></div>
+        <div class="chartcard"><h4>per-layer: gate vs ablation</h4><p class="sub">native layer order, each normalized to its own max</p><div id="x_bars"></div>
+          <div class="legend"><span><i style="background:#2f7ea6"></i>|gate|</span><span><i style="background:#b97f35"></i>ablate dloss</span></div></div>
+        <div class="chartcard"><h4>the depth-trend decomposition</h4><p class="sub">each series min–max normalized; hover a layer for raw values</p>
+          <div class="toggle" id="x_ramp_tog">
+            <label><input type="checkbox" data-s="g" checked> gate</label>
+            <label><input type="checkbox" data-s="s" checked> scale</label>
+            <label><input type="checkbox" data-s="d" checked> ablation</label>
+          </div>
+          <div id="x_ramp"></div></div>
+      </div>
+    </div>
+    <h3>What the gate actually learned</h3>
+    <p>A <b>smooth monotonic ramp in depth</b>: early layers get small gates, late layers get big ones, in
+    every cell, every seed, every learning rate. The output-weight norm does exactly the same ramp —
+    that's the ρ(gate, scale) ≥ 0.62 wall. And layer-ablation importance also tends to rise with depth
+    (later layers are usually the costlier ones to drop), so all three series — gate, scale, ablation —
+    share a common "later-is-bigger" trend. The gate's positive rank correlation with ablation is mostly
+    that shared trend, borrowed through the scale. It is strongest exactly where the depth ramp is
+    steepest — the 16-layer cell, ρ = +0.73 … +0.78, permutation p &lt; 0.01 — and the partial correlation
+    there is still +0.01 / +0.02 / +0.02. A statistically significant correlation carrying zero
+    independent signal is the cleanest form this negative result can take.</p>
+    <table>
+      <thead><tr><th>corpus</th><th>cells</th><th>ρ(gate, ablation) per run</th><th>reading</th></tr></thead>
+      <tbody>
+        <tr><td>tinystories</td><td>S (d256), M (d512)</td><td class="num">+0.02 … +0.69</td><td>weak–moderate, all scale-driven</td></tr>
+        <tr><td>edu_mix</td><td>M (d512), L (d768), D (16L d512)</td><td class="num">+0.17 … +0.78</td><td>moderate–strong, still scale-driven</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="redundancy">
+    <h2><span class="no">05</span>The redundancy, in one number</h2>
+    <p>The stat I'd print and frame is the <b>partial correlation</b> ρ(gate | scale): the correlation
+    between the gate and ablation importance <em>after subtracting out everything the gate shares with
+    the output-weight scale</em>. It's the direct test of the hypothesis's own escape hatch — "maybe the
+    gate has importance information the scale doesn't" — and the answer, per run, is:</p>
+    <table>
+      <thead><tr><th>cell · variant</th><th>seeds</th><th>ρ(gate, abl)</th><th>ρ(gate, scale)</th><th>partial ρ(gate | scale)</th><th>top-1</th></tr></thead>
+      <tbody id="partbody"></tbody>
+    </table>
+    <div class="card neg">
+      <span class="tag amber">the verdict in one sentence</span>
+      <p style="margin:6px 0 0">The gate's entire relationship with layer importance is <b>inherited from scale</b>;
+      once scale is accounted for, the gate has nothing left to say — in 27 out of 27 runs.</p>
+    </div>
+    <p>For completeness, the full per-run table (click headers to sort):</p>
+    <div style="overflow-x:auto">
+    <table id="runtable">
+      <thead><tr>
+        <th class="sortable" data-k="run">run</th>
+        <th class="sortable" data-k="rho">ρ(gate, abl)</th>
+        <th class="sortable" data-k="p">p (2000 perm)</th>
+        <th class="sortable" data-k="rha">ρ(gate, scale)</th>
+        <th class="sortable" data-k="part">partial ρ(g|s)</th>
+        <th class="sortable" data-k="rsa">ρ(scale, abl)</th>
+        <th class="sortable" data-k="top1">top-1</th>
+      </tr></thead>
+      <tbody id="runtable_body"></tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="layer0">
+    <h2><span class="no">06</span>The layer-0 story</h2>
+    <p>Rank correlations are averages; the most dramatic fact in the whole study is a single layer.
+    <b>Layer 0 is the most important layer in 24 of the 27 gated models</b> — ablate it and the loss
+    jumps by more than any other layer (in the 16-layer model, validation loss goes from 2.68 to ~6.9,
+    near the random-guess floor, ln 4096 ≈ 8.3). Now ask what the gate thinks of it — and it is
+    consistently in the wrong half:</p>
+    <div class="statgrid">
+      <div class="stat"><div class="v red">27 / 27</div><div class="l">runs where layer 0's gate is <b>below the median</b> gate — under every gate-size metric<br>sign-test p ≈ 10⁻⁸</div></div>
+      <div class="stat"><div class="v red">24 / 27</div><div class="l">runs where layer 0 is the <b>most important</b> layer (max ablation)</div></div>
+      <div class="stat"><div class="v red">~41×</div><div class="l">mean loss increase pruning the gate's "most skippable" layer vs the oracle's pick<br>(oracle ≈ 0.09 nats, random ≈ 0.27 nats)</div></div>
+    </div>
+    <div style="overflow-x:auto">
+    <table id="dtable">
+      <thead><tr><th>layer</th><th>gate</th><th>ablate dloss (nats)</th><th>scale</th><th>gate rank</th><th>abl rank</th><th></th></tr></thead>
+      <tbody id="dtable_body"></tbody>
+    </table>
+    </div>
+    <p class="small muted">gates_d_edu · gated30-s0 · ranks 0 = smallest/most-skippable.
+    <span class="badge b-teal">smallest gate</span> <span class="badge b-amber">actually skippable</span>
+    <span class="badge b-red">most important</span></p>
+    <p>In this particular 16-layer run the picture is even milder than the headline: layer 0's gate is
+    <b>0.011 — rank 4 of 16</b> and its scale 43.9 is mid-pack, so both "importance" candidates sit in
+    the midfield on the single most important layer. The 8-layer cells are the stark ones: layer 0's
+    ablation is 5.7–6.6 nats (the highest by far) while its gate is among the smallest — the gate wants
+    to suppress exactly the layer you can least afford to drop.</p>
+    <div class="card neg">
+      <span class="tag amber">one honest caveat</span>
+      <p style="margin:6px 0 0">How dramatic the layer-0 inversion looks depends on how you collapse the two
+      per-sublayer gates into one number. The repo's analysis uses the <em>product</em>
+      <code>g_attn·g_mlp</code>; under it, layer 0 is literally the smallest gate in 17/27 runs. Under
+      magnitude metrics (L2, max, or the dominant <code>|g_mlp|</code>) the gate↔ablation correlation is
+      if anything stronger (ρ up to +0.86) and layer 0 lands in the bottom half but not always the very
+      smallest. The robust core — <b>gate ≈ output-weight scale, weak importance signal, blind to layer
+      0</b> — holds under every metric. Reproducible in <code>verify.py</code>.</p>
+    </div>
+  </section>
+
+  <section id="why">
+    <h2><span class="no">07</span>Why this happens (my mechanistic read)</h2>
+    <p>Three pieces, and I think they compose into an explanation rather than a coincidence:</p>
+    <ul>
+      <li><b>The product is over-parameterized.</b> The model sees <code>g·W_out·x</code>. Scale is one
+      degree of freedom with two coordinates. Any optimizer that wants to change a sublayer's output scale
+      has two levers, and they do the same job.</li>
+      <li><b>The gate is the fast lever — by my own design.</b> I gave it 30× the learning rate. Adam's
+      per-parameter step normalization means a scalar parameter with 30× the LR is 30× as mobile, so any
+      scale change the model wants gets absorbed by the gate <em>first</em>, and the slow projection keeps
+      the shape. The gate settles as the learned scale; the projection norm is its shadow.
+      That's exactly why ρ(gate, scale) ≈ 1 <em>and</em> the partial correlation ≈ 0: they are two
+      coordinates of one degree of freedom.</li>
+      <li><b>Why a depth ramp?</b> Late sublayers sit on a larger residual stream; their outputs need more
+      scale to register, and the optimizer grows them. Either way it's a <em>depth</em> effect, not a
+      per-layer importance effect — which is why it correlates with ablation on one corpus (where later
+      layers happen to matter more) and against it on the other.</li>
+    </ul>
+    <p>The uncomfortable generalization: <b>a scalar gate at a residual join is the wrong shape for an
+    importance signal, by construction.</b> An importance signal would have to be able to go to zero
+    without the weights being able to compensate — a gate that the rest of the layer can't buy back.
+    <code>g·W</code> lets the weights always buy it back, so the gate is condemned to be a scale, and
+    scale is not importance.</p>
+  </section>
+
+  <section id="negative">
+    <h2><span class="no">08</span>The useful negative</h2>
+    <p>Failed hypotheses in this space usually produce one of two takeaways. Mine is the better kind:</p>
+    <div class="card neg">
+      <span class="tag amber">takeaway 1</span>
+      <p style="margin:6px 0 0"><b>Don't read importance off scale parameters</b> — learned gates, or raw
+      output-weight norms. 27 trained models say so, across three sizes, two corpora, three seeds, and three
+      learning-rate regimes. If someone proposes "just look at the gate/weight norm to decide which layer
+      to prune", this is the evidence that the idea is dead.</p>
+    </div>
+    <div class="card ok">
+      <span class="tag green">takeaway 2</span>
+      <p style="margin:6px 0 0"><b>The thing that actually works is cheap.</b> <code>gpt eval --deep</code>
+      takes 10–30 seconds, and its <code>ablate_dloss</code> is a valid predicted loss delta for skipping a
+      layer — its magnitude and ranking are the ground truth this study was measured against, and they hold.
+      If you need a training-time signal, ablation <em>is</em> the training-time signal: run it per checkpoint
+      you care about, not every step.</p>
+    </div>
+    <p>And a bookkeeping note: the gates cost nothing. Gated vs plain validation loss, same seeds:
+    deltas −0.009 … +0.014 nats, inside the plain seed-std (0.002–0.009) in every cell except
+    gates_l_edu where gated30 is +0.014 worse. Free at training time, zero information —
+    the worst kind of parameter.</p>
+    <table>
+      <thead><tr><th>cell</th><th>plain (mean ± sd)</th><th>gated1 Δ</th><th>gated30 Δ</th><th>gated100 Δ</th></tr></thead>
+      <tbody id="paritybody"></tbody>
+    </table>
+  </section>
+
+  <section id="next">
+    <h2><span class="no">09</span>What I'd do next (ranked)</h2>
+    <ol>
+      <li><b>Break the redundancy, then re-test.</b> RMS-normalize the sublayer output so the gate is the
+      <em>only</em> scale coordinate (‖W_out‖ is pinned by construction). Then any remaining
+      ρ(gate, ablation) is real signal, not borrowed scale. This also cleanly isolates the question
+      "is <em>scale itself</em> an importance signal?" — at 16L it looks like ρ ≈ 0.8, which is worth
+      separating from the gate story entirely.</li>
+      <li><b>Head-to-head pruning.</b> Pick the k lowest-gate layers, skip them, measure the loss delta;
+      do the same with the k lowest-ablation layers. Prediction from this study: the gate loses, and
+      loses by the layer-0 margin.</li>
+      <li><b>Per-neuron gates</b> (vectors instead of scalars). A scalar loses everything except aggregate
+      scale; a gate vector's <em>structure</em> — say, its alignment with the top right-singular vectors of
+      <code>W_out</code> — might carry channel-level information the scalar can't express.</li>
+      <li><b>Log-parameterized gates</b> (g = exp(a), a = 0 init) and different inits (0.5, 0.1):
+      test whether the depth ramp is path-dependent or an attractor.</li>
+      <li><b>A 30k-step convergence run.</b> Trajectories settle by ~3–5k steps and final values are stable,
+      so I'd bet this changes nothing — but it's the cheap way to close that door.</li>
+      <li><b>A 1–3B model on a real corpus.</b> Everything here is ≤ 63M params on toy corpora. The
+      mechanism (fast/scale coordinate) should generalize, but the one result you'd actually base a
+      pruning policy on is the big one.</li>
+    </ol>
+  </section>
+
+  <section id="caveats">
+    <h2><span class="no">10</span>Caveats (where I could be wrong)</h2>
+    <ul>
+      <li><b>The gate is two scalars; the analysis collapses them to a product.</b> The repo's metric is
+      <code>g_attn·g_mlp</code>. Under magnitude metrics (L2, max, <code>|g_mlp|</code>) the gate↔ablation
+      correlation is if anything stronger (ρ up to +0.86) and the "layer 0 is the most skippable" inversion
+      weakens — it becomes "layer 0 is in the bottom half", which is still the wrong half but less dramatic.
+      The robust core (gate ≈ scale, weak signal, blind to layer 0) holds under every metric; the exact
+      numbers don't. <code>verify.py</code> sweeps all five.</li>
+      <li><b>8 points per run.</b> Spearman on 8 layers has low statistical power. My "chance level" and
+      "≈ 0" claims rest on triangulation — top-1 match, partial correlations, and the 16L replication —
+      not on the pooled p (0.071) alone. The 16L cell is the strongest evidence and it's one cell.</li>
+      <li><b>Toy corpora, short runs.</b> 82–197M tokens per run on tinystories/edu_mix. The depth-ramp
+      mechanism is probably generic, but "importance" on a toy corpus is a proxy for "importance".</li>
+      <li><b>One architecture, one init, scalar gates.</b> Pre-norm MHA+SwiGLU, gate init 1.0. The
+      over-parameterization argument says the failure is structural, but I only proved it for one
+      parameterization.</li>
+      <li><b>The ablation metric is one epoch of skipping on val.</b> It's the standard measure and the
+      one the hypothesis was stated against, but it's still a proxy, and it's computed on the <em>same</em>
+      checkpoint the gate trained on — no independent test set.</li>
+    </ul>
+  </section>
+
+  <section id="repro">
+    <h2><span class="no">11</span>Reproduce</h2>
+    <div class="code">
+cd gpt-sandbox
+python experiments/gates/orchestrator.sh        <span class="c"># full grid, 3 GPUs, ~2h</span>
+python experiments/gates/analyze.py             <span class="c"># → results.json / results.md / plots/</span>
+python experiments/gates/verify.py              <span class="c"># metric-robust re-check + pruning test + verdict</span>
+python experiments/gates/build_blog.py          <span class="c"># → this page (BLOG.html)</span>
+python -m gpt_sandbox.cli eval runs/gates_m/gated30-s0 --deep --device cuda:0   <span class="c"># one run</span>
+    </div>
+    <table>
+      <thead><tr><th>artifact</th><th>where</th></tr></thead>
+      <tbody>
+        <tr><td>gate plugin</td><td><code>plugins/gated_residual.py</code></td></tr>
+        <tr><td>cell configs / sweeps</td><td><code>configs/gates/gate_*.yaml</code> · <code>configs/sweeps/gates_*.yaml</code></td></tr>
+        <tr><td>42 runs (ckpt, metrics, ablation)</td><td><code>/data/susanket/text/gpt/runs/gates_{s,m,m_edu,l_edu,d_edu}/</code></td></tr>
+        <tr><td>analysis + per-run data</td><td><code>experiments/gates/{analyze.py, results.json, results.md}</code></td></tr>
+        <tr><td>metric-robust verification</td><td><code>experiments/gates/verify.py</code></td></tr>
+        <tr><td>32 static plots</td><td><code>experiments/gates/plots/</code></td></tr>
+        <tr><td>write-up (plain)</td><td><code>/data/susanket/text/gpt/runs/gates_experiment/REPORT.md</code></td></tr>
+        <tr><td>this page + its build</td><td><code>experiments/gates/{BLOG.html, build_blog.py, blog_template.html}</code></td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">Seeds: 0/1/2 (base config seed 1337). Model: pre-norm GPT, RoPE, RMSNorm, SwiGLU, MHA.
+    Optimizer: AdamW (β 0.9/0.95, wd 0.1, cosine, 300-step warmup), bf16 on H100s.
+    Ablation ground truth: <code>gpt eval --deep</code> → <code>ablate_dloss/L&lt;i&gt;</code>.</p>
+  </section>
+
+</div>
+</main>
+
+<div class="foot wrap">
+  gpt-sandbox experiment log · written after the fact, numbers from <code>results.json</code> ·
+  the interactive charts render live from the per-run data, no images except the two static overviews.
+</div>
+
+<script>
+"use strict";
+const DATA = /*__DATA__*/ null;
+
+const $  = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const NS = "http://www.w3.org/2000/svg";
+
+function svgEl(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function fmt(x, d) {
+  if (x === null || x === undefined || Number.isNaN(x)) return "–";
+  const v = Number(x);
+  const s = v.toFixed(d === undefined ? 3 : d);
+  return (v > 0 ? "+" : "") + s;
+}
+function ranks(a) {
+  const n = a.length;
+  const order = a.map((v, i) => [v, i]).sort((p, q) => p[0] - q[0]).map(p => p[1]);
+  const r = new Array(n);
+  for (let rk = 0; rk < n; rk++) r[order[rk]] = rk;
+  return r;
+}
+
+const tip = $("#tip");
+function showTip(html, evt) {
+  tip.innerHTML = html;
+  tip.style.display = "block";
+  const pad = 14;
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  if (x + w > window.innerWidth - 8) x = evt.clientX - w - pad;
+  if (y + h > window.innerHeight - 8) y = evt.clientY - h - pad;
+  tip.style.left = Math.max(8, x) + "px";
+  tip.style.top = Math.max(8, y) + "px";
+}
+function hideTip() { tip.style.display = "none"; }
+
+/* ---------------- trajectory animator ---------------- */
+function makeTraj(id, spec) {
+  const mount = document.getElementById(id);
+  if (!mount) return;
+  const W = 900, H = 330;
+  const M = { l: 52, r: 16, t: 14, b: 32 };
+  const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, "class": "svg", width: "100%", height: H }, mount);
+  const nGates = spec.nGates;
+  let yMin = 0, yMax = 0;
+  spec.series.forEach(s => s.vals.forEach(row => row.forEach(v => { if (v < yMin) yMin = v; if (v > yMax) yMax = v; })));
+  if (yMax === 0) yMax = 1;
+  yMin *= 1.06; yMax *= 1.06;
+  const maxStep = Math.max.apply(null, spec.series.map(s => s.steps[s.steps.length - 1]));
+  const nPts = spec.series[0].steps.length;
+  const X = st => M.l + (st / maxStep) * (W - M.l - M.r);
+  const Y = v => M.t + (1 - (v - yMin) / (yMax - yMin)) * (H - M.t - M.b);
+  for (let i = 0; i <= 4; i++) {
+    const v = yMin + (yMax - yMin) * i / 4, y = Y(v);
+    svgEl("line", { x1: M.l, y1: y, x2: W - M.r, y2: y, "class": "grid" }, svg);
+    const t = svgEl("text", { x: M.l - 7, y: y + 3.5, "class": "tick", "text-anchor": "end" }, svg);
+    t.textContent = v.toFixed(1);
+  }
+  svgEl("line", { x1: M.l, y1: Y(0), x2: W - M.r, y2: Y(0), "class": "zero" }, svg);
+  for (let i = 0; i <= 4; i++) {
+    const st = maxStep * i / 4;
+    const t = svgEl("text", { x: X(st), y: H - M.b + 17, "class": "tick", "text-anchor": "middle" }, svg);
+    t.textContent = Math.round(st / 1000) + "k";
+  }
+  const gLines = svgEl("g", {}, svg);
+  const polys = [];
+  spec.series.forEach(s => {
+    for (let gi = 0; gi < 2 * nGates; gi++) {
+      const isAttn = gi < nGates;
+      const pl = svgEl("polyline", {
+        fill: "none", stroke: s.color,
+        "stroke-width": isAttn ? 1.7 : 1.0,
+        "stroke-dasharray": s.dash ? "5 4" : (isAttn ? "none" : "3 3"),
+        opacity: isAttn ? 1 : 0.45
+      }, gLines);
+      polys.push({ pl: pl, s: s, gi: gi });
+    }
+  });
+  const guide = svgEl("line", { y1: M.t, y2: H - M.b, "class": "guide", opacity: 0 }, svg);
+  const hit = svgEl("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent" }, svg);
+  let cur = nPts - 1;
+  function drawLine(it, upto) {
+    const pts = [];
+    for (let i = 0; i <= upto; i++) pts.push(X(it.s.steps[i]).toFixed(1) + "," + Y(it.s.vals[i][it.gi]).toFixed(1));
+    it.pl.setAttribute("points", pts.join(" "));
+  }
+  function setT(t) {
+    cur = Math.max(0, Math.min(nPts - 1, Math.round(t)));
+    polys.forEach(it => drawLine(it, cur));
+    const step = spec.series[0].steps[cur];
+    const stlbl = document.getElementById("st_" + id);
+    if (stlbl) stlbl.textContent = "step " + step.toLocaleString() + " / " + maxStep.toLocaleString();
+    const slider = document.getElementById("sl_" + id);
+    if (slider && document.activeElement !== slider) slider.value = cur;
+    if (slider && slider.max === "1") slider.max = nPts - 1;
+  }
+  hit.addEventListener("mousemove", (evt) => {
+    const rect = svg.getBoundingClientRect();
+    const px = (evt.clientX - rect.left) / rect.width * W;
+    const st = (px - M.l) / (W - M.l - M.r) * maxStep;
+    const steps = spec.series[0].steps;
+    let bi = 0, bd = 1e18;
+    for (let i = 0; i < steps.length; i++) { const d = Math.abs(steps[i] - st); if (d < bd) { bd = d; bi = i; } }
+    guide.setAttribute("x1", X(steps[bi]));
+    guide.setAttribute("x2", X(steps[bi]));
+    guide.setAttribute("opacity", 1);
+    showTip(spec.tooltip(bi), evt);
+  });
+  hit.addEventListener("mouseleave", () => { hideTip(); guide.setAttribute("opacity", 0); });
+  const slider = document.getElementById("sl_" + id);
+  if (slider) { slider.max = nPts - 1; slider.addEventListener("input", () => setT(+slider.value)); }
+  const btn = document.getElementById("pl_" + id);
+  let playing = false, raf = null;
+  function tick() {
+    if (!playing) return;
+    cur += 1;
+    if (cur >= nPts - 1) { setT(nPts - 1); playing = false; if (btn) btn.textContent = "replay"; return; }
+    setT(cur);
+    raf = requestAnimationFrame(tick);
+  }
+  if (btn) btn.addEventListener("click", () => {
+    if (playing) { playing = false; cancelAnimationFrame(raf); btn.textContent = "animate"; return; }
+    if (cur >= nPts - 1) setT(0);
+    playing = true; btn.textContent = "pause";
+    raf = requestAnimationFrame(tick);
+  });
+  setT(nPts - 1);
+}
+
+function trajTooltip(nGates, series) {
+  return (bi) => {
+    let html = "<b>step " + series[0].steps[bi] + "</b><br>";
+    for (let li = 0; li < nGates; li++) {
+      const parts = [];
+      series.forEach(s => parts.push(s.label + " " + s.vals[bi][li].toFixed(3)));
+      html += "<span class='tl'>L" + li + " attn</span>" + parts.join(" · ") + "<br>";
+    }
+    return html;
+  };
+}
+function trajTooltipD(bi) {
+  const s = DATA.traj.d.series[0];
+  let html = "<b>step " + s.steps[bi] + "</b><br>";
+  for (let li = 0; li < 16; li++) {
+    html += "<span class='tl'>L" + li + "</span>" +
+      "<span class='tv'>" + s.vals[bi][li].toFixed(3) + "a</span> " +
+      "<span class='tv'>" + s.vals[bi][li + 16].toFixed(3) + "m</span><br>";
+  }
+  return html;
+}
+
+/* ---------------- rank charts ---------------- */
+function rankChart(mount, run, otherKey, otherLabel) {
+  const n = run.g.length;
+  const W = 440, H = 372;
+  const M = { l: 42, r: 14, t: 14, b: 42 };
+  const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, "class": "svg", width: "100%" }, mount);
+  const X = v => M.l + (v / (n - 1)) * (W - M.l - M.r);
+  const Y = v => M.t + (1 - v / (n - 1)) * (H - M.t - M.b);
+  for (let i = 0; i < n; i++) {
+    svgEl("line", { x1: M.l, y1: Y(i), x2: W - M.r, y2: Y(i), "class": "grid" }, svg);
+    svgEl("line", { x1: X(i), y1: M.t, x2: X(i), y2: H - M.b, "class": "grid" }, svg);
+    const tx = svgEl("text", { x: X(i), y: H - M.b + 16, "class": "tick", "text-anchor": "middle" }, svg); tx.textContent = i;
+    const ty = svgEl("text", { x: M.l - 8, y: Y(i) + 3.5, "class": "tick", "text-anchor": "end" }, svg); ty.textContent = i;
+  }
+  svgEl("line", { x1: X(0), y1: Y(0), x2: X(n - 1), y2: Y(n - 1), "class": "ident" }, svg);
+  const rg = ranks(run.g);
+  const ro = ranks(run[otherKey]);
+  for (let li = 0; li < n; li++) {
+    const c = svgEl("circle", { cx: X(rg[li]), cy: Y(ro[li]), r: 7, "class": "pt" }, svg);
+    const label = svgEl("text", { x: X(rg[li]), y: Y(ro[li]) - 10, "class": "ptl", "text-anchor": "middle" }, svg);
+    label.textContent = li;
+    c.addEventListener("mousemove", (e) => showTip(
+      "<b>L" + li + "</b><br>gate rank " + rg[li] + " / " + (n - 1) +
+      "<br>" + otherLabel + " rank " + ro[li] + " / " + (n - 1), e));
+    c.addEventListener("mouseleave", hideTip);
+  }
+  const xlab = svgEl("text", { x: (M.l + W - M.r) / 2, y: H - 8, "class": "axl", "text-anchor": "middle" }, svg);
+  xlab.textContent = "gate rank (0 = smallest gate)";
+  const ylab = svgEl("text", { x: 12, y: (M.t + H - M.b) / 2, "class": "axl", "text-anchor": "middle",
+    transform: "rotate(-90 12 " + ((M.t + H - M.b) / 2) + ")" }, svg);
+  ylab.textContent = otherLabel + " rank";
+}
+
+/* ---------------- per-layer bars ---------------- */
+function layerBars(mount, run) {
+  const n = run.g.length;
+  const W = 460, H = 372;
+  const M = { l: 40, r: 10, t: 16, b: 40 };
+  const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, "class": "svg", width: "100%" }, mount);
+  const gw = run.g.map(Math.abs);
+  const gmax = Math.max.apply(null, gw) || 1;
+  const dmax = Math.max.apply(null, run.d) || 1;
+  const plotH = H - M.t - M.b;
+  const slot = (W - M.l - M.r) / n;
+  const bw = Math.min(13, slot * 0.3);
+  svgEl("line", { x1: M.l, y1: H - M.b, x2: W - M.r, y2: H - M.b, "class": "zero" }, svg);
+  for (let li = 0; li < n; li++) {
+    const cx = M.l + slot * (li + 0.5);
+    const hg = Math.max((gw[li] / gmax) * plotH, 0.75);
+    const hd = Math.max((run.d[li] / dmax) * plotH, 0.75);
+    svgEl("rect", { x: cx - bw - 1.5, y: H - M.b - hg, width: bw, height: hg, "class": "barG", rx: 2 }, svg);
+    svgEl("rect", { x: cx + 1.5, y: H - M.b - hd, width: bw, height: hd, "class": "barD", rx: 2 }, svg);
+    const t = svgEl("text", { x: cx, y: H - M.b + 16, "class": "tick", "text-anchor": "middle" }, svg);
+    t.textContent = li;
+    const hitr = svgEl("rect", { x: cx - slot / 2, y: M.t, width: slot, height: plotH, fill: "transparent" }, svg);
+    hitr.addEventListener("mousemove", (e) => showTip(
+      "<b>L" + li + "</b><br>gate " + fmt(run.g[li], 4) +
+      "<br>(attn " + fmt(run.ga[li], 3) + " × mlp " + fmt(run.gm[li], 3) + ")" +
+      "<br>ablate " + run.d[li].toFixed(4) + " nats", e));
+    hitr.addEventListener("mouseleave", hideTip);
+  }
+  const xlab = svgEl("text", { x: (M.l + W - M.r) / 2, y: H - 8, "class": "axl", "text-anchor": "middle" }, svg);
+  xlab.textContent = "layer index";
+}
+
+/* ---------------- depth-trend ramp ---------------- */
+function rampChart(mount, run) {
+  const n = run.g.length;
+  const W = 460, H = 300;
+  const M = { l: 40, r: 12, t: 16, b: 38 };
+  mount.innerHTML = "";
+  const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, "class": "svg", width: "100%" }, mount);
+  const norm = (a) => {
+    const mn = Math.min.apply(null, a), mx = Math.max.apply(null, a);
+    const r = (mx - mn) || 1;
+    return a.map(v => (v - mn) / r);
+  };
+  const series = [
+    { key: "g", label: "gate |g|", color: "#5cc8ff", cls: "rampG", vals: norm(run.g.map(Math.abs)), raw: run.g.map(Math.abs) },
+    { key: "s", label: "scale", color: "#b48cff", cls: "rampS", vals: norm(run.s), raw: run.s },
+    { key: "d", label: "ablation", color: "#ffb454", cls: "rampA", vals: norm(run.d), raw: run.d }
+  ];
+  const X = i => M.l + (i / (n - 1)) * (W - M.l - M.r);
+  const Y = v => M.t + (1 - v) * (H - M.t - M.b);
+  [0, 0.25, 0.5, 0.75, 1].forEach(v => {
+    svgEl("line", { x1: M.l, y1: Y(v), x2: W - M.r, y2: Y(v), "class": "grid" }, svg);
+  });
+  for (let li = 0; li < n; li++) {
+    const t = svgEl("text", { x: X(li), y: H - M.b + 16, "class": "tick", "text-anchor": "middle" }, svg);
+    t.textContent = li;
+  }
+  const groups = {};
+  series.forEach(s => {
+    const g = svgEl("g", { "data-key": s.key }, svg);
+    const pts = s.vals.map((v, i) => X(i).toFixed(1) + "," + Y(v).toFixed(1)).join(" ");
+    svgEl("polyline", { points: pts, fill: "none", "class": s.cls, "stroke-width": 2 }, g);
+    s.vals.forEach((v, i) => svgEl("circle", { cx: X(i), cy: Y(v), r: 3.4, "class": "rampdot", fill: s.color }, g));
+    groups[s.key] = g;
+  });
+  for (let li = 0; li < n; li++) {
+    const hitr = svgEl("rect", { x: X(li) - (W - M.l - M.r) / (n - 1) / 2, y: M.t, width: (W - M.l - M.r) / (n - 1), height: H - M.t - M.b, fill: "transparent" }, svg);
+    hitr.addEventListener("mousemove", (e) => {
+      const lines = series.filter(s => groups[s.key].getAttribute("display") !== "none").map(
+        s => "<span class='tl'>" + s.label + "</span>" + s.raw[li].toFixed(4));
+      showTip("<b>L" + li + "</b><br>" + lines.join("<br>"), e);
+    });
+    hitr.addEventListener("mouseleave", hideTip);
+  }
+  const tog = document.getElementById("x_ramp_tog");
+  if (tog) $$("input", tog).forEach(inp => {
+    const apply = () => { groups[inp.dataset.s].setAttribute("display", inp.checked ? "" : "none"); };
+    inp.addEventListener("change", apply);
+    apply();
+  });
+  const xlab = svgEl("text", { x: (M.l + W - M.r) / 2, y: H - 6, "class": "axl", "text-anchor": "middle" }, svg);
+  xlab.textContent = "layer index (each series min–max normalized)";
+}
+
+/* ---------------- explorer ---------------- */
+function buildExplorer() {
+  const cellNames = [];
+  DATA.runs.forEach(r => { if (cellNames.indexOf(r.cell) === -1) cellNames.push(r.cell); });
+  const order = ["gates_s", "gates_m", "gates_m_edu", "gates_l_edu", "gates_d_edu"];
+  cellNames.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  const tabs = $("#x_cells");
+  function selectCell(cn) {
+    $$("#x_cells .tab").forEach(t => t.classList.toggle("on", t.dataset.cell === cn));
+    const runs = DATA.runs.filter(r => r.cell === cn);
+    const chips = $("#x_runs");
+    chips.innerHTML = "";
+    runs.forEach(r => {
+      const c = document.createElement("button");
+      c.className = "chip";
+      c.textContent = r.variant.replace("gated", "g") + " · s" + r.seed;
+      c.addEventListener("click", () => {
+        $$("#x_runs .chip").forEach(x => x.classList.toggle("on", x === c));
+        renderRun(r);
+      });
+      chips.appendChild(c);
+    });
+    chips.children[0].classList.add("on");
+    renderRun(runs[0]);
+  }
+  cellNames.forEach(cn => {
+    const b = document.createElement("button");
+    b.className = "tab";
+    b.dataset.cell = cn;
+    b.textContent = cn.replace("gates_", "");
+    b.addEventListener("click", () => selectCell(cn));
+    tabs.appendChild(b);
+  });
+  function setStat(sel, v, dec) {
+    const e = $(sel);
+    e.textContent = v === null || v === undefined ? "–" : fmt(v, dec === undefined ? 3 : dec);
+  }
+  function renderRun(r) {
+    $("#x_name") && ($("#x_name").textContent = r.cell);
+    setStat("#x_rho", r.rho);
+    setStat("#x_p", r.p, 3);
+    setStat("#x_gs", r.rho_gs);
+    setStat("#x_part", r.part);
+    $("#x_top").textContent = r.top1 ? "match ✓" : "no match";
+    const m1 = $("#x_rank_scale"); m1.innerHTML = ""; rankChart(m1, r, "s", "scale");
+    const m2 = $("#x_rank_abl"); m2.innerHTML = ""; rankChart(m2, r, "d", "ablation");
+    const m3 = $("#x_bars"); m3.innerHTML = ""; layerBars(m3, r);
+    rampChart($("#x_ramp"), r);
+  }
+  selectCell("gates_d_edu");
+}
+
+/* ---------------- partial-correlation summary ---------------- */
+function buildPartialTable() {
+  const tb = $("#partbody");
+  if (!tb) return;
+  const agg = {};
+  DATA.runs.forEach(r => {
+    const k = r.cell + " · " + r.variant;
+    agg[k] = agg[k] || { cell: r.cell, variant: r.variant, rhos: [], gs: [], parts: [], top1: [] };
+    agg[k].rhos.push(r.rho); agg[k].gs.push(r.rho_gs); agg[k].parts.push(r.part); agg[k].top1.push(r.top1 ? 1 : 0);
+  });
+  const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
+  const keys = Object.keys(agg).sort();
+  keys.forEach(k => {
+    const a = agg[k];
+    const tr = document.createElement("tr");
+    tr.innerHTML = "<td>" + a.cell.replace("gates_", "") + " · " + a.variant + "</td>" +
+      "<td class='num'>" + a.rhos.length + "</td>" +
+      "<td class='num'>" + mean(a.rhos).toFixed(2) + " (±" + (a.rhos.length > 1 ? (Math.max.apply(null, a.rhos) - Math.min.apply(null, a.rhos)).toFixed(2) : "–") + ")</td>" +
+      "<td class='num'>" + mean(a.gs).toFixed(2) + "</td>" +
+      "<td class='num'><b>" + mean(a.parts).toFixed(2) + "</b></td>" +
+      "<td class='num'>" + a.top1.reduce((x, y) => x + y, 0) + "/" + a.top1.length + "</td>";
+    tb.appendChild(tr);
+  });
+}
+
+/* ---------------- full sortable table ---------------- */
+function buildTable() {
+  const cols = [
+    { k: "run", get: r => r.cell.replace("gates_", "") + " · " + r.variant + " s" + r.seed, str: true },
+    { k: "rho", get: r => r.rho },
+    { k: "p", get: r => r.p },
+    { k: "rha", get: r => r.rho_gs },
+    { k: "part", get: r => r.part },
+    { k: "rsa", get: r => r.rho_sa },
+    { k: "top1", get: r => r.top1 ? 1 : 0, fmt: v => (v ? "✓" : "—") }
+  ];
+  let sortK = "rho", dir = -1;
+  const tb = $("#runtable_body");
+  function render() {
+    const col = cols.find(c => c.k === sortK);
+    const rows = DATA.runs.slice().sort((a, b) => {
+      const va = col.get(a), vb = col.get(b);
+      if (col.str) return va < vb ? -dir : va > vb ? dir : 0;
+      return (va - vb) * dir;
+    });
+    tb.innerHTML = "";
+    rows.forEach(r => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = cols.map(c => {
+        const v = c.get(r);
+        const txt = c.fmt ? c.fmt(v) : (c.str ? v : fmt(v, 3));
+        return "<td>" + txt + "</td>";
+      }).join("");
+      tb.appendChild(tr);
+    });
+    $$("#runtable th").forEach(th => th.classList.toggle("sorted", th.dataset.k === sortK));
+  }
+  $$("#runtable th.sortable").forEach(th => th.addEventListener("click", () => {
+    if (th.dataset.k === sortK) dir = -dir;
+    else { sortK = th.dataset.k; dir = (th.dataset.k === "run") ? 1 : -1; }
+    render();
+  }));
+  render();
+}
+
+/* ---------------- D-cell layer table ---------------- */
+function buildDTable() {
+  const run = DATA.runs.find(r => r.cell === "gates_d_edu" && r.seed === 0 && r.variant === "gated30");
+  if (!run) return;
+  const n = run.g.length;
+  const rg = ranks(run.g), ra = ranks(run.d);
+  let argminG = 0, argminD = 0;
+  run.g.forEach((v, i) => { if (v < run.g[argminG]) argminG = i; });
+  run.d.forEach((v, i) => { if (v < run.d[argminD]) argminD = i; });
+  const tb = $("#dtable_body");
+  for (let li = 0; li < n; li++) {
+    const tr = document.createElement("tr");
+    if (li === argminG) tr.className = "row-gate";
+    if (li === argminD) tr.className = "row-abl";
+    if (li === 0) tr.classList.add("row-l0");
+    let badges = "";
+    if (li === argminG) badges += "<span class='badge b-teal'>smallest gate</span>";
+    if (li === argminD) badges += "<span class='badge b-amber'>skippable</span>";
+    if (li === 0) badges += "<span class='badge b-red'>most important</span>";
+    tr.innerHTML = "<td>L" + li + "</td><td>" + fmt(run.g[li], 4) + "</td><td>" + run.d[li].toFixed(4) +
+      "</td><td>" + run.s[li].toFixed(1) + "</td><td>" + rg[li] + "</td><td>" + ra[li] + "</td><td>" + badges + "</td>";
+    tb.appendChild(tr);
+  }
+}
+
+/* ---------------- parity ---------------- */
+function buildParity() {
+  const tb = $("#paritybody");
+  if (!tb || !DATA.parity) return;
+  Object.keys(DATA.parity).forEach(cell => {
+    const p = DATA.parity[cell];
+    const cellName = cell.replace("gates_", "");
+    const tr = document.createElement("tr");
+    const d = (k) => p.gated[k] ? (p.gated[k].delta >= 0 ? "+" : "") + p.gated[k].delta.toFixed(3) : "—";
+    tr.innerHTML = "<td>" + cellName + "</td><td class='num'>" + p.plain_mean.toFixed(3) +
+      " ± " + p.plain_std.toFixed(3) + "</td><td class='num'>" + d("gated1") + "</td><td class='num'>" +
+      d("gated30") + "</td><td class='num'>" + d("gated100") + "</td>";
+    tb.appendChild(tr);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ts = DATA.traj.s;
+  makeTraj("traj_s", {
+    nGates: 8,
+    series: ts.series,
+    tooltip: (bi) => {
+      let html = "<b>step " + ts.series[0].steps[bi] + "</b> (attn gates)<br>";
+      for (let li = 0; li < 8; li++) {
+        html += "<span class='tl'>L" + li + "</span>" +
+          "g1 <span class='tv'>" + ts.series[0].vals[bi][li].toFixed(3) + "</span> · " +
+          "g30 <span class='tv'>" + ts.series[1].vals[bi][li].toFixed(3) + "</span><br>";
+      }
+      return html;
+    }
+  });
+  makeTraj("traj_d", {
+    nGates: 16,
+    series: DATA.traj.d.series,
+    tooltip: trajTooltipD
+  });
+  buildExplorer();
+  buildPartialTable();
+  buildTable();
+  buildDTable();
+  buildParity();
+});
+</script>
+</body>
+</html>

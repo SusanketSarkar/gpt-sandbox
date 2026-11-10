@@ -1,0 +1,134 @@
+evaluating /data/susanket/text/gpt/runs/gates_d_edu/gated30-s0 (step 12000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 4.0s
+  [metric task] 0.0s
+  [metric throughput] 0.5s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.6s
+
+=== eval: gated30-s0 ===
+
+[params]
+  params_total      54,805,024
+  params_nonemb     50,610,720
+  flops_per_token  379,161,792
+
+[val]
+  val_loss             2.6765
+  val_ppl             14.5337
+  val_bpb              0.9954
+  val_acc1             0.4599
+  val_acc5             0.6903
+  val_pred_entropy     2.7437
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3585
+  pos_loss/1        4.3885
+  pos_loss/2-3      3.8444
+  pos_loss/4-7      3.5193
+  pos_loss/8-15     3.1719
+  pos_loss/16-31    2.9645
+  pos_loss/32-63    2.8043
+  pos_loss/64-127   2.6893
+  pos_loss/128-255  2.6375
+  pos_loss/256-511  2.6038
+  ctx_gain          0.6520
+  late_loss         2.6080
+
+[calibration]
+  ece              0.0067
+  mean_confidence  0.4652
+  overconfidence   0.0053
+
+[generalization]
+  train_loss_eval   3.1644
+  gen_gap          -0.4879
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3407
+
+[induction]
+  induction_loss_random  11.8832
+  induction_loss_repeat   4.0523
+  induction_gap           7.8308
+  induction_acc           0.4315
+
+[generation]
+  gen_distinct1   0.8105
+  gen_distinct2   0.9763
+  gen_distinct3   0.9920
+  gen_unigram_kl  1.1768
+
+[throughput]
+  fwd_tok_per_s     7.993e+05
+  fwdbwd_tok_per_s  3.119e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  42.2133
+  lens_loss/L0      7.1799
+  resid_rms/L0      1.0917
+  lens_loss/L1      6.7446
+  resid_rms/L1      1.2461
+  lens_loss/L2      6.4625
+  resid_rms/L2      1.4103
+  lens_loss/L3      6.2137
+  resid_rms/L3      1.5777
+  lens_loss/L4      6.0822
+  resid_rms/L4      1.7405
+  lens_loss/L5      5.6935
+  resid_rms/L5      1.9698
+  lens_loss/L6      5.4105
+  resid_rms/L6      2.2426
+  lens_loss/L7      5.2009
+  resid_rms/L7      2.5070
+  lens_loss/L8      5.1458
+  resid_rms/L8      2.7965
+  lens_loss/L9      5.0732
+  resid_rms/L9      3.1131
+  lens_loss/L10     4.9865
+  resid_rms/L10     3.6571
+  lens_loss/L11     4.4236
+  resid_rms/L11     4.5643
+  lens_loss/L12     3.7878
+  resid_rms/L12     6.1396
+  lens_loss/L13     2.9315
+  resid_rms/L13     7.6085
+  lens_loss/L14     2.3574
+  resid_rms/L14     9.0729
+  lens_loss/L15     1.8008
+  resid_rms/L15    11.5851
+
+[layer_ablation]
+  ablate_dloss/L0   4.2396
+  ablate_dloss/L1   0.0130
+  ablate_dloss/L2   0.0096
+  ablate_dloss/L3   0.0080
+  ablate_dloss/L4   0.0103
+  ablate_dloss/L5   0.0726
+  ablate_dloss/L6   0.0434
+  ablate_dloss/L7   0.0344
+  ablate_dloss/L8   0.0180
+  ablate_dloss/L9   0.0358
+  ablate_dloss/L10  0.0817
+  ablate_dloss/L11  0.2933
+  ablate_dloss/L12  0.2639
+  ablate_dloss/L13  0.2428
+  ablate_dloss/L14  0.2483
+  ablate_dloss/L15  0.5566
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmously and spread the advantages across the kingdom. In 1840, Nozme von Arroyne organized the first minister of thecyclosum to rule Forra Conserv > Arroyne in the capital Adrian. He led the election of Earl of Galicia for the last five years. In 1880 he was appointed
+
+  |  want to wear, eating the food you want to eat, saying the things you right; are not quite right; either if I wanted to eat [vm]," they will see you disgraceably sitting aloud during break-fast rests on the first day or during the evening, for s at the same hour /woman's resignation, leading to shif
+
+saved /data/susanket/text/gpt/runs/gates_d_edu/gated30-s0/eval.json

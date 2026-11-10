@@ -1,0 +1,8 @@
+name: layout_f2_jumbo
+base: ../layouts/jumbo_base.yaml
+common: {train.max_steps: 6000}
+seeds: [0, 1, 2]
+variants:
+  f2_20A28M: {'model.extra.layout': 'AMAMAMMAMAMMAMAMAMMAMAMMAMAMAMMAMAMMAMAMAMMAMAMM', 'model.mlp': {'name': 'swiglu', 'd_ff': 1277}}
+  f2_16A32M: {'model.extra.layout': 'AMMAMMAMMAMMAMMAMMAMMAMMAMMAMMAMMAMMAMMAMMAMMAMM', 'model.mlp': {'name': 'swiglu', 'd_ff': 1203}}
+  f2_12A36M: {'model.extra.layout': 'AMMMAMMMAMMMAMMMAMMMAMMMAMMMAMMMAMMMAMMMAMMMAMMM', 'model.mlp': {'name': 'swiglu', 'd_ff': 1145}}

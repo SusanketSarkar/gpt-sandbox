@@ -1,0 +1,112 @@
+evaluating /data/susanket/text/gpt/runs/depth_m_core/n7_sig10-s0 (step 10000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.2s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 3.6s
+  [metric throughput] 0.6s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.2s
+
+=== eval: n7_sig10-s0 ===
+
+[params]
+  params_total      29,499,904
+  params_nonemb     25,305,600
+  flops_per_token  202,165,248
+
+[val]
+  val_loss             2.9290
+  val_ppl             18.7081
+  val_bpb              1.0893
+  val_acc1             0.4295
+  val_acc5             0.6566
+  val_pred_entropy     3.2917
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3757
+  pos_loss/1        4.4718
+  pos_loss/2-3      3.9755
+  pos_loss/4-7      3.6857
+  pos_loss/8-15     3.3767
+  pos_loss/16-31    3.1855
+  pos_loss/32-63    3.0462
+  pos_loss/64-127   2.9409
+  pos_loss/128-255  2.8917
+  pos_loss/256-511  2.8643
+  ctx_gain          0.5854
+  late_loss         2.8684
+
+[calibration]
+  ece               0.0490
+  mean_confidence   0.3829
+  overconfidence   -0.0467
+
+[generalization]
+  train_loss_eval   3.4305
+  gen_gap          -0.5016
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.0882
+
+[induction]
+  induction_loss_random  12.1504
+  induction_loss_repeat   5.1326
+  induction_gap           7.0178
+  induction_acc           0.3247
+
+[generation]
+  gen_distinct1   0.8418
+  gen_distinct2   0.9882
+  gen_distinct3        1
+  gen_unigram_kl  1.2482
+
+[throughput]
+  fwd_tok_per_s     1.563e+06
+  fwdbwd_tok_per_s  6.461e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  37.1519
+  lens_loss/L0      7.3137
+  resid_rms/L0      1.1436
+  lens_loss/L1      6.5444
+  resid_rms/L1      1.8156
+  lens_loss/L2      6.2065
+  resid_rms/L2      2.1350
+  lens_loss/L3      5.5453
+  resid_rms/L3      2.5421
+  lens_loss/L4      4.9125
+  resid_rms/L4      2.9933
+  lens_loss/L5      4.1505
+  resid_rms/L5      3.6118
+  lens_loss/L6      3.1088
+  resid_rms/L6      5.8100
+  lens_loss/L7      2.0456
+  resid_rms/L7     37.3783
+
+[layer_ablation]
+  ablate_dloss/L0  5.9498
+  ablate_dloss/L1  0.4941
+  ablate_dloss/L2  0.2316
+  ablate_dloss/L3  0.3093
+  ablate_dloss/L4  0.3168
+  ablate_dloss/L5  0.3636
+  ablate_dloss/L6  0.7738
+  ablate_dloss/L7  1.0632
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarming, but appealed to specific GES culture standing for in-law trade and promotion activities amongroduced, useless, reproducellted individuals, mice, vs. wild tobacco. Subsequent figures Hamed - Keralish Orion
+  | Haggart who made an activity in Paris ships passing loca
+
+  |  want to wear, eating the food you want to eat, saying the things you want it. Rather for a reason, it makes yourself very good.
+  | Shends outs always require money and may seem exhausting, but it is clean, and keeps me done.
+  | One thing in lieu of past experience and wisdom is to of God when we hear eve
+
+saved /data/susanket/text/gpt/runs/depth_m_core/n7_sig10-s0/eval.json

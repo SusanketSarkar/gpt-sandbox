@@ -1,0 +1,22 @@
+# Depth-fragility, size M (8L): FULL depth profile - noise at every layer, one seed each.
+# The answer to "does information density vary by depth" is this curve: delta_bpb(layer) at each dose.
+name: depth_m_profile
+base: ../depth/depth_m.yaml
+seeds: [0]
+variants:
+  n0_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 0.3}]}
+  n1_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 1, sigma: 0.3}]}
+  n2_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 2, sigma: 0.3}]}
+  n3_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 3, sigma: 0.3}]}
+  n4_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 4, sigma: 0.3}]}
+  n5_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 5, sigma: 0.3}]}
+  n6_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 6, sigma: 0.3}]}
+  n7_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 7, sigma: 0.3}]}
+  n0_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 0, sigma: 1.0}]}
+  n1_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 1, sigma: 1.0}]}
+  n2_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 2, sigma: 1.0}]}
+  n3_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 3, sigma: 1.0}]}
+  n4_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 4, sigma: 1.0}]}
+  n5_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 5, sigma: 1.0}]}
+  n6_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 6, sigma: 1.0}]}
+  n7_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 7, sigma: 1.0}]}

@@ -1,0 +1,12 @@
+# Synthetic task recall (data: synth_recall): 16 sublayers d=128, 6 layouts x 3 seeds.
+name: layout_synth_recall
+base: ../layouts/synth_base.yaml
+common: {'data.name': 'synth_recall', 'train.max_steps': 20000}
+seeds: [0, 1, 2]
+variants:
+  baseline: {model.extra.layout: "AMAMAMAMAMAMAMAM"}
+  A: {model.extra.layout: "MMAAMAAMAAMAAMMM"}
+  B: {model.extra.layout: "AAAMMAMMAMMAMMAA"}
+  C: {model.extra.layout: "MMMMAAAAAAAAMMMM"}
+  D: {model.extra.layout: "AAAAMMMMMMMMAAAA"}
+  sandwich: {model.extra.layout: "AAAAMAMAMAMAMMMM"}

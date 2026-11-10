@@ -1,0 +1,135 @@
+evaluating /data/susanket/text/gpt/runs/gates_d_edu/gated30-s2 (step 12000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 4.0s
+  [metric task] 0.0s
+  [metric throughput] 0.5s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.6s
+
+=== eval: gated30-s2 ===
+
+[params]
+  params_total      54,805,024
+  params_nonemb     50,610,720
+  flops_per_token  379,161,792
+
+[val]
+  val_loss             2.6711
+  val_ppl             14.4557
+  val_bpb              0.9934
+  val_acc1             0.4608
+  val_acc5             0.6909
+  val_pred_entropy     2.7407
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3604
+  pos_loss/1        4.3982
+  pos_loss/2-3      3.8416
+  pos_loss/4-7      3.5178
+  pos_loss/8-15     3.1606
+  pos_loss/16-31    2.9520
+  pos_loss/32-63    2.8002
+  pos_loss/64-127   2.6849
+  pos_loss/128-255  2.6317
+  pos_loss/256-511  2.5987
+  ctx_gain          0.6482
+  late_loss         2.6027
+
+[calibration]
+  ece              0.0075
+  mean_confidence  0.4658
+  overconfidence   0.0051
+
+[generalization]
+  train_loss_eval   3.1674
+  gen_gap          -0.4964
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3460
+
+[induction]
+  induction_loss_random  11.8957
+  induction_loss_repeat   3.8324
+  induction_gap           8.0633
+  induction_acc           0.4539
+
+[generation]
+  gen_distinct1   0.7760
+  gen_distinct2   0.9671
+  gen_distinct3   0.9914
+  gen_unigram_kl  1.1145
+
+[throughput]
+  fwd_tok_per_s     7.828e+05
+  fwdbwd_tok_per_s  2.918e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  41.4111
+  lens_loss/L0      7.3052
+  resid_rms/L0      0.9296
+  lens_loss/L1      6.6037
+  resid_rms/L1      1.0721
+  lens_loss/L2      6.3617
+  resid_rms/L2      1.2185
+  lens_loss/L3      6.1880
+  resid_rms/L3      1.3592
+  lens_loss/L4      6.1079
+  resid_rms/L4      1.5457
+  lens_loss/L5      5.7714
+  resid_rms/L5      1.7047
+  lens_loss/L6      5.5576
+  resid_rms/L6      1.9025
+  lens_loss/L7      5.4499
+  resid_rms/L7      2.0935
+  lens_loss/L8      5.2211
+  resid_rms/L8      2.4770
+  lens_loss/L9      5.0875
+  resid_rms/L9      2.8067
+  lens_loss/L10     4.9759
+  resid_rms/L10     3.1851
+  lens_loss/L11     4.3766
+  resid_rms/L11     3.7789
+  lens_loss/L12     3.9307
+  resid_rms/L12     4.5136
+  lens_loss/L13     3.5301
+  resid_rms/L13     6.1895
+  lens_loss/L14     2.3089
+  resid_rms/L14     7.9172
+  lens_loss/L15     1.7942
+  resid_rms/L15     9.6219
+
+[layer_ablation]
+  ablate_dloss/L0   4.4614
+  ablate_dloss/L1   0.0160
+  ablate_dloss/L2   0.0094
+  ablate_dloss/L3   0.0067
+  ablate_dloss/L4   0.0103
+  ablate_dloss/L5   0.0345
+  ablate_dloss/L6   0.0186
+  ablate_dloss/L7   0.0170
+  ablate_dloss/L8   0.0546
+  ablate_dloss/L9   0.0384
+  ablate_dloss/L10  0.0563
+  ablate_dloss/L11  0.2235
+  ablate_dloss/L12  0.1909
+  ablate_dloss/L13  0.2491
+  ablate_dloss/L14  0.5899
+  ablate_dloss/L15  0.5146
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmed as I heard myself from the mandalas and references to an attentive, physical rather than physical form of recreation. Since he was attacked with the vampire attacks on lookout as clearly as I really could have had, however his mother was initiated into opposition
+
+  |  want to wear, eating the food you want to eat, saying the things you want to eat.
+  | Are you interested in reading more hint that healthy diets are still free if you’re going to make yourself more productive, but may not be just skipping to the point where the Americans don’t have some part of the foo
+
+saved /data/susanket/text/gpt/runs/gates_d_edu/gated30-s2/eval.json

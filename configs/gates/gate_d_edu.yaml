@@ -1,0 +1,11 @@
+# Gates study, depth probe D: 16 layers, d=512, seq 512, edu_mix (~60M params non-emb).
+# More layers => more redundancy available for the gates (and ablation) to act on.
+base: gate_m.yaml
+name: gates_d_edu
+data: {name: edu_mix}
+model: {n_layer: 16}
+train:
+  max_steps: 12000
+  warmup_steps: 500
+eval:
+  max_batches: 128

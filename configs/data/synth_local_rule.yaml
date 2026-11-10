@@ -1,0 +1,7 @@
+# local_rule: next symbol is a fixed function of the previous two (token-local computation probe).
+name: synth_local_rule
+sources:
+  - {name: synthetic, task: local_rule, n_docs: 4000, lines_per_doc: 64, seed: 0}
+tokenizer: char
+val_fraction: 0.1
+dedup: false

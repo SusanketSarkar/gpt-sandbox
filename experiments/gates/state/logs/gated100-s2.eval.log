@@ -1,0 +1,118 @@
+evaluating /data/susanket/text/gpt/runs/gates_m/gated100-s2 (step 10000) on 'tinystories'
+  [metric params] 0.0s
+  [metric val] 0.7s
+  [metric position] 0.0s
+  [metric calibration] 0.0s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 3.6s
+  [metric task] 0.0s
+  [metric throughput] 0.6s
+  [metric logit_lens] 0.0s
+  [metric layer_ablation] 0.2s
+
+=== eval: gated100-s2 ===
+
+[params]
+  params_total      27,402,768
+  params_nonemb     25,305,616
+  flops_per_token  189,582,432
+
+[val]
+  val_loss           1.4868
+  val_ppl            4.4228
+  val_bpb            0.5470
+  val_acc1           0.6203
+  val_acc5           0.8693
+  val_pred_entropy   1.3972
+  val_tokens        431,104
+
+[position]
+  pos_loss/0        3.8063
+  pos_loss/1        2.9710
+  pos_loss/2-3      2.6367
+  pos_loss/4-7      2.3449
+  pos_loss/8-15     2.0177
+  pos_loss/16-31    1.7432
+  pos_loss/32-63    1.5660
+  pos_loss/64-127   1.4829
+  pos_loss/128-255  1.4502
+  pos_loss/256-511  1.4263
+  ctx_gain          0.6271
+  late_loss         1.4187
+
+[calibration]
+  ece              0.0281
+  mean_confidence  0.6481
+  overconfidence   0.0279
+
+[generalization]
+  train_loss_eval  1.2957
+  gen_gap          0.1911
+
+[baselines]
+  base_uniform     8.3178
+  base_unigram     5.9972
+  gain_vs_unigram  4.5104
+  base_bigram      3.6500
+  gain_vs_bigram   2.1632
+
+[induction]
+  induction_loss_random    12.7883
+  induction_loss_repeat    12.1546
+  induction_gap             0.6337
+  induction_acc          7.440e-04
+
+[generation]
+  gen_distinct1   0.6250
+  gen_distinct2   0.8947
+  gen_distinct3   0.9634
+  gen_unigram_kl  0.6540
+
+[throughput]
+  fwd_tok_per_s     1.434e+06
+  fwdbwd_tok_per_s  5.893e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  38.4651
+  lens_loss/L0      5.7463
+  resid_rms/L0      2.9718
+  lens_loss/L1      5.0868
+  resid_rms/L1      3.9674
+  lens_loss/L2      4.6440
+  resid_rms/L2      5.1776
+  lens_loss/L3      4.1336
+  resid_rms/L3      7.1806
+  lens_loss/L4      3.7152
+  resid_rms/L4      9.6681
+  lens_loss/L5      3.1182
+  resid_rms/L5     12.3808
+  lens_loss/L6      2.3847
+  resid_rms/L6     16.6241
+  lens_loss/L7      1.4795
+  resid_rms/L7     25.1121
+
+[layer_ablation]
+  ablate_dloss/L0  6.0181
+  ablate_dloss/L1  0.0713
+  ablate_dloss/L2  0.0791
+  ablate_dloss/L3  0.1656
+  ablate_dloss/L4  0.1804
+  ablate_dloss/L5  0.2619
+  ablate_dloss/L6  0.3411
+  ablate_dloss/L7  0.9052
+
+sample generations:
+  |  made rules, told stories, and sang songs. They were very happy and had a lot of fun.<|eos|>Lily and Max are friends. They like to play in the park. They run, jump and swing. They have fun.
+  | 
+  | One day, they see a big adventure. It is not far. It is dark and cold. It is not fun. It is scary.
+  | 
+  | "Who not 
+
+  |  had chosen the perfect present and she was happy to see her son so excited all day long. 
+  | 
+  | When their got home, her mom told her to get money. The daughter was so excited she quickly ran to get the money. When her mom saw the heart-shaped teddy bear she was so proud of her daughter and knew it woul
+
+saved /data/susanket/text/gpt/runs/gates_m/gated100-s2/eval.json

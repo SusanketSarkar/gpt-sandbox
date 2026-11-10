@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I taught a GPT to gate its own layers. The gates told me nothing.</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #151b24; --panel2: #10161f; --line: #232d3d;
+    --ink: #e9eef6; --mut: #93a1b5; --faint: #5c6b80;
+    --acc: #5cc8ff; --acc2: #ffb454; --violet: #b48cff; --good: #3ddc97; --bad: #ff6b6b;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background:
+      radial-gradient(1000px 420px at 75% -10%, rgba(92,200,255,.14), transparent 60%),
+      radial-gradient(700px 380px at 15% 0%, rgba(180,140,255,.10), transparent 60%);
+    border-bottom: 1px solid var(--line);
+    padding: 64px 20px 40px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  .prose { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .kicker { font: 600 12px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--acc); margin-bottom: 18px; }
+  h1 { font-size: clamp(1.9rem, 4.6vw, 3.1rem); line-height: 1.12; letter-spacing: -0.022em; margin: 0 0 18px; font-weight: 800; }
+  .deck { font-size: 1.13rem; color: var(--mut); max-width: 780px; margin: 0 0 26px; }
+  .strip { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font: 500 12.5px/1 var(--mono); color: var(--mut); background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
+  .pill b { color: var(--ink); font-weight: 600; }
+  main { padding: 44px 0 80px; }
+  section { margin-bottom: 64px; }
+  h2 { font-size: 1.55rem; letter-spacing: -0.015em; margin: 0 0 6px; font-weight: 750; }
+  h2 .no { color: var(--acc); font-family: var(--mono); font-size: .85em; margin-right: 10px; }
+  h3 { font-size: 1.08rem; margin: 34px 0 10px; font-weight: 650; }
+  p { margin: 14px 0; }
+  a { color: var(--acc); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font: 500 13.5px/1.6 var(--mono); background: rgba(92,200,255,.08); border: 1px solid rgba(92,200,255,.15); border-radius: 6px; padding: 1.5px 6px; color: #cfe9ff; }
+  .code { background: #0a0e14; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; overflow-x: auto; margin: 18px 0; font: 12.5px/1.7 var(--mono); color: #c9d6e8; }
+  .code .c { color: #5f7189; } .code .k { color: #7ee0a3; } .code .s { color: #ffcf87; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin: 20px 0; }
+  .card.tight { padding: 14px 16px; }
+  .verdict { border-left: 4px solid var(--bad); }
+  .hypo { border-left: 4px solid var(--acc); }
+  .neg { border-left: 4px solid var(--acc2); }
+  .ok { border-left: 4px solid var(--good); }
+  .tag { display: inline-block; font: 700 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; border-radius: 6px; padding: 4px 8px; margin-bottom: 10px; }
+  .tag.red { background: rgba(255,107,107,.14); color: var(--bad); }
+  .tag.blue { background: rgba(92,200,255,.14); color: var(--acc); }
+  .tag.amber { background: rgba(255,180,84,.14); color: var(--acc2); }
+  .tag.green { background: rgba(61,220,151,.14); color: var(--good); }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  th { font: 600 11.5px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 8px 10px; border-bottom: 1px solid rgba(35,45,61,.55); font-variant-numeric: tabular-nums; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--mut); }
+  th.sorted { color: var(--acc); }
+  .num { font-variant-numeric: tabular-nums; }
+  .muted { color: var(--mut); } .small { font-size: 13.5px; }
+  .badges span, .badge { display: inline-block; font: 600 11px/1 var(--mono); border-radius: 999px; padding: 4px 9px; margin-right: 6px; }
+  .b-teal { background: rgba(92,200,255,.15); color: var(--acc); }
+  .b-amber { background: rgba(255,180,84,.15); color: var(--acc2); }
+  .b-red { background: rgba(255,107,107,.16); color: var(--bad); }
+  .statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 22px 0; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .stat .v { font: 700 1.45rem/1.2 var(--mono); letter-spacing: -0.02em; }
+  .stat .l { font-size: 12.5px; color: var(--mut); margin-top: 4px; }
+  .v.blue { color: var(--acc); } .v.amber { color: var(--acc2); } .v.red { color: var(--bad); } .v.green { color: var(--good); } .v.violet { color: var(--violet); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 10px; }
+  .tab, .chip { font: 600 13px/1 var(--mono); color: var(--mut); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: all .15s; }
+  .tab:hover, .chip:hover { color: var(--ink); border-color: var(--faint); }
+  .tab.on { background: var(--acc); border-color: var(--acc); color: #06121c; }
+  .chip.on { background: rgba(92,200,255,.16); border-color: var(--acc); color: var(--acc); }
+  .chartcard { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .chartgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media (max-width: 900px) { .chartgrid { grid-template-columns: 1fr; } }
+  .chartcard h4 { margin: 0 0 4px; font-size: 14px; font-weight: 650; }
+  .chartcard .sub { font-size: 12px; color: var(--faint); margin: 0 0 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--mut); margin: 6px 0 2px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1.5px; }
+  .animrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 10px 0 4px; }
+  .btn { font: 700 13px/1 var(--mono); color: #06121c; background: var(--acc); border: none; border-radius: 999px; padding: 9px 18px; cursor: pointer; }
+  .btn:hover { filter: brightness(1.1); }
+  input[type=range] { flex: 1; min-width: 160px; accent-color: var(--acc); }
+  .stlbl { font: 500 12.5px/1 var(--mono); color: var(--mut); min-width: 170px; }
+  figure { margin: 20px 0; }
+  figure img { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #0a0e14; }
+  figcaption { font-size: 12.5px; color: var(--faint); margin-top: 8px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; margin: 14px 0 0; }
+  .toc a { color: var(--mut); } .toc a:hover { color: var(--acc); }
+  .tip { position: fixed; display: none; z-index: 99; background: #0b1017ee; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font: 12px/1.7 var(--mono); color: var(--ink); pointer-events: none; max-width: 300px; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  .tip .tl { color: var(--mut); display: inline-block; min-width: 64px; }
+  .tip .tv { color: var(--acc); }
+  .row-gate td { background: rgba(92,200,255,.06); }
+  .row-abl td { background: rgba(255,180,84,.07); }
+  .row-l0 td:first-child { border-left: 3px solid var(--bad); }
+  .foot { border-top: 1px solid var(--line); padding: 26px 20px 60px; color: var(--faint); font-size: 13px; }
+  ul { padding-left: 22px; } li { margin: 7px 0; }
+  .svg text { user-select: none; }
+  .grid { stroke: #1c2534; stroke-width: 1; }
+  .zero { stroke: #33415a; stroke-width: 1; stroke-dasharray: 5 4; }
+  .tick { fill: #5c6b80; font: 10.5px var(--mono); }
+  .axl { fill: #7d8ca2; font: 11px var(--mono); letter-spacing: .04em; }
+  .ident { stroke: #3a4a66; stroke-width: 1.4; stroke-dasharray: 6 5; }
+  .pt { fill: var(--acc); stroke: #06121c; stroke-width: 1.5; cursor: pointer; }
+  .pt:hover { fill: #8fd8ff; }
+  .ptl { fill: #aebdd2; font: 10.5px var(--mono); }
+  .barG { fill: #2f7ea6; } .barD { fill: #b97f35; }
+  .guide { stroke: #5cc8ff; stroke-width: 1; stroke-dasharray: 3 3; }
+  .rampG { stroke: var(--acc); } .rampS { stroke: var(--violet); } .rampA { stroke: var(--acc2); }
+  .rampdot { fill: var(--ink); }
+  .toggle { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--mut); margin: 8px 0; }
+  .toggle label { display: flex; gap: 7px; align-items: center; cursor: pointer; }
+  .toggle input { accent-color: var(--acc); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">experiment log · gpt-sandbox · nov 2026</div>
+    <h1>I shook the residual stream layer by layer<br>to find out where the model was fragile.</h1>
+    <p class="deck">{{DECK}}</p>
+    <div class="strip">
+      {{PILLS}}
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="prose">
+
+  <div class="card verdict">
+    <span class="tag {{VERDICT_TAGCLASS}}">TL;DR — {{VERDICT_TAG}}</span>
+    <p style="margin:6px 0 0">{{VERDICT_TEXT}}</p>
+  </div>
+
+  <div class="toc">
+    <a href="#question">1 · The question</a>
+    <a href="#design">2 · The rig</a>
+    <a href="#floor">3 · Noise floor</a>
+    <a href="#frag">4 · Where it hurts</a>
+    <a href="#dose">5 · Dose response</a>
+    <a href="#carry">6 · What layers carry</a>
+    <a href="#reg">7 · Or just a regulariser?</a>
+    <a href="#answer">8 · Answer</a>
+    <a href="#repro">9 · Reproduce</a>
+  </div>
+
+  <!-- ============ 1. QUESTION ============ -->
+  <section id="question">
+    <h2><span class="no">01</span>The question</h2>
+    <p><b>Hypothesis:</b> noise injected into the residual stream during training hurts more in the
+    <i>middle</i> layers than at the <i>ends</i>, because middle layers carry the least redundant
+    information. Early layers do local, re-computable feature work; late layers do readout that the
+    loss pins down directly. If that picture is right, the stream should be <i>least</i> able to absorb
+    damage in the middle.</p>
+    <p><b>Question I'm actually trying to answer:</b> does the model's <i>information density vary by depth</i>?
+    That is, if you corrupt one slice of the residual stream, is the cost uniform across depth — or is there a
+    depth at which the stream holds irreplaceable information?</p>
+    <p>Why noise is the right probe: the damage a perturbation does to final predictions is a direct measure of
+    how much of the model's function depends on that slice of the stream. And why <i>training-time</i> noise
+    rather than test-time: at test time the model has no choice but to use what is there; during training it can
+    (in principle) route around a noisy slice — so a training-time probe measures what the stream slice is
+    <i>doing</i>, not just what it holds on one forward pass.</p>
+    <div class="card hypo">
+      <span class="tag blue">the null to beat</span>
+      <p style="margin:6px 0 0">The honest null: on a ~1&nbsp;MB corpus where every model overfits or nearly does,
+      Gaussian noise is also a <b>generic regulariser</b>. Under that null, <i>where</i> you inject should not
+      matter — only <i>how much</i>. Any depth pattern that survives is density; any uniform effect is
+      regularisation. This study is designed to tell the two apart (global-noise controls, gen_gap, dose
+      normalisation).</p>
+    </div>
+  </section>
+
+  <!-- ============ 2. DESIGN ============ -->
+  <section id="design">
+    <h2><span class="no">02</span>The rig</h2>
+    <p>Two model sizes on the same corpus, so a depth pattern must survive a 5× increase in depth and width
+    to count as real. Everything else (data, budget, schedule) is held fixed between variants.</p>
+    <table>
+      <thead><tr><th></th><th>M</th><th>D</th></tr></thead>
+      <tbody>
+        <tr><td>layers / width / heads</td><td>8 / 512 / 6</td><td>16 / 768 / 12</td></tr>
+        <tr><td>params (non-emb)</td><td>25.3M</td><td>149M</td></tr>
+        <tr><td>tokens / run</td><td>163.8M (~104× corpus)</td><td>196.6M (~124× corpus)</td></tr>
+        <tr><td>schedule</td><td colspan="2">cosine to 0, 1000 warmup, batch 32×512, AdamW, bf16</td></tr>
+        <tr><td>corpus</td><td colspan="2"><code>edu_mix</code> — 1.56M tokens of English education prose (train 1.28M / val 283K), BPE vocab 8192</td></tr>
+      </tbody>
+    </table>
+    <h3>One plugin, three lines of intent</h3>
+    <p>Injection is a registered <code>after_attn</code> insert: Gaussian noise whose std is
+    <code>sigma × RMS(stream)</code> at that point in the stack, applied <b>only when <code>ctx.training</code></b>.
+    Scaling by the local RMS makes "sigma=0.3" mean the same thing at layer 0 and layer 15 (the stream's RMS grows
+    ~250× across depth — see §6), and training-only means the evaluated model is clean: we measure what the noise
+    <i>taught</i>, not what it <i>blocked</i>.</p>
+    <div class="code">
+<span class="c"># plugins/rms_noise.py — the entire intervention</span>
+@layer_component(name=<span class="s">"rms_noise"</span>)
+<span class="k">class</span> RmsNoise:
+    <span class="k">def</span> forward(x, ctx, layer_idx=<span class="s">0</span>):
+        <span class="k">if</span> not ctx.training:
+            <span class="k">return</span> x
+        rms = x.float().pow(<span class="s">2</span>).mean().sqrt()
+        x = x + self.sigma * rms * torch.randn_like(x)
+        <span class="k">if</span> ctx.collect:
+            ctx.log(<span class="s">f"noise_std/L{layer_idx}"</span>, x.std())
+        <span class="k">return</span> x
+    </div>
+    <p>Each variant = one (layer, sigma) pair: <code>inserts=[{site: after_attn, name: rms_noise, layers: L, sigma: s}]</code>.
+    "Global" control = the same per-layer sigma on <b>all</b> layers at once, so we can ask whether damage
+    scales with <i>dose</i> (n layers × s) or with <i>location</i>.</p>
+    <h3>The sweep</h3>
+    <table>
+      <thead><tr><th>cell</th><th>variants</th><th>seeds</th><th>runs</th><th>purpose</th></tr></thead>
+      <tbody>
+        {{SWEEP_TABLE}}
+      </tbody>
+    </table>
+    <p class="small muted">Metrics per run: <code>val_bpb</code> (evaluated <i>without</i> noise),
+    <code>gen_gap</code> = val_loss − train_loss, full eval suite; on selected runs: per-layer ablation
+    (<code>ablate_dloss</code>), logit-lens loss curves, stream RMS profiles. <b>{{TOTAL_RUNS}}</b> runs total,
+    ~6h wall on 3 GPUs.</p>
+  </section>
+
+  <!-- ============ 3. NOISE FLOOR ============ -->
+  <section id="floor">
+    <h2><span class="no">03</span>How big is seed noise, really?</h2>
+    <p>Before reading any effect, the floor: the spread of <code>val_bpb</code> across the three plain seeds.
+    Any layer effect smaller than this is just sampling.</p>
+    <div class="statgrid">
+      {{FLOOR_STATS}}
+    </div>
+    <p class="small muted">This floor is the ruler for the rest of the blog. Effects are quoted in bpb and in
+    "floor units".</p>
+  </section>
+
+  <!-- ============ 4. FRAGILITY ============ -->
+  <section id="frag">
+    <h2><span class="no">04</span>Where does the noise hurt?</h2>
+    <p>Delta = <code>val_bpb(noise at layer L)</code> − <code>val_bpb(plain)</code>, same sigma, same budget.
+    Green band = seed noise floor.</p>
+    <figure>
+      <img src="plots/fragility_depth_m.png" alt="fragility curve M">
+      <figcaption>M (8 layers): Δval_bpb by injection depth. Larger markers = 3-seed means (core anchors);
+      smaller = single-seed profile points.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/fragility_depth_d.png" alt="fragility curve D">
+      <figcaption>D (16 layers): same experiment, twice the depth.</figcaption>
+    </figure>
+    <h3>The anchor comparison, paired over seeds</h3>
+    <p>Positive d(first)−d(mid) means the <b>middle is more fragile</b> (the hypothesis); positive
+    d(last)−d(mid) means the <b>end is more fragile</b> (against it).</p>
+    {{ANCHOR_BLOCKS}}
+    {{SHAPE_BLOCKS}}
+  </section>
+
+  <!-- ============ 5. DOSE ============ -->
+  <section id="dose">
+    <h2><span class="no">05</span>Dose response: is it where or how much?</h2>
+    <figure>
+      <img src="plots/dose_depth_m.png" alt="dose M"><img src="plots/dose_depth_d.png" alt="dose D" style="margin-top:14px">
+      <figcaption>Δval_bpb vs sigma at the three anchor depths, both sizes.</figcaption>
+    </figure>
+    <p>If the effect were pure dose, a layer's damage should scale linearly in sigma and be identical across
+    depths. If middle layers are <i>denser</i>, their dose curve should be steeper.</p>
+  </section>
+
+  <!-- ============ 6. CARRY ============ -->
+  <section id="carry">
+    <h2><span class="no">06</span>What are the layers actually carrying?</h2>
+    <p>The hypothesis predicts middle layers hold irreplaceable information. Two direct probes of the
+    <i>plain</i> model: ablate the sublayer output (how much loss jumps) and the logit lens (how much each
+    layer moves the stream toward the final prediction).</p>
+    <figure>
+      <img src="plots/ablation_depth_m.png" alt="ablation M"><img src="plots/ablation_depth_d.png" alt="ablation D" style="margin-top:14px">
+      <figcaption>Plain-model ablation dloss (bars) vs the sigma=1.0 fragility curve (line).</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/lens_depth_m.png" alt="lens M"><img src="plots/lens_depth_d.png" alt="lens D" style="margin-top:14px">
+      <figcaption>Logit-lens loss by depth and stream RMS growth (log axis).</figcaption>
+    </figure>
+    <h3>Does importance predict fragility?</h3>
+    {{ABLA_BLOCKS}}
+    <h3>Test-time sensitivity: what the final model depends on</h3>
+    <p>A complementary probe with <b>no retraining</b>: take the plain model, add a Gaussian perturbation
+    (same σ grid, RMS-scaled) to each slice of the stream <i>at eval time only</i>, and measure the jump in
+    <code>val_bpb</code>. This is the static, dependency-side view of the same question — if the final
+    predictions depend on the middle of the stream most, the middle should be the most sensitive. If the
+    train-time and test-time profiles agree, the middle layers matter in both senses; if they disagree, the
+    train-time effect is adaptation/regularisation, not static importance.</p>
+    {{SENS_BLOCKS}}
+    <div class="card neg">
+      <span class="tag amber">the scale null</span>
+      <p style="margin:6px 0 0">Output-projection weight norm is a confound: bigger <code>attn.proj</code>/<code>mlp.down</code>
+      means the sublayer writes more into the stream, so (a) its noise matters more and (b) its ablation looks
+      worse. Correlating fragility against that norm is the null we must clear before claiming a
+      <i>computational</i> story about the middle. {{SCALE_NOTE}}</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. REGULARISER ============ -->
+  <section id="reg">
+    <h2><span class="no">07</span>Or is the noise just a regulariser?</h2>
+    <p>The 1&nbsp;MB corpus is small enough that every run overfits a little, so noise could be doing the
+    standard regulariser's job: <b>lowering</b> val loss by keeping the model from memorising. The signature of
+    that is a <i>smaller</i> gen_gap, and — crucially — no depth pattern.</p>
+    <figure>
+      <img src="plots/gen_gap_depth_m.png" alt="gen gap M"><img src="plots/gen_gap_depth_d.png" alt="gen gap D" style="margin-top:14px">
+      <figcaption>gen_gap = val_loss − train_loss by variant. Plain (dashed) as reference.</figcaption>
+    </figure>
+    {{REG_BLOCKS}}
+    <figure>
+      <img src="plots/trajectories_depth_m.png" alt="traj M"><img src="plots/trajectories_depth_d.png" alt="traj D" style="margin-top:14px">
+      <figcaption>Training trajectories, sigma=1.0 at each anchor vs plain.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 8. ANSWER ============ -->
+  <section id="answer">
+    <h2><span class="no">08</span>Answer: does information density vary by depth?</h2>
+    <div class="card {{ANSWER_CLASS}}">
+      <span class="tag {{ANSWER_TAGCLASS}}">{{ANSWER_TAG}}</span>
+      <p style="margin:6px 0 0">{{ANSWER_TEXT}}</p>
+    </div>
+    <h3>Reading it carefully</h3>
+    {{CAVEATS}}
+  </section>
+
+  <!-- ============ 9. REPRO ============ -->
+  <section id="repro">
+    <h2><span class="no">09</span>Reproduce</h2>
+    <div class="code">
+<span class="c"># everything lives in</span>
+experiments/depth_fragility/
+├── orchestrator.sh      <span class="c"># 3-GPU queue</span>
+├── analyze.py           <span class="c"># results.json + results.md + plots/</span>
+├── build_blog.py        <span class="c"># this page</span>
+├── blog_template.html   <span class="c"># this page, with placeholders</span>
+├── smoke.py             <span class="c"># insert contract tests (train-only, RMS scale, layer select)</span>
+├── results.json / results.md / plots/
+└── state/               <span class="c"># sweep logs</span>
+
+plugins/rms_noise.py     <span class="c"># the intervention</span>
+configs/depth/           <span class="c"># depth_m.yaml (8L), depth_d.yaml (16L)</span>
+configs/sweeps/depth_*.yaml   <span class="c"># 7 sweep files</span>
+
+<span class="c"># rerun the analysis from any runs dir:</span>
+python experiments/depth_fragility/analyze.py /data/susanket/text/gpt/runs
+    </div>
+    <p class="small muted">Runs: <code>/data/susanket/text/gpt/runs/depth_*</code>. Each run dir has its own
+    <code>config.yaml</code>, <code>metrics.jsonl</code>, <code>eval.json</code>, plugin snapshot and
+    checkpoints, so any single run is self-contained and resumable.</p>
+  </section>
+
+</div>
+</main>
+</body>
+</html>

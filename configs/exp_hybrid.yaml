@@ -1,0 +1,11 @@
+# Hybrid: alternating MHA (global) and local-attention layers. First selector match wins.
+base: tiny.yaml
+name: exp_hybrid
+model:
+  n_layer: 4
+  d_model: 128
+  n_head: 4
+  seq_len: 128
+  attention:
+    - {layers: "0::2", name: mha}          # even layers 0,2 -> global
+    - {layers: all,  name: local, window: 64}   # odd layers 1,3 -> local

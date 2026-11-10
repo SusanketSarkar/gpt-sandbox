@@ -1,0 +1,15 @@
+name: layout_f1_small
+base: ../layouts/depth_small_base.yaml
+common: {train.max_steps: 10000}
+seeds: [0, 1, 2]
+variants:
+  baseline: {model.extra.layout: "AMAMAMAMAMAMAMAM"}
+  A: {model.extra.layout: "MMMAAAAAAAMMAMMM"}
+  B: {model.extra.layout: "AAAMAAMMMMMMAAAM"}
+  C: {model.extra.layout: "MMMMAAAAAAAAMMMM"}
+  D: {model.extra.layout: "AAAAMMMMMMMMAAAA"}
+  sandwich: {model.extra.layout: "AAAAAMAMAMAMMMMM"}
+  rand0: {model.extra.layout: "MMAMAMAMAMAAAMMA"}
+  rand1: {model.extra.layout: "AAAAMMMMAMMAAAMM"}
+  rand2: {model.extra.layout: "AMAAAMMAAMMMMMAA"}
+  rand3: {model.extra.layout: "AMMAMAMAMMAMAAMA"}

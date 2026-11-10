@@ -35,8 +35,16 @@ def deep(fn):
 @register("metric", "params")
 def params(ev):
     m = ev.model
-    return {"params_total": m.num_params(), "params_nonemb": m.num_params(non_embedding=True),
-            "flops_per_token": m.flops_per_token()}
+    out = {"params_total": m.num_params(), "params_nonemb": m.num_params(non_embedding=True),
+           "flops_per_token_analytic": m.flops_per_token(),
+           "n_attn_sublayers": m.n_attn_blocks(), "n_sublayers": m.cfg.n_layer}
+    try:
+        out["flops_fwd_per_token"] = m.measured_flops_per_token()   # exact stack: measured Linear + attn score term
+        out["flops_per_token"] = m.train_flops_per_token()          # train FLOPs/token for this exact stack
+    except Exception as e:
+        out["flops_per_token_error"] = float("nan")
+        ev.notes[f"params_metric_{type(e).__name__}"] = str(e)
+    return out
 
 
 # ---- core quality numbers ----------------------------------------------------------------------------

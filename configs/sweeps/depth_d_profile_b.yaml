@@ -1,0 +1,21 @@
+# Depth-fragility, size D (16L): FULL depth profile, layers 8-15 (split for GPU load balancing).
+name: depth_d_profile_b
+base: ../depth/depth_d.yaml
+seeds: [0]
+variants:
+  n8_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 8, sigma: 0.3}]}
+  n9_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 9, sigma: 0.3}]}
+  n10_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 10, sigma: 0.3}]}
+  n11_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 11, sigma: 0.3}]}
+  n12_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 12, sigma: 0.3}]}
+  n13_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 13, sigma: 0.3}]}
+  n14_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 14, sigma: 0.3}]}
+  n15_sig03: {model.inserts: [{site: after_attn, name: rms_noise, layers: 15, sigma: 0.3}]}
+  n8_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 8, sigma: 1.0}]}
+  n9_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 9, sigma: 1.0}]}
+  n10_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 10, sigma: 1.0}]}
+  n11_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 11, sigma: 1.0}]}
+  n12_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 12, sigma: 1.0}]}
+  n13_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 13, sigma: 1.0}]}
+  n14_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 14, sigma: 1.0}]}
+  n15_sig10: {model.inserts: [{site: after_attn, name: rms_noise, layers: 15, sigma: 1.0}]}

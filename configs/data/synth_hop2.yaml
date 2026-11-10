@@ -1,0 +1,7 @@
+# hop2: shuffled chain of pairs + query at chain start, answer two hops ahead (multi-hop probe).
+name: synth_hop2
+sources:
+  - {name: synthetic, task: hop2, n_docs: 4000, lines_per_doc: 64, seed: 0}
+tokenizer: char
+val_fraction: 0.1
+dedup: false

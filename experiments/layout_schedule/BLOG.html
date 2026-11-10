@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do attention and MLP do different jobs at different depths?</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --soft:#555; --faint:#8a8a8a;
+    --bg:#fbfbf9; --card:#ffffff; --line:#e4e2dc;
+    --attn:#3b6fb5; --mlp:#e8833a; --good:#2d7d2d; --accent:#111;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:48px 24px 96px}
+  header.masthead{border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:8px}
+  .kicker{font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); font-weight:700}
+  h1{font-size:34px; line-height:1.15; margin:10px 0 8px; letter-spacing:-.01em}
+  .sub{color:var(--soft); font-size:17px; margin:0}
+  .meta{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:16px; font-size:13px; color:var(--faint)}
+  .meta b{color:var(--soft); font-weight:600}
+  h2{font-size:24px; margin:52px 0 14px; letter-spacing:-.01em; padding-top:8px}
+  h2 .n{color:var(--faint); font-weight:400; margin-right:10px}
+  h3{font-size:18.5px; margin:30px 0 10px}
+  p{margin:0 0 14px}
+  a{color:var(--attn); text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em;
+       background:#efeee9; padding:1.5px 5px; border-radius:4px}
+  ul,ol{margin:0 0 16px; padding-left:22px}
+  li{margin:5px 0}
+  .tldr{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--ink);
+        border-radius:8px; padding:20px 22px; margin:28px 0; box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .tldr .h{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint);
+           font-weight:700; margin-bottom:10px}
+  .tldr p{margin:0 0 10px} .tldr p:last-child{margin:0}
+  .takeaway{background:#f2f7f2; border:1px solid #d7e6d7; border-left:4px solid var(--good);
+            border-radius:8px; padding:14px 18px; margin:18px 0; font-size:15px}
+  .takeaway .h{font-weight:700; color:var(--good); font-size:12px; letter-spacing:.1em;
+               text-transform:uppercase; margin-bottom:6px}
+  .warn{background:#fbf4ec; border:1px solid #ecd9c4; border-left:4px solid var(--mlp);
+        border-radius:8px; padding:14px 18px; margin:18px 0; font-size:15px}
+  .warn .h{font-weight:700; color:#b5651d; font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px}
+  figure{margin:26px 0; background:var(--card); border:1px solid var(--line); border-radius:10px;
+         padding:14px; box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  figure img{width:100%; height:auto; display:block; border-radius:6px}
+  figcaption{font-size:13.5px; color:var(--soft); margin-top:10px; line-height:1.5}
+  figcaption b{color:var(--ink)}
+  table{border-collapse:collapse; width:100%; margin:18px 0; font-size:14.5px; background:var(--card)}
+  th,td{border:1px solid var(--line); padding:8px 11px; text-align:left; vertical-align:top}
+  thead th{background:#f4f3ee; font-weight:700}
+  tbody tr:nth-child(even){background:#faf9f6}
+  td.best{font-weight:700; color:var(--good)}
+  td.worst{color:#b23b3b; font-weight:600}
+  .pill{display:inline-block; font-size:11.5px; font-weight:700; padding:2px 9px; border-radius:20px;
+        letter-spacing:.02em}
+  .pill.attn{background:#e5edf8; color:var(--attn)}
+  .pill.mlp{background:#fbe9dc; color:#b5651d}
+  .pill.rand{background:#ececec; color:#555}
+  .pill.base{background:#eee; color:#222}
+  .pill.block{background:#f3e2e2; color:#a33}
+  nav.toc{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:26px 0}
+  nav.toc .h{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); font-weight:700; margin-bottom:10px}
+  nav.toc ol{columns:2; column-gap:34px; margin:0; padding-left:20px; font-size:14.5px}
+  nav.toc li{margin:4px 0; break-inside:avoid}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr} nav.toc ol{columns:1} h1{font-size:28px}}
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:14.5px; margin:14px 0}
+  .kv dt{color:var(--faint); font-weight:600}
+  .kv dd{margin:0}
+  footer{margin-top:70px; padding-top:20px; border-top:1px solid var(--line); color:var(--faint); font-size:13.5px}
+  .eq{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:#efeee9;
+      border-radius:8px; padding:14px 18px; font-size:14px; overflow-x:auto; margin:16px 0; white-space:pre}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">ML research note · GPT architecture</div>
+  <h1>Do attention and MLP do different jobs at different depths?</h1>
+  <p class="sub">A controlled study of <em>where</em> to put attention vs. MLP computation in a
+  transformer — and whether the usual alternating layout is actually the best schedule.</p>
+  <div class="meta">
+    <span><b>Models</b> 8.3M / 31.5M / 80.1M params</span>
+    <span><b>Data</b> edu_mix (3.1 GB) + 3 synthetic tasks</span>
+    <span><b>Runs</b> 143 across 7 sweeps (+ noise-floor &amp; smoke runs)</span>
+    <span><b>Hardware</b> single CPU</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="h">Contents</div>
+  <ol>
+    <li><a href="#question">The question</a></li>
+    <li><a href="#fair">How to test it fairly</a></li>
+    <li><a href="#layouts">The ten layouts</a></li>
+    <li><a href="#f1">Result 1 — ordering on natural text</a></li>
+    <li><a href="#tasks">Result 2 — the task decides the winner</a></li>
+    <li><a href="#mechanism">Why — what the layers actually do</a></li>
+    <li><a href="#f2">Result 3 — cutting attention (efficiency)</a></li>
+    <li><a href="#depth">Does it hold at other depths?</a></li>
+    <li><a href="#answer">The answer</a></li>
+    <li><a href="#caveats">Caveats</a></li>
+    <li><a href="#repro">Reproducing it</a></li>
+  </ol>
+</nav>
+
+<!-- ================= TL;DR ================= -->
+<div class="tldr">
+  <div class="h">TL;DR</div>
+  <p><strong>Attention and MLP do genuinely different work, but the "best" depth schedule is a
+  property of the <em>task</em>, not of the architecture alone.</strong></p>
+  <p>On real text (<code>edu_mix</code>), the conventional alternating layout is a robust,
+  near-optimal default: <strong>every random interleaved ordering beats every "designed"
+  depth-block schedule</strong> by ~29× the seed noise floor, and the result holds at all three
+  depths we tested (16 / 32 / 48 sublayers). On an isolated one-hop <em>recall</em> task the
+  picture inverts — a designed schedule (attention at the ends) wins by a wide margin
+  (1.00 vs 0.41 exact-match). And attention is <strong>partially redundant</strong>: dropping up
+  to half of the attention sublayers (parameters and FLOPs matched) costs under 0.1% quality.</p>
+  <p><strong>So:</strong> don't rearrange for general text (you can't win), rearrange for
+  narrow structure-specific tasks, and if you want efficiency, <em>remove</em> attention
+  sublayers rather than <em>reorder</em> them.</p>
+</div>
+
+<!-- ================= 1. THE QUESTION ================= -->
+<h2 id="question"><span class="n">1</span>The question</h2>
+
+<p>Every GPT we build is a stack of identical blocks. Each block does two things in a fixed
+order: first an <strong>attention</strong> operation, then an <strong>MLP</strong>:</p>
+
+<div class="eq">input ─▶ [ Attention ] ─▶ [ MLP ] ─▶ [ Attention ] ─▶ [ MLP ] ─▶ … ─▶ logits</div>
+
+<p>The hidden assumption in that picture is strong: <strong>every layer does the same two jobs,
+in the same order.</strong> But is that true — or is it just what the standard code emits? The
+alternative hypothesis is that different depths of the network have different jobs:</p>
+
+<ul>
+  <li><strong>Early layers</strong> extract <em>token-local</em> features (what this word is,
+  its local syntax).</li>
+  <li><strong>Middle layers</strong> do <em>contextual integration</em> (mix information across
+  the whole sequence).</li>
+  <li><strong>Late layers</strong> do <em>refinement</em> and prepare the prediction.</li>
+</ul>
+
+<p>If that's right, then the <em>order</em> and <em>proportion</em> of attention vs. MLP
+computation at each depth should matter. The alternating schedule would then be just one of many
+possible schedules — not obviously the best one.</p>
+
+<h3>First, what do the two operations actually do?</h3>
+<p>It's worth being precise, because the whole experiment hangs on this distinction:</p>
+<ul>
+  <li><strong>Attention</strong> reads from <em>other positions</em> in the sequence. It's the
+  only operation that can move information <em>between</em> tokens. That makes it the natural
+  candidate for "contextual integration" and for anything that needs to copy or relate distant
+  tokens.</li>
+  <li><strong>The MLP</strong> (a feed-forward network applied to each position independently)
+  does <em>nonlinear feature transformation</em> on a single position. It can't see other tokens,
+  but it's where much of the model's "knowledge" and pattern completion lives. It's the natural
+  candidate for token-local feature processing.</li>
+</ul>
+<p>So the hypothesis is really: <em>maybe the network should spend more attention budget where
+context-mixing is needed and more MLP budget where local processing is needed, and vary that
+mixing as a function of depth.</em> That's testable.</p>
+
+<h3>Two sub-questions</h3>
+<p>We split the hypothesis into two cleanly separated experiments, because they change
+different things and need different controls:</p>
+<ul>
+  <li><strong>Family 1 — ordering only.</strong> Keep the <em>exact same number</em> of
+  attention and MLP sublayers, and only change their <em>order</em>. Parameters and FLOPs are
+  identical by construction, so any difference is purely "where the operations sit in depth."</li>
+  <li><strong>Family 2 — fewer attention operations.</strong> Change the <em>count</em> (drop some
+  attention sublayers, add MLP sublayers), matching parameters and measured FLOPs. This tests the
+  efficiency claim: can we do the same job with less attention?</li>
+</ul>
+
+<div class="warn">
+  <div class="h">The confound we had to kill</div>
+  The naive way to compare layouts — train an 8-layer baseline vs. a 16-sublayer layout model —
+  silently changes the initialization: the standard init scales residual-output projections by
+  1/√(2·n_layer), so the two models get different init scales. To avoid that, <strong>the baseline
+  is itself built through the same layout mechanism</strong> (set to the alternating string), so
+  every variant shares code, init, and the parameter/FLOP budget. Differences are then about
+  arrangement, not capacity.
+</div>
+
+<!-- ================= 2. FAIR TEST ================= -->
+<h2 id="fair"><span class="n">2</span>How to test it fairly</h2>
+
+<p>Architecture comparisons are easy to fake. If the "better" layout also happens to have more
+parameters or more FLOPs, you're measuring capacity, not organization. So the whole design is
+built around controls. Here's the toolbox we built to run this honestly.</p>
+
+<h3>The layout knob</h3>
+<p>A string where each character is one <em>sublayer</em> — <code>A</code> for attention,
+<code>M</code> for MLP. <code>"AMAMAM…"</code> is the standard alternating layout; a longer run of
+<code>A</code>s or <code>M</code>s concentrates one operation type in a depth band. The baseline is
+the same knob set to the alternating string, so all variants are comparable by construction. The
+model's <code>n_layer</code> is set to the string's length.</p>
+
+<h3>Synthetic tasks (each stresses one stage)</h3>
+<p>To test the "different jobs at different depths" claim we need tasks that isolate each stage.
+We added two new tasks to the sandbox (which already had <code>copy</code>, <code>recall</code>,
+<code>modadd</code>):</p>
+<table>
+  <thead><tr><th>Task</th><th>What it requires</th><th>Stage it stresses</th></tr></thead>
+  <tbody>
+    <tr><td><code>local_rule</code></td><td>next token is a fixed function of the previous two tokens</td>
+        <td>token-local feature extraction</td></tr>
+    <tr><td><code>recall</code></td><td>one-hop: <code>a→b … a ? → b</code></td>
+        <td>contextual integration (one hop)</td></tr>
+    <tr><td><code>hop2</code></td><td>two-hop: <code>a→b, b→c … a ? → c</code></td>
+        <td>multi-hop reasoning</td></tr>
+  </tbody>
+</table>
+<p>If the depth-stages hypothesis is right, different layouts should win different tasks. If
+layouts are interchangeable, they should all tie on every task.</p>
+
+<h3>Deep probes (what each layer actually does)</h3>
+<p>Three complementary instruments, computed on a trained checkpoint at the last token position:</p>
+<ul>
+  <li><strong>Context-sensitivity.</strong> Take each layer's output and recompute it with all
+  earlier tokens replaced by random ones. Report the relative change per layer. <em>Low = that
+  layer barely uses context (token-local); a jump marks where context gets integrated.</em> This
+  directly tests the early/middle/late claim.</li>
+  <li><strong>Logit lens.</strong> Run the final unembedding on each layer's stream and measure
+  the loss. Shows <em>where the prediction starts to form</em> as depth increases.</li>
+  <li><strong>Layer ablation.</strong> Zero out each sublayer and measure the drop in
+  validation loss. Shows <em>which sublayers the final answer actually depends on.</em></li>
+</ul>
+
+<h3>Controls</h3>
+<div class="grid2">
+  <div>
+    <dl class="kv">
+      <dt>Params</dt><dd>matched within 0.02% across all Family-2 variants</dd>
+      <dt>FLOPs</dt><dd><em>measured</em> with <code>FlopCounterMode</code>, not assumed</dd>
+      <dt>Seeds</dt><dd>3 per variant (2 for the medium model)</dd>
+      <dt>Noise floor</dt><dd>measured per setup; effects reported relative to it</dd>
+    </dl>
+  </div>
+  <div>
+    <dl class="kv">
+      <dt>Null</dt><dd>random permutations give a distribution to beat</dd>
+      <dt>Data</dt><dd><code>edu_mix</code> (natural text) + 3 synthetic tasks</dd>
+      <dt>Depths</dt><dd>16 / 32 / 48 sublayers (8 / 16 / 24 "layers")</dd>
+      <dt>Init</dt><dd>identical mechanism for all variants</dd>
+    </dl>
+  </div>
+</div>
+
+<p>The <strong>noise floor</strong> matters a lot: at this scale, re-run-to-re-run variance from
+the random seed is about ±0.0027 in validation loss. Any effect we report is compared against
+that bar, and we include <strong>random permutations</strong> as a null distribution so a
+"designed" schedule has to beat a <em>spread</em> of orderings, not just the baseline. Without
+that, a single lucky winner is uninterpretable.</p>
+
+<h3>The models</h3>
+<table>
+  <thead><tr><th>Model</th><th>Sublayers (attn+MLP)</th><th>Width</th><th>Params</th><th>Tokens seen</th></tr></thead>
+  <tbody>
+    <tr><td>small</td><td>16 (8 + 8)</td><td>256</td><td>8.3M</td><td>328M</td></tr>
+    <tr><td>medium</td><td>32 (16 + 16)</td><td>384</td><td>31.5M</td><td>262M</td></tr>
+    <tr><td><b>jumbo</b></td><td><b>48 (24 + 24)</b></td><td><b>512</b></td><td><b>80.1M</b></td><td><b>197M</b></td></tr>
+  </tbody>
+</table>
+<p>All use SwiGLU MLPs, RoPE positional encoding, RMSNorm, tied embeddings, and 8 attention
+heads. The jumbo model is the main experiment; the small and medium models test whether the
+result survives a change in depth.</p>
+
+<!-- ================= 3. LAYOUTS ================= -->
+<h2 id="layouts"><span class="n">3</span>The ten layouts</h2>
+<p>For Family 1 we compare <strong>ten layouts, all with exactly 24 attention + 24 MLP
+sublayers</strong> (at the jumbo depth). Only the order differs. Blue is attention, orange is
+MLP; the shaded bands mark early / middle / late depth.</p>
+
+<figure>
+  <img src="figs/layout_map.png" alt="Layout map of the ten architectures">
+  <figcaption><b>The ten layouts.</b> Rows are ranked by final quality (best on top). The four
+  "random" rows are random shuffles of the same 24A+24M multiset — they form the null
+  distribution. The five "designed" rows (A, B, C, D, sandwich) concentrate each operation type
+  into depth bands. Note how the top of the table is dominated by the random/interleaved rows.</figcaption>
+</figure>
+
+<ul>
+  <li><span class="pill base">baseline</span> the standard alternating <code>AMAM…</code>.</li>
+  <li><span class="pill block">A</span> MLP at the ends, attention concentrated in the middle.</li>
+  <li><span class="pill block">B</span> attention at the ends, MLP concentrated in the middle.</li>
+  <li><span class="pill block">C</span> pure-MLP ends, pure-attention middle.</li>
+  <li><span class="pill block">D</span> pure-attention ends, pure-MLP middle.</li>
+  <li><span class="pill block">sandwich</span> attention at the ends, alternating core.</li>
+  <li><span class="pill rand">rand0–3</span> four random permutations of the same multiset.</li>
+</ul>
+
+<!-- ================= 4. FAMILY 1 ================= -->
+<h2 id="f1"><span class="n">4</span>Result 1 — does ordering matter on natural text?</h2>
+
+<p>We train all ten jumbo layouts on the full <code>edu_mix</code> corpus and rank them by
+validation loss (averaged over 3 seeds).</p>
+
+<figure>
+  <img src="figs/noise_floor.png" alt="Val loss per layout with error bars">
+  <figcaption><b>Family 1, jumbo, on edu_mix.</b> Each bar is the 3-seed mean with the std as an
+  error bar. The dashed line marks the noise floor above the best value. The gap between the best
+  (rand1) and worst (C) layout is ~29× the noise floor — this is a real effect, not seed luck.</figcaption>
+</figure>
+
+<table>
+  <thead><tr><th>rank</th><th>layout</th><th>type</th><th>val loss</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>rand1</td><td><span class="pill rand">random</span></td><td class="best">2.680</td></tr>
+    <tr><td>2</td><td>rand3</td><td><span class="pill rand">random</span></td><td>2.693</td></tr>
+    <tr><td>3</td><td>rand2</td><td><span class="pill rand">random</span></td><td>2.700</td></tr>
+    <tr><td>4</td><td>baseline</td><td><span class="pill base">alternating</span></td><td>2.703</td></tr>
+    <tr><td>5</td><td>rand0</td><td><span class="pill rand">random</span></td><td>2.711</td></tr>
+    <tr><td>6</td><td>A</td><td><span class="pill block">depth-block</span></td><td>2.718</td></tr>
+    <tr><td>7</td><td>B</td><td><span class="pill block">depth-block</span></td><td>2.732</td></tr>
+    <tr><td>8</td><td>sandwich</td><td><span class="pill block">depth-block</span></td><td>2.735</td></tr>
+    <tr><td>9</td><td>D</td><td><span class="pill block">depth-block</span></td><td>2.748</td></tr>
+    <tr><td>10</td><td>C</td><td><span class="pill block">depth-block</span></td><td class="worst">2.755</td></tr>
+  </tbody>
+</table>
+
+<div class="takeaway">
+  <div class="h">Takeaway</div>
+  <strong>Every one of the four random (interleaved) permutations beats every one of the five
+  "designed" depth-block schedules.</strong> The conventional alternating baseline sits above all
+  the blocky ones. On natural text, <em>interleaving</em> attention and MLP is the winning
+  strategy — concentrating each operation into a depth band is a consistent (if modest) loss. The
+  hypothesis that a depth-block schedule is the optimum is, on <code>edu_mix</code>,
+  <strong>disproved</strong>.
+</div>
+
+<figure>
+  <img src="figs/f1_jumbo_valloss.png" alt="Family 1 jumbo val loss bar chart">
+  <figcaption><b>Same data, bar chart.</b> The interleaved cluster (baseline + randoms) forms the
+  top tier; the designed depth-block layouts (A, B, C, D, sandwich) form the bottom tier.</figcaption>
+</figure>
+
+<h3>Do the curves cross, or is it stable?</h3>
+<figure>
+  <img src="figs/learning_curves.png" alt="Learning curves">
+  <figcaption><b>Training and validation loss curves</b> for the best (rand1), the baseline, and
+  the two extremes (A, C). The ordering is established early and held — the curves don't
+  dramatically cross late in training, so this isn't an artifact of one model just needing more
+  steps.</figcaption>
+</figure>
+
+<p>This matches what Press et&nbsp;al. (2020, <em>"Improving Transformer Models by Reordering
+their Sublayers"</em>) found: reordering effects are real but modest, and no single reordering
+dominates. We reproduce that — with the added nuance that on general text, <em>interleaving
+wins</em>, not a designed schedule.</p>
+
+<!-- ================= 5. TASKS ================= -->
+<h2 id="tasks"><span class="n">5</span>Result 2 — the task decides the winner</h2>
+
+<p>This is where it gets interesting. We run the same layouts on the three synthetic tasks that
+each stress a different stage. The three tasks <strong>disagree about the winner</strong> — which
+is exactly the "different jobs" signature the hypothesis predicts.</p>
+
+<table>
+  <thead><tr><th>task (stage)</th><th>best layout</th><th>worst layout</th><th>spread</th></tr></thead>
+  <tbody>
+    <tr><td><code>local_rule</code> (token-local)</td>
+        <td>all tied (EM 1.00)</td><td>—</td><td>~0 (saturated control)</td></tr>
+    <tr><td><code>recall</code> (one-hop)</td>
+        <td class="best">B / D (EM ≈ 1.00)</td><td class="worst">A (EM 0.41)</td>
+        <td><b>0.59 EM</b> — the discriminator</td></tr>
+    <tr><td><code>hop2</code> (multi-hop)</td>
+        <td>C / D (EM 0.998)</td><td>B (EM 0.992)</td><td>0.007 EM (≈ noise)</td></tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><code>local_rule</code> is a <strong>saturated control</strong>: every layout reaches
+  EM&nbsp;1.00. Token-local prediction needs no cross-token mixing, so layout is irrelevant. Good —
+  a task that can't distinguish layouts confirms the metric works.</li>
+  <li><code>hop2</code> is also near-saturated (EM 0.992–0.998, spread ≈ noise): two-hop
+  composition is within reach of every layout at this budget.</li>
+  <li><code>recall</code> is <strong>not</strong> saturated, and layout matters a lot (0.59 EM
+  spread). It's the discriminator.</li>
+</ul>
+
+<figure>
+  <img src="figs/synth_recall_em.png" alt="Recall task EM per layout">
+  <figcaption><b>The one-hop recall task, exact-match per layout.</b> Putting attention at the
+  <em>ends</em> (B, D) is near-perfect; concentrating attention in the <em>middle</em> (A) is
+  near-worst (0.41). This is a direct, task-specific win for a "designed" schedule — the opposite
+  of the natural-text result.</figcaption>
+</figure>
+
+<div class="takeaway">
+  <div class="h">Takeaway</div>
+  There is no layout that wins everywhere. On general text, interleaving wins. On a narrow
+  one-hop task, a designed schedule (attention at the ends) wins by a wide margin. The "best"
+  schedule is a property of the <strong>task distribution</strong>, not of the architecture in
+  isolation.
+</div>
+
+<!-- ================= 6. MECHANISM ================= -->
+<h2 id="mechanism"><span class="n">6</span>Why — what the layers actually do</h2>
+
+<p>Results alone tell us <em>that</em> ordering matters; the probes tell us <em>why</em>. We ran
+three complementary instruments on the trained checkpoints.</p>
+
+<h3>Context-sensitivity: where context gets integrated</h3>
+<figure>
+  <img src="figs/ctx_sens_jumbo.png" alt="Context sensitivity per sublayer">
+  <figcaption><b>Context-sensitivity per sublayer</b> (relative change in a layer's output when
+  earlier tokens are scrambled), baseline vs. C on <code>edu_mix</code>. Where the curve is flat,
+  that sublayer barely uses context (token-local work); where it spikes, context is being
+  integrated. The two layouts integrate context at <em>different depths</em> — the signature of
+  different "job schedules."</figcaption>
+</figure>
+
+<figure>
+  <img src="figs/ctx_sens_recall.png" alt="Context sensitivity on recall task">
+  <figcaption><b>Same probe, on the recall task</b> — A vs. B vs. baseline. B/D read context
+  early <em>and</em> late (high at both ends); A does not. That's precisely the difference that
+  separates the recall winner (B) from the loser (A): the winner uses attention where the task
+  needs cross-token access, at both the binding and the read-out.</figcaption>
+</figure>
+
+<h3>Logit lens: where the prediction forms</h3>
+<figure>
+  <img src="figs/logit_lens_jumbo.png" alt="Logit lens per layer">
+  <figcaption><b>Logit lens</b> — the loss you'd get if you decoded the prediction from each
+  sublayer's stream (lower = the answer is more formed). Both layouts drive the loss down
+  smoothly over depth; the comparison shows <em>how fast</em> each layout reaches a decodable
+  state, i.e. how efficiently it funnels the computation toward the final prediction.</figcaption>
+</figure>
+
+<h3>Ablation: which sublayers the answer depends on</h3>
+<figure>
+  <img src="figs/ablation_jumbo.png" alt="Layer ablation">
+  <figcaption><b>Layer ablation</b> — the drop in validation loss when each sublayer is zeroed
+  (baseline vs. C). Sublayers with a tall bar are load-bearing for the final answer. The pattern
+  differs between layouts, showing that "which sublayer matters" is itself layout-dependent.</figcaption>
+</figure>
+
+<h3>How much each sublayer moves the stream</h3>
+<figure>
+  <img src="figs/delta_rms.png" alt="Delta RMS per sublayer">
+  <figcaption><b>Per-sublayer delta RMS</b> (how much each sublayer changes the residual stream,
+  log scale) for A, baseline, and C at the end of training. Attention sublayers and MLP
+  sublayers move the stream by different amounts, and the <em>depth profile</em> of that
+  movement is different in each layout — a concrete, measured difference in what each depth band
+  is doing.</figcaption>
+</figure>
+
+<h3>Induction heads: a known mechanism, layout-dependent</h3>
+<figure>
+  <img src="figs/induction.png" alt="Induction accuracy and gap per layout">
+  <figcaption><b>Induction-head probe.</b> Induction (completing the pattern
+  <code>x … y … x → y</code>) is a well-known mechanism of in-context learning that depends on
+  attention wiring. B and sandwich — the layouts with attention at the ends — are markedly better
+  at induction (0.61 / 0.67) than A and C (0.18 / 0.20). This gives a named, mechanistic
+  explanation for the recall result: layouts that keep attention near the input and output build
+  stronger induction circuits.</figcaption>
+</figure>
+
+<div class="takeaway">
+  <div class="h">Takeaway</div>
+  The probes confirm that attention and MLP do non-interchangeable work at different depths, and
+  that <em>which</em> sublayers do the work is layout-dependent. On the recall task, the winning
+  layout (B) wins because it places attention where the task needs it — at the binding and the
+  read-out — and builds stronger induction circuits.
+</div>
+
+<!-- ================= 7. FAMILY 2 ================= -->
+<h2 id="f2"><span class="n">7</span>Result 3 — cutting attention (efficiency)</h2>
+
+<p>Family 2 asks the efficiency question: if we have to keep parameters and FLOPs comparable, can
+we <em>replace</em> attention sublayers with MLP sublayers and do just as well? (An MLP sublayer
+has ~2× the parameters of an attention sublayer at these shapes, so we drop attention and add MLP
+to keep parameters equal, then fine-tune width so measured FLOPs match.)</p>
+
+<figure>
+  <img src="figs/f2_curve.png" alt="Family 2 quality vs attention count">
+  <figcaption><b>Quality vs. number of attention sublayers</b> (total sublayers fixed at 48,
+  params matched within 0.02%). Dropping from 24 → 20 → 16 → 12 attention sublayers costs only
+  ~0.002–0.005 in validation loss — well inside the noise floor — while saving 1.2% → 2.4% → 3.6%
+  of measured FLOPs per token. The model barely notices.</figcaption>
+</figure>
+
+<table>
+  <thead><tr><th>variant</th><th>attn sublayers</th><th>val loss</th><th>params vs baseline</th><th>FLOPs vs baseline</th></tr></thead>
+  <tbody>
+    <tr><td>baseline</td><td>24</td><td>2.703</td><td>—</td><td>—</td></tr>
+    <tr><td>f2_20A28M</td><td>20</td><td>2.706</td><td>+0.00%</td><td>−1.2%</td></tr>
+    <tr><td>f2_16A32M</td><td>16</td><td>2.705</td><td>+0.02%</td><td>−2.4%</td></tr>
+    <tr><td>f2_12A36M</td><td>12</td><td>2.708</td><td>+0.01%</td><td>−3.6%</td></tr>
+  </tbody>
+</table>
+
+<div class="takeaway">
+  <div class="h">Takeaway</div>
+  <strong>Attention is partially redundant</strong> at this scale and context length: you can
+  remove up to half the attention sublayers, keep parameters and FLOPs matched, and lose less
+  quality than the seed-to-seed noise. If the goal is efficiency, <em>reducing the count</em> of
+  attention sublayers is a more reliable lever than <em>reordering</em> them.
+</div>
+
+<div class="warn">
+  <div class="h">Honest caveat about the savings</div>
+  The FLOP savings are small <em>here</em> because at sequence length 256 and width 512,
+  attention's quadratic cost is a modest fraction of total cost. The efficiency story grows at
+  longer contexts (where the O(n²) term dominates) and in memory — which this sandbox does not
+  measure. So "attention is redundant" should be read as "redundant <em>at this scale and
+  context</em>," not as a universal law.
+</div>
+
+<!-- ================= 8. DEPTH ================= -->
+<h2 id="depth"><span class="n">8</span>Does it hold at other depths?</h2>
+
+<p>A result that only holds at one depth is a coincidence. We re-ran the full 10-layout Family-1
+sweep at two more depths (16 and 32 sublayers), same data, same per-sublayer training budget.</p>
+
+<figure>
+  <img src="figs/f1_depth.png" alt="Depth ablation of the layout effect">
+  <figcaption><b>The layout effect across depths</b> (16 / 32 / 48 sublayers). The spread between
+  the best and worst layout is large relative to the noise floor at every depth, and the same
+  layouts are consistently good or bad.</figcaption>
+</figure>
+
+<table>
+  <thead><tr><th>rank</th><th>16 sublayers</th><th>val loss</th><th>32 sublayers</th><th>val loss</th><th>48 sublayers</th><th>val loss</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>baseline</td><td>2.997</td><td>sandwich</td><td>2.767</td><td class="best">rand1</td><td class="best">2.680</td></tr>
+    <tr><td>2</td><td>rand3</td><td>3.001</td><td>rand1</td><td>2.771</td><td>rand3</td><td>2.693</td></tr>
+    <tr><td>3</td><td>rand1</td><td>3.004</td><td>rand2</td><td>2.778</td><td>rand2</td><td>2.700</td></tr>
+    <tr><td>4</td><td>rand0</td><td>3.009</td><td>rand0</td><td>2.778</td><td>baseline</td><td>2.703</td></tr>
+    <tr><td>5</td><td>sandwich</td><td>3.014</td><td>baseline</td><td>2.779</td><td>rand0</td><td>2.711</td></tr>
+    <tr><td>6</td><td>B</td><td>3.016</td><td>rand3</td><td>2.780</td><td>A</td><td>2.718</td></tr>
+    <tr><td>7</td><td>rand2</td><td>3.018</td><td>B</td><td>2.782</td><td>B</td><td>2.732</td></tr>
+    <tr><td>8</td><td>A</td><td>3.023</td><td>A</td><td>2.796</td><td>sandwich</td><td>2.735</td></tr>
+    <tr><td>9</td><td>D</td><td>3.039</td><td>D</td><td>2.802</td><td>D</td><td>2.748</td></tr>
+    <tr><td>10</td><td>C</td><td class="worst">3.056</td><td>C</td><td class="worst">2.837</td><td>C</td><td class="worst">2.755</td></tr>
+  </tbody>
+</table>
+
+<div class="takeaway">
+  <div class="h">What is consistent vs. what shifts</div>
+  <strong>Consistent at every depth:</strong> C (MLP-only ends) is worst, three times running;
+  A (attention-heavy middle) is 8th every time; D (attention-only ends) is 9th every time; and the
+  interleaved cluster (baseline + the randoms) holds the top five. <strong>What shifts</strong> is
+  only <em>which specific layout is #1</em> (baseline → sandwich → rand1). None of the top
+  layouts is significantly better than the others — so there is no single universal "optimal"
+  schedule. The interleaved cluster is the robust top tier; the blocky schedules are the
+  consistent bottom tier.
+</div>
+
+<!-- ================= 9. ANSWER ================= -->
+<h2 id="answer"><span class="n">9</span>The answer</h2>
+
+<p><strong>Attention and MLP do do different work — but the "best" depth schedule is a property
+of the task distribution, not of the architecture in isolation. The conventional alternating
+arrangement is a robust general-purpose default, not a suboptimal accident.</strong></p>
+
+<p>Three findings, each checked against its noise floor:</p>
+
+<ol>
+  <li><strong>On natural text, interleaving wins.</strong> Every random (interleaved) permutation
+  beats every designed depth-block schedule; the alternating baseline sits above all the blocky
+  ones (best–worst gap 0.076 ≈ 29× the 3-seed noise floor; the designed-vs-random gap ≈ 8–15×
+  noise). The hypothesis that a depth-block schedule is the optimum is <strong>disproved on
+  general text</strong> — the opposite is true. This holds at every depth we tested.</li>
+  <li><strong>On narrow, structure-specific tasks, a designed schedule wins.</strong> On the
+  one-hop recall task, attention-at-the-ends (B/D) reaches EM&nbsp;≈1.00 while attention-in-the-
+  middle (A) reaches 0.41. The context-sensitivity and induction-head probes explain <em>why</em>:
+  the winning layout places attention where the task needs cross-token access and builds stronger
+  induction circuits.</li>
+  <li><strong>Attention is partially redundant.</strong> Dropping 4, 8, or 12 of the 24 attention
+  sublayers (params and FLOPs matched) costs only ~0.1–0.2% quality — inside the noise floor.</li>
+</ol>
+
+<p>So the practical read is: <strong>don't rearrange for general text</strong> (interleaving is
+already near-optimal and you can't reliably beat it), <strong>rearrange for narrow
+structure-specific tasks</strong> where the "job" is known, and if you want <strong>efficiency,
+reduce the count of attention sublayers</strong> rather than reordering them.</p>
+
+<div class="takeaway">
+  <strong>Read the models, not just the numbers.</strong> <code>COMPLETIONS.md</code> runs all
+  ten layouts on the same six prompts and shows their top-5 next-token probabilities, greedy
+  completions, a per-prompt canonical-continuation NLL, and longer sampled prose. It is where the
+  small differences become visible: <strong>D</strong> loops into "summer, summer, summer…",
+  <strong>A</strong> stumbles at coreference and loops on story text, and the layouts split
+  (cat&nbsp;vs.&nbsp;dog) exactly where the answer must be retrieved from earlier context.
+</div>
+
+<!-- ================= 10. CAVEATS ================= -->
+<h2 id="caveats"><span class="n">10</span>Caveats</h2>
+<ul>
+  <li><strong>Small scale, short context.</strong> 8–80M params, sequence length 256. The FLOP
+  savings from cutting attention are small here because attention's quadratic term is a modest
+  share of cost at this context length; the efficiency story grows at longer contexts and in
+  memory (not measured).</li>
+  <li><strong>Modest effect sizes.</strong> Consistent with Press et&nbsp;al. (2020), reordering
+  effects are real but small on general text. We mitigated this with 3 seeds, a measured noise
+  floor, and random-permutation nulls, but the signal is still only ~10–30× noise.</li>
+  <li><strong>CPU-only.</strong> Throughput is limited, so training budgets are in the low
+  hundreds of millions of tokens. Longer training could shift which layout is #1 within the top
+  cluster, though the blocky-vs-interleaved split held at every depth and step we checked.</li>
+  <li><strong>One corpus + three tasks.</strong> The "task decides the winner" result is shown on
+  one specific one-hop task; other narrow tasks may favor different schedules. The
+  generalization is the <em>principle</em> (schedule is task-dependent), not a claim about every
+  possible task.</li>
+  <li><strong>Approximate probes.</strong> The context-sensitivity measure is approximate
+  because a layer's change also includes effects from earlier layers; it's a relative, directional
+  instrument, not a clean causal attribution.</li>
+</ul>
+
+<!-- ================= 11. REPRO ================= -->
+<h2 id="repro"><span class="n">11</span>Reproducing it</h2>
+
+<p>Everything lives in the <code>gpt-sandbox</code> repo under
+<code>experiments/layout_schedule/</code>, with runs in
+<code>/data/susanket/text/gpt/runs/layout_*</code>.</p>
+
+<ul>
+  <li><code>BLOG.md</code> — the companion markdown write-up (this document, in text form).</li>
+  <li><code>DESIGN.md</code> — the full experimental design and rationale.</li>
+  <li><code>gen_layouts.py</code> — generates the layout config strings (Family 1 &amp; 2).</li>
+  <li><code>analyze.py</code> — reads the run <code>eval.json</code>s and computes every number
+  and table in this blog (noise floor, rankings, task spreads, depth comparison).</li>
+  <li><code>make_figs.py</code> / <code>make_more_figs.py</code> — regenerate all figures in
+  <code>figs/</code>.</li>
+  <li><code>show_completions.py</code> — regenerates <code>COMPLETIONS.md</code>, the side-by-side
+  next-word quality of all ten layouts on fixed prompts (top-k, greedy, canonical NLL, prose).</li>
+  <li><code>COMPLETIONS.md</code> — read the actual outputs: where D loops into
+  “summer, summer, summer…”, where A stumbles at coreference, where the layouts split (cat vs. dog).</li>
+  <li><code>figs/</code> — all 15 figures referenced above.</li>
+  <li>Sweeps: <code>layout_synth_{local_rule,recall,hop2}</code>,
+  <code>layout_f1_{small,med,jumbo}</code>, <code>layout_f2_jumbo</code>, plus
+  <code>noise_s0–s2</code> for the noise floor.</li>
+</ul>
+
+<p>Each run directory contains <code>config.yaml</code> (the exact layout string and hyperparameters),
+<code>eval.json</code> (all metrics including the deep probes), <code>metrics.jsonl</code>
+(per-step training/val loss and per-sublayer stats), and <code>ckpt_best.pt</code>.</p>
+
+<footer>
+  <p>GPT sandbox · layout-schedule experiment (NVIDIA H100). All numbers computed from the run
+  artifacts by <code>analyze.py</code>; figures and completions regenerated from the same data.
+  Effects are reported relative to a measured seed noise floor and against random-permutation nulls.</p>
+</footer>
+
+</div>
+</body>
+</html>

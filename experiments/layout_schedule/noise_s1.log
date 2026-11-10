@@ -1,0 +1,97 @@
+run /data/susanket/text/gpt/runs/noise_s1 | device=cuda:2 bf16 | params 80.11M (75.92M non-emb) | 32.77K tok/step | 65.54M tokens total
+step      1/2000 | loss 9.1088 | lr 1.50e-06 | gnorm 9.95 | 31.52K tok/s
+step    100/2000 | loss 6.4501 | lr 1.50e-04 | gnorm 1.37 | 236.22K tok/s
+step    200/2000 | loss 5.3957 | lr 3.00e-04 | gnorm 0.79 | 215.52K tok/s
+step    250 | VAL loss 3.7016  *best*
+step    300/2000 | loss 5.0135 | lr 4.50e-04 | gnorm 0.77 | 148.01K tok/s
+step    400/2000 | loss 4.7080 | lr 6.00e-04 | gnorm 0.58 | 181.27K tok/s
+step    500/2000 | loss 4.4087 | lr 5.95e-04 | gnorm 0.48 | 152.30K tok/s
+step    500 | VAL loss 2.9946  *best*
+step    600/2000 | loss 4.3549 | lr 5.80e-04 | gnorm 0.45 | 177.18K tok/s
+step    700/2000 | loss 4.1691 | lr 5.55e-04 | gnorm 0.42 | 195.81K tok/s
+step    750 | VAL loss 2.6783  *best*
+step    800/2000 | loss 4.1150 | lr 5.21e-04 | gnorm 0.42 | 227.85K tok/s
+step    900/2000 | loss 4.0098 | lr 4.80e-04 | gnorm 0.40 | 236.72K tok/s
+step   1000/2000 | loss 3.8337 | lr 4.34e-04 | gnorm 0.39 | 236.55K tok/s
+step   1000 | VAL loss 2.4804  *best*
+step   1100/2000 | loss 3.8164 | lr 3.83e-04 | gnorm 0.39 | 227.49K tok/s
+step   1200/2000 | loss 3.8055 | lr 3.31e-04 | gnorm 0.40 | 206.51K tok/s
+step   1250 | VAL loss 2.3346  *best*
+step   1300/2000 | loss 3.7244 | lr 2.78e-04 | gnorm 0.40 | 182.71K tok/s
+step   1400/2000 | loss 3.7096 | lr 2.27e-04 | gnorm 0.39 | 188.76K tok/s
+step   1500/2000 | loss 3.7359 | lr 1.80e-04 | gnorm 0.39 | 189.27K tok/s
+step   1500 | VAL loss 2.2287  *best*
+step   1600/2000 | loss 3.5294 | lr 1.39e-04 | gnorm 0.40 | 166.32K tok/s
+step   1700/2000 | loss 3.6224 | lr 1.06e-04 | gnorm 0.41 | 158.58K tok/s
+step   1750 | VAL loss 2.1675  *best*
+step   1800/2000 | loss 3.5890 | lr 8.08e-05 | gnorm 0.41 | 182.42K tok/s
+step   1900/2000 | loss 3.5538 | lr 6.53e-05 | gnorm 0.40 | 188.92K tok/s
+step   2000/2000 | loss 3.5063 | lr 6.00e-05 | gnorm 0.41 | 187.89K tok/s
+step   2000 | VAL loss 2.1306  *best*
+
+running final eval (best checkpoint) ...
+
+=== eval: noise_s1 ===
+
+[params]
+  params_total               80,110,080
+  params_nonemb              75,915,776
+  flops_per_token_analytic  556,157,952
+  n_attn_sublayers                   24
+  n_sublayers                        48
+  flops_fwd_per_token       172,752,896
+  flops_per_token           518,258,688
+
+[val]
+  val_loss             3.0350
+  val_ppl             20.8018
+  val_bpb              1.1288
+  val_acc1             0.4137
+  val_acc5             0.6402
+  val_pred_entropy     3.1739
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.2082
+  pos_loss/1        4.3732
+  pos_loss/2-3      3.9338
+  pos_loss/4-7      3.6468
+  pos_loss/8-15     3.3957
+  pos_loss/16-31    3.1967
+  pos_loss/32-63    3.0639
+  pos_loss/64-127   2.9781
+  pos_loss/128-255  2.9529
+  ctx_gain          0.7519
+  late_loss         2.9483
+
+[calibration]
+  ece               0.0072
+  mean_confidence   0.4082
+  overconfidence   -0.0054
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  4.9821
+
+[induction]
+  induction_loss_random  12.1205
+  induction_loss_repeat  10.1342
+  induction_gap           1.9863
+  induction_acc           0.0221
+
+[generalization]
+  train_loss_eval   3.5634
+  gen_gap          -0.5283
+
+[generation]
+  gen_distinct1   0.7982
+  gen_distinct2   0.9757
+  gen_distinct3   0.9940
+  gen_unigram_kl  1.0738
+
+[throughput]
+  fwd_tok_per_s     2.803e+05
+  fwdbwd_tok_per_s  1.130e+05
+  peak_mem_mb               0
+

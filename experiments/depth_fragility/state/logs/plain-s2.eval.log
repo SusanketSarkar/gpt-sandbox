@@ -1,0 +1,133 @@
+evaluating /data/susanket/text/gpt/runs/depth_d_core/plain-s2 (step 12000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 4.1s
+  [metric throughput] 0.7s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.6s
+
+=== eval: plain-s2 ===
+
+[params]
+  params_total      54,804,992
+  params_nonemb     50,610,688
+  flops_per_token  379,161,600
+
+[val]
+  val_loss             2.6634
+  val_ppl             14.3445
+  val_bpb              0.9905
+  val_acc1             0.4620
+  val_acc5             0.6922
+  val_pred_entropy     2.7243
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.2848
+  pos_loss/1        4.3641
+  pos_loss/2-3      3.8169
+  pos_loss/4-7      3.5101
+  pos_loss/8-15     3.1557
+  pos_loss/16-31    2.9432
+  pos_loss/32-63    2.7958
+  pos_loss/64-127   2.6772
+  pos_loss/128-255  2.6227
+  pos_loss/256-511  2.5917
+  ctx_gain          0.6439
+  late_loss         2.5955
+
+[calibration]
+  ece              0.0074
+  mean_confidence  0.4675
+  overconfidence   0.0055
+
+[generalization]
+  train_loss_eval   3.1590
+  gen_gap          -0.4956
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3538
+
+[induction]
+  induction_loss_random  11.8085
+  induction_loss_repeat   4.6483
+  induction_gap           7.1603
+  induction_acc           0.3413
+
+[generation]
+  gen_distinct1   0.7812
+  gen_distinct2   0.9711
+  gen_distinct3   0.9940
+  gen_unigram_kl  1.1226
+
+[throughput]
+  fwd_tok_per_s     6.543e+05
+  fwdbwd_tok_per_s  3.362e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  43.4969
+  lens_loss/L0      7.2003
+  resid_rms/L0      1.5802
+  lens_loss/L1      6.5346
+  resid_rms/L1      1.9042
+  lens_loss/L2      6.1313
+  resid_rms/L2      2.1697
+  lens_loss/L3      5.9042
+  resid_rms/L3      2.3998
+  lens_loss/L4      5.6910
+  resid_rms/L4      2.6358
+  lens_loss/L5      5.4767
+  resid_rms/L5      2.9097
+  lens_loss/L6      5.2467
+  resid_rms/L6      3.1933
+  lens_loss/L7      5.0721
+  resid_rms/L7      3.5348
+  lens_loss/L8      4.8398
+  resid_rms/L8      4.0376
+  lens_loss/L9      4.6908
+  resid_rms/L9      4.4528
+  lens_loss/L10     4.4604
+  resid_rms/L10     5.1218
+  lens_loss/L11     3.8644
+  resid_rms/L11     5.9410
+  lens_loss/L12     3.3841
+  resid_rms/L12     6.7243
+  lens_loss/L13     2.7221
+  resid_rms/L13     7.5687
+  lens_loss/L14     2.2090
+  resid_rms/L14     8.7986
+  lens_loss/L15     1.7867
+  resid_rms/L15    10.6751
+
+[layer_ablation]
+  ablate_dloss/L0   5.6981
+  ablate_dloss/L1   0.0542
+  ablate_dloss/L2   0.0163
+  ablate_dloss/L3   0.0341
+  ablate_dloss/L4   0.0210
+  ablate_dloss/L5   0.0427
+  ablate_dloss/L6   0.0377
+  ablate_dloss/L7   0.0514
+  ablate_dloss/L8   0.0696
+  ablate_dloss/L9   0.1245
+  ablate_dloss/L10  0.1016
+  ablate_dloss/L11  0.2427
+  ablate_dloss/L12  0.1720
+  ablate_dloss/L13  0.1958
+  ablate_dloss/L14  0.2019
+  ablate_dloss/L15  0.4223
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmed by the graveological complexity of Lemel disease. It was observed that Fox had been a disparate ancestor at least at least some time during the public history ruling. Heath was still cleared up afterward. Hope was very difficult access to the typical way to explo
+
+  |  want to wear, eating the food you want to eat, saying the things you want to eat, eating the fruits, going for a walk, being healthy, cherries and brown rice. So, you will hear a progressive bleeding, immediately or be able to read the food. It’ll also be fine, relying on your sexual choices. Once 
+
+saved /data/susanket/text/gpt/runs/depth_d_core/plain-s2/eval.json

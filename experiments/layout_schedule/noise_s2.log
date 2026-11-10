@@ -1,0 +1,46 @@
+[W1109 09:37:20.984225217 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 3 while trying to allocate 90177536 bytes (free: 21757952, total: 85019590656).
+[W1109 09:37:20.984809293 CUDACachingAllocator.cpp:3933] memory allocation failed with OOM on device 3 while trying to allocate 90177536 bytes (free: 88866816, total: 85019590656).
+run /data/susanket/text/gpt/runs/noise_s2 | device=cuda:3 bf16 | params 80.11M (75.92M non-emb) | 32.77K tok/step | 65.54M tokens total
+Traceback (most recent call last):
+  File "/data/susanket/conda/bin/gpt", line 7, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/susanket/gpt-sandbox/src/gpt_sandbox/cli.py", line 405, in main
+    args.fn(args)
+    ~~~~~~~^^^^^^
+  File "/home/susanket/gpt-sandbox/src/gpt_sandbox/cli.py", line 130, in cmd_train
+    train(cfg, Path(cfg.runs_dir) / name, overwrite=args.overwrite, group=name)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/susanket/gpt-sandbox/src/gpt_sandbox/train/trainer.py", line 118, in train
+    out = fwd(x, y, collect=is_log and micro == tc.grad_accum - 1)
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/susanket/gpt-sandbox/src/gpt_sandbox/model/gpt.py", line 122, in forward
+    x = blk(x, ctx)
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/susanket/gpt-sandbox/plugins/layout_block.py", line 44, in forward
+    delta = self.sub(self.norm(x), ctx)
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/susanket/gpt-sandbox/src/gpt_sandbox/components/mlp.py", line 36, in forward
+    return self.drop(self.down(F.silu(self.gate(x)) * self.up(x)))
+                                      ~~~~~~~~~^^^
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data/susanket/conda/lib/python3.13/site-packages/torch/nn/modules/linear.py", line 134, in forward
+    return F.linear(input, self.weight, self.bias)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 3 has a total capacity of 79.18 GiB of which 84.75 MiB is free. Process 3003963 has 57.06 GiB memory in use. Process 1893357 has 4.99 GiB memory in use. Including non-PyTorch memory, this process has 17.01 GiB memory in use. Of the allocated memory 16.34 GiB is allocated by PyTorch, and 1.21 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

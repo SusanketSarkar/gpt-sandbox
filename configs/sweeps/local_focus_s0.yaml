@@ -1,0 +1,16 @@
+# Focused local-vs-global study, seed 0 (run in parallel with local_focus_s1.yaml).
+# 5 variants x 1 seed, small scale, 5000 steps (fast, contention-tolerant).
+name: local_focus
+base: ../edu_small.yaml
+seeds: [0]
+common:
+  train.max_steps: 5000
+  train.warmup_steps: 200
+  train.eval_interval: 1000
+  eval.max_batches: 64
+variants:
+  mha:        {model.attention: {name: mha}}
+  local_w32:  {model.attention: {name: local, window: 32}}
+  local_w64:  {model.attention: {name: local, window: 64}}
+  local_w128: {model.attention: {name: local, window: 128}}
+  hybrid_13:  {model.attention: [{layers: 0, name: mha}, {layers: all, name: local, window: 64}]}

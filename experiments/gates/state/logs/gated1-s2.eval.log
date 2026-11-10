@@ -1,0 +1,118 @@
+evaluating /data/susanket/text/gpt/runs/gates_m/gated1-s2 (step 10000) on 'tinystories'
+  [metric params] 0.0s
+  [metric val] 0.7s
+  [metric position] 0.0s
+  [metric calibration] 0.0s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 3.6s
+  [metric task] 0.0s
+  [metric throughput] 0.6s
+  [metric logit_lens] 0.0s
+  [metric layer_ablation] 0.2s
+
+=== eval: gated1-s2 ===
+
+[params]
+  params_total      27,402,768
+  params_nonemb     25,305,616
+  flops_per_token  189,582,432
+
+[val]
+  val_loss           1.4867
+  val_ppl            4.4227
+  val_bpb            0.5470
+  val_acc1           0.6200
+  val_acc5           0.8687
+  val_pred_entropy   1.3869
+  val_tokens        431,104
+
+[position]
+  pos_loss/0        3.7876
+  pos_loss/1        2.9648
+  pos_loss/2-3      2.6346
+  pos_loss/4-7      2.3458
+  pos_loss/8-15     1.9990
+  pos_loss/16-31    1.7376
+  pos_loss/32-63    1.5613
+  pos_loss/64-127   1.4807
+  pos_loss/128-255  1.4509
+  pos_loss/256-511  1.4280
+  ctx_gain          0.6180
+  late_loss         1.4194
+
+[calibration]
+  ece              0.0302
+  mean_confidence  0.6501
+  overconfidence   0.0300
+
+[generalization]
+  train_loss_eval  1.2826
+  gen_gap          0.2042
+
+[baselines]
+  base_uniform     8.3178
+  base_unigram     5.9972
+  gain_vs_unigram  4.5104
+  base_bigram      3.6500
+  gain_vs_bigram   2.1633
+
+[induction]
+  induction_loss_random  12.9354
+  induction_loss_repeat  12.1757
+  induction_gap           0.7597
+  induction_acc           0.0017
+
+[generation]
+  gen_distinct1   0.6257
+  gen_distinct2   0.9033
+  gen_distinct3   0.9674
+  gen_unigram_kl  0.6667
+
+[throughput]
+  fwd_tok_per_s     1.428e+06
+  fwdbwd_tok_per_s  5.848e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  38.8134
+  lens_loss/L0      5.8158
+  resid_rms/L0      0.9930
+  lens_loss/L1      4.9920
+  resid_rms/L1      1.3198
+  lens_loss/L2      4.6811
+  resid_rms/L2      1.7078
+  lens_loss/L3      4.0540
+  resid_rms/L3      2.2579
+  lens_loss/L4      3.5636
+  resid_rms/L4      3.0023
+  lens_loss/L5      2.7826
+  resid_rms/L5      3.7267
+  lens_loss/L6      2.1400
+  resid_rms/L6      4.7167
+  lens_loss/L7      1.4798
+  resid_rms/L7      6.6033
+
+[layer_ablation]
+  ablate_dloss/L0  6.4860
+  ablate_dloss/L1  0.1032
+  ablate_dloss/L2  0.1155
+  ablate_dloss/L3  0.3104
+  ablate_dloss/L4  0.2074
+  ablate_dloss/L5  0.3111
+  ablate_dloss/L6  0.2915
+  ablate_dloss/L7  0.6602
+
+sample generations:
+  |  made rules, told stories, and sang songs. They were very happy and had a lot of fun.
+  | 
+  | But then they heard Sara's mom calling them. "Sara, Ben, come downstairs right now!"
+  | 
+  | Sara and Ben were scared. They remembered the flashlight and ran to the door. They got on the toys and hugged Lily. They took o
+
+  |  had chosen the perfect present and she was happy to see her son so content.<|eos|>Once upon a time there was a little boy. He had an enormous stone in his hands. The stone was very big and so shiny. He loved it even though it was the biggest stone in all the land.
+  | 
+  | One day, a dragon came to the sto
+
+saved /data/susanket/text/gpt/runs/gates_m/gated1-s2/eval.json

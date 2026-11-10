@@ -1,0 +1,11 @@
+# Gates study, size L: 8 layers, d=768, seq 512, edu_mix (~62M params).
+base: gate_m.yaml
+name: gates_l_edu
+data: {name: edu_mix}
+model: {d_model: 768}
+optim: {lr: 7.0e-4}
+train:
+  max_steps: 12000
+  warmup_steps: 500
+eval:
+  max_batches: 128

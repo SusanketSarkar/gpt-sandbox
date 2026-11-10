@@ -1,0 +1,116 @@
+evaluating /data/susanket/text/gpt/runs/gates_m/gated100-s0 (step 10000) on 'tinystories'
+  [metric params] 0.0s
+  [metric val] 0.7s
+  [metric position] 0.0s
+  [metric calibration] 0.0s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 3.6s
+  [metric task] 0.0s
+  [metric throughput] 0.5s
+  [metric logit_lens] 0.0s
+  [metric layer_ablation] 0.2s
+
+=== eval: gated100-s0 ===
+
+[params]
+  params_total      27,402,768
+  params_nonemb     25,305,616
+  flops_per_token  189,582,432
+
+[val]
+  val_loss           1.4941
+  val_ppl            4.4552
+  val_bpb            0.5497
+  val_acc1           0.6191
+  val_acc5           0.8681
+  val_pred_entropy   1.3999
+  val_tokens        431,104
+
+[position]
+  pos_loss/0        3.8247
+  pos_loss/1        2.9908
+  pos_loss/2-3      2.6236
+  pos_loss/4-7      2.3734
+  pos_loss/8-15     2.0195
+  pos_loss/16-31    1.7481
+  pos_loss/32-63    1.5674
+  pos_loss/64-127   1.4887
+  pos_loss/128-255  1.4595
+  pos_loss/256-511  1.4337
+  ctx_gain          0.6270
+  late_loss         1.4256
+
+[calibration]
+  ece              0.0282
+  mean_confidence  0.6474
+  overconfidence   0.0282
+
+[generalization]
+  train_loss_eval  1.3002
+  gen_gap          0.1939
+
+[baselines]
+  base_uniform     8.3178
+  base_unigram     5.9972
+  gain_vs_unigram  4.5031
+  base_bigram      3.6500
+  gain_vs_bigram   2.1559
+
+[induction]
+  induction_loss_random  12.6895
+  induction_loss_repeat  11.7876
+  induction_gap           0.9019
+  induction_acc           0.0025
+
+[generation]
+  gen_distinct1   0.6543
+  gen_distinct2   0.9230
+  gen_distinct3   0.9801
+  gen_unigram_kl  0.6607
+
+[throughput]
+  fwd_tok_per_s     1.500e+06
+  fwdbwd_tok_per_s  6.068e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  38.2346
+  lens_loss/L0      5.9574
+  resid_rms/L0      3.3098
+  lens_loss/L1      5.3043
+  resid_rms/L1      4.1888
+  lens_loss/L2      5.0175
+  resid_rms/L2      5.4212
+  lens_loss/L3      4.6896
+  resid_rms/L3      7.4991
+  lens_loss/L4      4.1202
+  resid_rms/L4     10.1361
+  lens_loss/L5      3.1522
+  resid_rms/L5     14.2131
+  lens_loss/L6      2.2074
+  resid_rms/L6     19.6818
+  lens_loss/L7      1.4904
+  resid_rms/L7     28.7342
+
+[layer_ablation]
+  ablate_dloss/L0  6.4061
+  ablate_dloss/L1  0.0538
+  ablate_dloss/L2  0.0740
+  ablate_dloss/L3  0.1265
+  ablate_dloss/L4  0.2099
+  ablate_dloss/L5  0.4042
+  ablate_dloss/L6  0.4594
+  ablate_dloss/L7  0.7170
+
+sample generations:
+  |  made rules, told stories, and sang songs. They were very happy and had a lot of fun today.
+  | 
+  | One day, the sky outside was grey and dark. The clouds were dark and scary, and the brakes kept falling. Tim and Tom could not find their way back home. They looked and looked for a way home. They saw a stri
+
+  |  had chosen the perfect present and she was happy to see her son so excited. She gave him a big hug and asked if he wanted to try her magic tricks. The man said yes, that was the best rare gift ever!
+  | 
+  | Lucy gave his dad the gift and it was a toy sword with golden envy. She was so proud of her brother
+
+saved /data/susanket/text/gpt/runs/gates_m/gated100-s0/eval.json

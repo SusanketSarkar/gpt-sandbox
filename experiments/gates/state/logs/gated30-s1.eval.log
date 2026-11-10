@@ -1,0 +1,136 @@
+evaluating /data/susanket/text/gpt/runs/gates_d_edu/gated30-s1 (step 12000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 1.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.1s
+  [metric baselines] 0.0s
+  [metric induction] 0.0s
+  [metric generation] 4.1s
+  [metric task] 0.0s
+  [metric throughput] 0.5s
+  [metric logit_lens] 0.1s
+  [metric layer_ablation] 0.6s
+
+=== eval: gated30-s1 ===
+
+[params]
+  params_total      54,805,024
+  params_nonemb     50,610,720
+  flops_per_token  379,161,792
+
+[val]
+  val_loss             2.6619
+  val_ppl             14.3232
+  val_bpb              0.9900
+  val_acc1             0.4622
+  val_acc5             0.6921
+  val_pred_entropy     2.7446
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3685
+  pos_loss/1        4.3954
+  pos_loss/2-3      3.8210
+  pos_loss/4-7      3.5133
+  pos_loss/8-15     3.1529
+  pos_loss/16-31    2.9424
+  pos_loss/32-63    2.7901
+  pos_loss/64-127   2.6763
+  pos_loss/128-255  2.6225
+  pos_loss/256-511  2.5893
+  ctx_gain          0.6497
+  late_loss         2.5928
+
+[calibration]
+  ece              0.0075
+  mean_confidence  0.4654
+  overconfidence   0.0032
+
+[generalization]
+  train_loss_eval   3.1532
+  gen_gap          -0.4913
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.3553
+
+[induction]
+  induction_loss_random  11.7265
+  induction_loss_repeat   3.6738
+  induction_gap           8.0527
+  induction_acc           0.4970
+
+[generation]
+  gen_distinct1   0.7578
+  gen_distinct2   0.9559
+  gen_distinct3   0.9794
+  gen_unigram_kl  1.1405
+
+[throughput]
+  fwd_tok_per_s     7.766e+05
+  fwdbwd_tok_per_s  3.105e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  41.6510
+  lens_loss/L0      8.8140
+  resid_rms/L0      0.5903
+  lens_loss/L1      7.8771
+  resid_rms/L1      0.6949
+  lens_loss/L2      7.2260
+  resid_rms/L2      0.8128
+  lens_loss/L3      6.7581
+  resid_rms/L3      0.9490
+  lens_loss/L4      6.4281
+  resid_rms/L4      1.0816
+  lens_loss/L5      6.1608
+  resid_rms/L5      1.2149
+  lens_loss/L6      5.9298
+  resid_rms/L6      1.3670
+  lens_loss/L7      5.8761
+  resid_rms/L7      1.5074
+  lens_loss/L8      5.5246
+  resid_rms/L8      1.7683
+  lens_loss/L9      4.9472
+  resid_rms/L9      2.0732
+  lens_loss/L10     4.4878
+  resid_rms/L10     2.5019
+  lens_loss/L11     4.2122
+  resid_rms/L11     3.0793
+  lens_loss/L12     4.0007
+  resid_rms/L12     3.9107
+  lens_loss/L13     2.7917
+  resid_rms/L13     4.8823
+  lens_loss/L14     2.3177
+  resid_rms/L14     5.7187
+  lens_loss/L15     1.7839
+  resid_rms/L15     6.9825
+
+[layer_ablation]
+  ablate_dloss/L0   3.1870
+  ablate_dloss/L1   0.0182
+  ablate_dloss/L2   0.0128
+  ablate_dloss/L3   0.0122
+  ablate_dloss/L4   0.0081
+  ablate_dloss/L5   0.0140
+  ablate_dloss/L6   0.0211
+  ablate_dloss/L7   0.0164
+  ablate_dloss/L8   0.1373
+  ablate_dloss/L9   0.1543
+  ablate_dloss/L10  0.0918
+  ablate_dloss/L11  0.1309
+  ablate_dloss/L12  0.2071
+  ablate_dloss/L13  0.4661
+  ablate_dloss/L14  0.1635
+  ablate_dloss/L15  0.5338
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarmingly, and as a manufacturer was concerned with the specifics of the logic of Gothic painted styles. She was the first woman in 2013 toitals (1917–1967) to use academic instruments to conduct the operation of multiple scales. Despite her tradition, Gothic was incorp
+
+  |  want to wear, eating the food you want to eat, saying the things you want to do, pregnant women say, "Hello, I want you to listen, see and laugh". In the noun.mitikol trait.mitika stopped to hoist the odd,
+  | A Paaaal Finaly
+  | "If, among the vegetables, and the diongs through the brunt that is eating th
+
+saved /data/susanket/text/gpt/runs/gates_d_edu/gated30-s1/eval.json

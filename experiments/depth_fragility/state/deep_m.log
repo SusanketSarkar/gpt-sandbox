@@ -1,0 +1,109 @@
+evaluating /data/susanket/text/gpt/runs/depth_m_core/plain-s0 (step 10000) on 'edu_mix'
+  [metric params] 0.0s
+  [metric val] 3.8s
+  [metric position] 0.0s
+  [metric calibration] 0.1s
+  [metric generalization] 0.3s
+  [metric baselines] 0.0s
+  [metric induction] 0.1s
+  [metric generation] 3.8s
+  [metric throughput] 0.7s
+  [metric logit_lens] 0.2s
+  [metric layer_ablation] 0.4s
+
+=== eval: plain-s0 ===
+
+[params]
+  params_total      29,499,904
+  params_nonemb     25,305,600
+  flops_per_token  202,165,248
+
+[val]
+  val_loss             2.7762
+  val_ppl             16.0581
+  val_bpb              1.0325
+  val_acc1             0.4473
+  val_acc5             0.6768
+  val_pred_entropy     2.8500
+  val_tokens        1,048,576
+
+[position]
+  pos_loss/0        5.3208
+  pos_loss/1        4.4267
+  pos_loss/2-3      3.8866
+  pos_loss/4-7      3.6105
+  pos_loss/8-15     3.2480
+  pos_loss/16-31    3.0557
+  pos_loss/32-63    2.9015
+  pos_loss/64-127   2.7889
+  pos_loss/128-255  2.7368
+  pos_loss/256-511  2.7068
+  ctx_gain          0.6274
+  late_loss         2.7113
+
+[calibration]
+  ece              0.0090
+  mean_confidence  0.4519
+  overconfidence   0.0046
+
+[generalization]
+  train_loss_eval   3.2731
+  gen_gap          -0.4969
+
+[baselines]
+  base_uniform     9.0109
+  base_unigram     8.0171
+  gain_vs_unigram  5.2409
+
+[induction]
+  induction_loss_random  12.1704
+  induction_loss_repeat   4.5770
+  induction_gap           7.5933
+  induction_acc           0.3289
+
+[generation]
+  gen_distinct1   0.8079
+  gen_distinct2   0.9783
+  gen_distinct3   0.9927
+  gen_unigram_kl  1.1981
+
+[throughput]
+  fwd_tok_per_s     1.599e+06
+  fwdbwd_tok_per_s  3.484e+05
+  peak_mem_mb               0
+
+[logit_lens]
+  lens_loss/embed  40.9103
+  lens_loss/L0      6.6348
+  resid_rms/L0      1.2254
+  lens_loss/L1      5.6222
+  resid_rms/L1      1.7061
+  lens_loss/L2      5.3264
+  resid_rms/L2      2.0246
+  lens_loss/L3      4.9535
+  resid_rms/L3      2.4204
+  lens_loss/L4      4.5398
+  resid_rms/L4      2.9792
+  lens_loss/L5      3.9496
+  resid_rms/L5      3.6085
+  lens_loss/L6      3.0521
+  resid_rms/L6      4.6330
+  lens_loss/L7      1.8888
+  resid_rms/L7      6.3483
+
+[layer_ablation]
+  ablate_dloss/L0  5.8663
+  ablate_dloss/L1  0.2415
+  ablate_dloss/L2  0.1519
+  ablate_dloss/L3  0.1929
+  ablate_dloss/L4  0.1963
+  ablate_dloss/L5  0.2926
+  ablate_dloss/L6  0.4561
+  ablate_dloss/L7  1.1634
+
+sample generations:
+  |  Heraclius (r. 610–641) grew alarm strongly among Georgia. other dead were identified and reported to the American Museumurnae Association, Finding Entrance: The Christian Divine Visitor Center.; Maritime Museums & I� Chapelry; Stepsatopalc.Completion: Heritage Trust and the World of Sanctuary and t
+
+  |  want to wear, eating the food you want to eat, saying the things you see. It gets squashed, squash, andThese are very tough things to cause you to lose weight. And summer penguins are an inspiration, because, keeping things in mind, body shape and scent can give you a chance to eat. If you throw so
+
+saved /data/susanket/text/gpt/runs/depth_m_core/plain-s0/eval.json

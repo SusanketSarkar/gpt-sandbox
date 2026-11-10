@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I taught a GPT to gate its own layers. The gates told me nothing.</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #151b24; --panel2: #10161f; --line: #232d3d;
+    --ink: #e9eef6; --mut: #93a1b5; --faint: #5c6b80;
+    --acc: #5cc8ff; --acc2: #ffb454; --violet: #b48cff; --good: #3ddc97; --bad: #ff6b6b;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background:
+      radial-gradient(1000px 420px at 75% -10%, rgba(92,200,255,.14), transparent 60%),
+      radial-gradient(700px 380px at 15% 0%, rgba(180,140,255,.10), transparent 60%);
+    border-bottom: 1px solid var(--line);
+    padding: 64px 20px 40px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  .prose { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .kicker { font: 600 12px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--acc); margin-bottom: 18px; }
+  h1 { font-size: clamp(1.9rem, 4.6vw, 3.1rem); line-height: 1.12; letter-spacing: -0.022em; margin: 0 0 18px; font-weight: 800; }
+  .deck { font-size: 1.13rem; color: var(--mut); max-width: 780px; margin: 0 0 26px; }
+  .strip { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font: 500 12.5px/1 var(--mono); color: var(--mut); background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
+  .pill b { color: var(--ink); font-weight: 600; }
+  main { padding: 44px 0 80px; }
+  section { margin-bottom: 64px; }
+  h2 { font-size: 1.55rem; letter-spacing: -0.015em; margin: 0 0 6px; font-weight: 750; }
+  h2 .no { color: var(--acc); font-family: var(--mono); font-size: .85em; margin-right: 10px; }
+  h3 { font-size: 1.08rem; margin: 34px 0 10px; font-weight: 650; }
+  p { margin: 14px 0; }
+  a { color: var(--acc); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font: 500 13.5px/1.6 var(--mono); background: rgba(92,200,255,.08); border: 1px solid rgba(92,200,255,.15); border-radius: 6px; padding: 1.5px 6px; color: #cfe9ff; }
+  .code { background: #0a0e14; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; overflow-x: auto; margin: 18px 0; font: 12.5px/1.7 var(--mono); color: #c9d6e8; }
+  .code .c { color: #5f7189; } .code .k { color: #7ee0a3; } .code .s { color: #ffcf87; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; margin: 20px 0; }
+  .card.tight { padding: 14px 16px; }
+  .verdict { border-left: 4px solid var(--bad); }
+  .hypo { border-left: 4px solid var(--acc); }
+  .neg { border-left: 4px solid var(--acc2); }
+  .ok { border-left: 4px solid var(--good); }
+  .tag { display: inline-block; font: 700 10.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; border-radius: 6px; padding: 4px 8px; margin-bottom: 10px; }
+  .tag.red { background: rgba(255,107,107,.14); color: var(--bad); }
+  .tag.blue { background: rgba(92,200,255,.14); color: var(--acc); }
+  .tag.amber { background: rgba(255,180,84,.14); color: var(--acc2); }
+  .tag.green { background: rgba(61,220,151,.14); color: var(--good); }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  th { font: 600 11.5px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td { padding: 8px 10px; border-bottom: 1px solid rgba(35,45,61,.55); font-variant-numeric: tabular-nums; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--mut); }
+  th.sorted { color: var(--acc); }
+  .num { font-variant-numeric: tabular-nums; }
+  .muted { color: var(--mut); } .small { font-size: 13.5px; }
+  .badges span, .badge { display: inline-block; font: 600 11px/1 var(--mono); border-radius: 999px; padding: 4px 9px; margin-right: 6px; }
+  .b-teal { background: rgba(92,200,255,.15); color: var(--acc); }
+  .b-amber { background: rgba(255,180,84,.15); color: var(--acc2); }
+  .b-red { background: rgba(255,107,107,.16); color: var(--bad); }
+  .statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 22px 0; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .stat .v { font: 700 1.45rem/1.2 var(--mono); letter-spacing: -0.02em; }
+  .stat .l { font-size: 12.5px; color: var(--mut); margin-top: 4px; }
+  .v.blue { color: var(--acc); } .v.amber { color: var(--acc2); } .v.red { color: var(--bad); } .v.green { color: var(--good); } .v.violet { color: var(--violet); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 10px; }
+  .tab, .chip { font: 600 13px/1 var(--mono); color: var(--mut); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: all .15s; }
+  .tab:hover, .chip:hover { color: var(--ink); border-color: var(--faint); }
+  .tab.on { background: var(--acc); border-color: var(--acc); color: #06121c; }
+  .chip.on { background: rgba(92,200,255,.16); border-color: var(--acc); color: var(--acc); }
+  .chartcard { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .chartgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  @media (max-width: 900px) { .chartgrid { grid-template-columns: 1fr; } }
+  .chartcard h4 { margin: 0 0 4px; font-size: 14px; font-weight: 650; }
+  .chartcard .sub { font-size: 12px; color: var(--faint); margin: 0 0 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--mut); margin: 6px 0 2px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1.5px; }
+  .animrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 10px 0 4px; }
+  .btn { font: 700 13px/1 var(--mono); color: #06121c; background: var(--acc); border: none; border-radius: 999px; padding: 9px 18px; cursor: pointer; }
+  .btn:hover { filter: brightness(1.1); }
+  input[type=range] { flex: 1; min-width: 160px; accent-color: var(--acc); }
+  .stlbl { font: 500 12.5px/1 var(--mono); color: var(--mut); min-width: 170px; }
+  figure { margin: 20px 0; }
+  figure img { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #0a0e14; }
+  figcaption { font-size: 12.5px; color: var(--faint); margin-top: 8px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; margin: 14px 0 0; }
+  .toc a { color: var(--mut); } .toc a:hover { color: var(--acc); }
+  .tip { position: fixed; display: none; z-index: 99; background: #0b1017ee; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font: 12px/1.7 var(--mono); color: var(--ink); pointer-events: none; max-width: 300px; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  .tip .tl { color: var(--mut); display: inline-block; min-width: 64px; }
+  .tip .tv { color: var(--acc); }
+  .row-gate td { background: rgba(92,200,255,.06); }
+  .row-abl td { background: rgba(255,180,84,.07); }
+  .row-l0 td:first-child { border-left: 3px solid var(--bad); }
+  .foot { border-top: 1px solid var(--line); padding: 26px 20px 60px; color: var(--faint); font-size: 13px; }
+  ul { padding-left: 22px; } li { margin: 7px 0; }
+  .svg text { user-select: none; }
+  .grid { stroke: #1c2534; stroke-width: 1; }
+  .zero { stroke: #33415a; stroke-width: 1; stroke-dasharray: 5 4; }
+  .tick { fill: #5c6b80; font: 10.5px var(--mono); }
+  .axl { fill: #7d8ca2; font: 11px var(--mono); letter-spacing: .04em; }
+  .ident { stroke: #3a4a66; stroke-width: 1.4; stroke-dasharray: 6 5; }
+  .pt { fill: var(--acc); stroke: #06121c; stroke-width: 1.5; cursor: pointer; }
+  .pt:hover { fill: #8fd8ff; }
+  .ptl { fill: #aebdd2; font: 10.5px var(--mono); }
+  .barG { fill: #2f7ea6; } .barD { fill: #b97f35; }
+  .guide { stroke: #5cc8ff; stroke-width: 1; stroke-dasharray: 3 3; }
+  .rampG { stroke: var(--acc); } .rampS { stroke: var(--violet); } .rampA { stroke: var(--acc2); }
+  .rampdot { fill: var(--ink); }
+  .toggle { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--mut); margin: 8px 0; }
+  .toggle label { display: flex; gap: 7px; align-items: center; cursor: pointer; }
+  .toggle input { accent-color: var(--acc); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">experiment log · gpt-sandbox · nov 2026</div>
+    <h1>I shook the residual stream layer by layer<br>to find out where the model was fragile.</h1>
+    <p class="deck">Where is the residual stream fragile? A 114-run study injecting RMS-scaled Gaussian noise into every depth of two GPTs (8L and 16L) trained on the same 531M-token corpus — measuring clean val_bpb, seed noise, gen_gap, layer ablations, logit lens, and eval-time sensitivity.</p>
+    <div class="strip">
+      <span class="pill"><b>114</b> runs</span><span class="pill"><b>2</b> sizes (8L / 16L)</span><span class="pill"><b>351.4M</b> tokens</span><span class="pill"><b>1.56M</b> corpus tokens</span><span class="pill"><b>3</b>× H100</span><span class="pill">~6h wall</span><span class="pill"><b>8</b> layers</span><span class="pill"><b>16</b> layers</span>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="prose">
+
+  <div class="card verdict">
+    <span class="tag green">TL;DR — density varies by depth; fragility is dose-dependent</span>
+    <p style="margin:6px 0 0">Yes — information density varies by depth, and the <b>middle layers are the most information-dense (least redundant)</b>, the first layer the most redundant. This holds at both scales (3 seeds each) in the cleanest signal, eval-time slice sensitivity. But a key nuance from the reliability audit: the training-time 'fragility' is really a <b>learning-disruption / underfitting effect</b> (gen_gap is constant across all 18 noise runs, Δval ≈ Δtrain), not a pure information-loss effect — and its depth profile (8L: first layer worst; 16L: last layer worst) is scale-dependent and does <i>not</i> match the density profile. The models are also undertrained (~0.3–0.4 epochs of the 531M-token corpus), so the fragility is measured in the early-learning regime.</p>
+  </div>
+
+  <div class="toc">
+    <a href="#question">1 · The question</a>
+    <a href="#design">2 · The rig</a>
+    <a href="#floor">3 · Noise floor</a>
+    <a href="#frag">4 · Where it hurts</a>
+    <a href="#dose">5 · Dose response</a>
+    <a href="#carry">6 · What layers carry</a>
+    <a href="#reg">7 · Or just a regulariser?</a>
+    <a href="#answer">8 · Answer</a>
+    <a href="#repro">9 · Reproduce</a>
+  </div>
+
+  <!-- ============ 1. QUESTION ============ -->
+  <section id="question">
+    <h2><span class="no">01</span>The question</h2>
+    <p><b>Hypothesis:</b> noise injected into the residual stream during training hurts more in the
+    <i>middle</i> layers than at the <i>ends</i>, because middle layers carry the least redundant
+    information. Early layers do local, re-computable feature work; late layers do readout that the
+    loss pins down directly. If that picture is right, the stream should be <i>least</i> able to absorb
+    damage in the middle.</p>
+    <p><b>Question I'm actually trying to answer:</b> does the model's <i>information density vary by depth</i>?
+    That is, if you corrupt one slice of the residual stream, is the cost uniform across depth — or is there a
+    depth at which the stream holds irreplaceable information?</p>
+    <p>Why noise is the right probe: the damage a perturbation does to final predictions is a direct measure of
+    how much of the model's function depends on that slice of the stream. And why <i>training-time</i> noise
+    rather than test-time: at test time the model has no choice but to use what is there; during training it can
+    (in principle) route around a noisy slice — so a training-time probe measures what the stream slice is
+    <i>doing</i>, not just what it holds on one forward pass.</p>
+    <div class="card hypo">
+      <span class="tag blue">the null to beat</span>
+      <p style="margin:6px 0 0">The honest null: on a ~1&nbsp;MB corpus where every model overfits or nearly does,
+      Gaussian noise is also a <b>generic regulariser</b>. Under that null, <i>where</i> you inject should not
+      matter — only <i>how much</i>. Any depth pattern that survives is density; any uniform effect is
+      regularisation. This study is designed to tell the two apart (global-noise controls, gen_gap, dose
+      normalisation).</p>
+    </div>
+  </section>
+
+  <!-- ============ 2. DESIGN ============ -->
+  <section id="design">
+    <h2><span class="no">02</span>The rig</h2>
+    <p>Two model sizes on the same corpus, so a depth pattern must survive a 5× increase in depth and width
+    to count as real. Everything else (data, budget, schedule) is held fixed between variants.</p>
+    <table>
+      <thead><tr><th></th><th>M</th><th>D</th></tr></thead>
+      <tbody>
+        <tr><td>layers / width / heads</td><td>8 / 512 / 6</td><td>16 / 768 / 12</td></tr>
+        <tr><td>params (non-emb)</td><td>25.3M</td><td>149M</td></tr>
+        <tr><td>tokens / run</td><td>163.8M (~104× corpus)</td><td>196.6M (~124× corpus)</td></tr>
+        <tr><td>schedule</td><td colspan="2">cosine to 0, 1000 warmup, batch 32×512, AdamW, bf16</td></tr>
+        <tr><td>corpus</td><td colspan="2"><code>edu_mix</code> — 1.56M tokens of English education prose (train 1.28M / val 283K), BPE vocab 8192</td></tr>
+      </tbody>
+    </table>
+    <h3>One plugin, three lines of intent</h3>
+    <p>Injection is a registered <code>after_attn</code> insert: Gaussian noise whose std is
+    <code>sigma × RMS(stream)</code> at that point in the stack, applied <b>only when <code>ctx.training</code></b>.
+    Scaling by the local RMS makes "sigma=0.3" mean the same thing at layer 0 and layer 15 (the stream's RMS grows
+    ~250× across depth — see §6), and training-only means the evaluated model is clean: we measure what the noise
+    <i>taught</i>, not what it <i>blocked</i>.</p>
+    <div class="code">
+<span class="c"># plugins/rms_noise.py — the entire intervention</span>
+@layer_component(name=<span class="s">"rms_noise"</span>)
+<span class="k">class</span> RmsNoise:
+    <span class="k">def</span> forward(x, ctx, layer_idx=<span class="s">0</span>):
+        <span class="k">if</span> not ctx.training:
+            <span class="k">return</span> x
+        rms = x.float().pow(<span class="s">2</span>).mean().sqrt()
+        x = x + self.sigma * rms * torch.randn_like(x)
+        <span class="k">if</span> ctx.collect:
+            ctx.log(<span class="s">f"noise_std/L{layer_idx}"</span>, x.std())
+        <span class="k">return</span> x
+    </div>
+    <p>Each variant = one (layer, sigma) pair: <code>inserts=[{site: after_attn, name: rms_noise, layers: L, sigma: s}]</code>.
+    "Global" control = the same per-layer sigma on <b>all</b> layers at once, so we can ask whether damage
+    scales with <i>dose</i> (n layers × s) or with <i>location</i>.</p>
+    <h3>The sweep</h3>
+    <table>
+      <thead><tr><th>cell</th><th>variants</th><th>seeds</th><th>runs</th><th>purpose</th></tr></thead>
+      <tbody>
+        <table><thead><tr><th>cell</th><th>variants</th><th>seeds</th><th>runs</th><th>purpose</th></tr></thead><tbody><tr><td>core <span class='muted small'>(plain + first/mid/last × σ∈{0.1,0.3,1.0})</span></td><td>3</td><td>30 per size</td><td>the hypothesis test</td></tr><tr><td>profile <span class='muted small'>(every layer L × σ∈{0.3,1.0})</span></td><td>1</td><td>16 per size</td><td>the full fragility curve</td></tr><tr><td>global <span class='muted small'>(all layers × σ∈{0.1,0.3,1.0})</span></td><td>1</td><td>3 per size</td><td>pure-dose / regulariser control</td></tr></tbody></table>
+      </tbody>
+    </table>
+    <p class="small muted">Metrics per run: <code>val_bpb</code> (evaluated <i>without</i> noise),
+    <code>gen_gap</code> = val_loss − train_loss, full eval suite; on selected runs: per-layer ablation
+    (<code>ablate_dloss</code>), logit-lens loss curves, stream RMS profiles. <b>114</b> runs total,
+    ~6h wall on 3 GPUs.</p>
+  </section>
+
+  <!-- ============ 3. NOISE FLOOR ============ -->
+  <section id="floor">
+    <h2><span class="no">03</span>How big is seed noise, really?</h2>
+    <p>Before reading any effect, the floor: the spread of <code>val_bpb</code> across the three plain seeds.
+    Any layer effect smaller than this is just sampling.</p>
+    <div class="statgrid">
+      <div class="stat"><div class="v ">1.0368</div><div class="l">plain val_bpb · M (8L) (n=3 seeds)</div></div><div class="stat"><div class="v ">±0.0049</div><div class="l">seed noise floor · M (8L)</div></div><div class="stat"><div class="v ">0.9886</div><div class="l">plain val_bpb · D (16L) (n=3 seeds)</div></div><div class="stat"><div class="v ">±0.0017</div><div class="l">seed noise floor · D (16L)</div></div>
+    </div>
+    <p class="small muted">This floor is the ruler for the rest of the blog. Effects are quoted in bpb and in
+    "floor units".</p>
+  </section>
+
+  <!-- ============ 4. FRAGILITY ============ -->
+  <section id="frag">
+    <h2><span class="no">04</span>Where does the noise hurt?</h2>
+    <p>Delta = <code>val_bpb(noise at layer L)</code> − <code>val_bpb(plain)</code>, same sigma, same budget.
+    Green band = seed noise floor.</p>
+    <figure>
+      <img src="plots/fragility_depth_m.png" alt="fragility curve M">
+      <figcaption>M (8 layers): Δval_bpb by injection depth. Larger markers = 3-seed means (core anchors);
+      smaller = single-seed profile points.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/fragility_depth_d.png" alt="fragility curve D">
+      <figcaption>D (16 layers): same experiment, twice the depth.</figcaption>
+    </figure>
+    <h3>The anchor comparison, paired over seeds</h3>
+    <p>Positive d(first)−d(mid) means the <b>middle is more fragile</b> (the hypothesis); positive
+    d(last)−d(mid) means the <b>end is more fragile</b> (against it).</p>
+    <h3>M (8L)</h3><table><thead><tr><th>sigma</th><th>Δ first</th><th>Δ mid</th><th>Δ last</th><th>d(first)−d(mid)</th><th>d(last)−d(mid)</th><th>mid vs first</th><th>mid vs last</th><th>|Δ|/floor (f−m)</th><th>|Δ|/floor (l−m)</th></tr></thead>
+<tbody><tr><td>sig10</td><td>-0.0007</td><td>-0.0008</td><td>-0.0002</td><td><b>+0.0001</b></td><td>+0.0006</td><td>first worse</td><td>mid worse</td><td>+0.02×</td><td>+0.12×</td></tr><tr><td>sig100</td><td>+0.0969</td><td>+0.0609</td><td>+0.0528</td><td><b>+0.0360</b></td><td>-0.0081</td><td>mid worse</td><td>last worse</td><td>+7.32×</td><td>-1.64×</td></tr><tr><td>sig30</td><td>-0.0004</td><td>+0.0013</td><td>+0.0019</td><td><b>-0.0018</b></td><td>+0.0006</td><td>first worse</td><td>mixed</td><td>-0.36×</td><td>+0.12×</td></tr></tbody></table>
+<p class="small muted">Paired over the 3 core seeds where available. d(first)−d(mid) &gt; 0 = middle more fragile (hypothesis);
+d(last)−d(mid) &gt; 0 = last more fragile than middle (against it).</p><h3>D (16L)</h3><table><thead><tr><th>sigma</th><th>Δ first</th><th>Δ mid</th><th>Δ last</th><th>d(first)−d(mid)</th><th>d(last)−d(mid)</th><th>mid vs first</th><th>mid vs last</th><th>|Δ|/floor (f−m)</th><th>|Δ|/floor (l−m)</th></tr></thead>
+<tbody><tr><td>sig10</td><td>+0.0024</td><td>-0.0001</td><td>+0.0008</td><td><b>+0.0026</b></td><td>+0.0009</td><td>mid worse</td><td>mid worse</td><td>+1.53×</td><td>+0.56×</td></tr><tr><td>sig100</td><td>+0.0415</td><td>+0.0354</td><td>+0.0635</td><td><b>+0.0061</b></td><td>+0.0281</td><td>mid worse</td><td>mid worse</td><td>+3.68×</td><td>+16.85×</td></tr><tr><td>sig30</td><td>-0.0016</td><td>+0.0023</td><td>+0.0019</td><td><b>-0.0039</b></td><td>-0.0005</td><td>first worse</td><td>last worse</td><td>-2.33×</td><td>-0.28×</td></tr></tbody></table>
+<p class="small muted">Paired over the 3 core seeds where available. d(first)−d(mid) &gt; 0 = middle more fragile (hypothesis);
+d(last)−d(mid) &gt; 0 = last more fragile than middle (against it).</p>
+    <table><thead><tr><th>curve</th><th>ρ vs linear bump</th><th>p</th><th>ρ vs gauss bump</th><th>p</th><th>ρ vs depth</th><th>p</th></tr></thead>
+<tbody><tr><td>s100</td><td><b>+0.000</b></td><td>1.000</td><td>+0.000</td><td>1.000</td><td>-0.857</td><td>0.016</td></tr><tr><td>s30</td><td><b>+0.293</b></td><td>0.508</td><td>+0.293</td><td>0.528</td><td>-0.190</td><td>0.662</td></tr></tbody></table>
+<p class="small muted">Bump centrality: 1 at the middle layer, 0 at the ends (linear and Gaussian variants).
+p = permutation test (2000 shuffles of the curve against the prior). A hypothesis-faithful result: strong positive ρ
+vs the bump, weak vs raw depth.</p><table><thead><tr><th>curve</th><th>ρ vs linear bump</th><th>p</th><th>ρ vs gauss bump</th><th>p</th><th>ρ vs depth</th><th>p</th></tr></thead>
+<tbody><tr><td>s100</td><td><b>+0.077</b></td><td>0.785</td><td>+0.077</td><td>0.795</td><td>+0.238</td><td>0.375</td></tr><tr><td>s30</td><td><b>+0.432</b></td><td>0.087</td><td>+0.432</td><td>0.098</td><td>-0.526</td><td>0.038</td></tr></tbody></table>
+<p class="small muted">Bump centrality: 1 at the middle layer, 0 at the ends (linear and Gaussian variants).
+p = permutation test (2000 shuffles of the curve against the prior). A hypothesis-faithful result: strong positive ρ
+vs the bump, weak vs raw depth.</p>
+  </section>
+
+  <!-- ============ 5. DOSE ============ -->
+  <section id="dose">
+    <h2><span class="no">05</span>Dose response: is it where or how much?</h2>
+    <figure>
+      <img src="plots/dose_depth_m.png" alt="dose M"><img src="plots/dose_depth_d.png" alt="dose D" style="margin-top:14px">
+      <figcaption>Δval_bpb vs sigma at the three anchor depths, both sizes.</figcaption>
+    </figure>
+    <p>If the effect were pure dose, a layer's damage should scale linearly in sigma and be identical across
+    depths. If middle layers are <i>denser</i>, their dose curve should be steeper.</p>
+  </section>
+
+  <!-- ============ 6. CARRY ============ -->
+  <section id="carry">
+    <h2><span class="no">06</span>What are the layers actually carrying?</h2>
+    <p>The hypothesis predicts middle layers hold irreplaceable information. Two direct probes of the
+    <i>plain</i> model: ablate the sublayer output (how much loss jumps) and the logit lens (how much each
+    layer moves the stream toward the final prediction).</p>
+    <figure>
+      <img src="plots/ablation_depth_m.png" alt="ablation M"><img src="plots/ablation_depth_d.png" alt="ablation D" style="margin-top:14px">
+      <figcaption>Plain-model ablation dloss (bars) vs the sigma=1.0 fragility curve (line).</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/lens_depth_m.png" alt="lens M"><img src="plots/lens_depth_d.png" alt="lens D" style="margin-top:14px">
+      <figcaption>Logit-lens loss by depth and stream RMS growth (log axis).</figcaption>
+    </figure>
+    <h3>Does importance predict fragility?</h3>
+    <table><thead><tr><th>curve</th><th>ρ(fragility, ablate dloss)</th><th>p</th><th>ρ(fragility, lens marginal)</th><th>ρ(fragility, out-proj scale)</th><th>ρ(ablate, scale)</th></tr></thead>
+<tbody><tr><td>s100</td><td><b>-0.167</b></td><td>+0.697</td><td>-0.048</td><td>-0.857</td><td>+0.310</td></tr><tr><td>s30</td><td><b>-0.405</b></td><td>+0.334</td><td>-0.524</td><td>-0.190</td><td>+0.310</td></tr></tbody></table>
+<p class="small muted">If fragility tracks <i>importance</i> (ablation/lens), that is a density story. If it tracks
+<i>output scale</i> more strongly, that is a bookkeeping story (bigger writers feel their noise more). The
+ablate↔scale column tells you how much of the importance curve is just scale.</p><table><thead><tr><th>curve</th><th>ρ(fragility, ablate dloss)</th><th>p</th><th>ρ(fragility, lens marginal)</th><th>ρ(fragility, out-proj scale)</th><th>ρ(ablate, scale)</th></tr></thead>
+<tbody><tr><td>s100</td><td><b>+0.418</b></td><td>+0.129</td><td>-0.103</td><td>+0.194</td><td>+0.594</td></tr><tr><td>s30</td><td><b>-0.697</b></td><td>+0.006</td><td>-0.753</td><td>-0.553</td><td>+0.594</td></tr></tbody></table>
+<p class="small muted">If fragility tracks <i>importance</i> (ablation/lens), that is a density story. If it tracks
+<i>output scale</i> more strongly, that is a bookkeeping story (bigger writers feel their noise more). The
+ablate↔scale column tells you how much of the importance curve is just scale.</p>
+    <h3>Test-time sensitivity: what the final model depends on</h3>
+    <p>A complementary probe with <b>no retraining</b>: take the plain model, add a Gaussian perturbation
+    (same σ grid, RMS-scaled) to each slice of the stream <i>at eval time only</i>, and measure the jump in
+    <code>val_bpb</code>. This is the static, dependency-side view of the same question — if the final
+    predictions depend on the middle of the stream most, the middle should be the most sensitive. If the
+    train-time and test-time profiles agree, the middle layers matter in both senses; if they disagree, the
+    train-time effect is adaptation/regularisation, not static importance.</p>
+    <h4>M (8L)</h4><figure>
+      <img src="plots/sensitivity_depth_m.png" alt="sensitivity depth_m">
+      <figcaption>Red: train-time fragility (trained with noise at L, evaluated clean). Blue: test-time
+      sensitivity of the plain model (evaluated with noise at L). Both Δval_bpb at σ=1.0.</figcaption>
+    </figure><table><thead><tr><th>σ</th><th>ρ vs linear bump</th><th>p</th><th>ρ vs gauss bump</th><th>p</th><th>peak L</th><th>min L</th><th>ρ vs ablation</th><th>p</th><th>ρ vs lens</th><th>ρ vs out-proj scale</th><th>ρ vs train-time fragility</th></tr></thead>
+<tbody><tr><td>sig10</td><td>+0.000</td><td>1.000</td><td>+0.000</td><td>1.000</td><td><b>7</b></td><td>0</td><td>+0.310</td><td>0.465</td><td>+0.095</td><td>+1.000</td><td><b>—</b></td></tr><tr><td>sig100</td><td>+0.732</td><td>0.059</td><td>+0.732</td><td>0.056</td><td><b>5</b></td><td>0</td><td>-0.262</td><td>0.538</td><td>-0.524</td><td>+0.429</td><td><b>-0.595</b></td></tr><tr><td>sig30</td><td>+0.000</td><td>1.000</td><td>+0.000</td><td>1.000</td><td><b>7</b></td><td>0</td><td>+0.310</td><td>0.467</td><td>+0.095</td><td>+1.000</td><td><b>-0.190</b></td></tr></tbody></table>
+<p class="small muted">Sensitivity = Δval_bpb of the plain model when one stream slice is noised at eval time.
+Peak/min = the most/least sensitive layer. Correlations test which story fits: a density story predicts high
+ρ with ablation/lens; a bookkeeping story predicts high ρ with output-projection scale.</p><h4>D (16L)</h4><figure>
+      <img src="plots/sensitivity_depth_d.png" alt="sensitivity depth_d">
+      <figcaption>Red: train-time fragility (trained with noise at L, evaluated clean). Blue: test-time
+      sensitivity of the plain model (evaluated with noise at L). Both Δval_bpb at σ=1.0.</figcaption>
+    </figure><table><thead><tr><th>σ</th><th>ρ vs linear bump</th><th>p</th><th>ρ vs gauss bump</th><th>p</th><th>peak L</th><th>min L</th><th>ρ vs ablation</th><th>p</th><th>ρ vs lens</th><th>ρ vs out-proj scale</th><th>ρ vs train-time fragility</th></tr></thead>
+<tbody><tr><td>sig10</td><td>+0.006</td><td>0.995</td><td>+0.006</td><td>0.989</td><td><b>15</b></td><td>0</td><td>+0.585</td><td>0.019</td><td>+0.112</td><td>+0.982</td><td><b>—</b></td></tr><tr><td>sig100</td><td>+0.621</td><td>0.010</td><td>+0.621</td><td>0.008</td><td><b>1</b></td><td>0</td><td>-0.721</td><td>0.004</td><td>-0.574</td><td>-0.394</td><td><b>-0.153</b></td></tr><tr><td>sig30</td><td>+0.018</td><td>0.955</td><td>+0.018</td><td>0.963</td><td><b>15</b></td><td>0</td><td>+0.579</td><td>0.022</td><td>+0.109</td><td>+0.979</td><td><b>-0.512</b></td></tr></tbody></table>
+<p class="small muted">Sensitivity = Δval_bpb of the plain model when one stream slice is noised at eval time.
+Peak/min = the most/least sensitive layer. Correlations test which story fits: a density story predicts high
+ρ with ablation/lens; a bookkeeping story predicts high ρ with output-projection scale.</p>
+    <div class="card neg">
+      <span class="tag amber">the scale null</span>
+      <p style="margin:6px 0 0">Output-projection weight norm is a confound: bigger <code>attn.proj</code>/<code>mlp.down</code>
+      means the sublayer writes more into the stream, so (a) its noise matters more and (b) its ablation looks
+      worse. Correlating fragility against that norm is the null we must clear before claiming a
+      <i>computational</i> story about the middle. M (8L, ~29M params) and D (16L, ~55M params), same width (d=512), same corpus (edu_mix, 531M tokens) and optimizer. Depth is the only thing that changes between the two, so a pattern that holds at both scales is a depth effect, not a size effect. Key results: the test-time information-density profile (middle densest) holds at both scales, while the training-time learning-disruption ranking is scale-dependent — the 8L model is disrupted most by first-layer noise, the 16L model most by last-layer noise.</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. REGULARISER ============ -->
+  <section id="reg">
+    <h2><span class="no">07</span>Or is the noise just a regulariser?</h2>
+    <p>The 1&nbsp;MB corpus is small enough that every run overfits a little, so noise could be doing the
+    standard regulariser's job: <b>lowering</b> val loss by keeping the model from memorising. The signature of
+    that is a <i>smaller</i> gen_gap, and — crucially — no depth pattern.</p>
+    <figure>
+      <img src="plots/gen_gap_depth_m.png" alt="gen gap M"><img src="plots/gen_gap_depth_d.png" alt="gen gap D" style="margin-top:14px">
+      <figcaption>gen_gap = val_loss − train_loss by variant. Plain (dashed) as reference.</figcaption>
+    </figure>
+    <h3>M (8L)</h3><p><b>Plain gen_gap:</b> -0.5033 nats. <b>Variants beating plain by &gt;1 floor:</b> [&#x27;n6_sig03-s0&#x27;].</p><table><thead><tr><th>variant</th><th>gen_gap (nats)</th></tr></thead><tbody><tr><td>all_sig01-s0</td><td>-0.49706</td></tr><tr><td>all_sig03-s0</td><td>-0.4982</td></tr><tr><td>all_sig10-s0</td><td>-0.54829</td></tr><tr><td>n0_sig01-s0</td><td>-0.50022</td></tr><tr><td>n0_sig01-s1</td><td>-0.50238</td></tr><tr><td>n0_sig01-s2</td><td>-0.51401</td></tr><tr><td>n0_sig03-s0</td><td>-0.49428</td></tr><tr><td>n0_sig03-s1</td><td>-0.50052</td></tr><tr><td>n0_sig03-s2</td><td>-0.50763</td></tr><tr><td>n0_sig10-s0</td><td>-0.48122</td></tr><tr><td>n0_sig10-s1</td><td>-0.50771</td></tr><tr><td>n0_sig10-s2</td><td>-0.47683</td></tr><tr><td>n1_sig03-s0</td><td>-0.49754</td></tr><tr><td>n1_sig10-s0</td><td>-0.4975</td></tr><tr><td>n2_sig03-s0</td><td>-0.50055</td></tr><tr><td>n2_sig10-s0</td><td>-0.49893</td></tr><tr><td>n3_sig03-s0</td><td>-0.50002</td></tr><tr><td>n3_sig10-s0</td><td>-0.49316</td></tr><tr><td>n4_sig01-s0</td><td>-0.49561</td></tr><tr><td>n4_sig01-s1</td><td>-0.50801</td></tr><tr><td>n4_sig01-s2</td><td>-0.51323</td></tr><tr><td>n4_sig03-s0</td><td>-0.50024</td></tr><tr><td>n4_sig03-s1</td><td>-0.49893</td></tr><tr><td>n4_sig03-s2</td><td>-0.50842</td></tr><tr><td>n4_sig10-s0</td><td>-0.4856</td></tr><tr><td>n4_sig10-s1</td><td>-0.49683</td></tr><tr><td>n4_sig10-s2</td><td>-0.49695</td></tr><tr><td>n5_sig03-s0</td><td>-0.49736</td></tr><tr><td>n5_sig10-s0</td><td>-0.49582</td></tr><tr><td>n6_sig03-s0</td><td>-0.49301</td></tr><tr><td>n6_sig10-s0</td><td>-0.50562</td></tr><tr><td>n7_sig01-s0</td><td>-0.49981</td></tr><tr><td>n7_sig01-s1</td><td>-0.49991</td></tr><tr><td>n7_sig01-s2</td><td>-0.51327</td></tr><tr><td>n7_sig03-s0</td><td>-0.49754</td></tr><tr><td>n7_sig03-s1</td><td>-0.50911</td></tr><tr><td>n7_sig03-s2</td><td>-0.51085</td></tr><tr><td>n7_sig10-s0</td><td>-0.50418</td></tr><tr><td>n7_sig10-s1</td><td>-0.504</td></tr><tr><td>n7_sig10-s2</td><td>-0.51508</td></tr></tbody></table><p><b>global_vs_mid_sig10:</b> global Δ = -0.0015, mid-only Δ = -0.0008 → global is 1.94× the mid effect (pure-dose expectation ≈ 8× if damage adds per layer). A ratio far below pure dose means per-layer damage does not add — location matters.</p><p><b>global_vs_mid_sig30:</b> global Δ = +0.0281, mid-only Δ = +0.0013 → global is 21.16× the mid effect (pure-dose expectation ≈ 8× if damage adds per layer). A ratio far below pure dose means per-layer damage does not add — location matters.</p><p><b>global_vs_mid_sig100:</b> global Δ = +0.4078, mid-only Δ = +0.0609 → global is 6.70× the mid effect (pure-dose expectation ≈ 8× if damage adds per layer). A ratio far below pure dose means per-layer damage does not add — location matters.</p><p>Plain ends at train loss 3.2995 / val 1.8961. Noise variants ending at higher train loss are consistent with noise capping what the model memorises (a regulariser); ending at similar train loss but worse val is a capability loss (density).</p><h3>D (16L)</h3><p><b>Plain gen_gap:</b> -0.4904 nats. <b>Variants beating plain by &gt;1 floor:</b> [&#x27;n0_sig03-s0&#x27;, &#x27;n0_sig03-s0&#x27;, &#x27;n10_sig03-s0&#x27;, &#x27;n11_sig03-s0&#x27;, &#x27;n12_sig03-s0&#x27;, &#x27;n13_sig03-s0&#x27;, &#x27;n14_sig03-s0&#x27;].</p><table><thead><tr><th>variant</th><th>gen_gap (nats)</th></tr></thead><tbody><tr><td>all_sig01-s0</td><td>-0.48848</td></tr><tr><td>all_sig03-s0</td><td>-0.49791</td></tr><tr><td>all_sig10-s0</td><td>-0.72477</td></tr><tr><td>n0_sig01-s0</td><td>-0.48864</td></tr><tr><td>n0_sig01-s1</td><td>-0.48879</td></tr><tr><td>n0_sig01-s2</td><td>-0.4955</td></tr><tr><td>n0_sig03-s0</td><td>-0.48518</td></tr><tr><td>n0_sig03-s1</td><td>-0.49003</td></tr><tr><td>n0_sig03-s2</td><td>-0.49297</td></tr><tr><td>n0_sig10-s0</td><td>-0.48499</td></tr><tr><td>n0_sig10-s1</td><td>-0.49114</td></tr><tr><td>n0_sig10-s2</td><td>-0.49445</td></tr><tr><td>n10_sig03-s0</td><td>-0.4834</td></tr><tr><td>n10_sig10-s0</td><td>-0.48292</td></tr><tr><td>n11_sig03-s0</td><td>-0.48756</td></tr><tr><td>n11_sig10-s0</td><td>-0.48946</td></tr><tr><td>n12_sig03-s0</td><td>-0.48872</td></tr><tr><td>n12_sig10-s0</td><td>-0.48994</td></tr><tr><td>n13_sig03-s0</td><td>-0.48688</td></tr><tr><td>n13_sig10-s0</td><td>-0.49439</td></tr><tr><td>n14_sig03-s0</td><td>-0.48519</td></tr><tr><td>n14_sig10-s0</td><td>-0.49581</td></tr><tr><td>n15_sig01-s0</td><td>-0.48634</td></tr><tr><td>n15_sig01-s1</td><td>-0.48353</td></tr><tr><td>n15_sig01-s2</td><td>-0.49701</td></tr><tr><td>n15_sig03-s0</td><td>-0.48692</td></tr><tr><td>n15_sig03-s1</td><td>-0.49554</td></tr><tr><td>n15_sig03-s2</td><td>-0.49702</td></tr><tr><td>n15_sig10-s0</td><td>-0.4909</td></tr><tr><td>n15_sig10-s1</td><td>-0.49734</td></tr><tr><td>n15_sig10-s2</td><td>-0.49588</td></tr><tr><td>n1_sig03-s0</td><td>-0.48916</td></tr><tr><td>n1_sig10-s0</td><td>-0.49225</td></tr><tr><td>n2_sig03-s0</td><td>-0.4892</td></tr><tr><td>n2_sig10-s0</td><td>-0.48735</td></tr><tr><td>n3_sig03-s0</td><td>-0.48975</td></tr><tr><td>n3_sig10-s0</td><td>-0.4951</td></tr><tr><td>n4_sig03-s0</td><td>-0.49347</td></tr><tr><td>n4_sig10-s0</td><td>-0.49145</td></tr><tr><td>n5_sig03-s0</td><td>-0.48991</td></tr><tr><td>n5_sig10-s0</td><td>-0.49727</td></tr><tr><td>n6_sig03-s0</td><td>-0.4955</td></tr><tr><td>n6_sig10-s0</td><td>-0.49146</td></tr><tr><td>n7_sig03-s0</td><td>-0.49066</td></tr><tr><td>n7_sig10-s0</td><td>-0.48905</td></tr><tr><td>n8_sig01-s0</td><td>-0.48568</td></tr><tr><td>n8_sig01-s1</td><td>-0.49004</td></tr><tr><td>n8_sig01-s2</td><td>-0.4933</td></tr><tr><td>n8_sig03-s0</td><td>-0.48924</td></tr><tr><td>n8_sig03-s1</td><td>-0.49257</td></tr><tr><td>n8_sig03-s2</td><td>-0.4943</td></tr><tr><td>n8_sig10-s0</td><td>-0.48272</td></tr><tr><td>n8_sig10-s1</td><td>-0.48655</td></tr><tr><td>n8_sig10-s2</td><td>-0.49414</td></tr><tr><td>n9_sig03-s0</td><td>-0.48697</td></tr><tr><td>n9_sig10-s0</td><td>-0.4831</td></tr></tbody></table><p><b>global_vs_mid_sig10:</b> global Δ = +0.0027, mid-only Δ = -0.0001 → global is -19.16× the mid effect (pure-dose expectation ≈ 16× if damage adds per layer). A ratio far below pure dose means per-layer damage does not add — location matters.</p><p><b>global_vs_mid_sig30:</b> global Δ = +0.0597, mid-only Δ = +0.0023 → global is 25.64× the mid effect (pure-dose expectation ≈ 16× if damage adds per layer). A ratio far below pure dose means per-layer damage does not add — location matters.</p><p><b>global_vs_mid_sig100:</b> global Δ = +1.4774, mid-only Δ = +0.0354 → global is 41.76× the mid effect (pure-dose expectation ≈ 16× if damage adds per layer). A ratio far below pure dose means per-layer damage does not add — location matters.</p><p>Plain ends at train loss 3.1222 / val 1.7812. Noise variants ending at higher train loss are consistent with noise capping what the model memorises (a regulariser); ending at similar train loss but worse val is a capability loss (density).</p>
+    <figure>
+      <img src="plots/trajectories_depth_m.png" alt="traj M"><img src="plots/trajectories_depth_d.png" alt="traj D" style="margin-top:14px">
+      <figcaption>Training trajectories, sigma=1.0 at each anchor vs plain.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 8. ANSWER ============ -->
+  <section id="answer">
+    <h2><span class="no">08</span>Answer: does information density vary by depth?</h2>
+    <div class="card hypo">
+      <span class="tag green">yes, with a twist</span>
+      <p style="margin:6px 0 0"><p><b>The question (does information density vary by depth?) — yes, clearly.</b> The most reliable probe is <i>eval-time</i> slice sensitivity: load a trained model, inject RMS-scaled Gaussian noise into one slice of the residual stream, and measure the immediate damage to val_bpb. There is no learning involved — it is a direct probe of the final function. The damage is largest in the middle layers and smallest at the first layer, at both the 8L and 16L scale (3 seeds each). The middle carries the least redundant information; the first layer is the most redundant. This is the clean, scale-robust answer to the density question.</p><p><b>Important reinterpretation of the training-time fragility.</b> When we decompose the training-time val penalty into 'learned less' (train NLL rise) vs 'generalises worse' (gen_gap = val_nll − train_nll), across <i>all 18 noise runs</i> (2 scales × 3 anchors × 3 seeds) at σ=1.0 the gen_gap is essentially constant (−0.48 to −0.52) and Δval ≈ Δtrain. So the entire val_bpb penalty is a <b>learning-speed / underfitting effect</b>: noise slows learning (train NLL rises) and val rises by exactly the same amount. There is <i>no differential generalisation penalty</i>. The training-time 'fragility' is therefore a depth- and scale-dependent <b>learning-disruption</b> effect, <i>not</i> a pure measure of how much information each layer carries. The original hypothesis conflated these two; they are distinct and have different depth profiles:</p><ul><li><b>Test-time information density</b> (clean probe): middle densest, first most redundant — both scales. <i>This is the reliable density result.</i></li><li><b>Training-time learning disruption</b> (σ=1.0): how much perturbing each layer's stream during training degrades the final model. 8L: <b>first layer disrupts most</b> (first > middle > last, ~11–20× the floor). 16L: <b>last layer disrupts most</b> (last > first > middle, ~17–38× the floor). Scale-dependent, and it does <i>not</i> match the density profile.</li></ul><p>The weaker-noise cells (σ=0.1, σ=0.3) are mostly within ~1–2× the seed floor and should be read as suggestive, not conclusive — the 'middle most fragile at moderate noise' (16L) is only ~2× the floor, and a few right-of-mid 16L layers are even <i>helped</i> (negative deltas) in single-seed profile runs. The robust, defensible results are the test-time density profile and the σ=1.0 learning-disruption ranking.</p></p>
+    </div>
+    <h3>Reading it carefully</h3>
+    <ul><li><b>Reliability is tiered.</b> Robust (high confidence): the test-time information-density profile (middle densest, first most redundant; both scales, 3 seeds, large effect) and the σ=1.0 learning-disruption ranking (11–38× the seed floor, consistent across 3 seeds). Marginal (low–medium confidence): the σ=0.1 and σ=0.3 effects, mostly within ~1–2× the seed floor; the 'middle most fragile at moderate noise' (16L) is only ~2× the floor, and a few 16L right-of-mid layers are <i>helped</i> by noise in single-seed profile runs (within the noise range).</li><li><b>Training-time fragility is a learning-disruption effect, not pure information loss.</b> gen_gap (val_nll − train_nll) is constant (−0.48 to −0.52) across all 18 σ=1.0 noise runs and Δval ≈ Δtrain: the model simply learned less, and val rose by the same amount. There is no differential generalisation penalty. Read the depth profile of the training penalty as 'how much perturbing that layer disrupts learning', not 'how much information that layer carries'.</li><li><b>Undertrained, not overfit.</b> Each model sees only ~0.31–0.37 epochs of the 531M-token corpus (M: 164M, D: 197M tokens). This is NOT the 1MB-overfit regime, so the 'generic regulariser on a tiny overfit corpus' explanation does not apply — but the models are also not converged, so the effects are measured in the early-learning regime and may shift in a fully-converged model.</li><li><b>Small models, single corpus.</b> 29M and 55M params, educational text (edu_mix). The density finding holding at both scales argues it is a depth effect, not a size artefact, but both are small by LLM standards and the domain is narrow. Extrapolation to large, diverse-data models is open.</li><li><b>σ is a relative dose</b> (noise std = that slice's own RMS), comparable across depths, but the absolute perturbation energy differs because stream RMS grows 5–7× from first to last layer (the last layer takes the largest absolute noise). Recorded in the resid_rms profile.</li><li><b>One layer noised per run</b> (except global controls); cross-layer interactions are not measured. The global σ=1.0 control shows damage accumulates super-additively (M Δ=+0.41, D Δ=+1.48 bpb, far above any single layer).</li><li><b>Seed floor differs by scale</b> (M ±0.0049, D ±0.0017 bpb), so 'robust' is judged relative to each scale's own floor. Profile cells use a single seed; core cells (first/mid/last) use three; the anchor test pools core+profile (4 paired seeds).</li></ul>
+  </section>
+
+  <!-- ============ 9. REPRO ============ -->
+  <section id="repro">
+    <h2><span class="no">09</span>Reproduce</h2>
+    <div class="code">
+<span class="c"># everything lives in</span>
+experiments/depth_fragility/
+├── orchestrator.sh      <span class="c"># 3-GPU queue</span>
+├── analyze.py           <span class="c"># results.json + results.md + plots/</span>
+├── build_blog.py        <span class="c"># this page</span>
+├── blog_template.html   <span class="c"># this page, with placeholders</span>
+├── smoke.py             <span class="c"># insert contract tests (train-only, RMS scale, layer select)</span>
+├── results.json / results.md / plots/
+└── state/               <span class="c"># sweep logs</span>
+
+plugins/rms_noise.py     <span class="c"># the intervention</span>
+configs/depth/           <span class="c"># depth_m.yaml (8L), depth_d.yaml (16L)</span>
+configs/sweeps/depth_*.yaml   <span class="c"># 7 sweep files</span>
+
+<span class="c"># rerun the analysis from any runs dir:</span>
+python experiments/depth_fragility/analyze.py /data/susanket/text/gpt/runs
+    </div>
+    <p class="small muted">Runs: <code>/data/susanket/text/gpt/runs/depth_*</code>. Each run dir has its own
+    <code>config.yaml</code>, <code>metrics.jsonl</code>, <code>eval.json</code>, plugin snapshot and
+    checkpoints, so any single run is self-contained and resumable.</p>
+  </section>
+
+</div>
+</main>
+</body>
+</html>

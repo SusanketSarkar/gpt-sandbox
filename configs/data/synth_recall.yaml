@@ -1,7 +1,8 @@
-# Synthetic 'recall' task: tiny algorithmic corpus; eval reports exact-match (task_em).
+# Easier associative recall (default 2-8 key/value pairs, retrieval distance 4-18 tokens).
+# With a window-4 local mixer most queries are out of local reach -> only global layers can answer.
 name: synth_recall
 sources:
-  - {name: synthetic, task: recall, n_docs: 1500, lines_per_doc: 64, seed: 0}
+  - {name: synthetic, task: recall, n_docs: 4000, lines_per_doc: 64, seed: 0}
 tokenizer: char
 val_fraction: 0.1
 dedup: false

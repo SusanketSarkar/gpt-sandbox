@@ -1,0 +1,18 @@
+# Dose-response: how much global attention does retrieval need?
+# 8 layers; global ratios 1.0/0.5/0.25/0.125/0.0 (8/4/2/1/0 global layers).
+# Local mixer fixed at window 4 (most recall queries are out of local reach).
+name: recall_budget
+base: ../recall_budget.yaml
+seeds: [0, 1]
+common:
+  train.max_steps: 4000
+  train.warmup_steps: 100
+  train.eval_interval: 500
+  train.log_interval: 100
+  eval.max_batches: 64
+variants:
+  ratio_1.00: {model.attention: {name: mha}}
+  ratio_0.50: {model.attention: [{layers: "0::2", name: mha}, {layers: all, name: local, window: 4}]}
+  ratio_0.25: {model.attention: [{layers: "0::4", name: mha}, {layers: all, name: local, window: 4}]}
+  ratio_0.125: {model.attention: [{layers: "0::8", name: mha}, {layers: all, name: local, window: 4}]}
+  ratio_0.00: {model.attention: {name: local, window: 4}}
