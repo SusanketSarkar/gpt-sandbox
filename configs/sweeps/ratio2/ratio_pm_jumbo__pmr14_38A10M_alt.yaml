@@ -1,0 +1,7 @@
+base: ../../layouts/ratio2_jumbo.yaml
+name: ratio_pm_jumbo_pmr14_38A10M_alt
+model:
+  extra:
+    layout: "MAAAMAAAAMAAAAMAAAAMAAAAMAAAMAAAAMAAAAMAAAAMAAAA"
+  mlp: {name: swiglu, d_ff: 2344}
+train: {max_steps: 6000}

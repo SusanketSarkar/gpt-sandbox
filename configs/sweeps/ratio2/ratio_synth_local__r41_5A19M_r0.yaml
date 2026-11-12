@@ -1,0 +1,7 @@
+base: ../../layouts/ratio2_synth.yaml
+name: ratio_synth_local_r41_5A19M_r0
+model:
+  extra:
+    layout: "MMMMMMMMMMMMAMMAMAAMMAMM"
+data: {name: synth_local_rule}
+train: {max_steps: 20000}

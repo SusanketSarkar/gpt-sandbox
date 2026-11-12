@@ -1,0 +1,7 @@
+base: ../../layouts/ratio2_synth.yaml
+name: ratio_synth_hop2_r31_6A18M_r0
+model:
+  extra:
+    layout: "MAMMMAMMMAMMMAMMMMMMAMAM"
+data: {name: synth_hop2}
+train: {max_steps: 20000}

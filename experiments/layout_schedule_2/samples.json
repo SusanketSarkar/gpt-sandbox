@@ -1,0 +1,241 @@
+{
+  "seed": 7,
+  "temp": 0.8,
+  "max_new": 80,
+  "models": [
+    {
+      "label": "10A \u00b7 MLP:Attn 4:1",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r41_10A38M_r2-s1",
+      "step": 6000,
+      "params_M": 95.0,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "He wanted to see how tasty the bread was. He thought it would be a great surprise.\n\nHe rolled his spinning around and around. He rolled his spinning around and around, seeing what was happening. He saw a big, sharp knife on the table. He started to tear it, but he didn't know how to use it.\n\nHe kept"
+        },
+        {
+          "prompt": "explain",
+          "text": "1. Maintain sunshine for months, months and months.\nExplain how the sun can support the health of Earth.\nMaintain sunshine for the skin, especially in winter.\nExplain how the sun can support the sun.\nExplain what the Earth made.\n1. These are the principles that prepare 100 years of Earth\u2019"
+        },
+        {
+          "prompt": "haiku",
+          "text": "You might have heard the name of a lighthouse, but would you agree with your ancestor on the first or second reading in order to help you better understand the story?\n\u25aa Give him a look at the picture.\n\u25aa Give him a look at the picture.\n\u25aa Give him a look at the image.\n\ufffd"
+        },
+        {
+          "prompt": "memory",
+          "text": "READ OF MORABUMPARAIN\nProtecting a dog's owner from the realm of dog.\nWhy is it that there's an instinctive dog?\nAnimals, dogs, and cats of all kinds have good treats making noises. They are everywhere.\nAS A NIGHT DOUGHT"
+        }
+      ]
+    },
+    {
+      "label": "12A \u00b7 MLP:Attn 3:1",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r31_12A36M_r2-s0",
+      "step": 6000,
+      "params_M": 92.9,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "He picked it up and started baking. He mixed the bread and placed it in the oven to help it feel better.\n\nThe robot was excited to bake again. He mixed the bread and mixed it together. He chose the other two baking cups to make bread. The two baking cups were both different and the other three baked baking cups were"
+        },
+        {
+          "prompt": "explain",
+          "text": "What is brown and blue?\nThe red and white colours in the sky indicate colors. Analyze the colors of the sun. Repeat the steps for each star. Explain when the stars are blue.\nDo you have a white or black background in the sky?\nIdeate what colors you like to see from a dim lightshade. How many colors can"
+        },
+        {
+          "prompt": "haiku",
+          "text": "- If you need a fire, consider bushfires.\n- If you have a fire, check the fireplace fire.\n- Tell the firefighters that the firefighters are trying to find out.\n- If you have a fire, do not have a fire in your house or bedroom.\n- If you are a firefighter you are"
+        },
+        {
+          "prompt": "memory",
+          "text": "We have already explained the programmes of the birth, birth, and death of the father, Sugar Jelly. The first thing that gives us the basic word \u2018BJO\u2019.\nThe programme is a match to Gay Friends, a sport that works with a number of people. The teenage son is actually a modern and agricultural breed.\nThe boys are"
+        }
+      ]
+    },
+    {
+      "label": "16A \u00b7 MLP:Attn 2:1",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r21_16A32M_r1-s1",
+      "step": 6000,
+      "params_M": 88.6,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "The robot loved to bake and deliver to his friends. He was so excited about his big use of the bread that he wanted to bake many times his friends. He asked his friends to help him bake the bread. \n\nThey took the bread and baked the bread together with cheese and salt. Then they baked the bread and cooked the bread. The robot was so happy"
+        },
+        {
+          "prompt": "explain",
+          "text": "Light is coming out of a red light, but the sky is too dark to see. In fact, it is a very dark sky because it is a blue light. What kind of light should you look at? In this article we will explore how you will be able to see the clouds in a blue light blue light.\nThere are a lot of colors in the sky. It is simply"
+        },
+        {
+          "prompt": "haiku",
+          "text": "Write a haiku about an attempt to accomplish a purpose.\nNever miss a haiku smudge, a haiku, a haiku. Write a haiku on the haiku and cover it with a brush.\nIf you are ready to take a haiku, you can draw a haiku on the haiku."
+        },
+        {
+          "prompt": "memory",
+          "text": "What the secret code word and its similarity?\nOK, I can answer the question, \"What is the secret code word for?\"\nThe guilty thing I have to say is:\n\"When they say it, neither of them will make the code very easy. So, when they are discovered, they cry.\nI've spoken a very important thing.\n\""
+        }
+      ]
+    },
+    {
+      "label": "24A \u00b7 MLP:Attn 1:1",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r11_24A24M_r2-s1",
+      "step": 6000,
+      "params_M": 80.1,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "He was so excited to cook it. He baked bread into a big bowl and put it in the jar. He was so pleased!\n\nThe robot agreed he would bake the bread for the next few days. He was so happy! With his new jar, he was ready to go to bake. He baked bread and brought it to the baby robot."
+        },
+        {
+          "prompt": "explain",
+          "text": "1. Dr. Huanggang Lang, a biology professor, is the author of the science journal Aquaculture. He is the coauthor of a sad documentary.\n2. Dr. Huanggang Lang, J.H. Chang,\n2. Dr. Huanggang Lang, J.H. Ch"
+        },
+        {
+          "prompt": "haiku",
+          "text": "The lighthouse is a span of an inner shelf set by the winds. If you are a haiku you can make a haiku in your room.\nA rose lighthouse with a light curtain. This is an example of a lighthouse. The most common lighthouse is a white woman's lighthouse."
+        },
+        {
+          "prompt": "memory",
+          "text": "Pickles are the bugs that cause different diseases by different organisms (nevaristidal) like melanoma, polyps, appendicitis, etc.\nPickles are tiny bugs that can cause many problems. Some bugs, like the moxamus, are tender metaphors that cause inflammation. They also cause problems in the body"
+        }
+      ]
+    },
+    {
+      "label": "32A \u00b7 MLP:Attn 1:2",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r12_32A16M_r2-s1",
+      "step": 6000,
+      "params_M": 71.6,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "He not only wanted to bake dough, but also wanted to bake it. He asked his friends for help, but they had no choice.\n\nThe robot didn't have any help with baking. So he asked his friend, a little girl named Lily, if he was hungry. She said, \"I will help you bake it.\" The robot said, \"Thank you"
+        },
+        {
+          "prompt": "explain",
+          "text": "Mandy Koo, Friend at Nano, offers a different story about the dancing-room. She tracks the dancing cycle and what it may mean if you share it with her. She always warns her parents about the unknown things she sees. She talks about love and family. In other words, she asks you about tropical cyclones in the middle of"
+        },
+        {
+          "prompt": "haiku",
+          "text": "If you have a lighthouse, you have to write a haiku about the lighthouse. Make it a welcome place to write a haiku about a lighthouse. But don't wait. Write a haiku about the lighthouse. Write a haiku about the lighthouse. Make them a welcome place to read"
+        },
+        {
+          "prompt": "memory",
+          "text": "My dog's name is St. John's! I'm a baby boy. My dog dog's name is St. John's. What's not st.\nI just couldn't find my dog's name. Leave a comment.<|eos|>Powered by the New York Naval Science Science Lab\nThis is the first week of a five-day event, held at the Bering St"
+        }
+      ]
+    },
+    {
+      "label": "36A \u00b7 MLP:Attn 1:3",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r13_36A12M_r0-s0",
+      "step": 6000,
+      "params_M": 67.3,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "He liked the taste. It was easy to make and taste.\n\nFor a while, the robot decided to bake the bread. He added some berries. Then, he added some pastel leaves and some some rest.\n\nThe robot was very happy. He shared the pastel with his friends. They all learned that even when you can't make a yummy meal, you"
+        },
+        {
+          "prompt": "explain",
+          "text": "The good news is that the name of the highwayman consists of a tall, narrow, and narrow road. The road is the form of a centre, and the middle is the center of the road. The highwayman is the highest runway in the world. This is the prone course to the lowway, and you can take the routes from the highway, and"
+        },
+        {
+          "prompt": "haiku",
+          "text": "When you do a really good job, you\u2019ll notice that the survey is about the kara headstans. This tool allows you to quickly examine the kara headstans and determine whether they\u2019ve been using it so as to save money that may have been lost in the project.\nThe survey starts with the kara headstans, the label and the survey notes. These"
+        },
+        {
+          "prompt": "memory",
+          "text": "How does this sound like a friend? The term \"Cirrhinus\" comes from the Latin \"Cirrhinus\", meaning \"kiddin\". The term \"chris-cirrhinus\" means \"kiddin\". This is the spelling \"Cirrhinus\", literally \"kiddin\", meaning \""
+        }
+      ]
+    },
+    {
+      "label": "38A \u00b7 MLP:Attn 1:4",
+      "family": "core",
+      "run_dir": "ratio_jumbo/r14_38A10M_alt-s0",
+      "step": 6000,
+      "params_M": 65.2,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "The robot was very happy and loved to bake.\n\nOne day, the robot's friend asked the robot to bake again. The robot was so excited! They bated the bread together and made a big cake. The robot was so happy to have baked the meal.\n\nThe robot loved baking. They played in the sun together for a long time. The robot was"
+        },
+        {
+          "prompt": "explain",
+          "text": "It\u2019s a great place to read.\nWhat does the tower look like?\nThe circle is a center-like pile of wood that can interact with the sun. The summits are a pile of wood, and a roof of wood that is of high quality. The shape, clarity, and strength of the tower are the examples, but the blueish colours are"
+        },
+        {
+          "prompt": "haiku",
+          "text": "The NAS report points that the maximum number of haiku files was 3.5. On the other hand, the reference is Piaget's^2.\nThe haiku data could be 202.50. That is, if the user had a 94.00.00 file, it would be 127.75.00.00.00 that was 5."
+        },
+        {
+          "prompt": "memory",
+          "text": "I just saw the magic code word BANANA or BANANA. In that case, if you were to compile a code for the Codes, they would simply not have a real name. This is also a way for me to go back to my very earliest childhood.\nThe following rules are great for any car, it is very important. April 31, 2027 is"
+        }
+      ]
+    },
+    {
+      "label": "32A \u00b7 param-matched (80M, max attn)",
+      "family": "variant",
+      "run_dir": "ratio_pm_jumbo/pmr12_32A16M_alt-s1",
+      "step": 6000,
+      "params_M": 80.0,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": "He wanted to bake bread. But the robot liked it. It wanted a flourish. The robot said no. The robot did not want the baking bread.\n\nTimmy thought about what the robot said. He thought that the robot would like to bake bread. He thought it would be fun to bake bread. He did not know that the robot would bake bread."
+        },
+        {
+          "prompt": "explain",
+          "text": "What makes this rays fun?\n- If you really like the rain, think about how it changes to your energy level.\n- Do you know how rain lights are connected?\n- Is it in the form of a rain night?\n- Are you aware of your computer\u2019s different colors and shapes?\n- Do you think lighting helps deliver energy?\n- Do you think"
+        },
+        {
+          "prompt": "haiku",
+          "text": "Paul Hughes, the first blacksmith of America, was a President of the United States. He had just got one, and had purchased it.\nHe was also a members-buyer, and did not have to be as salmon-friends. He liked to be a lot of other people and had a lot of fun with his family."
+        },
+        {
+          "prompt": "memory",
+          "text": "#1. Pickles: Cut out a small piece of mint or a piece of mint from a large piece of mint. Give it to me.\n#1. Song: Play the game of hiding, you use a lot of mint.\nThe list of sounds that hold mint is simple and can be tricky if you ch"
+        }
+      ]
+    },
+    {
+      "label": "12A \u00b7 recall champion (1:1, synth_recall)",
+      "family": "variant",
+      "run_dir": "ratio_synth_recall/r11_12A12M_alt-s1",
+      "step": 3000,
+      "params_M": 2.4,
+      "nA": null,
+      "samples": [
+        {
+          "prompt": "story",
+          "text": ">4\ng3u0b5j8e7f1p2?g>3\no8t8z1d2q6v4?q>6\ni8h1?i>8\nj8y9x7q3g5c3?y>9\nz0p6?z>0\no2p7q4"
+        },
+        {
+          "prompt": "explain",
+          "text": "r0?b>>0\nw5c1n0p4?w>5\nw8x6e3a3?x>6\nh7j7c0?c>0\nr6f0l4x6d6o7k2j8?x>6\nr3x3i5v9?x>3\ns"
+        },
+        {
+          "prompt": "haiku",
+          "text": "4?s>9\ng5m4k1p1d1x3?k>1\nt0h2x5d5k3?k>3\nr6m4?m>4\nu5n4r3g0?n>4\nd5z9m8t5e5?z>9\nd0v4y"
+        },
+        {
+          "prompt": "memory",
+          "text": "2?o>4\nb5l6v6?l>6\ny5j9b7u8o1?j>9\nb5d9f7?f>7\no4s4?o>4\np6d2i0j6v1l1?p>6\nr6j7h4q9p0f"
+        }
+      ]
+    }
+  ]
+}

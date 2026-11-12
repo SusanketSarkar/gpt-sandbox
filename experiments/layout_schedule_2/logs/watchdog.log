@@ -1,0 +1,1342 @@
+[2026-11-10T18:32:18] watchdog started (pid 3488262, check every 900s)
+[2026-11-10T18:32:18] watchdog started (pid 3488262, check every 900s)
+=== progress ===
+done 21 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           19/ 84  ###################-----------------------------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T18:32:19] watchdog: pending_runs=306
+[2026-11-10T18:32:19] watchdog: pending_runs=306
+=== progress ===
+done 21 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           19/ 84  ###################-----------------------------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T18:47:19] watchdog: pending_runs=306
+[2026-11-10T18:47:19] watchdog: pending_runs=306
+=== progress ===
+done 25 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           23/ 84  #######################-------------------------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T19:02:19] watchdog: pending_runs=302
+[2026-11-10T19:02:19] watchdog: pending_runs=302
+=== progress ===
+done 29 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           27/ 84  ###########################---------------------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T19:17:20] watchdog: pending_runs=298
+[2026-11-10T19:17:20] watchdog: pending_runs=298
+=== progress ===
+done 33 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           31/ 84  ###############################-----------------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T19:32:20] watchdog: pending_runs=294
+[2026-11-10T19:32:20] watchdog: pending_runs=294
+=== progress ===
+done 37 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           35/ 84  ###################################-------------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T19:47:20] watchdog: pending_runs=290
+[2026-11-10T19:47:20] watchdog: pending_runs=290
+=== progress ===
+done 41 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           39/ 84  #######################################---------------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T20:02:20] watchdog: pending_runs=286
+[2026-11-10T20:02:20] watchdog: pending_runs=286
+=== progress ===
+done 45 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           43/ 84  ###########################################-----------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T20:17:21] watchdog: pending_runs=282
+[2026-11-10T20:17:21] watchdog: pending_runs=282
+=== progress ===
+done 49 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           47/ 84  ###############################################-------------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T20:32:21] watchdog: pending_runs=278
+[2026-11-10T20:32:21] watchdog: pending_runs=278
+=== progress ===
+done 55 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           53/ 84  #####################################################-------------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T20:47:21] watchdog: pending_runs=272
+[2026-11-10T20:47:21] watchdog: pending_runs=272
+=== progress ===
+done 60 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           58/ 84  ##########################################################--------------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T21:02:21] watchdog: pending_runs=267
+[2026-11-10T21:02:21] watchdog: pending_runs=267
+=== progress ===
+done 64 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           62/ 84  ##############################################################----------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T21:17:22] watchdog: pending_runs=263
+[2026-11-10T21:17:22] watchdog: pending_runs=263
+=== progress ===
+done 68 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           66/ 84  ##################################################################------------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T21:32:22] watchdog: pending_runs=259
+[2026-11-10T21:32:22] watchdog: pending_runs=259
+=== progress ===
+done 73 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           71/ 84  #######################################################################-------------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T21:47:22] watchdog: pending_runs=254
+[2026-11-10T21:47:22] watchdog: pending_runs=254
+=== progress ===
+done 77 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           75/ 84  ###########################################################################---------
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T22:02:23] watchdog: pending_runs=250
+[2026-11-10T22:02:23] watchdog: pending_runs=250
+=== progress ===
+done 81 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           79/ 84  ###############################################################################-----
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       0/ 42  ------------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T22:17:23] watchdog: pending_runs=246
+[2026-11-10T22:17:23] watchdog: pending_runs=246
+=== progress ===
+done 87 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           83/ 84  ###################################################################################-
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       2/ 42  ##----------------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T22:32:23] watchdog: pending_runs=240
+[2026-11-10T22:32:23] watchdog: pending_runs=240
+=== progress ===
+done 95 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2       9/ 42  #########---------------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T22:47:23] watchdog: pending_runs=232
+[2026-11-10T22:47:23] watchdog: pending_runs=232
+=== progress ===
+done 103 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      17/ 42  #################-------------------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T23:02:24] watchdog: pending_runs=224
+[2026-11-10T23:02:24] watchdog: pending_runs=224
+=== progress ===
+done 111 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      25/ 42  #########################-----------------
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T23:17:24] watchdog: pending_runs=216
+[2026-11-10T23:17:24] watchdog: pending_runs=216
+=== progress ===
+done 123 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      37/ 42  #####################################-----
+  ratio_synth_local      0/ 42  ------------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T23:32:24] watchdog: pending_runs=204
+[2026-11-10T23:32:24] watchdog: pending_runs=204
+=== progress ===
+done 131 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local      3/ 42  ###---------------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-10T23:47:24] watchdog: pending_runs=196
+[2026-11-10T23:47:24] watchdog: pending_runs=196
+=== progress ===
+done 139 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     11/ 42  ###########-------------------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T00:02:25] watchdog: pending_runs=188
+[2026-11-11T00:02:25] watchdog: pending_runs=188
+=== progress ===
+done 147 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     19/ 42  ###################-----------------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T00:17:25] watchdog: pending_runs=180
+[2026-11-11T00:17:25] watchdog: pending_runs=180
+=== progress ===
+done 155 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     27/ 42  ###########################---------------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T00:32:25] watchdog: pending_runs=172
+[2026-11-11T00:32:25] watchdog: pending_runs=172
+=== progress ===
+done 163 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     35/ 42  ###################################-------
+  ratio_synth_recall     1/ 42  #-----------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T00:47:25] watchdog: pending_runs=164
+[2026-11-11T00:47:25] watchdog: pending_runs=164
+=== progress ===
+done 174 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall     5/ 42  #####-------------------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T01:02:26] watchdog: pending_runs=153
+[2026-11-11T01:02:26] watchdog: pending_runs=153
+=== progress ===
+done 182 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    13/ 42  #############-----------------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T01:17:26] watchdog: pending_runs=145
+[2026-11-11T01:17:26] watchdog: pending_runs=145
+=== progress ===
+done 189 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    20/ 42  ####################----------------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T01:32:26] watchdog: pending_runs=138
+[2026-11-11T01:32:26] watchdog: pending_runs=138
+=== progress ===
+done 198 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    29/ 42  #############################-------------
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T01:47:27] watchdog: pending_runs=129
+[2026-11-11T01:47:27] watchdog: pending_runs=129
+=== progress ===
+done 207 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    38/ 42  ######################################----
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T02:02:27] watchdog: pending_runs=120
+[2026-11-11T02:02:27] watchdog: pending_runs=120
+=== progress ===
+done 211 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         0/ 36  ------------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T02:17:27] watchdog: pending_runs=116
+[2026-11-11T02:17:27] watchdog: pending_runs=116
+=== progress ===
+done 215 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         4/ 36  ####--------------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T02:32:27] watchdog: pending_runs=112
+[2026-11-11T02:32:27] watchdog: pending_runs=112
+=== progress ===
+done 219 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo         8/ 36  ########----------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T02:47:28] watchdog: pending_runs=108
+[2026-11-11T02:47:28] watchdog: pending_runs=108
+=== progress ===
+done 223 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        12/ 36  ############------------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T03:02:28] watchdog: pending_runs=104
+[2026-11-11T03:02:28] watchdog: pending_runs=104
+=== progress ===
+done 227 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        16/ 36  ################--------------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T03:17:28] watchdog: pending_runs=100
+[2026-11-11T03:17:28] watchdog: pending_runs=100
+=== progress ===
+done 231 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        20/ 36  ####################----------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T03:32:28] watchdog: pending_runs=96
+[2026-11-11T03:32:28] watchdog: pending_runs=96
+=== progress ===
+done 235 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        24/ 36  ########################------------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T03:47:29] watchdog: pending_runs=92
+[2026-11-11T03:47:29] watchdog: pending_runs=92
+=== progress ===
+done 239 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        28/ 36  ############################--------
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T04:02:29] watchdog: pending_runs=88
+[2026-11-11T04:02:29] watchdog: pending_runs=88
+=== progress ===
+done 244 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          1/ 42  #-----------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        33/ 36  #################################---
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T04:17:29] watchdog: pending_runs=83
+[2026-11-11T04:17:29] watchdog: pending_runs=83
+=== progress ===
+done 251 / 327   failed-markers 0   active-locks 4
+  ratio_depth24          5/ 42  #####-------------------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T04:32:30] watchdog: pending_runs=76
+[2026-11-11T04:32:30] watchdog: pending_runs=76
+=== progress ===
+done 259 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         13/ 42  #############-----------------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T04:47:30] watchdog: pending_runs=68
+[2026-11-11T04:47:30] watchdog: pending_runs=68
+=== progress ===
+done 266 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         20/ 42  ####################----------------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T05:02:30] watchdog: pending_runs=61
+[2026-11-11T05:02:30] watchdog: pending_runs=61
+=== progress ===
+done 272 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         26/ 42  ##########################----------------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T05:17:30] watchdog: pending_runs=55
+[2026-11-11T05:17:30] watchdog: pending_runs=55
+=== progress ===
+done 279 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         33/ 42  #################################---------
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T05:32:31] watchdog: pending_runs=48
+[2026-11-11T05:32:31] watchdog: pending_runs=48
+=== progress ===
+done 287 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         41/ 42  #########################################-
+  ratio_fine_jumbo       0/ 24  ------------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T05:47:31] watchdog: pending_runs=40
+[2026-11-11T05:47:31] watchdog: pending_runs=40
+=== progress ===
+done 291 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo       3/ 24  ###---------------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T06:02:31] watchdog: pending_runs=36
+[2026-11-11T06:02:31] watchdog: pending_runs=36
+=== progress ===
+done 296 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo       8/ 24  ########----------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T06:17:31] watchdog: pending_runs=31
+[2026-11-11T06:17:31] watchdog: pending_runs=31
+=== progress ===
+done 300 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      12/ 24  ############------------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T06:32:32] watchdog: pending_runs=27
+[2026-11-11T06:32:32] watchdog: pending_runs=27
+=== progress ===
+done 304 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      16/ 24  ################--------
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T06:47:32] watchdog: pending_runs=23
+[2026-11-11T06:47:32] watchdog: pending_runs=23
+=== progress ===
+done 308 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      20/ 24  ####################----
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T07:02:32] watchdog: pending_runs=19
+[2026-11-11T07:02:32] watchdog: pending_runs=19
+=== progress ===
+done 312 / 327   failed-markers 0   active-locks 4
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+  gpu3: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T07:17:32] watchdog: pending_runs=15
+[2026-11-11T07:17:32] watchdog: pending_runs=15
+=== progress ===
+done 312 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       0/ 15  ---------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T07:32:33] watchdog: pending_runs=15
+[2026-11-11T07:32:33] watchdog: pending_runs=15
+=== progress ===
+done 315 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       3/ 15  ###------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T07:47:33] watchdog: pending_runs=12
+[2026-11-11T07:47:33] watchdog: pending_runs=12
+=== progress ===
+done 315 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       3/ 15  ###------------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T08:02:33] watchdog: pending_runs=12
+[2026-11-11T08:02:33] watchdog: pending_runs=12
+=== progress ===
+done 318 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       6/ 15  ######---------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T08:17:33] watchdog: pending_runs=9
+[2026-11-11T08:17:33] watchdog: pending_runs=9
+=== progress ===
+done 318 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       6/ 15  ######---------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T08:32:34] watchdog: pending_runs=9
+[2026-11-11T08:32:34] watchdog: pending_runs=9
+=== progress ===
+done 321 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       9/ 15  #########------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T08:47:34] watchdog: pending_runs=6
+[2026-11-11T08:47:34] watchdog: pending_runs=6
+=== progress ===
+done 321 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long       9/ 15  #########------
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T09:02:34] watchdog: pending_runs=6
+[2026-11-11T09:02:34] watchdog: pending_runs=6
+=== progress ===
+done 324 / 327   failed-markers 0   active-locks 3
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long      12/ 15  ############---
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker ALIVE
+  gpu1: worker ALIVE
+  gpu2: worker ALIVE
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T09:17:34] watchdog: pending_runs=3
+[2026-11-11T09:17:34] watchdog: pending_runs=3
+=== progress ===
+done 327 / 327   failed-markers 0   active-locks 0
+  ratio_depth24         42/ 42  ##########################################
+  ratio_fine_jumbo      24/ 24  ########################
+  ratio_jumbo           84/ 84  ####################################################################################
+  ratio_jumbo_long      15/ 15  ###############
+  ratio_pm_jumbo        36/ 36  ####################################
+  ratio_synth_hop2      42/ 42  ##########################################
+  ratio_synth_local     42/ 42  ##########################################
+  ratio_synth_recall    42/ 42  ##########################################
+=== active runs ===
+=== failures (permanent, 3 attempts) ===
+  permanent-fail markers: 0
+=== worker liveness per GPU (and auto-relaunch) ===
+  gpu0: worker DEAD -> relaunching
+    relaunched (pid 3871920)
+  gpu1: worker DEAD -> relaunching
+    relaunched (pid 3871923)
+  gpu2: worker DEAD -> relaunching
+    relaunched (pid 3871927)
+=== OOM / error scan in worker logs (last 40 lines each) ===
+=== done. ===
+[2026-11-11T09:32:35] watchdog: pending_runs=0
+[2026-11-11T09:32:35] watchdog: pending_runs=0
+[2026-11-11T09:32:35] watchdog: queue exhausted (0 pending); stopping.
+[2026-11-11T09:32:35] watchdog: queue exhausted (0 pending); stopping.
+[2026-11-11T09:32:35] watchdog stopped.
+[2026-11-11T09:32:35] watchdog stopped.

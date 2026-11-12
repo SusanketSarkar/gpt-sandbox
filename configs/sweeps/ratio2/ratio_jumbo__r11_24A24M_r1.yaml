@@ -1,0 +1,6 @@
+base: ../../layouts/ratio2_jumbo.yaml
+name: ratio_jumbo_r11_24A24M_r1
+model:
+  extra:
+    layout: "AMAAMAMMAMMMMAAAMAMAMMAAAAAMMAMMAMAMAMAMMMMAAAMA"
+train: {max_steps: 6000}

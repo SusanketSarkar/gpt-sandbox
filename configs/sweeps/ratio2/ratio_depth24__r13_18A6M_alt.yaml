@@ -1,0 +1,6 @@
+base: ../../layouts/ratio2_depth24.yaml
+name: ratio_depth24_r13_18A6M_alt
+model:
+  extra:
+    layout: "MAAAMAAAMAAAMAAAMAAAMAAA"
+train: {max_steps: 12000}

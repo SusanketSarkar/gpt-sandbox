@@ -1,0 +1,7 @@
+base: ../../layouts/ratio2_synth.yaml
+name: ratio_synth_recall_r41_5A19M_alt
+model:
+  extra:
+    layout: "AMMMAMMMMAMMMMAMMMMAMMMM"
+data: {name: synth_recall}
+train: {max_steps: 20000}

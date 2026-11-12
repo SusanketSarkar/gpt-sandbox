@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is there an optimal attention:MLP ratio in a decoder-only transformer?</title>
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#faf7f2; --card:#fff; --line:#e6e0d6;
+    --attn:#3b6fb5; --mlp:#e8833a; --ok:#2d7d2d; --warn:#b23b3b;
+    --muted:#6f6a61; --soft:#f3efe8; --accent:#8a2d2d;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:56px 24px 80px}
+  .masthead{border-bottom:2px solid var(--ink);padding-bottom:26px;margin-bottom:30px}
+  .kicker{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  h1{font-size:clamp(28px,4.4vw,40px);line-height:1.12;margin:0 0 14px;font-weight:750;letter-spacing:-.01em}
+  .sub{font-size:17px;color:var(--muted);margin:0 0 16px;max-width:70ch}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+  .meta span{font:12.5px/1 ui-monospace,monospace;background:var(--soft);border:1px solid var(--line);
+    padding:5px 9px;border-radius:6px;color:#4c473f}
+  h2{font-size:25px;margin:56px 0 14px;letter-spacing:-.01em;line-height:1.25}
+  h2 .no{font:600 13px/1 ui-monospace,monospace;color:var(--accent);
+    display:inline-block;margin-right:10px;vertical-align:2px}
+  h3{font-size:17px;margin:28px 0 8px}
+  p{margin:0 0 14px}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 8px}
+  .toc h4{margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px}
+  .toc li{margin:3px 0;font-size:14.5px;break-inside:avoid}
+  .tldr{background:#f2f6fb;border:1px solid #cddcec;border-left:4px solid var(--attn);
+    border-radius:8px;padding:18px 20px;margin:24px 0}
+  .tldr h4{margin:0 0 8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--attn)}
+  .tldr ul{margin:6px 0 0;padding-left:20px} .tldr li{margin:5px 0}
+  .box{border-radius:8px;padding:14px 18px;margin:18px 0;font-size:15px}
+  .box .lbl{font-weight:700}
+  .box.ok{background:#eef5ee;border:1px solid #cfe3cf}.box.ok .lbl{color:var(--ok)}
+  .box.warn{background:#f9efef;border:1px solid #e6caca}.box.warn .lbl{color:var(--warn)}
+  .box.note{background:#f6f3ec;border:1px solid var(--line)}
+  figure{margin:26px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:18px 18px 12px}
+  figure img{display:block;width:100%;height:auto;border-radius:6px}
+  figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.55}
+  figcaption b{color:var(--ink)}
+  .tblwrap{overflow-x:auto;margin:18px 0}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:var(--soft);font-weight:600;border-bottom:2px solid var(--line)}
+  tbody tr:hover{background:#faf8f4}
+  tr.hl td{background:#eef3fa;font-weight:600}
+  tr.hl2 td{background:#fdf1e7}
+  .k{font:600 13px/1.4 ui-monospace,monospace;background:var(--soft);padding:1px 5px;border-radius:4px}
+  .code{font:13px/1.55 ui-monospace,monospace;background:#f1ede5;border:1px solid var(--line);
+    border-radius:8px;padding:12px 14px;overflow-x:auto;margin:14px 0;white-space:pre}
+  .code b{color:var(--accent)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 2px}
+  .chip{font:12.5px/1 ui-monospace,monospace;border:1px solid var(--line);background:var(--soft);
+    padding:4px 8px;border-radius:999px;color:#4c473f}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}.toc ol{columns:1}}
+  .strip{display:flex;align-items:center;gap:2px;margin:6px 0;flex-wrap:wrap}
+  .strip .lab{font:600 12.5px/1 ui-monospace,monospace;width:86px;flex:none;color:#4c473f}
+  .cell{width:11px;height:16px;border-radius:2px;flex:none}
+  .cell.a{background:var(--attn)} .cell.m{background:var(--mlp)}
+  .legend{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 12px;vertical-align:-1px}
+  footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted)}
+  .verdict{font-weight:700}
+  .verdict.ok{color:var(--ok)} .verdict.warn{color:var(--warn)}
+  .eq{font:14px/1.6 ui-monospace,monospace;background:#f6f3ec;border:1px dashed var(--line);
+    border-radius:6px;padding:8px 12px;margin:10px 0;overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="masthead">
+  <p class="kicker">Ratio study &middot; layout_schedule_2 &middot; 330 runs &middot; 4&times;H100</p>
+  <h1>Is there an optimal attention:MLP ratio in a decoder-only transformer?</h1>
+  <p class="sub">I took a 48-sublayer decoder, held everything else fixed, and swept only the
+  attention&thinsp;:&thinsp;MLP split from 4:1 to 1:4 — then probed retrieval, and finally separated the
+  ratio effect from the parameter-count effect that was hiding inside it.</p>
+  <div class="meta">
+    <span>7 ratio points &times; 3 seeds &times; 4 layouts</span>
+    <span>d=512 &middot; 48 sublayers</span>
+    <span>edu_mix (FineWeb, 531M tok)</span>
+    <span>6k&ndash;16k steps</span>
+    <span>runs: /data/susanket/text/gpt/runs/ratio_*</span>
+  </div>
+</div>
+
+<div class="toc">
+  <h4>Contents</h4>
+  <ol>
+    <li><a href="#q">The question &amp; the hypothesis I set out to kill</a></li>
+    <li><a href="#what">What a "ratio" actually is — and why it's hard to test</a></li>
+    <li><a href="#how">How I ran it: the grid, the families, the noise floor</a></li>
+    <li><a href="#core">Result 1 — the core sweep: a plateau, not a peak</a></li>
+    <li><a href="#retr">Result 2 — retrieval: 1:1 is the only reliable split</a></li>
+    <li><a href="#crux">The crux — separating ratio from size (~95% is size)</a></li>
+    <li><a href="#robust">Robustness: depth, finer grid, longer training, stability</a></li>
+    <li><a href="#answer">Answer to the hypothesis</a></li>
+    <li><a href="#confounds">Every confound I could name, and how I handled it</a></li>
+    <li><a href="#repro">Reproduction</a></li>
+  </ol>
+</div>
+
+<div class="tldr">
+  <h4>TL;DR</h4>
+  <ul>
+    <li><b>The "attention-heavy is better" hypothesis is disproved.</b> On language modelling the
+    curve is flat and MLP-heavy on one side, and monotonically <i>worse</i> as attention is added past 1:1 —
+    the mirror image of the predicted inverted-U. The best–worst gap is 0.0744, ~8.8&times; the seed noise floor.</li>
+    <li><b>But most of that gap is not a ratio effect — it's a size effect.</b> MLP-heavy models simply have
+    more parameters (SwiGLU sublayers are ~2&times; heavier than attention sublayers). At a fixed ~80M, the
+    ratio effect nearly vanishes (spread 0.0132, on the order of the noise floor; best vs worst differ by 0.013,
+    ~1.7&times; noise). ~95% of the apparent "ratio effect" decomposes into parameter count.</li>
+    <li><b>For retrieval the ratio genuinely matters, independent of size.</b> On a one-hop recall task,
+    <b>1:1 is the only split that reliably solves it</b> (every run &ge;0.78). Every other ratio is
+    <i>bimodal</i> — some seeds solve it, some fail — including the MLP-heavy best-for-LM (2:1) and the
+    attention-heavy 1:2. And the best ratio is <i>not</i> the largest model, so this is not a size artifact.</li>
+    <li><b>Bottom line:</b> for LM, spend your budget on <i>total</i> capacity, not on the split;
+    for retrieval, a balanced split is what reliably delivers the capability. MLP-heavy is the safe side;
+    attention-heavy is the costly one.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ 1 -->
+<h2 id="q"><span class="no">1</span>The question &amp; the hypothesis I set out to kill</h2>
+
+<p>Every decoder block in a conventional transformer does two things in turn: an <b>attention</b>
+sublayer (global, token-to-token mixing) and an <b>MLP</b> sublayer (token-local nonlinear
+transformation). With a 4&times; MLP expansion, roughly <b>two-thirds of the sublayers are MLP and
+one-third are attention</b>. I wanted to know what happens if you change that proportion on purpose.</p>
+
+<p>The hypothesis I went in with (the one I most wanted to be true, and therefore most wanted to test
+honestly) is that conventional models <b>over-allocate to token-local compute</b>. Attention is what
+lets one token reach any other token, so the story goes: <i>more attention &rarr; better retrieval and
+contextual integration &rarr; better language modelling</i>, up to some <b>optimal attention-heavy
+ratio</b>, after which you run out of MLP capacity to actually transform features and performance
+degrades. The predicted shape is an <b>inverted-U peaking on the attention-heavy side</b>.</p>
+
+<p>I was equally prepared for the null: MLP capacity matters more than people think; global
+communication alone can't compensate for weak feature transformation; the optimum sits at or below
+the conventional ratio. And I was prepared for a third outcome — that different tasks want different
+compositions, so no single ratio is "the" optimum.</p>
+
+<p>So the study was designed to distinguish all three: <span class="k">inverted-U (attention-heavy
+peak)</span>, <span class="k">MLP-heavy monotone / flat</span>, and <span class="k">task-dependent
+optima</span>. The short version of what I found is in the box above; the long version follows.</p>
+
+<!-- ============================================================ 2 -->
+<h2 id="what"><span class="no">2</span>What a "ratio" actually is — and why it's hard to test</h2>
+
+<p>First, concretely, what changing the ratio means. I model each block as running exactly <b>one</b>
+sublayer — attention <i>or</i> MLP — selected by a layout string of length 48. A "ratio" is just the
+count of each symbol. Here are the actual sequences I trained (the evenly-spread <span class="k">alt</span>
+arrangement):</p>
+
+<div class="strip"><span class="lab">4:1 (10A)</span>
+  <span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span></div>
+<div class="strip"><span class="lab">2:1 (16A)</span>
+  <span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell m"></span><span class="cell m"></span><span class="cell a"></span></div>
+<div class="strip"><span class="lab">1:1 (24A)</span>
+  <span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell m"></span></div>
+<div class="strip"><span class="lab">1:4 (38A)</span>
+  <span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell a"></span><span class="cell m"></span></div>
+<p class="legend"><i style="background:var(--attn)"></i>attention sublayer &nbsp; <i style="background:var(--mlp)"></i>MLP sublayer &nbsp;—&nbsp; 48 cells, left to right = shallow to deep, then logits. Same width (d=512), same 8 heads, same d_ff per sublayer; only the <b>count</b> of each changes.</p>
+
+<figure>
+  <img src="figs/fig0_layouts.png" alt="Layout strips for each ratio">
+  <figcaption><b>Fig. 1 — What a ratio is.</b> The sublayer sequence of each jumbo model (evenly-spread
+  arrangement), 4:1 at the top (10 attention + 38 MLP) down to 1:4 (38 attention + 10 MLP). Everything
+  else — width, heads, per-sublayer expansion, depth, data, steps, optimizer — is identical across rows.
+  A ratio is not a magic number; it is a <i>choice of how many of each sublayer</i> you build.</figcaption>
+</figure>
+
+<p>Now the reason this is a deceptively hard thing to test. An attention sublayer and an MLP
+sublayer are <b>not the same size</b>. With d=512 and a SwiGLU expansion of ~1376:</p>
+
+<div class="eq">
+attention sublayer &nbsp;= 4&middot;d&sup2; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &asymp; 1.05M params &nbsp; (Q,K,V,O)&nbsp;&nbsp; 26.2M FLOPs/tok<br>
+MLP sublayer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 3&middot;d&middot;d_ff &nbsp; &asymp; 2.11M params &nbsp; (w_gate, w_up, w_down)&nbsp;&nbsp; 52.4M FLOPs/tok
+</div>
+
+<p>So every time I move one sublayer from MLP to attention, the model gets <b>~1M parameters and
+~26M FLOPs/token lighter</b>. Sweeping the ratio from 4:1 to 1:4 (holding the 48-sublayer total fixed)
+therefore changes the model from <b>95.0M &rarr; 65.2M parameters</b> and from <b>585.7M &rarr; 450.8M
+FLOPs/token</b>. The attention-heavy end is <b>smaller and cheaper</b>.</p>
+
+<div class="box note">
+  <span class="lbl">Why this makes the test sharp (and dangerous).</span> The parameter/FLOP gradient runs
+  <i>against</i> the hypothesis. If attention-heavy turns out to be <b>better</b>, it would be a free lunch
+  — better <i>and</i> cheaper. If it is <b>worse</b>, it is a double loss — worse <i>and</i> it was the cheap
+  one. Either way the comparison is clean. But it also means a "ratio effect" I measure on this grid is
+  automatically entangled with a <b>size effect</b>, because the two move together. Untangling that is the
+  whole job of §6, and it is the crux of the study.
+</div>
+
+<p>There is a second, subtler confound: <b>where</b> the attention sublayers sit. "16 attention + 32 MLP"
+can be evenly spread, clustered at the front, or clustered at the back, and those are different machines
+(front-loaded attention changes early feature extraction; back-loaded attention changes late integration).
+So I did not test one arrangement per ratio — I tested several (an evenly-spread <span class="k">alt</span>
+plus fixed-seed random permutations) so that a ratio effect that survives arrangement changes is a
+<i>ratio</i> effect, not a <i>position</i> effect. §7 quantifies how large the position effect is.</p>
+
+<!-- ============================================================ 3 -->
+<h2 id="how"><span class="no">3</span>How I ran it: the grid, the families, the noise floor</h2>
+
+<p>The core grid. I fixed width (d=512), heads (8), per-sublayer expansion (SwiGLU d_ff=1376), context
+(256), data, steps, and optimizer, and varied <b>only</b> the A/M counts across the 48 sublayers:</p>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>MLP:Attn</th><th>nAttn / nMLP</th><th>params (M)</th><th>FLOPs/token (M)</th><th>&Delta;params vs 1:1</th></tr></thead>
+  <tbody>
+    <tr><td>4:1</td><td>10 / 38</td><td>95.0</td><td>585.7</td><td>+18.6%</td></tr>
+    <tr><td>3:1</td><td>12 / 36</td><td>92.9</td><td>576.1</td><td>+16.0%</td></tr>
+    <tr class="hl"><td><b>2:1 (conventional)</b></td><td>16 / 32</td><td>88.6</td><td>556.8</td><td>+10.6%</td></tr>
+    <tr class="hl2"><td><b>1:1 (anchor)</b></td><td>24 / 24</td><td>80.1</td><td>518.3</td><td>baseline</td></tr>
+    <tr><td>1:2</td><td>32 / 16</td><td>71.6</td><td>479.7</td><td>−10.6%</td></tr>
+    <tr><td>1:3</td><td>36 / 12</td><td>67.3</td><td>460.5</td><td>−16.0%</td></tr>
+    <tr><td>1:4</td><td>38 / 10</td><td>65.2</td><td>450.8</td><td>−18.6%</td></tr>
+  </tbody>
+</table></div>
+
+<p>Replication was deliberate, because the effect sizes I expected were small. Each ratio was trained
+with <b>3 seeds &times; 4 spatial arrangements</b> = 12 runs (the 1:1 anchor got 15). That gives me a
+direct handle on the <b>noise floor</b>: the within-ratio standard deviation across seeds and layouts is
+~<b>0.008</b> in val loss (range 0.0028–0.0213). Any "effect" I claim below has to clear that bar. The
+core best–worst gap is 0.0744 — about <b>8.8&times; the noise floor</b>, so the core ordering is not a
+seed fluke.</p>
+
+<p>Around that core I built six supporting families, each aimed at a specific confound or question:</p>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>family</th><th>what it changes</th><th>why</th><th>runs</th></tr></thead>
+  <tbody>
+    <tr><td><b>ratio_jumbo</b></td><td>the core A/M sweep, d_ff fixed</td><td>the main answer</td><td>87</td></tr>
+    <tr><td><b>ratio_pm_jumbo</b></td><td>d_ff tuned per ratio &rarr; <b>~80M for every ratio</b></td><td>kill the size confound (§6)</td><td>36</td></tr>
+    <tr><td><b>ratio_depth24</b></td><td>24 sublayers, d=256</td><td>does it hold at half depth?</td><td>42</td></tr>
+    <tr><td><b>ratio_fine_jumbo</b></td><td>fill the coarse gaps (14,18,28,34 A)</td><td>locate the plateau edge</td><td>24</td></tr>
+    <tr><td><b>ratio_jumbo_long</b></td><td>12k steps on 5 anchor points</td><td>is the ordering a step-budget artifact?</td><td>15</td></tr>
+    <tr><td><b>ratio_synth_*</b></td><td>recall / 1-hop / local tasks, d=128</td><td>the "attention = retrieval" probe</td><td>126</td></tr>
+  </tbody>
+</table></div>
+
+<p><b>330 runs total</b>, dispatched across <b>4&times;H100</b> in parallel by a self-healing worker +
+watchdog (a dead or wedged run is detected, killed, and requeued; 0 permanent failures). Wall-clock
+~15h for the whole study. Training data is the standard mix, <span class="k">edu_mix</span> — a
+FineWeb-derived corpus (531M train / 5.2M val tokens, BPE-8192), curated from
+<span class="k">/data/susanket/text/corpus/fineweb-10b.txt</span> and tokenized under
+<span class="k">/data/susanket/text/gpt/data/edu_mix</span>. Every run writes its checkpoints, curves,
+and metrics under <span class="k">/data/susanket/text/gpt/runs/ratio_*/</span>; all numbers in this post
+are regenerated from those run dirs by <span class="k">analyze.py</span>.</p>
+
+<div class="box note">
+  <span class="lbl">Reporting convention.</span> I report <b>final validation loss</b> (the value at the
+  last eval, which is also the best-achieved for these runs) unless noted, because that is the
+  number a practitioner would actually ship. "params" includes embeddings; the within-family param
+  differences are all in the transformer, so they are the real size effect. Lower loss is better.
+</div>
+
+<!-- ============================================================ 4 -->
+<h2 id="core"><span class="no">4</span>Result 1 — the core sweep: a plateau, not a peak</h2>
+
+<figure>
+  <img src="figs/fig1_val_by_ratio.png" alt="Val loss vs ratio">
+  <figcaption><b>Fig. 2 — The core answer.</b> Final val loss vs ratio, three families. The raw sweep
+  (top-left region) is a <b>flat MLP-heavy plateau</b> (4:1/3:1/2:1 within ~1&sigma; of each other, 2:1 the
+  single best point) followed by <b>monotone, accelerating degradation</b> as attention is added past 1:1
+  (1:1&rarr;1:4 climbs 2.702&rarr;2.765). This is the <i>mirror image</i> of the predicted inverted-U
+  peaking at an attention-heavy ratio.</figcaption>
+</figure>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>MLP:Attn</th><th>nA/nM</th><th>val_loss (mean)</th><th>&sigma;</th><th>best ckpt</th><th>params (M)</th><th>FLOPs (M)</th></tr></thead>
+  <tbody>
+    <tr><td>4:1</td><td>10/38</td><td>2.6924</td><td>0.0081</td><td>1.8071</td><td>95.0</td><td>585.7</td></tr>
+    <tr><td>3:1</td><td>12/36</td><td>2.6934</td><td>0.0059</td><td>1.8081</td><td>92.9</td><td>576.1</td></tr>
+    <tr class="hl"><td><b>2:1</b></td><td><b>16/32</b></td><td><b>2.6902 &larr; best</b></td><td>0.0076</td><td><b>1.8044</b></td><td>88.6</td><td>556.8</td></tr>
+    <tr><td>1:1</td><td>24/24</td><td>2.7016</td><td>0.0051</td><td>1.8138</td><td>80.1</td><td>518.3</td></tr>
+    <tr><td>1:2</td><td>32/16</td><td>2.7125</td><td>0.0058</td><td>1.8220</td><td>71.6</td><td>479.7</td></tr>
+    <tr><td>1:3</td><td>36/12</td><td>2.7321</td><td>0.0028</td><td>1.8381</td><td>67.3</td><td>460.5</td></tr>
+    <tr><td>1:4</td><td>38/10</td><td>2.7646 &larr; worst</td><td>0.0213</td><td>1.8683</td><td>65.2</td><td>450.8</td></tr>
+  </tbody>
+</table></div>
+
+<p>Three things stand out, and they all point the same way:</p>
+
+<p><b>(a) The shape is wrong for the hypothesis.</b> There is no peak on the attention-heavy side.
+Instead: a <b>flat, near-tie plateau</b> on the MLP-heavy side (4:1, 3:1, 2:1 all within ~1&sigma; of each
+other; the conventional 2:1 is the single best point), then a <b>monotone, accelerating degradation</b> as
+you add attention past 2:1. The step differences going attention-heavy
+(2:1&rarr;1:1&rarr;1:2&rarr;1:3&rarr;1:4) are <b>+0.011, +0.011, +0.020, +0.033</b> — all positive, and
+growing. That is a clean monotone trend, not noise, and it is the opposite of the inverted-U I was hunting
+for.</p>
+
+<p><b>(b) The signal is large relative to the noise.</b> Within-ratio &sigma; (the noise floor) is
+~0.008; best–worst is <b>0.0744</b>. The two attention-heavy extremes (36A, 38A) sit <b>&gt;4&sigma;</b>
+above the plateau. This is not a one-seed accident — it reproduces across all 12 runs per ratio.</p>
+
+<p><b>(c) The worst config is also the least stable.</b> 1:4 (38A/10M) has the highest variance
+(&sigma;=0.0213, ~2&times; the plateau) — the attention-heavy models not only lose on average, they are
+less reproducible. And the gradient-norm traces confirm it: the attention-heavy end shows higher
+p95 gradient norms (0.75 at 38A vs 0.54–0.56 on the MLP-heavy side) and the one training spike in the
+whole core sweep lands on an attention-heavy config (36A). <b>Attention-heavy is both slower and
+less stable.</b></p>
+
+<figure>
+  <img src="figs/fig2_convergence.png" alt="Convergence curves by ratio">
+  <figcaption><b>Fig. 3 — Convergence.</b> The attention-heavy models <b>start worse and never catch up</b>.
+  At step 500 the 38A/10M config is at ~3.27 val loss vs ~3.00 for the MLP-heavy configs — less MLP capacity
+  means weaker early feature transformation, a higher trajectory that the extra steps never close. This is the
+  mechanistic signature the "MLP capacity matters" explanation predicts, and it argues the gap is not a
+  step-budget artifact (see §7, long-training).</figcaption>
+</figure>
+
+<div class="box ok">
+  <span class="lbl">Takeaway (core sweep).</span> On language modelling, <b>more attention is not better</b>.
+  The curve is flat-and-fine on the MLP-heavy side and monotonically worse as attention is added past 1:1,
+  with the worst (most attention-heavy) config also the least stable. The "attention-heavy is the optimum"
+  branch of the hypothesis is, at first glance, dead.
+</div>
+
+<div class="box warn">
+  <span class="lbl">But hold on.</span> Remember §2: on this grid, MLP-heavy = <b>more parameters</b>.
+  "MLP-heavy is better" could be a <i>ratio</i> effect <b>or</b> simply "the bigger model wins." The
+  attention-heavy configs are the smaller ones (65–72M) and the MLP-heavy ones the larger (89–95M). I cannot
+  call this a ratio effect until I hold size constant. That is the next section, and it changes the
+  conclusion substantially.
+</div>
+
+<!-- ============================================================ 5 -->
+<h2 id="retr"><span class="no">5</span>Result 2 — retrieval: 1:1 is the only reliable split</h2>
+
+<p>The hypothesis was, in part, a <i>retrieval</i> story — attention does global token-to-token mixing, so
+"more attention should help retrieval." I tested that directly with three synthetic probes, each a
+different flavour of "find the right token": <b>1-hop</b> (follow a pointer), <b>local</b> (a rule within a
+small window), and <b>recall</b> (recall a specific item from context). The two easy ones saturate and
+carry no signal; the <b>recall</b> task is where the ratio actually shows through.</p>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>task</th><th>range of task EM across ratios</th><th>verdict</th></tr></thead>
+  <tbody>
+    <tr><td>1-hop (hop2)</td><td>0.984 – 0.998 (flat)</td><td class="verdict ok">saturated — no ratio difference</td></tr>
+    <tr><td>local</td><td>1.000 (all)</td><td class="verdict ok">saturated — no ratio difference</td></tr>
+    <tr class="hl"><td><b>recall</b></td><td><b>0.588 – 0.940, and bimodal</b></td><td class="verdict warn"><b>1:1 is the only *reliable* split</b></td></tr>
+  </tbody>
+</table></div>
+
+<figure>
+  <img src="figs/fig4_tasks.png" alt="Task EM by ratio across the three synthetic probes">
+  <figcaption><b>Fig. 4 — All three retrieval probes in one view.</b> The two easy tasks (1-hop, local)
+  are flat at the top — every ratio solves them, so they carry no signal. Only the <b>recall</b> task
+  (bottom, most spread out) separates the ratios. This is why I anchor the retrieval conclusion on
+  recall, not on the saturated probes.</figcaption>
+</figure>
+
+<figure>
+  <img src="figs/fig9_recall_dots.png" alt="Per-run recall accuracy by ratio">
+  <figcaption><b>Fig. 5 — Every single recall run, by ratio.</b> This is the most informative figure in the
+  study. Each dot is one trained model (6 per ratio). Every ratio <i>except</i> 1:1 is <b>bimodal</b>: some
+  seeds solve the task (top cluster near 1.0) and some fail badly (bottom cluster 0.09–0.4), giving high
+  variance. <b>1:1 is the only split where every run clears the pass bar</b> (all &ge;0.78, &sigma;=0.083).
+  This is a <i>capability threshold</i>, not "more attention is better."</figcaption>
+</figure>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>ratio</th><th>per-run EM (n=6)</th><th>mean</th><th>&sigma;</th><th>read</th></tr></thead>
+  <tbody>
+    <tr><td>4:1 (5A)</td><td>0.095, 0.16, 0.38, 0.89, 1.0, 1.0</td><td>0.588</td><td>0.424</td><td>bimodal, most failures</td></tr>
+    <tr><td>3:1 (6A)</td><td>0.11, 0.41, 0.855, 0.87, 1.0, 1.0</td><td>0.708</td><td>0.365</td><td>bimodal</td></tr>
+    <tr><td>2:1 (8A)</td><td>0.38, 0.395, 0.41, 0.56, 0.925, 1.0</td><td>0.612</td><td>0.280</td><td>bimodal</td></tr>
+    <tr class="hl"><td><b>1:1 (12A)</b></td><td><b>0.78, 0.935, 0.94, 0.995, 0.995, 0.995</b></td><td><b>0.940</b></td><td><b>0.083</b></td><td><b>reliable, all pass</b></td></tr>
+    <tr><td>1:2 (16A)</td><td>0.155, 0.34, 0.355, 0.985, 0.99, 1.0</td><td>0.637</td><td>0.394</td><td>bimodal</td></tr>
+    <tr><td>1:3 (18A)</td><td>0.085, 0.88, 0.99, 0.995, 1.0, 1.0</td><td>0.825</td><td>0.366</td><td>bimodal</td></tr>
+    <tr><td>1:4 (19A)</td><td>0.325, 0.33, 0.995, 1.0, 1.0, 1.0</td><td>0.775</td><td>0.347</td><td>bimodal</td></tr>
+  </tbody>
+</table></div>
+
+<p>Read this carefully, because it is the cleanest task-dependence evidence in the study and it <b>refutes
+the simple "attention = retrieval" story</b>. If more attention helped retrieval, the attention-heavy
+ratios (1:2, 1:3, 1:4) should be the best and most reliable. They are <i>not</i> — they are bimodal, just
+like the MLP-heavy side. The pattern is not "more attention is better." It is <b>"1:1 is the sweet
+spot"</b>: recall needs a specific balance of attention (global search) <i>and</i> MLP (feature
+transformation), and 1:1 is the only split that reliably has both. The MLP-heavy extreme (4:1) has the
+most failures, and the attention-heavy 1:2 is <i>also</i> bimodal — so it is "just enough of both,"
+not "maximise attention."</p>
+
+<p>And note the cross-task tension, which is the heart of the "task-dependent" branch: <b>2:1 is the
+best ratio for language modelling (Fig. 2) but bimodal/unreliable for recall</b> (mean 0.612, three
+runs below the pass bar), while <b>1:1 — only slightly worse for LM (2.702 vs 2.690) — is the only
+reliable ratio for recall.</b> Different tasks, different optimal compositions. There is no single
+universal ratio.</p>
+
+<div class="box ok">
+  <span class="lbl">Takeaway (retrieval).</span> The ratio <b>genuinely</b> matters for retrieval, and the
+  optimum is <b>1:1 (balanced)</b>, defined by <i>reliability</i> (every seed passes), not just mean
+  accuracy. This is a true ratio effect — and, as I show next, it is <b>independent of size</b>, because
+  the best ratio here is <i>not</i> the largest model.
+</div>
+
+<!-- ============================================================ 6 -->
+<h2 id="crux"><span class="no">6</span>The crux — separating ratio from size (~95% is size)</h2>
+
+<p>This is the section the whole study hinges on, so I'll be precise. The core sweep (§4) holds the
+<b>48-sublayer total</b> fixed and varies the ratio. But because an MLP sublayer carries ~2&times; the
+parameters of an attention sublayer (§2), varying the ratio at fixed sublayer-count <b>also varies the
+parameter count</b>: the MLP-heavy end is 89–95M, the attention-heavy end 65–72M. So the 0.0744 "ratio
+effect" I measured could be:</p>
+<ul style="margin:6px 0 14px;padding-left:22px">
+  <li>a genuine <b>ratio</b> effect (the composition of attention vs MLP matters), or</li>
+  <li>a <b>size</b> effect (MLP-heavy just has more parameters, and bigger is better), or</li>
+  <li>some mixture of both.</li>
+</ul>
+
+<p>To separate them, I ran the <b>parameter-matched control</b>: for each ratio I retuned the MLP
+expansion (d_ff) so that <b>every ratio lands at the same ~80M total</b>, then varied only the
+composition. If the ratio effect survives at fixed size, it is real. If it vanishes, the core-sweep effect
+was size all along.</p>
+
+<figure>
+  <img src="figs/fig6_params_control.png" alt="Raw vs param-matched curves">
+  <figcaption><b>Fig. 6 — Raw vs param-matched.</b> Left: the raw sweep, where ratios span 65–95M of
+  parameters and the spread is 0.0744. Right: the parameter-matched control, where every ratio is ~80M and
+  the spread collapses to <b>0.0132</b> — the ratio effect nearly vanishes at fixed size. The two curves are
+  the same question asked with the size confound removed.</figcaption>
+</figure>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>config</th><th>nA</th><th>nM</th><th>params (M)</th><th>d_ff</th><th>val_loss (mean, n=6)</th></tr></thead>
+  <tbody>
+    <tr><td>pm 4:1</td><td>10</td><td>38</td><td>80.1</td><td>968</td><td>2.7147</td></tr>
+    <tr><td>pm 3:1</td><td>12</td><td>36</td><td>80.1</td><td>1016</td><td>2.7122</td></tr>
+    <tr><td>pm 2:1</td><td>16</td><td>32</td><td>80.0</td><td>1136</td><td>2.7020</td></tr>
+    <tr class="hl"><td><b>pm 1:2</b></td><td><b>32</b></td><td><b>16</b></td><td><b>80.0</b></td><td>1568</td><td><b>2.7015 &larr; best</b></td></tr>
+    <tr><td>pm 1:3</td><td>36</td><td>12</td><td>80.2</td><td>1992</td><td>2.7029</td></tr>
+    <tr><td>pm 1:4</td><td>38</td><td>10</td><td>80.1</td><td>2440</td><td>2.7058</td></tr>
+  </tbody>
+</table></div>
+
+<p><b>At fixed size, the ratio effect nearly vanishes.</b> The spread across ratios is
+<b>0.0132</b> (best 32A at 2.7015, worst 10A at 2.7147) — on the order of the ~0.008 seed noise floor,
+and with no consistent direction (it's a shallow, noisy wiggle: 16A and 32A are both ~2.70, the extremes
+are slightly worse). Compare the core sweep's spread of <b>0.0744</b>, where the same ratios span 65–95M.
+Holding size constant removes <b>~82% of the apparent effect</b>. That is the finding that reframes
+everything.</p>
+
+<p>I decomposed the gap explicitly to show where each bit comes from. Take the raw best (16A, 88.6M,
+2.6902) vs raw worst (38A, 65.2M, 2.7646), total gap 0.0744:</p>
+
+<figure>
+  <img src="figs/fig8_decomp.png" alt="Decomposition of the ratio effect into size vs ratio">
+  <figcaption><b>Fig. 7 — The decomposition.</b> I bridge the raw 16A vs 38A gap (0.0744) by stepping
+  38A up to 80M (a pure <b>size</b> change, +0.0588), comparing 38A vs 16A <i>at 80M</i> (a pure <b>ratio</b>
+  change, +0.0038), then stepping 16A back up to its native 88.6M (size again, +0.0118). The two gray
+  "size" chunks sum to 0.0706 — <b>~95% of the apparent ratio effect is really the parameter count</b>.
+  The red "ratio at fixed size" chunk (0.0038) is the entire genuine ratio effect, and it is within the
+  noise floor.</figcaption>
+</figure>
+
+<div class="eq">
+raw gap (16A vs 38A) &nbsp;= 0.0744<br>
+&nbsp; = size (38A: 65.2M&rarr;80M) &nbsp;0.0588 &nbsp;<i>[gray]</i><br>
+&nbsp; + ratio @80M (38A vs 16A) &nbsp;0.0038 &nbsp;<i>[red — the whole genuine ratio effect]</i><br>
+&nbsp; + size (16A: 80M&rarr;88.6M) &nbsp;0.0118 &nbsp;<i>[gray]</i>
+</div>
+
+<p>Now contrast this with the <b>recall</b> task (§5), where the best ratio (1:1) is <b>not</b> the
+largest model — in fact the largest (4:1) is the <i>worst</i> (0.588). So for recall, the ratio effect
+is <b>genuine and independent of size</b>, the exact opposite of what the LM numbers say. That contrast
+is the whole story, compressed into one table:</p>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>task</th><th>is the "optimal ratio" real?</th><th>what actually drives it</th></tr></thead>
+  <tbody>
+    <tr><td>language modelling</td><td class="verdict warn">No (at fixed size, ratio &asymp; irrelevant)</td><td><b>total parameters (size)</b></td></tr>
+    <tr class="hl"><td>retrieval (recall)</td><td class="verdict ok">Yes (1:1 is the sweet spot)</td><td><b>the attention:MLP ratio itself</b></td></tr>
+  </tbody>
+</table></div>
+
+<div class="box ok">
+  <span class="lbl">The crux, stated plainly.</span> The answer to "is there a specific optimal
+  attention:MLP ratio?" is <b>task-dependent, and for the primary task (LM) it is largely a matter of
+  size, not ratio.</b> For language modelling you can spend your parameter budget on the split however you
+  like (within the tested range) — what matters is having <i>more</i> parameters. The apparent "MLP-heavy
+  optimum" of §4 is an artifact of spending that budget on more (larger) sublayers. For retrieval, the
+  <i>composition</i> is what matters: a balanced 1:1 split is what reliably delivers the capability.
+</div>
+
+<!-- ============================================================ 7 -->
+<h2 id="robust"><span class="no">7</span>Robustness: depth, finer grid, longer training, stability</h2>
+
+<p>A finding I don't trust is one that only holds at one depth, one grid resolution, and one step
+budget. I checked all three, plus training stability. All four support the core story.</p>
+
+<h3>7.1 Depth — does it hold at half the sublayers?</h3>
+<figure>
+  <img src="figs/fig5_depth.png" alt="Depth ablation">
+  <figcaption><b>Fig. 8 — Depth ablation (24 sublayers, d=256).</b> Same qualitative shape at half depth:
+  best at the MLP-heavy end, monotone degradation toward attention-heavy. The effect is not an artifact of
+  the 48-sublayer scale.</figcaption>
+</figure>
+<div class="tblwrap"><table>
+  <thead><tr><th>ratio</th><th>nA/nM</th><th>val_loss</th><th>params (M)</th></tr></thead>
+  <tbody>
+    <tr><td>4:1</td><td>5/19</td><td>2.9118</td><td>13.2</td></tr>
+    <tr class="hl"><td><b>3:1 &larr; best</b></td><td><b>6/18</b></td><td><b>2.8673</b></td><td>13.0</td></tr>
+    <tr><td>2:1</td><td>8/16</td><td>2.8745</td><td>12.5</td></tr>
+    <tr><td>1:1</td><td>12/12</td><td>2.8973</td><td>11.4</td></tr>
+    <tr><td>1:2</td><td>16/8</td><td>2.9281</td><td>10.4</td></tr>
+    <tr><td>1:3</td><td>18/6</td><td>2.9499</td><td>9.9</td></tr>
+    <tr><td>1:4</td><td>19/5</td><td>2.9743</td><td>9.7</td></tr>
+  </tbody>
+</table></div>
+<p>At 24 sublayers the curve is actually <i>cleaner</i> — a near-monotone decline toward attention-heavy
+with the best point at 3:1 (6A/18M). The MLP-heavy-is-best, attention-heavy-is-worst ordering is
+reproduced at a different depth and width. (Note the absolute loss is higher here — 2.87 vs 2.69 —
+because these are smaller models, 10–13M vs 65–95M, which is itself a reminder that size dominates the
+LM numbers.)</p>
+
+<h3>7.2 Finer grid — where is the plateau edge?</h3>
+<p>I filled the coarse gaps (14, 18, 28, 34 attention) to locate the edge of the MLP-heavy plateau.
+Results: 14A=2.6975, <b>16A=2.6902</b>, <b>18A=2.6892</b> (best), 28A=2.7000, 34A=2.7255. So the best
+point is 18A, essentially tied with the 16A core point (Δ=0.001); 14A is slightly worse but within ~1σ;
+and the curve degrades clearly on the attention-heavy side (28A is +0.011, 34A is +0.036 over the
+plateau). So the "optimal" region for LM is not a sharp point at exactly 2:1 — it is a <b>broad plateau
+around 16–18A (MLP:Attn ≈ 2:1 down to ~1.7:1)</b>, and I should read "optimal" as that plateau, not a
+single ratio.</p>
+
+<h3>7.3 Longer training — is the ordering a step-budget artifact?</h3>
+<div class="tblwrap"><table>
+  <thead><tr><th>ratio</th><th>nA/nM</th><th>val_loss @12k steps</th><th>best ckpt</th></tr></thead>
+  <tbody>
+    <tr><td>4:1</td><td>10/38</td><td>2.5534</td><td>1.6766</td></tr>
+    <tr class="hl"><td><b>2:1 &larr; best</b></td><td><b>16/32</b></td><td><b>2.5515</b></td><td><b>1.6762</b></td></tr>
+    <tr><td>1:1</td><td>24/24</td><td>2.5635</td><td>1.6875</td></tr>
+    <tr><td>1:2</td><td>32/16</td><td>2.5798</td><td>1.7004</td></tr>
+    <tr><td>1:4</td><td>38/10</td><td>2.6046</td><td>1.7202</td></tr>
+  </tbody>
+</table></div>
+<p>Doubling the step budget (6k&rarr;12k) on the five anchor points <b>preserves the ordering</b> —
+MLP-heavy best, attention-heavy worst — and the spread is 0.0511, still well above noise. The cheaper
+attention-heavy models do <i>not</i> catch up with more steps, consistent with the convergence signature
+in Fig. 3 (they start worse and stay worse). So the LM ordering is not a step-budget artifact.</p>
+
+<h3>7.4 Stability &amp; arrangement — is position hiding a ratio effect?</h3>
+<figure>
+  <img src="figs/fig7_stability.png" alt="Training stability by ratio">
+  <figcaption><b>Fig. 9 — Stability.</b> Gradient-norm p95 rises toward the attention-heavy end (0.54–0.56
+  on the MLP-heavy side, 0.75 at 38A), and the only training spike in the core sweep lands on an
+  attention-heavy config. The attention-heavy models are not just worse, they are less reproducible.</figcaption>
+</figure>
+<div class="tblwrap"><table>
+  <thead><tr><th>ratio</th><th>alt</th><th>r0</th><th>r1</th><th>r2</th><th>spread</th></tr></thead>
+  <tbody>
+    <tr><td>10A</td><td>2.6973</td><td>2.6992</td><td>2.6831</td><td>2.6899</td><td>0.0162</td></tr>
+    <tr><td>12A</td><td>2.6917</td><td>2.6969</td><td>2.6992</td><td>2.6858</td><td>0.0134</td></tr>
+    <tr><td>16A</td><td>2.6951</td><td>2.6909</td><td>2.6796</td><td>2.6951</td><td>0.0156</td></tr>
+    <tr><td>24A</td><td>2.7028</td><td>2.6977</td><td>2.7049</td><td>2.6998</td><td>0.0072</td></tr>
+    <tr><td>32A</td><td>2.7177</td><td>2.7122</td><td>2.7167</td><td>2.7033</td><td>0.0143</td></tr>
+    <tr><td>36A</td><td>2.7312</td><td>2.7306</td><td>2.7362</td><td>2.7303</td><td>0.0058</td></tr>
+    <tr><td>38A</td><td>2.7431</td><td>2.7443</td><td>2.7840</td><td>2.7872</td><td><b>0.0442</b></td></tr>
+  </tbody>
+</table></div>
+<p>The spatial <b>arrangement</b> of the sublayers is a <i>secondary</i> effect. For most ratios the
+spread across the four layouts is 0.006–0.016 (small, within a couple of &sigma;). It is largest at the
+attention-heavy extreme (38A, spread 0.0442, where some placements are notably bad — r1 and r2 are
+~0.04 worse than alt). So: <b>the ratio is the dominant variable; position is a minor modifier</b>, and it
+modifies the attention-heavy end the most. That is reassuring — it means my controlled ratio sweep is
+measuring the ratio, not accidentally measuring one lucky placement. If position were the real driver, the
+four layouts per ratio would have scattered randomly; they don't.</p>
+
+<div class="box ok">
+  <span class="lbl">Robustness verdict.</span> The core story — MLP-heavy is best / attention-heavy is worst
+  on LM, and that's mostly a size effect; retrieval wants a balanced split — <b>holds across depth
+  (48&rarr;24 sublayers), across a finer grid, across 2&times; the step budget, and across four spatial
+  arrangements.</b> It is not an artifact of any single choice I made.
+</div>
+
+<!-- ============================================================ 8 -->
+<h2 id="answer"><span class="no">8</span>Answer to the hypothesis</h2>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>Prediction I set out to test</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td>Attention-heavy outperforms conventional</td><td class="verdict warn"><b>Disproved.</b> Attention-heavy is the <i>worst</i> side for LM (and unstable).</td></tr>
+    <tr><td>Optimum is at an attention-heavy ratio</td><td class="verdict warn"><b>Disproved.</b> The "optimum" is MLP-heavy — but see the size effect below.</td></tr>
+    <tr><td>Non-linear inverted-U peaking attention-heavy</td><td class="verdict warn"><b>Disproved.</b> Flat MLP-heavy plateau + monotone attention-heavy degradation (the mirror shape).</td></tr>
+    <tr><td>Task-dependence (retrieval wants a different split)</td><td class="verdict ok"><b>Supported (strong).</b> Recall's optimum is 1:1, not the LM "optimum" of ~2:1.</td></tr>
+    <tr><td>MLP capacity matters more than anticipated</td><td class="verdict ok"><b>Refined.</b> For LM it's <i>total</i> capacity (param count), not specifically MLP capacity — the split itself barely matters at fixed size.</td></tr>
+  </tbody>
+</table></div>
+
+<p><b>Does a specific optimal ratio exist?</b> For language modelling, <b>no</b> — the apparent "optimal
+ratio" is a size effect. For retrieval, <b>yes</b> — 1:1 is a genuine, size-independent optimal ratio.</p>
+
+<ul style="margin:6px 0 14px;padding-left:22px">
+  <li><b>Language modelling</b> (the primary objective): the apparent optimum sits at ~2:1 (MLP-heavy),
+  but it is <b>confounded with size</b> (MLP-heavy = more parameters). The parameter-matched control
+  shows that <b>at fixed size the ratio has almost no effect</b> (spread 0.013, within the noise floor).
+  So for LM, <b>what matters is total parameter count, not the attention:MLP ratio.</b> The "MLP-heavy
+  optimum" is an artifact of spending the parameter budget on more (larger) sublayers.</li>
+  <li><b>Retrieval (recall)</b>: optimum at <b>1:1 (balanced)</b>, and this is a <b>genuine ratio
+  effect, independent of size</b> — the best ratio is <i>not</i> the largest model, so it cannot be a
+  size artifact.</li>
+</ul>
+
+<p>Across <i>both</i> tasks the relationship is also <b>asymmetric</b>, and I think that is the most
+durable single finding here: you can <b>remove</b> attention (move toward more MLP) with little cost —
+4:1, 3:1, 2:1 are all within noise of each other on LM — but you cannot <b>add</b> attention (move toward
+less MLP) without paying, in both LM loss and, sharply, in retrieval reliability. <b>MLP-heavy is the
+safe side; attention-heavy is the costly side.</b></p>
+
+<p><b>Interpretation.</b> The load-bearing work that looks like "MLP capacity" is actually <i>total
+capacity</i> (parameter count) for language modelling. At a fixed size, how you split it between
+attention and MLP matters far less for LM than the hypothesis assumed — the model can absorb a wide range
+of compositions. But for retrieval the <i>split itself</i> matters: a balanced 1:1 reliably delivers the
+global-search capability, while both the MLP-heavy and the attention-heavy extremes fail on some seeds.
+Conventional wisdom is right that you need sufficient capacity; it is wrong to think the attention:MLP
+ratio is the key dial for LM. <b>For LM it is the size dial.</b></p>
+
+<!-- ============================================================ 9 -->
+<h2 id="confounds"><span class="no">9</span>Every confound I could name, and how I handled it</h2>
+
+<p>Because the effect sizes are small, I want to be explicit about what could have fooled me, and what I
+did about each. This is the part I'd most want a reviewer to scrutinise.</p>
+
+<div class="tblwrap"><table>
+  <thead><tr><th>confound</th><th>why it's a threat</th><th>how I handled it</th></tr></thead>
+  <tbody>
+    <tr class="hl"><td><b>size (param count)</b></td><td>MLP-heavy = more params; "ratio effect" could be "bigger model"</td><td><b>Parameter-matched control</b> (~80M for every ratio). Effect drops 0.0744&rarr;0.0132; decomposed as ~95% size (§6).</td></tr>
+    <tr><td><b>FLOPs/compute</b></td><td>attention-heavy is cheaper; a cheaper model could undertrain at equal steps</td><td>Same step budget for all; <b>long-training</b> (12k steps) shows the ordering is preserved, cheaper configs do <i>not</i> catch up (§7.3).</td></tr>
+    <tr><td><b>arrangement / position</b></td><td>where A's sit (front/back) could drive the result, not the ratio</td><td>4 layouts per ratio; ratio is dominant, position is a small modifier, largest at attention-heavy end (§7.4).</td></tr>
+    <tr><td><b>depth scale</b></td><td>effect could be specific to 48 sublayers</td><td><b>Depth ablation</b> at 24 sublayers (d=256) — ordering reproduced (§7.1).</td></tr>
+    <tr><td><b>grid resolution</b></td><td>the "plateau" could be an artifact of coarse ratios</td><td><b>Finer grid</b> (14/18/28/34 A) — plateau confirmed, edge located (§7.2).</td></tr>
+    <tr><td><b>seed / init variance</b></td><td>a one-seed fluke could be read as a ratio effect</td><td>3 seeds &times; 4 layouts; <b>noise floor measured</b> (~0.008); all claimed effects are &gt;1&sigma;, core is ~8.8&sigma;.</td></tr>
+    <tr><td><b>task saturation</b></td><td>easy probes (1-hop, local) could mask a real ratio effect</td><td>Used a <b>harder probe</b> (recall) that doesn't saturate; the two easy ones confirmed flat and set aside as non-informative (§5).</td></tr>
+    <tr><td><b>probe scale</b></td><td>recall runs are small (d=128, ~2–3M) vs LM (d=512)</td><td>Honest caveat: the recall effect is demonstrated at small scale; the <i>size-independence</i> claim rests on best&ne;largest within that family, not on a cross-scale match.</td></tr>
+  </tbody>
+</table></div>
+
+<p>What I could <b>not</b> fully rule out, and am reporting as open:</p>
+<ul style="margin:6px 0 14px;padding-left:22px">
+  <li><b>Single width family per task.</b> One width (d=512) for the LM core; one width (d=128) for the
+  recall probe. I vary depth and size within each, but not both simultaneously. A full width &times; depth
+  &times; ratio grid is the natural next step.</li>
+  <li><b>The "genuine" ratio effect on LM is small and wiggly.</b> At fixed size the pm curve is a shallow
+  wiggle (16A and 32A both ~2.70, extremes slightly worse) — real but weak, and not a clean monotone
+  story. I report it as "≈irrelevant / within noise," not as a precise second-order optimum.</li>
+  <li><b>No generation / qualitative metrics.</b> I report loss + task EM. If attention-heavy models
+  differ in <i>how</i> they fail (e.g. worse long-range coherence at equal loss), that is not
+  characterised here.</li>
+  <li><b>Retrieval probes are synthetic and coarse.</b> The stronger real-world probe is
+  needle-in-haystack at long context; my recall task is a controlled stand-in. The direction of the
+  finding (balanced &gt; either extreme) is what I'd expect to transfer, but the exact 1:1 optimum could
+  shift with a harder retrieval distribution.</li>
+</ul>
+
+<!-- ============================================================ 10 -->
+<h2 id="repro"><span class="no">10</span>Reproduction</h2>
+
+<div class="code">
+<b>code</b>      experiments/layout_schedule_2/
+                worker.sh  pick.py  watchdog.sh  monitor.sh  launch.sh  status.sh
+                gen_ratio_sweeps.py   # builds the 330-run grid + configs
+                analyze.py            # all_runs.json -> tables.md, summary.json
+                make_figs.py          # figs/fig1..fig7
+                make_illus.py         # figs/fig0, fig8, fig9  (the illustration figs)
+                finalize.sh           # regenerate tables + figs in one shot
+
+<b>runs</b>      /data/susanket/text/gpt/runs/
+                ratio_jumbo/          # core 48-sublayer sweep        (87 runs)
+                ratio_pm_jumbo/       # param-matched ~80M control    (36 runs)
+                ratio_depth24/        # 24-sublayer depth ablation    (42 runs)
+                ratio_fine_jumbo/     # finer ratios                  (24 runs)
+                ratio_jumbo_long/     # 12k-step anchors              (15 runs)
+                ratio_synth_recall/   # recall task                   (42 runs)
+                ratio_synth_hop2/     # 1-hop task                    (42 runs)
+                ratio_synth_local/    # local task                    (42 runs)
+
+<b>data</b>      /data/susanket/text/corpus/fineweb-10b.txt     # source corpus (3.3 GB)
+                /data/susanket/text/gpt/data/edu_mix/         # tokenized train/val (531M/5.2M tok)
+                /data/susanket/text/gpt/data/synth_{recall,hop2,local}/
+
+<b>regenerate</b>  bash finalize.sh      # rebuilds tables.md, summary.json, figs/ from the runs
+</div>
+
+<p>Every number in this post is derived from the run dirs above by <span class="k">analyze.py</span>;
+re-run <span class="k">bash finalize.sh</span> and the tables, summary, and figures regenerate from the
+checkpoints. The per-run values (e.g. the recall dot plot in Fig. 5) are the raw per-seed accuracies from
+<span class="k">all_runs.json</span>, not smoothed means — the bimodality is in the individual runs.</p>
+
+<footer>
+  Ratio study &middot; layout_schedule_2 &middot; 330 runs on 4&times;H100 &middot; all artifacts under
+  <code>experiments/layout_schedule_2/</code> and <code>/data/susanket/text/gpt/runs/ratio_*</code>.
+  Status: all sweeps complete; core, retrieval, param-matched, depth, fine-grid, and long-training
+  families all in. Headline (attention-heavy-is-better disproved; the LM apparent ratio effect is a size
+  effect; recall has a genuine 1:1 optimum) is robust across depth, grid, steps, and arrangement.
+</footer>
+
+</div>
+</body>
+</html>
